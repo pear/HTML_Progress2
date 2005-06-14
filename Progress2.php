@@ -70,7 +70,7 @@ define ('HTML_PROGRESS2_ERROR_INVALID_INPUT',    -100);
 
 /**
  * Basic error code that indicate a wrong callback definition.
- * Allows only function or class-method structure. 
+ * Allows only function or class-method structure.
  *
  * @var        integer
  * @since      2.0.0
@@ -254,15 +254,15 @@ class HTML_Progress2 extends HTML_Common
      * The default fill way is 'natural'.
      *
      * <ul>
-     * <li>'way'  =  bar fill way 
+     * <li>'way'  =  bar fill way
      *   <ul>
-     *     <li>with Progress Bar Horizontal, 
+     *     <li>with Progress Bar Horizontal,
      *              natural way is : left to right
      *        <br />reverse way is : right to left
-     *     <li>with Progress Bar Vertical, 
+     *     <li>with Progress Bar Vertical,
      *              natural way is : down to up
      *        <br />reverse way is : up to down
-     *     <li>with Progress Circle or Polygonal, 
+     *     <li>with Progress Circle or Polygonal,
      *              natural way is : clockwise
      *        <br />reverse way is : anticlockwise
      *   </ul>
@@ -349,7 +349,7 @@ class HTML_Progress2 extends HTML_Common
      *    'height' => 90,       # height
      *    'color' => '#C0C0C0', # color
      *    'border' => 2,                                         # border width
-     *    'border-style' => 'solid',                             # border style 
+     *    'border-style' => 'solid',                             # border style
      *                                                           # (solid, dashed, dotted ...)
      *    'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'    # border color (3dfx)
      * );
@@ -413,7 +413,7 @@ class HTML_Progress2 extends HTML_Common
      * <code>
      * $label = array(
      *    'name' => array(                  # label name
-     *      'type' => 'text',               # label type 
+     *      'type' => 'text',               # label type
      *                                      # (text,button,step,percent,crossbar)
      *      'value' => '&nbsp;',            # label value
      *      'left' => ($left),              # label position from left
@@ -451,7 +451,7 @@ class HTML_Progress2 extends HTML_Common
      * Error message callback.
      * This will be used to generate the error message
      * from the error code.
-     * 
+     *
      * @var        false|string|array
      * @since      2.0.0
      * @access     private
@@ -462,7 +462,7 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Error context callback.
      * This will be used to generate the error context for an error.
-     * 
+     *
      * @var        false|string|array
      * @since      2.0.0
      * @access     private
@@ -472,9 +472,9 @@ class HTML_Progress2 extends HTML_Common
 
     /**
      * Error push callback.
-     * The return value will be used to determine whether to allow 
+     * The return value will be used to determine whether to allow
      * an error to be pushed or logged.
-     * 
+     *
      * @var        false|string|array
      * @since      2.0.0
      * @access     private
@@ -485,7 +485,7 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Error handler callback.
      * This will handle any errors raised by this package.
-     * 
+     *
      * @var        false|string|array
      * @since      2.0.0
      * @access     private
@@ -494,7 +494,7 @@ class HTML_Progress2 extends HTML_Common
     var $_callback_errorhandler = false;
 
     /**
-     * Associative array of key-value pairs 
+     * Associative array of key-value pairs
      * that are used to specify any handler-specific settings.
      *
      * @var        array
@@ -524,11 +524,11 @@ class HTML_Progress2 extends HTML_Common
     function HTML_Progress2($errorPrefs = array(),
                             $orient = HTML_PROGRESS2_BAR_HORIZONTAL, $min = 0, $max = 100,
                             $percentLabel = 'pct1')
-                            
+
     {
         $this->__construct($errorPrefs, $orient, $min, $max, $percentLabel);
     }
-   
+
     /**
      * Constructor (ZE2) Summary
      *
@@ -544,7 +544,7 @@ class HTML_Progress2 extends HTML_Common
      * @param      int       $min           (optional) Minimum value of progress bar
      * @param      int       $max           (optional) Maximum value of progress bar
      * @param      mixed     $percentLabel  (optional) Progress bar percent label id.
-     *                                       
+     *
      *
      * @since      2.0.0
      * @access     protected
@@ -555,7 +555,7 @@ class HTML_Progress2 extends HTML_Common
     function __construct($errorPrefs = array(),
                          $orient = HTML_PROGRESS2_BAR_HORIZONTAL, $min = 0, $max = 100,
                          $percentLabel = 'pct1')
-                            
+
     {
         $this->_initErrorHandler($errorPrefs);
 
@@ -600,7 +600,7 @@ class HTML_Progress2 extends HTML_Common
             'height' => 20,
             'spacing' => 2
         );
-        
+
         $this->_updateProgressSize();   // updates the new size of progress bar
 
         if (!is_int($orient)) {
@@ -643,7 +643,7 @@ class HTML_Progress2 extends HTML_Common
         $this->setIndeterminate(false);
         $this->setIdent();
         $this->setAnimSpeed(0);
-        
+
         // to fix a potential php config problem with PHP 4.2.0 : turn 'implicit_flush' ON
         ob_implicit_flush(1);
     }
@@ -720,7 +720,7 @@ class HTML_Progress2 extends HTML_Common
 
     /**
      * Sets the value of $_paintBorder property, which determines whether the
-     * progress bar should paint its border. The default is false. 
+     * progress bar should paint its border. The default is false.
      *
      * @param      boolean   $paint         whether the progress bar should paint its border
      *
@@ -760,7 +760,7 @@ class HTML_Progress2 extends HTML_Common
 
     /**
      * Sets the progress bar's minimum value.
-     * If the minimum value is different from previous minimum, 
+     * If the minimum value is different from previous minimum,
      * all change listeners are notified.
      *
      * @param      integer   $min           progress bar's minimal value
@@ -824,7 +824,7 @@ class HTML_Progress2 extends HTML_Common
 
     /**
      * Sets the progress bar's maximum value.
-     * If the maximum value is different from previous maximum, 
+     * If the maximum value is different from previous maximum,
      * all change listeners are notified.
      *
      * @param      integer   $max           progress bar's maximal value
@@ -918,7 +918,7 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the progress bar's current value. The value is always between 
+     * Returns the progress bar's current value. The value is always between
      * the minimum and maximum values, inclusive.
      * By default, the value is initialized with the minimum value.
      *
@@ -935,7 +935,7 @@ class HTML_Progress2 extends HTML_Common
 
     /**
      * Sets the progress bar's current value.
-     * If the new value is different from previous value, 
+     * If the new value is different from previous value,
      * all change listeners are notified.
      *
      * @param      integer   $val           progress bar's current value
@@ -1058,7 +1058,7 @@ class HTML_Progress2 extends HTML_Common
 
         if ($this->cellCount > 0) {
             $cellAmount = ($this->maximum - $this->minimum) / $this->cellCount;
-    
+
             if ($this->indeterminate) {
                 if (isset($determinate)) {
                     $determinate++;
@@ -1070,10 +1070,10 @@ class HTML_Progress2 extends HTML_Common
                 $progress = ($this->value - $this->minimum) / $cellAmount;
                 $determinate = 0;
             }
-    
+
             $bar .= '<script type="text/javascript">'
                  .  'setProgress'
-                 .  '("' . $this->ident . '",' 
+                 .  '("' . $this->ident . '",'
                  .  intval($progress) . ',' . $determinate . ',' . $this->cellCount
                  .  ');'
                  .  '</script>';
@@ -1148,14 +1148,14 @@ class HTML_Progress2 extends HTML_Common
         $min = $this->minimum;
         $max = $this->maximum;
         $val = $this->value;
-        
+
         if ($float) {
             $percent = sprintf("%01.2f", (($val - $min ) / $max));
             return floatval($percent);
         } else {
             $percent = round((($val - $min) / ($max - $min)) * 100);
             return min(100, $percent);
-	}
+    }
     }
 
     /**
@@ -1197,7 +1197,7 @@ class HTML_Progress2 extends HTML_Common
                       'expected' => 'integer',
                       'paramnum' => 1));
 
-        } elseif (($orient != HTML_PROGRESS2_BAR_HORIZONTAL) && 
+        } elseif (($orient != HTML_PROGRESS2_BAR_HORIZONTAL) &&
                   ($orient != HTML_PROGRESS2_BAR_VERTICAL) &&
                   ($orient != HTML_PROGRESS2_POLYGONAL) &&
                   ($orient != HTML_PROGRESS2_CIRCLE)) {
@@ -1221,16 +1221,16 @@ class HTML_Progress2 extends HTML_Common
 
             $this->cell['width']  = $h;
             $this->cell['height'] = $w;
-                                            
+
             $this->_updateProgressSize();   // updates the new size of progress bar
         }
     }
 
     /**
      * Returns 'natural' or 'reverse', depending of the fill way of progress bar.
-     * For horizontal progress bar, natural way is from left to right, and reverse 
+     * For horizontal progress bar, natural way is from left to right, and reverse
      * way is from right to left.
-     * For vertical progress bar, natural way is from down to up, and reverse 
+     * For vertical progress bar, natural way is from down to up, and reverse
      * way is from up to down.
      * The default fill way is 'natural'.
      *
@@ -1273,7 +1273,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => $way,
                       'expected' => 'natural | reverse',
                       'paramnum' => 1));
-                      
+
         }
         $this->fillWay = $way;
     }
@@ -1328,7 +1328,7 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Returns the common and private cell attributes. Assoc array (defaut) or string
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      2.0.0
@@ -1424,7 +1424,7 @@ class HTML_Progress2 extends HTML_Common
         } else {
             $this->_updateAttrArray($this->cell, $this->_parseAttributes($attributes));
         }
-        
+
         $font_size   = $this->cell['font-size'];
         $cell_width  = $this->cell['width'];
         $cell_height = $this->cell['height'];
@@ -1501,7 +1501,7 @@ class HTML_Progress2 extends HTML_Common
                       'expected' => 'array',
                       'paramnum' => 3));
         }
-        
+
         if (count($coord) == 0) {
             // Computes all coordinates of a standard polygon (square or rectangle)
             $coord = $this->_computeCoordinates($xgrid, $ygrid);
@@ -1533,7 +1533,7 @@ class HTML_Progress2 extends HTML_Common
         $this->_coordinates = $coord;
         $this->_xgrid = $xgrid;
         $this->_ygrid = $ygrid;
-        
+
         // auto-compute cell count
         $this->cellCount = count($coord);
 
@@ -1543,7 +1543,7 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Returns the progress bar's border attributes. Assoc array (defaut) or string.
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      2.0.0
@@ -1600,7 +1600,7 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Returns the frame attributes. Assoc array (defaut) or string.
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      2.0.0
@@ -1632,14 +1632,14 @@ class HTML_Progress2 extends HTML_Common
      * Build a frame around the progress bar.
      *
      * @param      null|array     $attributes    (optional) hash of style parameters
-     *                                       
+     *
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT, 
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_OPTION
      * @tutorial   progress.setframeattributes.pkg
-     */    
+     */
     function setFrameAttributes($attributes = array())
     {
         if (!is_null($attributes) && !is_array($attributes)) {
@@ -1662,9 +1662,9 @@ class HTML_Progress2 extends HTML_Common
             'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'
         );
         $allowed_options = array_keys($default);
-        
+
         $options = array_merge($default, $attributes);
-        
+
         foreach($options as $prop => $val) {
             if (in_array($prop, $allowed_options)) {
                 $this->frame[$prop] = $val;
@@ -1680,7 +1680,7 @@ class HTML_Progress2 extends HTML_Common
      * Returns the label attributes. Assoc array (defaut) or string.
      *
      * @param      string    $name          progress label id.
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      2.0.0
@@ -1727,7 +1727,7 @@ class HTML_Progress2 extends HTML_Common
      * <li>font-family       = Verdana, Tahoma, Arial
      * <li>font-weight       = normal
      * <li>color             = #000000
-     * <li>background-color  = 
+     * <li>background-color  =
      * <li>align             = right
      * <li>valign            = right
      * </ul>
@@ -1777,7 +1777,7 @@ class HTML_Progress2 extends HTML_Common
      */
     function addLabel($type, $name, $value = '&nbsp;')
     {
-        if (($type != HTML_PROGRESS2_LABEL_TEXT) && 
+        if (($type != HTML_PROGRESS2_LABEL_TEXT) &&
             ($type != HTML_PROGRESS2_LABEL_BUTTON) &&
             ($type != HTML_PROGRESS2_LABEL_STEP) &&
             ($type != HTML_PROGRESS2_LABEL_PERCENT) &&
@@ -1811,9 +1811,9 @@ class HTML_Progress2 extends HTML_Common
         }
 
         switch($type) {
-        case 'text':
+        case HTML_PROGRESS2_LABEL_TEXT:
             $this->label[$name] = array(
-                'type' => 'text',
+                'type' => $type,
                 'value' => $value,
                 'left' => 5,
                 'top' => 5,
@@ -1829,17 +1829,18 @@ class HTML_Progress2 extends HTML_Common
                 'class' => 'progressTextLabel%s'
             );
             break;
-        case 'button':
+        case HTML_PROGRESS2_LABEL_BUTTON:
             $this->label[$name] = array(
-                'type' => 'button',
+                'type' => $type,
                 'value' => $value,
                 'action' => '',
                 'target' => 'self',
- #               'left' => $this->left,
- #               'top' => $this->top + $this->height + 10,
+                'left' => 0,
+                'top' => 5,
                 'width' => 0,
                 'height' => 0,
                 'align' => 'center',
+                'valign' => 'bottom',
                 'background-color' => '',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
@@ -1848,15 +1849,16 @@ class HTML_Progress2 extends HTML_Common
                 'class' => 'progressButtonLabel%s'
             );
             break;
-        case 'step':
+        case HTML_PROGRESS2_LABEL_STEP:
             $this->label[$name] = array(
-                'type' => 'step',
+                'type' => $type,
                 'value' => $value,
-#                'left' => $this->left + 5,
-#                'top' => $this->top + 5,
-                'width' => 10,
+                'left' => 5,
+                'top' => 5,
+                'width' => 165,
                 'height' => 0,
                 'align' => 'right',
+                'valign' => 'top',
                 'background-color' => '',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
@@ -1865,9 +1867,9 @@ class HTML_Progress2 extends HTML_Common
                 'class' => 'progressStepLabel%s'
             );
             break;
-        case 'percent':
+        case HTML_PROGRESS2_LABEL_PERCENT:
             $this->label[$name] = array(
-                'type' => 'percent',
+                'type' => $type,
                 'value' => $value,
                 'left' => 5,
                 'top' => 5,
@@ -1883,15 +1885,16 @@ class HTML_Progress2 extends HTML_Common
                 'class' => 'progressPercentLabel%s'
             );
             break;
-        case 'crossbar':
+        case HTML_PROGRESS2_LABEL_CROSSBAR:
             $this->label[$name] = array(
-                'type' => 'crossbar',
+                'type' => $type,
                 'value' => $value,
-#                'left' => $this->left + ($this->width / 2),
-#                'top' => $this->top - 16,
-                'width' => 10,
+                'left' => 5,
+                'top' => 5,
+                'width' => 20,
                 'height' => 0,
                 'align' => 'center',
+                'valign' => 'top',
                 'background-color' => '',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
@@ -1939,7 +1942,7 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Returns the progress attributes. Assoc array (defaut) or string.
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      2.0.0
@@ -2043,17 +2046,17 @@ function hideProgress(pIdent, pCellCount)
     name = 'tfrm' + pIdent;
     document.getElementById(name).style.visibility = 'hidden';
     for (i = 0; i < pCellCount; i++) {
-        showCell(i, pIdent, 'hidden');	
+        showCell(i, pIdent, 'hidden');
     }
 }
 
-function setLabelText(pIdent, pName, pText) 
+function setLabelText(pIdent, pName, pText)
 {
     name = 'plbl' + pName + pIdent;
     document.getElementById(name).firstChild.nodeValue = pText;
 }
 
-function setElementStyle(pPrefix, pName, pIdent, pStyles) 
+function setElementStyle(pPrefix, pName, pIdent, pStyles)
 {
     name = pPrefix + pName + pIdent;
     styles = pStyles.split(';');
@@ -2066,11 +2069,24 @@ function setElementStyle(pPrefix, pName, pIdent, pStyles)
     }
 }
 
+function setRotaryCross(pIdent, pName)
+{
+    name = 'plbl' + pName + pIdent;
+    cross = document.getElementById(name).firstChild.nodeValue;
+    switch(cross) {
+        case "--": cross = "\\\\"; break;
+        case "\\\\": cross = "|"; break;
+        case "|": cross = "/"; break;
+        default: cross = "--"; break;
+    }
+    document.getElementById(name).firstChild.nodeValue = cross;
+}
+
 JS;
         $cellAttr = $this->getCellAttributes();
         $attr = trim(sprintf($cellAttr['id'], '   '));
         $js = str_replace('%progressCell%', $attr, $js);
-         
+
         return $js;
     }
 
@@ -2108,13 +2124,13 @@ JS;
         /*
          - since version 0.5.0,
          - default javascript code comes from getScript() method
-         - but may be overrided by external file. 
+         - but may be overrided by external file.
         */
         $this->script = $url;
     }
 
     /**
-     * Draw all circle segment pictures 
+     * Draw all circle segment pictures
      *
      * @param      string    $dir           (optional) Directory where pictures should be created
      * @param      string    $fileMask      (optional) sprintf format for pictures filename
@@ -2153,7 +2169,7 @@ JS;
         } else {
             $cy = floor($h / 2);
         }
-            
+
         $image = imagecreate($w, $h);
 
         $bg     = Image_Color::allocateColor($image,$cellAttr['background-color']);
@@ -2253,11 +2269,11 @@ JS;
     function getStyle()
     {
         include_once 'HTML/CSS.php';
-        
+
         $progressAttr = $this->getProgressAttributes();
         $borderAttr = $this->getBorderAttributes();
         $cellAttr = $this->getCellAttributes();
-        
+
         $css = new HTML_CSS();
 
         $borderCls = '.' . sprintf($borderAttr['class'], $this->ident);
@@ -2301,10 +2317,10 @@ JS;
         $css->setStyle($cellClsI, 'font-size', $cellAttr['font-size'].'px');
 
         if ($this->orientation == HTML_PROGRESS2_BAR_HORIZONTAL) {
-            $css->setStyle($cellClsI, 'float', 'left'); 
+            $css->setStyle($cellClsI, 'float', 'left');
         }
         if ($this->orientation == HTML_PROGRESS2_BAR_VERTICAL) {
-            $css->setStyle($cellClsI, 'float', 'none'); 
+            $css->setStyle($cellClsI, 'float', 'none');
         }
         $css->setSameStyle($cellClsA, $cellClsI);
 
@@ -2318,7 +2334,7 @@ JS;
             $css->setStyle($cellClsA, 'background-image', 'url("'.$cellAttr['background-image'].'")');
             $css->setStyle($cellClsA, 'background-repeat', 'no-repeat');
         }
-        
+
         if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
             $css->setStyle($cellClsI, 'background-image', 'url("'.$cellAttr[0]['background-image'].'")');
             $css->setStyle($cellClsI, 'background-repeat', 'no-repeat');
@@ -2356,7 +2372,7 @@ JS;
             'increment' => $this->increment,
             'value' => $this->value,
             'percent' => $this->getPercentComplete()
-        );       
+        );
         return $structure;
     }
 
@@ -2402,7 +2418,7 @@ JS;
                 $_top = $this->frame['top'];
                 $_left = $this->frame['left'];
             }
-            $strHtml .= $tabs 
+            $strHtml .= $tabs
                   .  '<div id="tfrm' . $this->ident . '" style="'
                   .  'position:' . $progressAttr['position'] . ';'
                   .  'top:' . $_top . 'px;'
@@ -2415,32 +2431,32 @@ JS;
 
         } else {
             $topshift = $leftshift = 0;
-            $strHtml .= $tabs 
+            $strHtml .= $tabs
                  .  '<div id="tfrm' . $this->ident . '" style="'
                  .  'position:' . $progressAttr['position'] . ';'
-                 .  'top:' . $progressAttr['top'] . 'px;' 
+                 .  'top:' . $progressAttr['top'] . 'px;'
                  .  'left:' . $progressAttr['left'] . 'px;'
                  .  'height:{_heightshift_}px;">'
                  .  PHP_EOL;
-	}
+        }
 
         //  Start of progress bar border
-        $strHtml .= $tabs 
+        $strHtml .= $tabs
                  .  '<div id="pbrd' . $this->ident . '"'
                  .  ' style="position:absolute;top:{_topshift_}px;left:{_leftshift_}px;"'
                  .  ' class="' . sprintf($borderAttr['class'], $this->ident) . '">'
                  .  PHP_EOL;
 
-        //  Start of progress bar 
+        //  Start of progress bar
         if ($this->cellCount == 0) {
-            $strHtml .= $tabs 
+            $strHtml .= $tabs
                      .  '<div id="pbar' . $this->ident . '" style="'
                      .  'width:' . $progressAttr['width'] . 'px;'
                      .  'height:' . $progressAttr['height'] . 'px;'
                      .  'background-color:' . $cellAttr['active-color'] . ';">'
                      .  PHP_EOL;
         } else {
-            $strHtml .= $tabs 
+            $strHtml .= $tabs
                      .  '<div id="pbar' . $this->ident . '">'
                      .  PHP_EOL;
         }
@@ -2464,24 +2480,24 @@ JS;
             $progressHtml = $this->_getProgressCircle_toHtml();
         }
 
-        $strHtml .= $tabs 
+        $strHtml .= $tabs
                  .  $progressHtml
                  .  PHP_EOL;
 
-        //  Enf of progress bar 
-        $strHtml .= $tabs 
-                 .  '</div>' 
+        //  Enf of progress bar
+        $strHtml .= $tabs
+                 .  '</div>'
                  .  PHP_EOL;
 
         //  Enf of progress bar border
-        $strHtml .= $tabs 
-                 .  '</div>' 
+        $strHtml .= $tabs
+                 .  '</div>'
                  .  PHP_EOL;
 
         $cyshift = 0;
         $heightshift = $progressAttr['height'];
 
-        //  Start of progress bar labels 
+        //  Start of progress bar labels
         foreach ($this->label as $name => $data) {
 
             $align = $data['align'];
@@ -2497,7 +2513,6 @@ JS;
                         } else {
                             $topshift = $progressAttr['height'];
                         }
-                        $width = $progressAttr['width'];
                         $height = $topshift;
                         $heightshift += $height;
                         break;
@@ -2509,10 +2524,9 @@ JS;
                         $style_pos = 'top:{_cyshift_}px;'
                                    . 'left:{_leftshift_}px;';
                         $cyshift = $progressAttr['height'];
-                        $width = $progressAttr['width'];
                         if ($data['height'] == 0) {
                             $height = $progressAttr['height'];
-                	}
+                        }
                         $heightshift += $height;
                         break;
                     case 'left':
@@ -2550,43 +2564,68 @@ JS;
 
             switch ($data['type']) {
                 case HTML_PROGRESS2_LABEL_TEXT:
-                    $strHtml .= $tabs 
+                    $strHtml .= $tabs
                              .  '<div id="plbl' . $name . $this->ident . '"'
-                             .  ' style="position:absolute;'
-                             .  $style_pos . '"'
+                             .  ' style="position:absolute;' . $style_pos . '"'
                              .  ' class="' . $style_cls . '">'
-                             .  $data['value'] 
-                             .  '</div>' 
+                             .  $data['value']
+                             .  '</div>'
                              .  PHP_EOL;
                     break;
                 case HTML_PROGRESS2_LABEL_BUTTON:
+                    $strHtml .= $tabs
+                             .  '<div><input id="plbl' . $name . $this->ident
+                             .  '" type="button" value="' . $data['value']
+                             .  '" style="position:absolute;' . $style_pos
+                             .  '" class="' . $style_cls
+                             .  '" onclick="' . $data['target']
+                             .  '.location.href=\'' . $data['action'] . '\'" />'
+                             .  '</div>'
+                             .  PHP_EOL;
                     break;
                 case HTML_PROGRESS2_LABEL_STEP:
+                    $strHtml .= $tabs
+                             .  '<div id="plbl' . $name . $this->ident
+                             .  '" style="position:absolute;' . $style_pos
+                             .  '" class="' . $style_cls . '">'
+                             .  $this->value . '/' . $this->maximum
+                             .  '</div>'
+                             .  PHP_EOL;
                     break;
                 case HTML_PROGRESS2_LABEL_PERCENT:
-                    $strHtml .= $tabs 
+                    $strHtml .= $tabs
                              .  '<div id="plbl' . $name . $this->ident . '"'
-                             .  ' style="position:absolute;'
-                             .  $style_pos . '"'
+                             .  ' style="position:absolute;' .  $style_pos . '"'
                              .  ' class="' . $style_cls . '">&nbsp;'
                              .  '</div>'
                              .  PHP_EOL;
                     break;
                 case HTML_PROGRESS2_LABEL_CROSSBAR:
+                    $strHtml .= $tabs
+                             .  '<div id="plbl' . $name . $this->ident . '"'
+                             .  ' style="position:absolute;' .  $style_pos . '"'
+                             .  ' class="' . $style_cls . '">'
+                             .  $data['value']
+                             .  '</div>'
+                             .  PHP_EOL;
                     break;
             }
         }
 
         //  Enf of Top progress bar frame
-        $strHtml .= $tabs 
-                 .  '</div>' 
+        $strHtml .= $tabs
+                 .  '</div>'
                  .  PHP_EOL;
 
-        $strHtml = str_replace('{_leftshift_}', $leftshift, $strHtml);
-        $strHtml = str_replace('{_topshift_}', $topshift, $strHtml);
-        $strHtml = str_replace('{_heightshift_}', $heightshift, $strHtml);
-        $strHtml = str_replace('{_cyshift_}', ($topshift + $cyshift), $strHtml);
-        $strHtml = str_replace('{_rxshift_}', ($leftshift + $progressAttr['width']), $strHtml);
+        $placeHolders = array(
+            '{_leftshift_}', '{_topshift_}', '{_heightshift_}',
+            '{_cyshift_}', '{_rxshift_}'
+        );
+        $htmlElement = array(
+            $leftshift, $topshift, $heightshift,
+            ($topshift + $cyshift), ($leftshift + $progressAttr['width'])
+        );
+        $strHtml = str_replace($placeHolders, $htmlElement, $strHtml);
 
         return $strHtml;
     }
@@ -2638,13 +2677,13 @@ JS;
     function sleep()
     {
         // convert delay from milliseconds to microseconds
-        $usecs = $this->animSpeed * 1000; 
-        
+        $usecs = $this->animSpeed * 1000;
+
         if ((substr(PHP_OS, 0, 3) == 'WIN') && (substr(PHP_VERSION,0,1) < '5') ){
             for ($i = 0; $i < $usecs; $i++) { }
         } else {
             usleep($usecs);
-	}
+        }
     }
 
     /**
@@ -2692,7 +2731,7 @@ JS;
 
     /**
      * Runs the progress bar (both modes: indeterminate and determinate),
-     * and execute all actions defined in user callback identified by 
+     * and execute all actions defined in user callback identified by
      * method setProgressHandler.
      *
      * @return     void
@@ -2701,7 +2740,7 @@ JS;
      * @see        process(), setProgressHandler()
      * @tutorial   progress.run.pkg
      */
-    function run() 
+    function run()
     {
         do {
             $this->process();
@@ -2746,7 +2785,7 @@ JS;
             $this->ident = substr(md5(microtime()), 0, 6);
         } else {
             $this->ident = $ident;
-	}
+        }
     }
 
     /**
@@ -2764,11 +2803,11 @@ JS;
     }
 
     /**
-     * Adds a HTML_Progress2_Observer instance to the list of observers 
+     * Adds a HTML_Progress2_Observer instance to the list of observers
      * that are listening for messages emitted by this HTML_Progress2 instance.
      * Returns TRUE if the observer is successfully attached.
      *
-     * @param      object    $observer      The HTML_Progress2_Observer instance 
+     * @param      object    $observer      The HTML_Progress2_Observer instance
      *                                      to attach as a listener.
      *
      * @return     boolean
@@ -2791,7 +2830,7 @@ JS;
      * Removes a HTML_Progress2_Observer instance from the list of observers.
      * Returns TRUE if the observer is successfully detached.
      *
-     * @param      object    $observer      The HTML_Progress2_Observer instance 
+     * @param      object    $observer      The HTML_Progress2_Observer instance
      *                                      to detach from the list of listeners.
      *
      * @return     boolean
@@ -2802,9 +2841,9 @@ JS;
      */
     function removeListener($observer)
     {
-        if ((!is_a($observer, 'HTML_Progress2_Observer') && 
+        if ((!is_a($observer, 'HTML_Progress2_Observer') &&
              !is_a($observer, 'HTML_Progress2_Monitor')
-             ) || 
+             ) ||
             (!isset($this->_listeners[$observer->_id]))  ) {
 
             return false;
@@ -2849,7 +2888,7 @@ JS;
             // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
@@ -2863,7 +2902,7 @@ JS;
             // then active cells
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
@@ -2873,20 +2912,20 @@ JS;
                     $html .= 'color:' . $cellAttr[$i]['color'] . ';';
                 }
                 $html .= '"></div>' . PHP_EOL;
-                      
+
                 $pos += ($cellAttr['width'] + $cellAttr['spacing']);
             }
         } else {
             // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $pos . 'px;'
                       .  'top:' . $cellAttr['spacing'] . 'px;'
-                      .  '"></div>' 
+                      .  '"></div>'
                       .  PHP_EOL;
 
                 $pos += ($cellAttr['width'] + $cellAttr['spacing']);
@@ -2894,7 +2933,7 @@ JS;
             // then active cells
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
@@ -2904,7 +2943,7 @@ JS;
                     $html .= 'color:' . $cellAttr[$i]['color'] . ';';
                 }
                 $html .= '"></div>' . PHP_EOL;
-                      
+
                 $pos += ($cellAttr['width'] + $cellAttr['spacing']);
             }
         }
@@ -2931,7 +2970,7 @@ JS;
             // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
@@ -2945,7 +2984,7 @@ JS;
             // then active cells
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
@@ -2955,20 +2994,20 @@ JS;
                     $html .= 'color:' . $cellAttr[$i]['color'] . ';';
                 }
                 $html .= '"></div>' . PHP_EOL;
-                      
+
                 $pos += ($cellAttr['height'] + $cellAttr['spacing']);
             }
         } else {
             // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $cellAttr['spacing'] . 'px;'
                       .  'top:' . $pos . 'px;'
-                      .  '"></div>' 
+                      .  '"></div>'
                       .  PHP_EOL;
 
                 $pos += ($cellAttr['height'] + $cellAttr['spacing']);
@@ -2976,7 +3015,7 @@ JS;
             // then active cells
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
@@ -2986,7 +3025,7 @@ JS;
                     $html .= 'color:' . $cellAttr[$i]['color'] . ';';
                 }
                 $html .= '"></div>' . PHP_EOL;
-                      
+
                 $pos += ($cellAttr['height'] + $cellAttr['spacing']);
             }
         }
@@ -3015,7 +3054,7 @@ JS;
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $top  = $coord[$i][0] * $cellAttr['width'];
                 $left = $coord[$i][1] * $cellAttr['height'];
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
@@ -3028,7 +3067,7 @@ JS;
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $top  = $coord[$i][0] * $cellAttr['width'];
                 $left = $coord[$i][1] * $cellAttr['height'];
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
@@ -3045,7 +3084,7 @@ JS;
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $top  = $coord[$c-$i][0] * $cellAttr['width'];
                 $left = $coord[$c-$i][1] * $cellAttr['height'];
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
@@ -3058,7 +3097,7 @@ JS;
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $top  = $coord[$c-$i][0] * $cellAttr['width'];
                 $left = $coord[$c-$i][1] * $cellAttr['height'];
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
@@ -3093,7 +3132,7 @@ JS;
         if ($way_natural) {
             // inactive cells first
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;left:0;top:0;'
@@ -3102,7 +3141,7 @@ JS;
             }
             // then active cells
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;left:0;top:0;'
@@ -3113,7 +3152,7 @@ JS;
         } else {
             // inactive cells first
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;left:0;top:0;'
@@ -3122,7 +3161,7 @@ JS;
             }
             // then active cells
             for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab 
+                $html .= $tabs . $tab
                       .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
                       .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;left:0;top:0;'
@@ -3145,13 +3184,13 @@ JS;
      * @access     private
      * @see        setCellCoordinates()
      */
-    function _computeCoordinates($w, $h) 
+    function _computeCoordinates($w, $h)
     {
         $coord = array();
 
         for ($y=0; $y<$h; $y++) {
             if ($y == 0) {
-                // creates top side line 
+                // creates top side line
                 for ($x=0; $x<$w; $x++) {
                     $coord[] = array($y, $x);
                 }
@@ -3202,7 +3241,7 @@ JS;
         if ($this->orientation == HTML_PROGRESS2_BAR_VERTICAL) {
             $w  = $cell_width + (2 * $cell_spacing);
             $h  = ($cell_count * ($cell_height + $cell_spacing)) + $cell_spacing;
-        } 
+        }
         if ($this->orientation == HTML_PROGRESS2_POLYGONAL) {
             $w  = $cell_width * $this->_xgrid;
             $h  = $cell_height * $this->_ygrid;
@@ -3264,7 +3303,7 @@ JS;
         if ($step >= $max) {
             $pixel = $bar - ($padding * 2);
         }
-        
+
         switch ($direction) {
             case 'right':
                 $position['left'] = $padding;
@@ -3316,10 +3355,30 @@ JS;
     }
 
     /**
+     * Sends a DOM command through a javascript function
+     * to change the next frame animation of a cross bar's element.
+     *
+     * @param      string    $element       element name (cross id.)
+     *
+     * @return     string
+     * @since      2.0.0
+     * @access     private
+     */
+    function _changeCrossItem($element)
+    {
+        $cmd = '<script type="text/JavaScript">'
+             . 'setRotaryCross'
+             . '("' . $this->ident . '","' . $element . '");'
+             . '</script>';
+
+        echo $cmd;
+    }
+
+    /**
      * Sends a DOM command (emulate cssText attribute) through a javascript function
      * to change styles of a progress bar's element.
      *
-     * @param      string    $prefix        prefix identifier of the element 
+     * @param      string    $prefix        prefix identifier of the element
      * @param      string    $element       element name (label id.)
      * @param      string    $styles        styles of a DOM element
      *
@@ -3338,7 +3397,7 @@ JS;
     }
 
     /**
-     * Initialize Error Handler 
+     * Initialize Error Handler
      *
      * Parameter '$prefs' contains a hash of options to define the error handler.
      * You may find :
@@ -3430,7 +3489,7 @@ JS;
         } else {
             $userinfo['log'] = array();
         }
-        
+
         return PEAR::raiseError($message, $code, $mode, null, $userinfo, 'HTML_Progress2_Error');
     }
 
@@ -3470,7 +3529,7 @@ JS;
 
     /**
      * Pop an error off of the HTML_Progress2 stack
-     * 
+     *
      * @return     false|array|PEAR_Error
      * @since      2.0.0
      * @access     public
@@ -3481,5 +3540,5 @@ JS;
     {
         return @array_shift($this->_errorstack);
     }
-}    
+}
 ?>
