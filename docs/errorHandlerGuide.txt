@@ -15,14 +15,16 @@
 Using error Handler
 ======================
 
-The HTML_Progress2 package is implemented with a flexibility error handler plug-in system.
-You may use any error handler that you want. Using PEAR_Error object (default),
-but also the PEAR_ErrorStack package, or any else you might want to plug.
+The HTML_Progress2 package is implemented with a flexible error handler
+plug-in system. You may use any error handler that you want. Using PEAR_Error
+object (default), but also the PEAR_ErrorStack package, or any other error
+handler you might want to plug in.
 
-Without any configuration, each HTML_Progress2 API error (basic or exception) will raise
-a PEAR_Error instance that will be return to call script (user script).
+Without any configuration, each HTML_Progress2 API error (basic or exception)
+will raise a PEAR_Error instance that will be return to call script (user
+script).
 
-As usual you can check if API as well ended or not with :
+As usual you can use the PEAR error API as well:
 ....
 ::
     require_once 'HTML/Progress2.php';
@@ -37,19 +39,21 @@ As usual you can check if API as well ended or not with :
 
 Output will look like:
 
-Exception: invalid input, parameter #1 "$val" was expecting "integer", instead got "string"
-in html_progress2->setvalue (file [...path_to...]\eh.php on line 6)
+Exception: invalid input, parameter #1 "$val" was expecting "integer",
+instead got "string" in html_progress2->setvalue (file
+[...path_to...]\eh.php on line 6)
 
-You can notice :
+You can notice the following:
 - the error level:
   Exception
 - the message body with context informations:
-  invalid input, parameter #1 "$val" was expecting "integer", instead got "string"
+  invalid input, parameter #1 "$val" was expecting "integer", instead got
+  "string"
 - the context of call:
   in html_progress2->setvalue (file [...path_to...]\eh.php on line 6)
 
-Perharps this standard behaviour is not good for you. Don't worry, you can change
-everything :
+Perhaps this standard behaviour is not what you want. Don't worry, you can
+change everything :
 - display or ignore the error
 - display or hide part of message (error level, body, context)
 
@@ -70,34 +74,38 @@ construction.  Here's an overview of these parameters.
 ....
 
 
-+--------------------+-----------+------------------------------------------------+
-| Option             | Type      | Description                                    |
-+====================+===========+================================================+
-| `error_handler`    | callback  | A valid callback (function) to manage errors   |
-|                    |           | raised by the HTML_Progress2::raiseError().    |
-|                    |           | Default is: HTML_Progress2::_errorHandler      |
-+--------------------+-----------+------------------------------------------------+
-| `push_callback`    | callback  | A valid callback (function) that decides to    |
-|                    |           | following action.                              |
-|                    |           | Default return: PEAR_ERROR_DIE if exception    |
-|                    |           | NULL otherwise                                 |
-+--------------------+-----------+------------------------------------------------+
-| `message_callback` | callback  | A valid callback (function) to control         |
-|                    |           | message generation.                            |
-|                    |           | Default is: HTML_Progress2_Error::_msgCallback.|
-+--------------------+-----------+------------------------------------------------+
-| `context_callback` | callback  | A valid callback (function) to control         |
-|                    |           | error context generation.                      |
-|                    |           | Default is: HTML_Progress2_Error::getBacktrace.|
-+--------------------+-----------+------------------------------------------------+
++--------------------+-----------+-------------------------------------------+
+| Option             | Type      | Description                               |
++====================+===========+===========================================+
+| `error_handler`    | callback  | A valid callback (function) to manage     |
+|                    |           | errors raised by the                      |
+|                    |           | HTML_Progress2::raiseError() method.      |
+|                    |           | Default is: HTML_Progress2::_errorHandler |
++--------------------+-----------+-------------------------------------------+
+| `push_callback`    | callback  | A valid callback (function) that decides  |
+|                    |           | to following action.                      |
+|                    |           | Default return: PEAR_ERROR_DIE if         |
+|                    |           |     exception                             |
+|                    |           | NULL otherwise                            |
++--------------------+-----------+-------------------------------------------+
+| `message_callback` | callback  | A valid callback (function) to control    |
+|                    |           | message generation.                       |
+|                    |           | Default is:                               |
+|                    |           |     HTML_Progress2_Error::_msgCallback.   |
++--------------------+-----------+-------------------------------------------+
+| `context_callback` | callback  | A valid callback (function) to control    |
+|                    |           | error context generation.                 |
+|                    |           | Default is:                               |
+|                    |           |     HTML_Progress2_Error::getBacktrace.   |
++--------------------+-----------+-------------------------------------------+
 
 Controlling error generation
 ----------------------------
 There are many scenarios in which fine-grained control over error raising is
 absolutely necessary.
 
-If you want to ignore all errors raised  (no display, no logs) and avoid to include
-PEAR core class, then :
+If you want to ignore all errors raised  (no display, no logs) and avoid to
+include PEAR core class, then :
 ....
 ::
     function myErrorHandler()
@@ -114,18 +122,18 @@ PEAR core class, then :
 
 Option : `push_callback`
 
-The default error handling callback means that first exception will die the script
-(returns PEAR_ERROR_DIE constant) and continue for all others error levels
-(returns NULL).
+The default error handling callback means that first exception will kill the
+script (returns PEAR_ERROR_DIE constant) and all other error levels will
+allow the script to continue normally (returns NULL).
 
 
 Error Context Display
 ---------------------
 In some cases, you may want to customize error generation. For instance,
 for each error (basic/exception), it is useful to include file, line number,
-and class/function context information in order to trace it.
-Default option which will be sufficient for most cases but you want perharps customize
-the output format (render) of context information.
+and class/function context information in order to trace it. The default
+option will be sufficient for most cases but you want perhaps customize the
+output format (render) of context information.
 
 You can change default render options with something like :
 ....
@@ -151,8 +159,9 @@ You can change default render options with something like :
 ....
 Default configuration options (display driver)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-TIPS: If you don't wish context information to be in the error message, then remove
-      parameter %3$ in the ``lineFormat`` option even if ``contextFormat`` is sets.
+TIPS: If you don't want context information to be in the error message, then
+      remove the parameter %3$ in the ``lineFormat`` option even if
+      ``contextFormat`` is sets.
 
 +-------------------+-----------+---------------+---------------------------+
 | Parameter         | Type      | Default       | Description               |
@@ -176,8 +185,9 @@ TIPS: If you don't wish context information to be in the error message, then rem
 
 Default configuration options (log driver)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-TIPS: If you don't wish context information to be in the error message, then remove
-      parameter %5$ in the ``lineFormat`` option even if ``contextFormat`` is sets.
+TIPS: If you don't wish context information to be in the error message, then
+      remove the parameter %5$ in the ``lineFormat`` option even if
+      ``contextFormat`` is set.
 
 +-------------------+-----------+---------------+---------------------------+
 | Parameter         | Type      | Default       | Description               |
@@ -219,11 +229,11 @@ TIPS: If you don't wish context information to be in the error message, then rem
 
 Custom Error Message Generation
 -------------------------------
-There are two methods of HTML_Progress2_Error designed for use with generating
-error messages efficiently. To use them, you must set the options below in
-the HTML_Progress2 class constructor (argument #1):
+There are two methods of HTML_Progress2_Error designed for use with
+generating error messages efficiently. To use them, you must set the options
+below in the HTML_Progress2 class constructor (argument #1):
 
-Option : `message_callback`
+Option: `message_callback`
 
 The default message handling callback get an array mapping error codes
 to error message templates (HTML_Progress2_Error::_getErrorMessage) like so:
@@ -239,8 +249,8 @@ to error message templates (HTML_Progress2_Error::_getErrorMessage) like so:
     );
 ....
 
-Basically, if a variable name is enclosed in percent signs (%), it will be replaced
-with the value passed in the associative array.
+Basically, if a variable name is enclosed in percent signs (%), it will be
+replaced with the value passed in the associative array.
 
 In such condition, you can change easily the message templates as you want.
 For instance, you could write french messages:
@@ -258,7 +268,7 @@ For instance, you could write french messages:
 
 Option : `context_callback`
 
-The default context handling callback get an array of execution functions and
-allows to retrieve where the error was generated (HTML_Progress2_Error::getBackTrace),
-see also PEAR core class.
+The default context handling callback gets an array of execution functions
+and discovers where the error was generated
+(HTML_Progress2_Error::getBackTrace), see also PEAR core class.
 
