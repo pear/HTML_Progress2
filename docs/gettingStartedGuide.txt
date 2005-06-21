@@ -1,0 +1,246 @@
+****************************
+ The HTML_Progress2 Package
+****************************
+
+--------------------------------------
+ User Documentation - Getting Started
+--------------------------------------
+
+:Author:        Laurent Laville
+:Contact:       pear@laurent-laville.org
+:Date:          $Date$
+:Revision:      $Revision$
+
+
+Introduction
+============
+
+HTML_Progress2 is a OO class PEAR package for PHP 4.2 or better.
+
+HTML_Progress2 makes it easy to build and display an horizontal or vertical
+loading bar on XHTML document of your choice, and allows user to wait and
+see progress status during a long procedure such an installation. You get
+a more or less decent result with just the basic settings, but it’s also
+highly configurable, so you can almost get what you want.
+
+The core class assigns context sensitive default values for most of the
+parameters which minimizes the learning part. The features are there when
+you need it.
+
+This package propose also a standalone version without any dependencies.
+So if you are not familiar with the PEAR framework, or you just don't want
+to install or use it, i suggest to have a look on HTML_Progress2_Lite class.
+
+Features:
+---------
+- create horizontal, vertival bar and also circle, ellipse and polygons
+  (square, rectangle).
+- allows usage of existing external StyleSheet and/or JavaScript.
+- all elements (progress, cells, labels) are customizable by their html
+  properties.
+- percent/labels are floating all around the progress meter.
+- compliant with all CSS/XHMTL standards.
+- integration with all template engines is very easy.
+- implements Observer design pattern. It is possible to add Listeners.
+- adds a customizable monitor pattern to display a progress bar.
+  User-end can abort progress at any time.
+- allows many progress meter on same page without uses of iframe solution.
+- error handling system that support native PEAR_Error, but also
+  PEAR_ErrorStack, and any other system you might want to plug-in.
+- PHP 5 ready.
+
+Software license:
+-----------------
+HTML_Progress is released under PHP License 3.0
+(http://www.php.net/license/3_0.txt)
+
+Specifications:
+---------------
+Supported Platforms
+  Operating System independent.
+
+Supported Browsers
+  * Internet Explorer 6.x
+  * Mozilla 1.7.x
+  * Mozilla Firebird 1.x
+  * Opera 7.x
+
+System Requirements:
+--------------------
+Mandatory resources:
+  * Webserver Apache 1.3.x or IIS (recommended: 1.3.33)
+  * PHP 4.2.0 or newer (recommended: 4.3.11 or 5.0.4)
+  * PEAR 1.3.5 or newer
+  * PEAR HTML_Common package 1.2.1 or newer
+  * PEAR PHP_Compat package 1.4.1 or newer
+
+Optional resources:
+  * PEAR HTML_CSS package 0.3.4 or newer
+  * PEAR HTML_QuickForm package 3.2.4pl1 or newer
+  * PEAR HTML_QuickForm_Controller package 1.0.4 or newer
+  * PEAR HTML_Template_IT package 1.1 or newer
+  * PEAR HTML_Template_Sigma package 1.1.2 or newer
+  * PEAR HTML_Page2 package 0.5.0 or newer
+  * PEAR Log package 1.8.7 or newer
+  * PEAR Image_Color package 1.0.1 or newer
+  * PHP Extension: gd 2.0.1 or newer
+
+
+Installation
+============
+
+a) You are a PEAR user
+----------------------
+  You are able to install it using line follows
+  on command prompt:
+    pear install HTML_Progress2-2.0.0RC1.tgz
+  or
+    pear install HTML_Progress2
+  or
+    pear install --alldeps HTML_Progress2
+  that will install all required and optional dependencies
+
+b) You are not a PEAR user
+--------------------------
+  You must put the class HTML_Progress2_Lite (Progress2_Lite.php file)
+  somewhere in your access path (see 'include_path' in your php.ini).
+
+
+A simple tutorial
+=================
+
+HTML_Progress2 can handle all your needs. Only few functions are enough
+to make what you want. But as all new software, errors on learning step
+could be numerous. We will avoid common traps.
+
+In a hurry you’ve coded only:
+::
+    <?php
+    require_once 'HTML/Progress2.php';
+
+    $bar = new HTML_Progress2();
+
+    echo $bar->toHtml();
+    ?>
+::
+
+You got nothing on your browser’s window.
+Question: Why ? what’s wrong with previous code ?
+Anwser  : It’s very simple, HTML_Progress2 needs some CSS rules to run fine.
+          So if you send to browser the necessary styles, all will be ok.
+          To do it, you can use the internal stylesheet.
+
+Changes previous code by the following lines:
+::
+    <?php
+    require_once 'HTML/Progress2.php';
+
+    $bar = new HTML_Progress2();
+    ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+    <style type="text/css">
+    <!--
+    <?php echo $bar->getStyle(); ?>
+    // -->
+    </style>
+    </head>
+    <body>
+    <?php echo $bar->toHtml();   ?>
+    </body>
+    </html>
+::
+
+The result is simply better, but it’s not enough to run properly a
+progress bar. So what is missing ?
+
+A loop to increase the progress meter value while your process runs.
+Something like:
+::
+    <?php
+    // ...
+    do {
+        if ($bar->getPercentComplete() == 1) {
+            break;
+        }
+        $bar->sleep();
+        // your long process goes here !
+        $bar->moveNext();
+    } while(1);
+    // ...
+    ?>
+::
+
+or more easily
+::
+    <?php
+    // ...
+    $bar->run();
+    // ...
+    ?>
+::
+
+Ok, it's pretty good, but my progress bar still frozen, no moves,
+what's wrong again ?
+You forgot to include the requires javascript. Remember HTML_Progress2
+rule:  CSS + JS + PHP
+::
+    <script type="text/javascript">
+    <!--
+    <?php echo $bar->getScript(); ?>
+    //-->
+    </script>
+::
+
+Yahoo ! but it's too fast, i don't see anything ?!
+
+Remember, main goal of a progress bar is to display something to wait user
+while a long process is running.
+And here we've not yet a long process to do. Don't worry, we have a solution
+that may even in some case be necessary to smooth animation:
+  setAnimSpeed() API
+
+And the final script gave that
+::
+    <?php
+    require_once 'HTML/Progress2.php';
+
+    $bar = new HTML_Progress2();
+    $bar->setAnimSpeed(100);
+    ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+    <style type="text/css">
+    <!--
+    <?php echo $bar->getStyle(); ?>
+    // -->
+    </style>
+    <script type="text/javascript">
+    <!--
+    <?php echo $bar->getScript(); ?>
+    //-->
+    </script>
+    </head>
+    <body>
+    <?php
+    echo $bar->toHtml();
+    $bar->run();
+    /*
+    do {
+        if ($bar->getPercentComplete() == 1) {
+            break;
+        }
+        $bar->sleep();
+        // your long process goes here !
+        $bar->moveNext();
+    } while(1);
+    */
+    ?>
+    </body>
+    </html>
+::
+
