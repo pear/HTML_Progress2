@@ -1155,7 +1155,7 @@ class HTML_Progress2 extends HTML_Common
         } else {
             $percent = round((($val - $min) / ($max - $min)) * 100);
             return min(100, $percent);
-    }
+        }
     }
 
     /**
