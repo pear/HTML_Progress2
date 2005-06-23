@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
+<package version="1.0">
+  <name>HTML_Progress2</name>
+  <summary>How to include a loading bar in your XHTML documents quickly and easily.</summary>
+  <description>This package provides a way to add a loading bar fully customizable in existing XHTML documents.
+Your browser should accept DHTML feature.
+
+Features:
+- create horizontal, vertival bar and also circle, ellipse and polygons (square, rectangle).
+- allows usage of existing external StyleSheet and/or JavaScript.
+- all elements (progress, cells, labels) are customizable by their html properties.
+- percent/labels are floating all around the progress meter.
+- compliant with all CSS/XHMTL standards.
+- integration with all template engines is very easy.
+- implements Observer design pattern. It is possible to add Listeners.
+- adds a customizable monitor pattern to display a progress bar.
+  User-end can abort progress at any time.
+- allows many progress meter on same page without uses of iframe solution.
+- error handling system that support native PEAR_Error, but also PEAR_ErrorStack, and
+  any other system you might want to plug-in.
+- PHP 5 ready.</description>
+  <maintainers>
+    <maintainer>
+      <user>farell</user>
+      <name>Laurent Laville</name>
+      <email>pear@laurent-laville.org</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <release>
+    <version>2.0.0RC1</version>
+    <date>2005-06-23</date>
+    <license>PHP License 3.0</license>
+    <state>beta</state>
+    <notes>---
+  It is important to notice that even if i will continue to maintains the HTML_Progress
+  for possible bugs, no features will be added in this package. Even if it will not marks
+  as deprecated, i suggest to migrate to HTML_Progress2 (see docs/migrationGuide.txt).
+---
+* news
+- The HTML_Progress2 package has now a series of mini guides (see docs/ directory)
+- The HTML_Progress2_Lite class is recommended to users that does not want to install PEAR.
+  This class has no dependencies.
+- News examples are available: See Multiple, Label, Lite version, Preload.
+- Adds the *autorun* option on HTML_Progress2_Monitor to run a progress monitor
+  without need to push the Start button.
+
+* changes
+- DM and UI classes (from HTML_Progress 1.x) were merged into the main class.
+- Model class (from HTML_Progress 1.x) was removed.
+- A new error handling system that support native PEAR_Error (default), but also PEAR_ErrorStack,
+  and any other system you might want to plug-in.
+- Progress2 and Generator does not support anymore external pre-set config file.
+- All examples have been revisited (removed those who have the same goals).
+- HTML_Progress2::getPercentComplete() method has an optional parameter.
+  Return may be float (default) or integer.
+- HTML_Progress2 API changed a bit to include the new label system:
+  . setCellCount() accept now zero as minimum value for smooth progress meter
+    (see also HTML_Progress2_Lite).
+  . moveNext() should replace incValue() (still exists)
+  . moveStep() should replace setValue() (still exists)
+  . setLabelAttributes() replaced setStringAttributes() (was removed)
+  . isStringPainted() and setStringPainted() were removed
+  . getString() was also removed
+  . setString() was removed and replaced by addLabel()
+- HTML_Progress2_Monitor::callProgressHandler() public method was removed.
+- HTML_Progress2 included now the features of HTML_Progress_Lite:
+  window frame, buttons, labels (text, step, crossbar).
+
+* improvements
+- Generator ActionProcess got two new methods to easily get PHP and/or CSS source code generated.
+- More compatibilities with PHP5 (adds __construct method).
+
+* QA
+- Updates headers comment block on all files
+- Dependencies has been revisited to higher level
+- Examples were removed from main package and moved into the optional package
+  available at http://pear.laurent-laville.org/HTML_Progress2/
+</notes>
+    <deps>
+      <dep type="php" rel="ge" version="4.2.0" optional="no"/>
+      <dep type="pkg" rel="ge" version="1.4.1" optional="no">PHP_Compat</dep>
+      <dep type="pkg" rel="ge" version="1.2.1" optional="no">HTML_Common</dep>
+      <dep type="pkg" rel="ge" version="1.3.5" optional="yes">PEAR</dep>
+      <dep type="pkg" rel="ge" version="0.3.4" optional="yes">HTML_CSS</dep>
+      <dep type="pkg" rel="gt" version="3.2.4" optional="yes">HTML_QuickForm</dep>
+      <dep type="pkg" rel="ge" version="1.0.4" optional="yes">HTML_QuickForm_Controller</dep>
+      <dep type="pkg" rel="ge" version="1.0.1" optional="yes">Image_Color</dep>
+      <dep type="pkg" rel="ge" version="0.5.0" optional="yes">HTML_Page2</dep>
+      <dep type="pkg" rel="ge" version="1.1" optional="yes">HTML_Template_IT</dep>
+      <dep type="pkg" rel="ge" version="1.1.2" optional="yes">HTML_Template_Sigma</dep>
+      <dep type="pkg" rel="ge" version="1.8.7" optional="yes">Log</dep>
+      <dep type="ext" rel="has" optional="yes">gd</dep>
+    </deps>
+    <provides type="class" name="HTML_Progress2_Error" extends="PEAR_Error" />
+    <provides type="function" name="HTML_Progress2_Error::getLevel" />
+    <provides type="function" name="HTML_Progress2_Error::log" />
+    <provides type="function" name="HTML_Progress2_Error::sprintContextExec" />
+    <provides type="class" name="HTML_Progress2_Generator" extends="HTML_QuickForm_Controller" />
+    <provides type="function" name="HTML_Progress2_Generator::createTabs" />
+    <provides type="function" name="HTML_Progress2_Generator::createButtons" />
+    <provides type="function" name="HTML_Progress2_Generator::enableButton" />
+    <provides type="function" name="HTML_Progress2_Generator::disableButton" />
+    <provides type="function" name="HTML_Progress2_Generator::createProgressBar" />
+    <provides type="function" name="HTML_Progress2_Generator::createProgressStructure" />
+    <provides type="class" name="HTML_Progress2_Monitor" />
+    <provides type="function" name="HTML_Progress2_Monitor::notify" />
+    <provides type="function" name="HTML_Progress2_Monitor::setProgressHandler" />
+    <provides type="function" name="HTML_Progress2_Monitor::isStarted" />
+    <provides type="function" name="HTML_Progress2_Monitor::isCanceled" />
+    <provides type="function" name="HTML_Progress2_Monitor::run" />
+    <provides type="function" name="HTML_Progress2_Monitor::setProgressElement" />
+    <provides type="class" name="HTML_Progress2_Observer" />
+    <provides type="function" name="HTML_Progress2_Observer::notify" />
+    <provides type="class" name="ActionDisplay" extends="HTML_QuickForm_Action_Display" />
+    <provides type="class" name="Property1" extends="HTML_QuickForm_Page" />
+    <provides type="class" name="Property2" extends="HTML_QuickForm_Page" />
+    <provides type="class" name="Property3" extends="HTML_QuickForm_Page" />
+    <provides type="class" name="Property4" extends="HTML_QuickForm_Page" />
+    <provides type="class" name="Preview" extends="HTML_QuickForm_Page" />
+    <provides type="class" name="Save" extends="HTML_QuickForm_Page" />
+    <provides type="function" name="Property1::buildForm" />
+    <provides type="function" name="Property2::buildForm" />
+    <provides type="function" name="Property3::buildForm" />
+    <provides type="function" name="Property4::buildForm" />
+    <provides type="function" name="Preview::buildForm" />
+    <provides type="function" name="Save::buildForm" />
+    <provides type="class" name="ActionPreview" extends="HTML_QuickForm_Action" />
+    <provides type="function" name="ActionPreview::perform" />
+    <provides type="class" name="ActionProcess" extends="HTML_QuickForm_Action" />
+    <provides type="function" name="ActionProcess::perform" />
+    <provides type="function" name="ActionProcess::sprintCSS" />
+    <provides type="function" name="ActionProcess::sprintPHP" />
+    <provides type="function" name="ActionProcess::exportOutput" />
+    <provides type="class" name="HTML_Progress2" extends="HTML_Common" />
+    <provides type="function" name="HTML_Progress2::apiVersion" />
+    <provides type="function" name="HTML_Progress2::isIndeterminate" />
+    <provides type="function" name="HTML_Progress2::setIndeterminate" />
+    <provides type="function" name="HTML_Progress2::isBorderPainted" />
+    <provides type="function" name="HTML_Progress2::setBorderPainted" />
+    <provides type="function" name="HTML_Progress2::getMinimum" />
+    <provides type="function" name="HTML_Progress2::setMinimum" />
+    <provides type="function" name="HTML_Progress2::getMaximum" />
+    <provides type="function" name="HTML_Progress2::setMaximum" />
+    <provides type="function" name="HTML_Progress2::getIncrement" />
+    <provides type="function" name="HTML_Progress2::setIncrement" />
+    <provides type="function" name="HTML_Progress2::getValue" />
+    <provides type="function" name="HTML_Progress2::setValue" />
+    <provides type="function" name="HTML_Progress2::incValue" />
+    <provides type="function" name="HTML_Progress2::moveStep" />
+    <provides type="function" name="HTML_Progress2::moveNext" />
+    <provides type="function" name="HTML_Progress2::getPercentComplete" />
+    <provides type="function" name="HTML_Progress2::getOrientation" />
+    <provides type="function" name="HTML_Progress2::setOrientation" />
+    <provides type="function" name="HTML_Progress2::getFillWay" />
+    <provides type="function" name="HTML_Progress2::setFillWay" />
+    <provides type="function" name="HTML_Progress2::getCellCount" />
+    <provides type="function" name="HTML_Progress2::setCellCount" />
+    <provides type="function" name="HTML_Progress2::getCellAttributes" />
+    <provides type="function" name="HTML_Progress2::setCellAttributes" />
+    <provides type="function" name="HTML_Progress2::getCellCoordinates" />
+    <provides type="function" name="HTML_Progress2::setCellCoordinates" />
+    <provides type="function" name="HTML_Progress2::getBorderAttributes" />
+    <provides type="function" name="HTML_Progress2::setBorderAttributes" />
+    <provides type="function" name="HTML_Progress2::getFrameAttributes" />
+    <provides type="function" name="HTML_Progress2::setFrameAttributes" />
+    <provides type="function" name="HTML_Progress2::getLabelAttributes" />
+    <provides type="class" name="HTML_Progress2_Lite" />
+    <provides type="function" name="ob_get_clean" />
+    <filelist>
+      <file role="doc" baseinstalldir="HTML" name="docs/errorHandlerGuide.txt"/>
+      <file role="doc" baseinstalldir="HTML" name="docs/gettingStartedGuide.txt"/>
+      <file role="doc" baseinstalldir="HTML" name="docs/migrationGuide.txt"/>
+      <file role="doc" baseinstalldir="HTML" name="docs/progress2LiteGuide.txt"/>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Error.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Monitor.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Observer.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/Default.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/HTMLPage2.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/ITDynamic.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/pages.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/Preview.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/Process.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/SmartyDynamic.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_Bug28.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_addLabel.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_addListener.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_drawCircleSegments.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getBorderAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getCellAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getFrameAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getLabelAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getPercentComplete.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getProgressAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_moveStep.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_removeLabel.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_removeListener.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setAnimSpeed.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setBorderPainted.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setCellAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setCellCoordinates.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setCellCount.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setFillWay.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setFrameAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setIncrement.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setIndeterminate.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setLabelAttributes.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setMaximum.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setMinimum.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setOrientation.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setProgressHandler.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setScript.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setString.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setValue.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/HTML_TestListener.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/index.php"/>
+      <file role="test" baseinstalldir="HTML" name="tests/progress2.js"/>
+      <file role="test" baseinstalldir="HTML" name="tests/styles.css"/>
+      <file role="test" baseinstalldir="HTML" name="tests/TestUnit.php"/>
+      <file role="php" baseinstalldir="HTML" name="Progress2.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" baseinstalldir="HTML" name="Progress2_Lite.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+    </filelist>
+  </release>
+  <changelog>
+    <release>
+      <version>2.0.0RC1</version>
+      <date>2005-06-23</date>
+      <license>PHP License 3.0</license>
+      <state>beta</state>
+      <notes>---
+  It is important to notice that even if i will continue to maintains the HTML_Progress
+  for possible bugs, no features will be added in this package. Even if it will not marks
+  as deprecated, i suggest to migrate to HTML_Progress2 (see docs/migrationGuide.txt).
+---
+* news
+- The HTML_Progress2 package has now a series of mini guides (see docs/ directory)
+- The HTML_Progress2_Lite class is recommended to users that does not want to install PEAR.
+  This class has no dependencies.
+- News examples are available: See Multiple, Label, Lite version, Preload.
+- Adds the *autorun* option on HTML_Progress2_Monitor to run a progress monitor
+  without need to push the Start button.
+
+* changes
+- DM and UI classes (from HTML_Progress 1.x) were merged into the main class.
+- Model class (from HTML_Progress 1.x) was removed.
+- A new error handling system that support native PEAR_Error (default), but also PEAR_ErrorStack,
+  and any other system you might want to plug-in.
+- Progress2 and Generator does not support anymore external pre-set config file.
+- All examples have been revisited (removed those who have the same goals).
+- HTML_Progress2::getPercentComplete() method has an optional parameter.
+  Return may be float (default) or integer.
+- HTML_Progress2 API changed a bit to include the new label system:
+  . setCellCount() accept now zero as minimum value for smooth progress meter
+    (see also HTML_Progress2_Lite).
+  . moveNext() should replace incValue() (still exists)
+  . moveStep() should replace setValue() (still exists)
+  . setLabelAttributes() replaced setStringAttributes() (was removed)
+  . isStringPainted() and setStringPainted() were removed
+  . getString() was also removed
+  . setString() was removed and replaced by addLabel()
+- HTML_Progress2_Monitor::callProgressHandler() public method was removed.
+- HTML_Progress2 included now the features of HTML_Progress_Lite:
+  window frame, buttons, labels (text, step, crossbar).
+
+* improvements
+- Generator ActionProcess got two new methods to easily get PHP and/or CSS source code generated.
+- More compatibilities with PHP5 (adds __construct method).
+
+* QA
+- Updates headers comment block on all files
+- Dependencies has been revisited to higher level
+- Examples were removed from main package and moved into the optional package
+  available at http://pear.laurent-laville.org/HTML_Progress2/
+</notes>
+    </release>
+  </changelog>
+</package>
