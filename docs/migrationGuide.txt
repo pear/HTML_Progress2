@@ -12,16 +12,25 @@
 :Revision:      $Revision$
 
 
-Intended audience
-=================
+Table of contents
+
+1. Intended audience
+2. Why these changes ?
+3. How to adjust your code
+4. Multiple label system
+
+*******************************
+
+1. Intended audience
+====================
 
 If you have not already used HTML_Progress 1.x, this guide is not for you. It
 was written to help users to migrate easily all their scripts from version
 1.x to the major 2.0.0.
 
 
-Why these changes ?
-===================
+2. Why these changes ?
+======================
 
 HTML_Progress2 has improved a lot since HTML_Progress 1.2.x.
 With merges of secondary classes (UI and DM) to the main core class, i've
@@ -58,8 +67,8 @@ Very few features was removed during this merges :
   = > see errorHandlerGuide
 
 
-How to adjust your code
-=======================
+3. How to adjust your code
+==========================
 
 Core related
 ------------
@@ -236,8 +245,8 @@ Data management related
    Main reason is behaviour change of display() method.
 
 
-Multiple label system
-=====================
+4. Multiple label system
+========================
 
 One of the major changes in HTML_Progress version 2 is ability to add more
 than just one text zone information floating around the progress bar.

@@ -12,8 +12,16 @@
 :Revision:      $Revision$
 
 
-Introduction
-============
+Table of contents
+
+1. Intended audience
+2. Installation
+3. A simple tutorial
+
+*******************************
+
+1. Introduction
+===============
 
 HTML_Progress2 is a OO class PEAR package for PHP 4.2 or better.
 
@@ -86,8 +94,8 @@ Optional resources:
   * PHP Extension: gd 2.0.1 or newer
 
 
-Installation
-============
+2. Installation
+===============
 
 a) You are a PEAR user
 ----------------------
@@ -106,8 +114,8 @@ b) You are not a PEAR user
   somewhere in your access path (see 'include_path' in your php.ini).
 
 
-A simple tutorial
-=================
+3. A simple tutorial
+====================
 
 HTML_Progress2 can handle all your needs. Only few functions are enough
 to make what you want. But as all new software, errors on learning step
