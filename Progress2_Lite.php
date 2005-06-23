@@ -381,7 +381,7 @@ class HTML_Progress2_Lite
         switch($type) {
         case 'text':
             $this->label[$name] = array(
-                'type' => 'text',
+                'type' => $type,
                 'value' => $value,
                 'left' => $this->left,
                 'top' => $this->top - 16,
@@ -397,7 +397,7 @@ class HTML_Progress2_Lite
             break;
         case 'button':
             $this->label[$name] = array(
-                'type' => 'button',
+                'type' => $type,
                 'value' => $value,
                 'action' => '',
                 'target' => 'self',
@@ -415,7 +415,7 @@ class HTML_Progress2_Lite
             break;
         case 'step':
             $this->label[$name] = array(
-                'type' => 'step',
+                'type' => $type,
                 'value' => $value,
                 'left' => $this->left + 5,
                 'top' => $this->top + 5,
@@ -431,7 +431,7 @@ class HTML_Progress2_Lite
             break;
         case 'percent':
             $this->label[$name] = array(
-                'type' => 'percent',
+                'type' => $type,
                 'value' => $value,
                 'left' => $this->left + $this->width - 50,
                 'top' => $this->top - 16,
@@ -447,7 +447,7 @@ class HTML_Progress2_Lite
             break;
         case 'crossbar':
             $this->label[$name] = array(
-                'type' => 'crossbar',
+                'type' => $type,
                 'value' => $value,
                 'left' => $this->left + ($this->width / 2),
                 'top' => $this->top - 16,
@@ -492,7 +492,7 @@ class HTML_Progress2_Lite
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @see        addLabel()
+     * @see        removeButton(), addLabel()
      */
     function addButton($name, $value, $action, $target = 'self')
     {
