@@ -22,6 +22,7 @@
  */
 
 require_once 'HTML/Common.php';
+require_once 'Event/Dispatcher.php';
 require_once 'PHP/Compat.php';
 
 PHP_Compat::loadFunction('ob_get_clean');
@@ -164,14 +165,13 @@ class HTML_Progress2 extends HTML_Common
     var $ident;
 
     /**
-     * Holds all HTML_Progress2_Observer objects that wish to be notified of new messages.
+     * Stores the event dispatcher which handles notifications
      *
      * @var        array
-     * @since      2.0.0
-     * @access     private
-     * @see        getListeners(), addListener(), removeListener()
+     * @since      2.0.0RC2
+     * @access     protected
      */
-    var $_listeners;
+    var $dispatcher;
 
     /**
      * Delay in milisecond before each progress cells display.
@@ -559,7 +559,7 @@ class HTML_Progress2 extends HTML_Common
     {
         $this->_initErrorHandler($errorPrefs);
 
-        $this->_listeners = array();        // none listeners by default
+        $this->dispatcher =& Event_Dispatcher::getInstance();
 
         $this->value = 0;
         $this->minimum = 0;
@@ -804,7 +804,9 @@ class HTML_Progress2 extends HTML_Common
         }
 
         if ($oldVal != $min) {
-            $this->_announce(array('log' => 'setMinimum', 'value' => $min));
+            $this->dispatcher->post($this, 'setMinimum',
+                array('time' => microtime(), 'value' => $min)
+            );
         }
     }
 
@@ -868,7 +870,9 @@ class HTML_Progress2 extends HTML_Common
         }
 
         if ($oldVal != $max) {
-            $this->_announce(array('log' => 'setMaximum', 'value' => $max));
+            $this->dispatcher->post($this, 'setMaximum',
+                array('time' => microtime(), 'value' => $max)
+            );
         }
     }
 
@@ -974,7 +978,9 @@ class HTML_Progress2 extends HTML_Common
         $this->value = $val;
 
         if ($oldVal != $val) {
-            $this->_announce(array('log' => 'setValue', 'value' => $val));
+            $this->dispatcher->post($this, 'setValue',
+                array('time' => microtime(), 'value' => $val)
+            );
         }
     }
 
@@ -994,7 +1000,9 @@ class HTML_Progress2 extends HTML_Common
         $newVal = min($this->maximum, $newVal);
         $this->value = $newVal;
 
-        $this->_announce(array('log' => 'incValue', 'value' => $newVal));
+        $this->dispatcher->post($this, 'incValue',
+            array('time' => microtime(), 'value' => $newVal)
+        );
     }
 
     /**
@@ -1102,7 +1110,9 @@ class HTML_Progress2 extends HTML_Common
         ob_start();
 
         if ($oldVal != $step) {
-            $this->_announce(array('log' => 'moveStep', 'value' => $step));
+            $this->dispatcher->post($this, 'moveStep',
+                array('time' => microtime(), 'value' => $step)
+            );
         }
     }
 
@@ -1149,12 +1159,12 @@ class HTML_Progress2 extends HTML_Common
         $max = $this->maximum;
         $val = $this->value;
 
+        $percent = round((($val - $min) / ($max - $min)), 4);
+
         if ($float) {
-            $percent = sprintf("%01.2f", (($val - $min ) / $max));
-            return floatval($percent);
+            return $percent;
         } else {
-            $percent = round((($val - $min) / ($max - $min)) * 100);
-            return min(100, $percent);
+            return intval($percent * 100);
         }
     }
 
@@ -2005,19 +2015,38 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Get the javascript URL or inline code to manage progress bar.
      *
+     * @param      boolean   (optional) html output with script tags or just raw data
+     *
      * @return     string
      * @since      2.0.0
      * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setScript()
      * @tutorial   progress.getscript.pkg
      */
-    function getScript()
+    function getScript($raw = true)
     {
+        if (!is_bool($raw)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$raw',
+                      'was' => gettype($raw),
+                      'expected' => 'boolean',
+                      'paramnum' => 1));
+        }
+
         if (!is_null($this->script)) {
-            return $this->script;   // URL to the linked Progress JavaScript
+
+            if ($raw) {
+                $js = $this->script;   // URL to the linked Progress JavaScript
+            } else {
+                $js = '<script type="text/javascript" src="' . $this->script
+                    . '"></script>' . PHP_EOL;
+            }
+            return $js;
         }
 
         $js = <<< JS
+
 function setProgress(pIdent, pValue, pDeterminate, pCellCount)
 {
     if (pValue == pDeterminate) {
@@ -2087,6 +2116,11 @@ JS;
         $attr = trim(sprintf($cellAttr['id'], '   '));
         $js = str_replace('%progressCell%', $attr, $js);
 
+        if ($raw !== true) {
+            $js = '<script type="text/javascript">' . PHP_EOL
+                . '//<![CDATA[' . $js . '//]]>'     . PHP_EOL
+                . '</script>'                       . PHP_EOL;
+        }
         return $js;
     }
 
@@ -2261,13 +2295,24 @@ JS;
     /**
      * Get the cascading style sheet to put inline on HTML document
      *
+     * @param      boolean   (optional) html output with script tags or just raw data
+     *
      * @return     string
      * @since      2.0.0
      * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @tutorial   progress.getstyle.pkg
      */
-    function getStyle()
+    function getStyle($raw = true)
     {
+        if (!is_bool($raw)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$raw',
+                      'was' => gettype($raw),
+                      'expected' => 'boolean',
+                      'paramnum' => 1));
+        }
+
         include_once 'HTML/CSS.php';
 
         $progressAttr = $this->getProgressAttributes();
@@ -2340,7 +2385,16 @@ JS;
             $css->setStyle($cellClsI, 'background-repeat', 'no-repeat');
         }
 
-        return PHP_EOL . $css->toString();
+        $styles = $css->toString();
+
+        if ($raw !== true) {
+            $styles = '<style type="text/css">' . PHP_EOL
+                    . '<!--'    . PHP_EOL
+                    . $styles   . PHP_EOL
+                    . '// -->'  . PHP_EOL
+                    . '</style>'. PHP_EOL;
+        }
+        return $styles;
     }
 
     /**
@@ -2742,17 +2796,19 @@ JS;
      */
     function run()
     {
+        $this->dispatcher->post($this, 'onSubmit', array('time' => microtime()));
         do {
             $this->process();
             if ($this->getPercentComplete() == 1) {
                 if ($this->indeterminate) {
                     $this->setValue(0);
                 } else {
-                    return;
+                    break;
                 }
             }
             $this->moveNext();
         } while(1);
+        $this->dispatcher->post($this, 'onLoad', array('time' => microtime()));
     }
 
     /**
@@ -2789,7 +2845,7 @@ JS;
     }
 
     /**
-     * Returns an array of all the listeners added to this progress bar.
+     * Returns an array of all the listeners attached to this progress bar.
      *
      * @return     array
      * @since      2.0.0
@@ -2799,73 +2855,49 @@ JS;
      */
     function getListeners()
     {
-        return $this->_listeners;
+        return $this->dispatcher->_ro;
     }
 
     /**
-     * Adds a HTML_Progress2_Observer instance to the list of observers
-     * that are listening for messages emitted by this HTML_Progress2 instance.
-     * Returns TRUE if the observer is successfully attached.
+     * Adds a new observer to the Event Dispatcher that will listen
+     * for all messages emitted by this HTML_Progress2 instance.
      *
-     * @param      object    $observer      The HTML_Progress2_Observer instance
-     *                                      to attach as a listener.
+     * @param      mixed     $callback      PHP callback that will act as listener
      *
-     * @return     boolean
+     * @return     void
      * @since      2.0.0
      * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        getListeners(), removeListener()
      * @tutorial   progress.addlistener.pkg
      */
-    function addListener($observer)
+    function addListener($callback)
     {
-        if (!is_a($observer, 'HTML_Progress2_Observer') &&
-            !is_a($observer, 'HTML_Progress2_Monitor')) {
-            return false;
+        if (!is_callable($callback)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'warning',
+                array('var' => '$callback',
+                      'element' => 'valid Class-Method/Function',
+                      'was' => 'callback',
+                      'paramnum' => 1));
         }
-        $this->_listeners[$observer->_id] = &$observer;
-        return true;
+
+        $this->dispatcher->addObserver($callback);
     }
 
     /**
-     * Removes a HTML_Progress2_Observer instance from the list of observers.
-     * Returns TRUE if the observer is successfully detached.
+     * Removes a registered observer.
      *
-     * @param      object    $observer      The HTML_Progress2_Observer instance
-     *                                      to detach from the list of listeners.
+     * @param      mixed     $callback      PHP callback that act as listener
      *
-     * @return     boolean
+     * @return     bool                     True if observer was removed, false otherwise
      * @since      2.0.0
      * @access     public
      * @see        getListeners(), addListener()
      * @tutorial   progress.removelistener.pkg
      */
-    function removeListener($observer)
+    function removeListener($callback)
     {
-        if ((!is_a($observer, 'HTML_Progress2_Observer') &&
-             !is_a($observer, 'HTML_Progress2_Monitor')
-             ) ||
-            (!isset($this->_listeners[$observer->_id]))  ) {
-
-            return false;
-        }
-        unset($this->_listeners[$observer->_id]);
-        return true;
-    }
-
-    /**
-     * Notifies all listeners that have registered interest in $event message.
-     *
-     * @param      mixed     $event         A hash describing the progress event.
-     *
-     * @since      2.0.0
-     * @access     private
-     * @see        setMinimum(), setMaximum(), setValue(), incValue()
-     */
-    function _announce($event)
-    {
-        foreach ($this->_listeners as $id => $listener) {
-            $this->_listeners[$id]->notify($event);
-        }
+        return $this->dispatcher->removeObserver($callback);
     }
 
     /**
@@ -3346,7 +3378,7 @@ JS;
      */
     function _changeLabelText($element, $text)
     {
-        $cmd = '<script type="text/JavaScript">'
+        $cmd = '<script type="text/javascript">'
              . 'setLabelText'
              . '("' . $this->ident . '","' . $element . '","' . $text . '");'
              . '</script>';
@@ -3366,7 +3398,7 @@ JS;
      */
     function _changeCrossItem($element)
     {
-        $cmd = '<script type="text/JavaScript">'
+        $cmd = '<script type="text/javascript">'
              . 'setRotaryCross'
              . '("' . $this->ident . '","' . $element . '");'
              . '</script>';
@@ -3388,7 +3420,7 @@ JS;
      */
     function _changeElementStyle($prefix, $element, $styles)
     {
-        $cmd = '<script type="text/JavaScript">'
+        $cmd = '<script type="text/javascript">'
              . 'setElementStyle'
              . '("' . $prefix . '","' . $element . '","' . $this->ident . '","' . $styles . '");'
              . '</script>';
