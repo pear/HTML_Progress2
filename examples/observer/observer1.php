@@ -1,6 +1,6 @@
 <?php
 /**
- * Default observer pattern for progress meter.
+ * A basic observer for progress meter.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
@@ -9,21 +9,26 @@
  * @access     public
  */
 require_once 'HTML/Progress2.php';
-require_once 'HTML/Progress2/Observer.php';
+
+// Observer that record serialized event datas
+function myObserver(&$notification)
+{
+    $notifyName = $notification->getNotificationName();
+    $notifyInfo = $notification->getNotificationInfo();
+
+    $info = array_merge(array('event' => $notifyName), $notifyInfo);
+    $msg = serialize($info);
+    error_log ("$msg \n", 3, 'progress_observer.log');
+}
 
 // 1. Creates progress meter
 $pb = new HTML_Progress2();
-$pb->setComment('Default Observer Progress2 example');
+$pb->setComment('Basic Observer Progress2 example');
 $pb->setAnimSpeed(200);
 $pb->setIncrement(10);
 
-// 2. Creates and attach a listener
-$observer = new HTML_Progress2_Observer();
-
-$ok = $pb->addListener($observer);
-if (!$ok) {
-    die ("Cannot add a valid listener to progress meter !");
-}
+// 2. Attach an observer
+$pb->addListener('myObserver');
 
 // 3. Changes look-and-feel of progress meter
 //    ( border: 2px, solid, #000000 )
@@ -44,11 +49,7 @@ body {
 }
 // -->
 </style>
-<script type="text/javascript">
-<!--
-<?php echo $pb->getScript(); ?>
-//-->
-</script>
+<?php echo $pb->getScript(false); ?>
 </head>
 <body>
 

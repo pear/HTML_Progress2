@@ -21,16 +21,10 @@ $pb->setIncrement(10);
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Default Progress2 Monitor </title>
-<style type="text/css">
-<!--
-<?php echo $pm->getStyle(); ?>
-// -->
-</style>
-<script type="text/javascript">
-<!--
-<?php echo $pm->getScript(); ?>
-//-->
-</script>
+<?php
+echo $pm->getStyle(false);
+echo $pm->getScript(false);
+?>
 </head>
 <body>
 

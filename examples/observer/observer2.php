@@ -1,7 +1,7 @@
 <?php
 /**
  * Complex observer pattern for progress meter.
- * Uses a custom observer class that handled progress of the second bar.
+ * Uses a custom observer callback that handled progress of the second bar.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
@@ -10,36 +10,22 @@
  * @access     public
  */
 require_once 'HTML/Progress2.php';
-require_once 'HTML/Progress2/Observer.php';
 
 // 1. Defines custom observer pattern
-class Bar1Observer extends HTML_Progress2_Observer
+function bar1Observer(&$notification)
 {
-    function Bar1Observer()
-    {
-        $this->HTML_Progress2_Observer();
-    }
+    global $pb2;
 
-    function notify($event)
-    {
-        global $pb2;
+    $notifyName = $notification->getNotificationName();
+    $notifyInfo = $notification->getNotificationInfo();
 
-        if (is_array($event)) {
-            $log = strtolower($event['log']);
-            $val = $event['value'];
-
-            switch ($log) {
-             case 'movestep':
-                 if ($val == 0) {
-                     // updates $pb2 because $pb1 has completed a full loop
-                     $pb2->moveNext();
-                 } else {
-                     // if you want to do special on each step of progress bar1;
-                     // it's here !!!
-                 }
-                 break;
-             default:
-            }
+    if (strcasecmp($notifyName, 'movestep') == 0) {
+        if ($notifyInfo['value'] == 0) {
+            // updates $pb2 because $pb1 has completed a full loop
+            $pb2->moveNext();
+        } else {
+            // if you want to do special on each step of progress bar1;
+            // it's here !!!
         }
     }
 }
@@ -62,13 +48,8 @@ $pb2->setAnimSpeed(100);
 $pb2->setIncrement(25);
 $pb2->setProgressAttributes('position=absolute top=5 left=250');
 
-// 3. Creates and attach a listener
-$observer = new Bar1Observer();
-
-$ok = $pb1->addListener($observer);
-if (!$ok) {
-    die ("Cannot add a valid listener to progress bar !");
-}
+// 3. Attach an observer
+$pb1->addListener('bar1Observer');
 
 // 4. Changes look-and-feel of progress bars
 $pb1->setProgressAttributes('background-color=#E0E0E0');
@@ -119,11 +100,7 @@ div.container {
 }
 // -->
 </style>
-<script type="text/javascript">
-<!--
-<?php echo $pb1->getScript(); ?>
-//-->
-</script>
+<?php echo $pb1->getScript(false); ?>
 </head>
 <body>
 
