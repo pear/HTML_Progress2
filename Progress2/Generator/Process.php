@@ -64,13 +64,13 @@ class ActionProcess extends HTML_QuickForm_Action
             $page->isFormBuilt() or $page->buildForm();
             $page->controller->isValid();
 
-            // what kind of source code is requested  
+            // what kind of source code is requested
             $code = $page->exportValue('phpcss');
             $pb = $page->controller->createProgressBar();
 
             $phpCode = (isset($code['P']) === true);
             $cssCode = (isset($code['C']) === true);
-            
+
             if ($cssCode) {
                 $strCSS = $this->sprintCSS($pb);
                 $this->exportOutput($strCSS);
@@ -97,16 +97,7 @@ class ActionProcess extends HTML_QuickForm_Action
      */
     function sprintCSS(&$pBar, $raw = false)
     {
-        if ($raw) {
-            $css = $pBar->getStyle();
-        } else {
-            $css  = '<style type="text/css">' . PHP_EOL;
-            $css .= '<!--' . PHP_EOL;
-            $css .= $pBar->getStyle() . PHP_EOL;
-            $css .= '// -->' . PHP_EOL;
-            $css .= '</style>' . PHP_EOL;
-	}
-        return $css;
+        return $pBar->getStyle($raw);
     }
 
     /**
@@ -132,7 +123,7 @@ class ActionProcess extends HTML_QuickForm_Action
         $strPHP .= 'require_once \'HTML/Progress2.php\';' . PHP_EOL . PHP_EOL;
         $strPHP .= '$pb = new HTML_Progress2();' . PHP_EOL;
         $strPHP .= '$pb->setIdent(\'PB1\');' . PHP_EOL;
-                
+
         if ($pBar->isIndeterminate()) {
             $strPHP .= '$pb->setIndeterminate(true);' . PHP_EOL;
         }
@@ -187,17 +178,9 @@ class ActionProcess extends HTML_QuickForm_Action
         $strPHP .= PHP_EOL;
         if (!$cssCode) {
             $strPHP .= 'echo \'<head>\' . PHP_EOL;' . PHP_EOL;
-            $strPHP .= 'echo \'<style type="text/css">\' . PHP_EOL;' . PHP_EOL;
-            $strPHP .= 'echo \'<!--\' . PHP_EOL;' . PHP_EOL;
-            $strPHP .= 'echo $pb->getStyle() . PHP_EOL;' . PHP_EOL;
-            $strPHP .= 'echo \'// -->\' . PHP_EOL;' . PHP_EOL;
-            $strPHP .= 'echo \'</style>\' . PHP_EOL;' . PHP_EOL;
+            $strPHP .= 'echo $pb->getStyle(false) . PHP_EOL;' . PHP_EOL;
         }
-        $strPHP .= 'echo \'<script type="text/javascript">\' . PHP_EOL;' . PHP_EOL;
-        $strPHP .= 'echo \'<!--\' . PHP_EOL;' . PHP_EOL;
-        $strPHP .= 'echo $pb->getScript() . PHP_EOL;' . PHP_EOL;
-        $strPHP .= 'echo \'//-->\' . PHP_EOL;' . PHP_EOL;
-        $strPHP .= 'echo \'</script>\' . PHP_EOL;' . PHP_EOL;
+        $strPHP .= 'echo $pb->getScript(false) . PHP_EOL;' . PHP_EOL;
         if (!$cssCode) {
             $strPHP .= 'echo \'</head>\' . PHP_EOL;' . PHP_EOL;
             $strPHP .= 'echo \'<body>\' . PHP_EOL;' . PHP_EOL;
@@ -256,7 +239,7 @@ class ActionProcess extends HTML_QuickForm_Action
                 $strPHP .= "'$attr'=>" . ($val ? 'true' : 'false') . ', ';
             } else {
                 $strPHP .= "'$attr'=>'$val', ";
-            }   
+            }
         }
         $strPHP = ereg_replace(', $', '', $strPHP);
         $strPHP .= '));';
