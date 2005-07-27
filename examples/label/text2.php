@@ -17,8 +17,8 @@ $pb->setIncrement(10);
 $pb->setProgressAttributes(array(
     'position' => 'absolute',
     'left' => 450,
-    'top' => 80)
-);
+    'top' => 80
+));
 
 $pct1 = array('left' => 120, 'top' => 25);
 $pb->setLabelAttributes('pct1', $pct1);
@@ -47,11 +47,7 @@ body {
 }
 // -->
 </style>
-<script type="text/javascript">
-<!--
-<?php echo $pb->getScript(); ?>
-//-->
-</script>
+<?php echo $pb->getScript(false); ?>
 </head>
 <body>
 <p style="background-color:lightblue;
