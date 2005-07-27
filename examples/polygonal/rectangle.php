@@ -38,11 +38,7 @@ body {
 }
 // -->
 </style>
-<script type="text/javascript">
-<!--
-<?php echo $pb->getScript(); ?>
-//-->
-</script>
+<?php echo $pb->getScript(false); ?>
 </head>
 <body>
 
