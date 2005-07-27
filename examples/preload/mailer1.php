@@ -14,8 +14,8 @@ $pb = new HTML_Progress2();
 $pb->setProgressAttributes(array(
     'position' => 'absolute',
     'left' => 200,
-    'top' => 100)
-);
+    'top' => 100
+));
 $pb->setCellAttributes(array(
     'active-color' => '#000084',
     'inactive-color' => '#3A6EA5',
@@ -28,7 +28,7 @@ $pb->setLabelAttributes('pct1', array(
     'top' => 10,
     'font-size' => 16,
     'font-weight' => 'bold'
-    ));
+));
 
 // Adds additional text label for process legend
 $labelTxtID = 'legend';
