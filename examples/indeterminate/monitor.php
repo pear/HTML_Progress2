@@ -18,17 +18,17 @@ require_once 'HTML/Progress2/Monitor.php';
  *  @param int     $pValue   current value of the progress bar
  *  @param object  $pMon     the progress monitor itself
  */
-function myProgressHandler($pValue, &$pMon)
+function myProgressHandler($pValue, &$pBar)
 {
+    global $pm;
     static $c;
 
     if (!isset($c)) {
         $c = 0;
     }
     $c += 16;
-    $pMon->setCaption('completed %step% out of 400', array('step' => $c));
+    $pm->setCaption('completed %step% out of 400', array('step' => $c));
 
-    $pBar =& $pMon->getProgressElement();
     $pBar->sleep();
 
     if ($c >= 240 && $pBar->isIndeterminate()) {
@@ -46,7 +46,6 @@ $pm = new HTML_Progress2_Monitor('frmMonitor',
     array( 'button' => array('style' => 'width:80px;'),
            'title'  => 'Progress ...' )
 );
-$pm->setProgressHandler('myProgressHandler');
 
 $pb =& $pm->getProgressElement();
 $pb->setAnimSpeed(200);
@@ -56,6 +55,7 @@ $pb->setCellAttributes('active-color=#996');
 $pb->setLabelAttributes('pct1', 'color=#996');
 $pb->setLabelAttributes('monitorStatus', 'color=black font-size=10');
 $pb->setIndeterminate(true);
+$pb->setProgressHandler('myProgressHandler');
 
 $pm->setProgressElement($pb);
 ?>
@@ -74,11 +74,7 @@ body {
 <?php echo $pm->getStyle(); ?>
 // -->
 </style>
-<script type="text/javascript">
-<!--
-<?php echo $pm->getScript(); ?>
-//-->
-</script>
+<?php echo $pm->getScript(false); ?>
 </head>
 <body>
 
