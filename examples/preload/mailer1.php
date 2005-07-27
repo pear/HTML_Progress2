@@ -10,19 +10,6 @@
  */
 require_once 'HTML/Progress2.php';
 
-/**
- * NOTE: The function {@link http://www.php.net/manual/en/function.usleep.php}
- *       did not work on Windows systems until PHP 5.0.0
- */
- function _sleep($usecs)
-{
-    if ((substr(PHP_OS, 0, 3) == 'WIN') && (substr(PHP_VERSION,0,1) < '5') ){
-        for ($i=0; $i<$usecs; $i++) { }
-    } else {
-        usleep($usecs);
-    }
-}
-
 $pb = new HTML_Progress2();
 $pb->setProgressAttributes(array(
     'position' => 'absolute',
@@ -72,7 +59,7 @@ $sent = 0;
 if ($total_subscribers >= $start_with)
 {
     // retrieve all necessary data in the database
-    _sleep(0);          // process simulation
+    $pb->sleep();          // process simulation
 
     // if new data are available, then ...
     $sent = $maximum_send;
