@@ -27,7 +27,6 @@ require_once 'HTML/QuickForm/Action/Display.php';
 require_once 'HTML/QuickForm/Action/Direct.php';
 require_once 'HTML/Progress2.php';
 require_once 'HTML/Progress2/Generator/pages.php';
-require_once 'HTML/CSS.php';
 
 /**
  * The HTML_Progress2_Generator class provides an easy way to build

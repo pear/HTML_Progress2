@@ -42,38 +42,52 @@
 
 class ActionDisplay extends HTML_QuickForm_Action_Display
 {
-    function _renderForm(&$page) 
+    function _renderForm(&$page)
     {
         $pageName = $page->getAttribute('name');
         $tabPreview = array_slice ($page->controller->_tabs, -2, 1);
 
-        $css = new HTML_CSS();
-        $css->setStyle('body', 'background-color', '#7B7B88');
-        $css->setStyle('body', 'font-family', 'Verdana, Arial, helvetica');
-        $css->setStyle('body', 'font-size', '10pt');
-        $css->setStyle('h1', 'color', '#FFC');
-        $css->setStyle('h1', 'text-align', 'center');
-        $css->setStyle('.maintable', 'width', '100%');
-        $css->setStyle('.maintable', 'border-width', '0');
-        $css->setStyle('.maintable', 'border-style', 'thin dashed');
-        $css->setStyle('.maintable', 'border-color', '#D0D0D0');
-        $css->setStyle('.maintable', 'background-color', '#EEE');
-        $css->setStyle('.maintable', 'cellspacing', '2');
-        $css->setStyle('.maintable', 'cellspadding', '3');
-        $css->setStyle('.groupelement', 'font-size', '8pt');
-        $css->setStyle('.groupelement', 'cellspacing', '5');
-        $css->setStyle('th', 'text-align', 'center');
-        $css->setStyle('th', 'color', '#FFC');
-        $css->setStyle('th', 'background-color', '#AAA');
-        $css->setStyle('th', 'white-space', 'nowrap');
-        $css->setStyle('input', 'font-family', 'Verdana, Arial, helvetica');
-        $css->setStyle('input.flat', 'border-style', 'solid');
-        $css->setStyle('input.flat', 'border-width', '2px 2px 0px 2px');
-        $css->setStyle('input.flat', 'border-color', '#996');
-
-$header = '
+        $header = '
 <style type="text/css">
 <!--
+body {
+  background-color: #7B7B88;
+  font-family: Verdana, Arial, helvetica;
+  font-size: 10pt;
+}
+
+h1 {
+  color: #FFC;
+  text-align: center;
+}
+
+.maintable {
+  width: 100%;
+  border-width: 0;
+  border-style: thin dashed;
+  border-color: #D0D0D0;
+  background-color: #EEE;
+  cellspacing: 2;
+  cellspadding: 3;
+}
+
+th {
+  text-align: center;
+  color: #FFC;
+  background-color: #AAA;
+  white-space: nowrap;
+}
+
+input {
+  font-family: Verdana, Arial, helvetica;
+}
+
+input.flat {
+  border-style: solid;
+  border-width: 2px 2px 0 2px;
+  border-color: #996;
+}
+
 {%style%}
 // -->
 </style>
@@ -81,6 +95,7 @@ $header = '
         // on preview tab, add progress bar javascript and stylesheet
         if ($pageName == $tabPreview[0][0]) {
             $pb = $page->controller->createProgressBar();
+            $pb->setTab('    ');
 
             $header .= '
 <script type="text/javascript">
@@ -89,14 +104,16 @@ $header = '
 //-->
 </script>
 ';
-            $header = str_replace('{%style%}', $css->toString() . $pb->getStyle(), $header);
-            $header = str_replace('{%javascript%}', $pb->getScript(), $header);
+            $placeHolders = array('{%style%}', '{%javascript%}');
+            $htmlElement = array( $pb->getStyle(), $pb->getScript() );
+
+            $header = str_replace($placeHolders, $htmlElement, $header);
 
             $pbElement =& $page->getElement('progressBar');
             $pbElement->setText($pb->toHtml() . '<br /><br />');
-        
+
         } else {
-            $header = str_replace('{%style%}', $css->toString(), $header);
+            $header = str_replace('{%style%}', '', $header);
         }
 
         $formTemplate = "\n<form{attributes}>"
@@ -110,7 +127,7 @@ $header = '
                         . "\n\t\t{header}"
                         . "\n\t</th>"
                         . "\n</tr>";
-        
+
         $elementTemplate = "\n<tr valign=\"top\">"
                          . "\n\t<td align=\"right\" width=\"30%\"><b>{label}</b></td>"
                          . "\n\t<td align=\"left\">"
@@ -144,12 +161,12 @@ $header = '
                         'borderstyle',                                    // on page 3
                         'stringsize','stringfont'                         // on page 4
                        );
-                       
+
         foreach ($groups as $grp) {
             $renderer->setGroupTemplate($groupTemplate, $grp);
             $renderer->setGroupElementTemplate($groupElementTemplate, $grp);
         }
-  
+
         $page->accept($renderer);
 
         echo $header;
