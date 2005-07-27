@@ -68,11 +68,7 @@ body {
 }
 // -->
 </style>
-<script type="text/javascript">
-<!--
-<?php echo $pb1->getScript(); ?>
-//-->
-</script>
+<?php echo $pb1->getScript(false); ?>
 </head>
 <body>
 
