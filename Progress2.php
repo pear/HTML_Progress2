@@ -524,7 +524,6 @@ class HTML_Progress2 extends HTML_Common
     function HTML_Progress2($errorPrefs = array(),
                             $orient = HTML_PROGRESS2_BAR_HORIZONTAL, $min = 0, $max = 100,
                             $percentLabel = 'pct1')
-
     {
         $this->__construct($errorPrefs, $orient, $min, $max, $percentLabel);
     }
@@ -555,7 +554,6 @@ class HTML_Progress2 extends HTML_Common
     function __construct($errorPrefs = array(),
                          $orient = HTML_PROGRESS2_BAR_HORIZONTAL, $min = 0, $max = 100,
                          $percentLabel = 'pct1')
-
     {
         $this->_initErrorHandler($errorPrefs);
 
@@ -2313,79 +2311,82 @@ JS;
                       'paramnum' => 1));
         }
 
-        include_once 'HTML/CSS.php';
-
+        $tab = $this->_getTab();
         $progressAttr = $this->getProgressAttributes();
         $borderAttr = $this->getBorderAttributes();
         $cellAttr = $this->getCellAttributes();
 
-        $css = new HTML_CSS();
+        $styles  = '.' . sprintf($borderAttr['class'], $this->ident) . ' {' . PHP_EOL;
+        $styles .= $tab . 'width: '. $progressAttr['width'] .'px;'. PHP_EOL;
+        $styles .= $tab . 'height: '. $progressAttr['height'] .'px;'. PHP_EOL;
+        $styles .= $tab . 'border-width: '. $borderAttr['width'] .'px;'. PHP_EOL;
+        $styles .= $tab . 'border-style: '. $borderAttr['style'] .';'. PHP_EOL;
+        $styles .= $tab . 'border-color: '. $borderAttr['color'] .';'. PHP_EOL;
 
-        $borderCls = '.' . sprintf($borderAttr['class'], $this->ident);
-        $css->setStyle($borderCls, 'width', $progressAttr['width'].'px');
-        $css->setStyle($borderCls, 'height', $progressAttr['height'].'px');
-        $css->setStyle($borderCls, 'border-width', $borderAttr['width'].'px');
-        $css->setStyle($borderCls, 'border-style', $borderAttr['style']);
-        $css->setStyle($borderCls, 'border-color', $borderAttr['color']);
         if ($this->cellCount > 0) {
-            $css->setStyle($borderCls, 'background-color', $progressAttr['background-color']);
+            $styles .= $tab . 'background-color: '. $progressAttr['background-color'] .';'. PHP_EOL;
         } else {
-            $css->setStyle($borderCls, 'background-color', $cellAttr['inactive-color']);
+            $styles .= $tab . 'background-color: '. $cellAttr['inactive-color'] .';'. PHP_EOL;
         }
+        $styles .= '}'. PHP_EOL . PHP_EOL;
 
         foreach($this->label as $name => $data) {
-            $style = '.' . sprintf($data['class'], $name . $this->ident);
+            $styles .= '.' . sprintf($data['class'], $name . $this->ident). ' {' . PHP_EOL;
 
             if ($data['width'] > 0) {
-                $css->setStyle($style, 'width', $data['width'].'px');
+                $styles .= $tab . 'width: '. $data['width'] .'px;'. PHP_EOL;
             }
             if ($data['height'] > 0) {
-                $css->setStyle($style, 'height', $data['height'].'px');
+                $styles .= $tab . 'height: '. $data['height'] .'px;'. PHP_EOL;
             }
-            $css->setStyle($style, 'text-align', $data['align']);
+            $styles .= $tab . 'text-align: '. $data['align'] .';'. PHP_EOL;
 
             if (!empty($data['background-color'])) {
-                $css->setStyle($style, 'background-color', $data['background-color']);
+                $styles .= $tab . 'background-color: '. $data['background-color'] .';'. PHP_EOL;
             }
 
-            $css->setStyle($style, 'font-size', $data['font-size'].'px');
-            $css->setStyle($style, 'font-family', $data['font-family']);
-            $css->setStyle($style, 'font-weight', $data['font-weight']);
-            $css->setStyle($style, 'color', $data['color']);
+            $styles .= $tab . 'font-size: '. $data['font-size'] .'px;'. PHP_EOL;
+            $styles .= $tab . 'font-family: '. $data['font-family'] .';'. PHP_EOL;
+            $styles .= $tab . 'font-weight: '. $data['font-weight'] .';'. PHP_EOL;
+            $styles .= $tab . 'color: '. $data['color'] .';'. PHP_EOL;
+            $styles .= '}'. PHP_EOL . PHP_EOL;
         }
 
         $cellClsI = '.' . sprintf($cellAttr['class'], $this->ident) . 'I';
         $cellClsA = '.' . sprintf($cellAttr['class'], $this->ident) . 'A';
-        $css->setStyle($cellClsI, 'width', $cellAttr['width'].'px');
-        $css->setStyle($cellClsI, 'height', $cellAttr['height'].'px');
-        $css->setStyle($cellClsI, 'font-family', $cellAttr['font-family']);
-        $css->setStyle($cellClsI, 'font-size', $cellAttr['font-size'].'px');
 
+        $styles .= $cellClsI . ', ' . $cellClsA . ' {' . PHP_EOL;
+        $styles .= $tab . 'width: '. $cellAttr['width'] .'px;'. PHP_EOL;
+        $styles .= $tab . 'height: '. $cellAttr['height'] .'px;'. PHP_EOL;
+        $styles .= $tab . 'font-family: '. $cellAttr['font-family'] .';'. PHP_EOL;
+        $styles .= $tab . 'font-size: '. $cellAttr['font-size'] .'px;'. PHP_EOL;
         if ($this->orientation == HTML_PROGRESS2_BAR_HORIZONTAL) {
-            $css->setStyle($cellClsI, 'float', 'left');
+            $styles .= $tab . 'float: left;'. PHP_EOL;
         }
         if ($this->orientation == HTML_PROGRESS2_BAR_VERTICAL) {
-            $css->setStyle($cellClsI, 'float', 'none');
+            $styles .= $tab . 'float: none;'. PHP_EOL;
         }
-        $css->setSameStyle($cellClsA, $cellClsI);
+        $styles .= '}'. PHP_EOL . PHP_EOL;
 
-        if ($this->orientation !== HTML_PROGRESS2_CIRCLE) {
-            $css->setStyle($cellClsI, 'background-color', $cellAttr['inactive-color']);
-            $css->setStyle($cellClsA, 'background-color', $cellAttr['active-color']);
-        }
-        $css->setStyle($cellClsA, 'visibility', 'hidden');
-
-        if (isset($cellAttr['background-image'])) {
-            $css->setStyle($cellClsA, 'background-image', 'url("'.$cellAttr['background-image'].'")');
-            $css->setStyle($cellClsA, 'background-repeat', 'no-repeat');
-        }
-
+        $styles .= $cellClsI . ' {' . PHP_EOL;
         if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
-            $css->setStyle($cellClsI, 'background-image', 'url("'.$cellAttr[0]['background-image'].'")');
-            $css->setStyle($cellClsI, 'background-repeat', 'no-repeat');
+            $styles .= $tab . 'background-image: url("'. $cellAttr[0]['background-image'] .'");'. PHP_EOL;
+            $styles .= $tab . 'background-repeat: no-repeat;'. PHP_EOL;
+        } else {
+            $styles .= $tab . 'background-color: '. $cellAttr['inactive-color'] .';'. PHP_EOL;
         }
+        $styles .= '}'. PHP_EOL . PHP_EOL;
 
-        $styles = $css->toString();
+        $styles .= $cellClsA . ' {' . PHP_EOL;
+        if ($this->orientation !== HTML_PROGRESS2_CIRCLE) {
+            $styles .= $tab . 'background-color: '. $cellAttr['active-color'] .';'. PHP_EOL;
+        }
+        if (isset($cellAttr['background-image'])) {
+            $styles .= $tab . 'background-image: url("'. $cellAttr['background-image'] .'");'. PHP_EOL;
+            $styles .= $tab . 'background-repeat: no-repeat;'. PHP_EOL;
+        }
+        $styles .= $tab . 'visibility: hidden;'. PHP_EOL;
+        $styles .= '}'. PHP_EOL . PHP_EOL;
 
         if ($raw !== true) {
             $styles = '<style type="text/css">' . PHP_EOL
@@ -2845,20 +2846,6 @@ JS;
     }
 
     /**
-     * Returns an array of all the listeners attached to this progress bar.
-     *
-     * @return     array
-     * @since      2.0.0
-     * @access     public
-     * @see        addListener(), removeListener()
-     * @tutorial   progress.getlisteners.pkg
-     */
-    function getListeners()
-    {
-        return $this->dispatcher->_ro;
-    }
-
-    /**
      * Adds a new observer to the Event Dispatcher that will listen
      * for all messages emitted by this HTML_Progress2 instance.
      *
@@ -2868,7 +2855,7 @@ JS;
      * @since      2.0.0
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
-     * @see        getListeners(), removeListener()
+     * @see        removeListener()
      * @tutorial   progress.addlistener.pkg
      */
     function addListener($callback)
@@ -2892,7 +2879,7 @@ JS;
      * @return     bool                     True if observer was removed, false otherwise
      * @since      2.0.0
      * @access     public
-     * @see        getListeners(), addListener()
+     * @see        addListener()
      * @tutorial   progress.removelistener.pkg
      */
     function removeListener($callback)
