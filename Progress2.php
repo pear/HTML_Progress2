@@ -2434,7 +2434,6 @@ JS;
                  .  'position:' . $progressAttr['position'] . ';'
                  .  'top:' . $progressAttr['top'] . 'px;'
                  .  'left:' . $progressAttr['left'] . 'px;'
-                 .  'padding-bottom:{_heightshift_}px;'
                  .  'height:{_heightshift_}px;">'
                  .  PHP_EOL;
         }
@@ -2805,30 +2804,18 @@ JS;
      * @see        removeListener()
      * @tutorial   progress.addlistener.pkg
      */
-    function addListener($callback, $filter = true)
+    function addListener($callback)
     {
         if (!is_callable($callback)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'warning',
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'exception',
                 array('var' => '$callback',
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
                       'paramnum' => 1));
-
-        } elseif (!is_bool($filter)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'warning',
-                array('var' => '$filter',
-                      'element' => 'boolean',
-                      'was' => gettype($filter),
-                      'paramnum' => 2));
         }
 
         $this->dispatcher =& Event_Dispatcher::getInstance();
-
-        if ($filter) {
-            $this->dispatcher->addObserver($callback, null, get_class($this));
-        } else {
-            $this->dispatcher->addObserver($callback);
-        }
+        $this->dispatcher->addObserver($callback);
         $this->_observerCount++;
     }
 
@@ -2840,12 +2827,21 @@ JS;
      * @return     bool                     True if observer was removed, false otherwise
      * @since      2.0.0
      * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        addListener()
      * @tutorial   progress.removelistener.pkg
      */
     function removeListener($callback)
     {
-        $result = $this->dispatcher->removeObserver($callback, null, get_class($this));
+        if (!is_callable($callback)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'exception',
+                array('var' => '$callback',
+                      'element' => 'valid Class-Method/Function',
+                      'was' => 'callback',
+                      'paramnum' => 1));
+        }
+
+        $result = $this->dispatcher->removeObserver($callback);
 
         if ($result) {
             $this->_observerCount--;
