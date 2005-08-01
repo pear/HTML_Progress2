@@ -1028,7 +1028,7 @@ class HTML_Progress2 extends HTML_Common
                       'expected' => 'integer',
                       'paramnum' => 1));
 
-        } elseif ($step < 1) {
+        } elseif ($step < 0) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$step',
                       'was' => $step,
