@@ -29,7 +29,7 @@ echo $pm->getScript(false);
 <body>
 
 <?php
-echo $pm->toHtml();
+$pm->display();
 $pm->run();
 ?>
 
