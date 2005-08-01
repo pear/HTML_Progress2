@@ -1,7 +1,7 @@
 <?php
 /**
  * Complex observer pattern for progress meter.
- * Uses a custom observer callback that handled progress of the second bar.
+ * Uses a custom observer to log second progress bar process.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
@@ -11,21 +11,29 @@
  */
 require_once 'HTML/Progress2.php';
 
-// 1. Defines custom observer pattern
-function bar1Observer(&$notification)
+function getmicrotime($time)
 {
-    global $pb2;
+    list($usec, $sec) = explode(' ', $time);
+    return ((float)$usec + (float)$sec);
+
+}
+
+// 1. Defines custom observer pattern
+function myProgressObserver(&$notification)
+{
+    static $fileCount = 0;
 
     $notifyName = $notification->getNotificationName();
     $notifyInfo = $notification->getNotificationInfo();
 
-    if (strcasecmp($notifyName, 'movestep') == 0) {
-        if ($notifyInfo['value'] == 0) {
-            // updates $pb2 because $pb1 has completed a full loop
-            $pb2->moveNext();
-        } else {
-            // if you want to do special on each step of progress bar1;
-            // it's here !!!
+    if (strcasecmp($notifyName, 'onChange') == 0) {
+        if (strcasecmp($notifyInfo['handler'], 'moveNext') == 0) {
+            if ($notifyInfo['value'] < 100) {
+                $fileCount++;
+                $timestamp = getmicrotime($notifyInfo['time']);
+                $msg = sprintf('file #%s was proceed on %s', $fileCount, date('r', $timestamp));
+                error_log ($msg . PHP_EOL, 3, 'observer2.log');
+            }
         }
     }
 }
@@ -49,7 +57,7 @@ $pb2->setIncrement(25);
 $pb2->setProgressAttributes('position=absolute top=5 left=250');
 
 // 3. Attach an observer
-$pb1->addListener('bar1Observer');
+$pb2->addListener('myProgressObserver');
 
 // 4. Changes look-and-feel of progress bars
 $pb1->setProgressAttributes('background-color=#E0E0E0');
@@ -57,24 +65,24 @@ $pb1->setLabelAttributes('pct1', array(
     'top' => 85,
     'left' => -50,
     'color'  => 'red'
-    ));
+));
 
 $pb2->setBorderPainted(true);
 $pb2->setBorderAttributes(array(
     'width' => 1,
     'color' => 'navy'
-    ));
+));
 $pb2->setCellAttributes(array(
     'active-color' => '#3874B4',
     'inactive-color' => '#EEEECC'
-    ));
+));
 $pb2->setLabelAttributes('pct1', array(
     'top' => 85,
     'left' => 15,
     'width'  => 100,
     'align'  => 'center',
     'color'  => 'yellow'
-    ));
+));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -117,6 +125,8 @@ do {
     if ($pb1->getPercentComplete() == 1) {
         // the 1st progress bar has reached 100%, do a new loop
         $pb1->moveStep(0);
+        // updates $pb2 because $pb1 has completed a full loop
+        $pb2->moveNext();
     } else {
         $pb1->moveNext();   // updates 1st progress bar
     }
