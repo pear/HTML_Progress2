@@ -1,7 +1,7 @@
 <?php
 /**
  * Progress2 Monitor with default QF renderer
- * and a user callback for logging events.
+ * and a user listener for logging events.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
@@ -11,31 +11,47 @@
  */
 require_once 'HTML/Progress2/Monitor.php';
 
-function logger($pValue, &$pb)
+function getmicrotime($time)
+{
+    list($usec, $sec) = explode(' ', $time);
+    return ((float)$usec + (float)$sec);
+
+}
+
+function logger(&$notification)
 {
     static $time_start;
     global $pm;
 
-    $pb->sleep();
+    $notifyName = $notification->getNotificationName();
+    $notifyInfo = $notification->getNotificationInfo();
 
-    if (!isset($time_start)) {
-        $time = explode(' ', microtime());
-        $time_start = $time[1] + $time[0];
+    if ($notifyName == 'onSubmit') {
+        $time_start = getmicrotime($notifyInfo['time']);
 
-    } elseif (fmod($pValue,25) == 0) {
-        $time = explode(' ', microtime());
-        $elapse = $time[1] + $time[0] - $time_start;
-        $pm->setCaption('%value%% has been reached on %time% sec.',
-            array('value' => $pValue, 'time' => sprintf('%01.3f',$elapse))
-        );
+    } elseif ($notifyName == 'onLoad') {
+        $elapse = getmicrotime($notifyInfo['time']) - $time_start;
+        printf('script runtime: %f seconds.', $elapse);
+
+    } elseif ($notifyName == 'onChange') {
+
+        if (fmod($notifyInfo['value'], 25) == 0) {
+            $time = getmicrotime($notifyInfo['time']);
+
+            $elapse = $time - $time_start;
+            $pm->setCaption('%value%% has been reached on %time% sec.',
+                array('value' => $notifyInfo['value'], 'time' => sprintf('%01.3f',$elapse))
+            );
+        }
     }
 }
+
 
 $pm = new HTML_Progress2_Monitor();
 
 $pb =& $pm->getProgressElement();
 $pb->setAnimSpeed(100);
-$pb->setProgressHandler('logger');
+$pb->addListener('logger');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -50,7 +66,7 @@ echo $pm->getScript(false);
 <body>
 
 <?php
-echo $pm->toHtml();
+$pm->display();
 $pm->run();
 ?>
 
