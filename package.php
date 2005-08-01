@@ -42,55 +42,35 @@ DESCR;
 $summary = 'How to include a loading bar in your XHTML documents quickly and easily.';
 
 // New version and state of the package
-$version = '2.0.0RC1';
+$version = '2.0.0RC2';
 $state   = 'beta';
 
 // Notes about this new release
 $notes = <<<NOTE
 ---
-  It is important to notice that even if i will continue to maintains the HTML_Progress
-  for possible bugs, no features will be added in this package. Even if it will not marks
-  as deprecated, i suggest to migrate to HTML_Progress2 (see docs/migrationGuide.txt).
+  i will open another one month timeframe until stable release, or if a bug is found
+  until third release candidate.
+  Please, test it as much as possible, and report all you think important.
 ---
-* news
-- The HTML_Progress2 package has now a series of mini guides (see docs/ directory)
-- The HTML_Progress2_Lite class is recommended to users that does not want to install PEAR.
-  This class has no dependencies.
-- News examples are available: See Multiple, Label, Lite version, Preload.
-- Adds the *autorun* option on HTML_Progress2_Monitor to run a progress monitor
-  without need to push the Start button.
+
+* bugs
+- fixed Monitor stops before end when setMaximum is set to value higher than 200 (bug #4885)
+  Thanks to Roman Stachura.
 
 * changes
-- DM and UI classes (from HTML_Progress 1.x) were merged into the main class.
-- Model class (from HTML_Progress 1.x) was removed.
-- A new error handling system that support native PEAR_Error (default), but also PEAR_ErrorStack,
-  and any other system you might want to plug-in.
-- Progress2 and Generator does not support anymore external pre-set config file.
-- All examples have been revisited (removed those who have the same goals).
-- HTML_Progress2::getPercentComplete() method has an optional parameter.
-  Return may be float (default) or integer.
-- HTML_Progress2 API changed a bit to include the new label system:
-  . setCellCount() accept now zero as minimum value for smooth progress meter
-    (see also HTML_Progress2_Lite).
-  . moveNext() should replace incValue() (still exists)
-  . moveStep() should replace setValue() (still exists)
-  . setLabelAttributes() replaced setStringAttributes() (was removed)
-  . isStringPainted() and setStringPainted() were removed
-  . getString() was also removed
-  . setString() was removed and replaced by addLabel()
-- HTML_Progress2_Monitor::callProgressHandler() public method was removed.
-- HTML_Progress2 included now the features of HTML_Progress_Lite:
-  window frame, buttons, labels (text, step, crossbar).
+- observer pattern is now built with Event_Dispatcher package
+- removes all HTML_CSS dependencies
+- getStyle() and getScript() optimized now when its request the html stream generation
+  (raw data only or data with script tags)
 
 * improvements
-- Generator ActionProcess got two new methods to easily get PHP and/or CSS source code generated.
-- More compatibilities with PHP5 (adds __construct method).
+- generation of stylesheet is (average) 20 times faster without HTML_CSS
 
 * QA
-- Updates headers comment block on all files
-- Dependencies has been revisited to higher level
-- Examples were removed from main package and moved into the optional package
-  available at http://pear.laurent-laville.org/HTML_Progress2/
+- dependencies has been revisited to higher level
+- all Examples are now back into main package. No more additional package.
+- Fix wrong project links into documentation (README, ReleaseVersion)
+  Thanks to Christian Roy to have noticed me.
 
 NOTE;
 
@@ -104,6 +84,7 @@ $options = array(
     'version'           => $version,
     'packagedirectory'  => '.',
     'dir_roles'         => array('docs' => 'doc',
+                                 'examples' => 'doc',
                                  'tests' => 'test',
                                  'Progress2' => 'php',
                                 ),
@@ -115,7 +96,7 @@ $options = array(
     'ignore'            => array('package.xml', 'package.php',
                                  'examples.xml', 'examples.php',
                                  'Thumbs.db',
-                                 'cache/', 'examples/'
+                                 'cache/',
                                 ),
     'cleardependencies' => true
 );
@@ -157,9 +138,9 @@ $e = $pkg->addDependency('PHP_Compat', '1.4.1', 'ge', 'pkg', false);
 handleError($e);
 $e = $pkg->addDependency('HTML_Common', '1.2.1', 'ge', 'pkg', false);
 handleError($e);
-$e = $pkg->addDependency('PEAR', '1.3.5', 'ge', 'pkg', true);
+$e = $pkg->addDependency('Event_Dispatcher', '0.9.1', 'ge', 'pkg', false);
 handleError($e);
-$e = $pkg->addDependency('HTML_CSS', '0.3.4', 'ge', 'pkg', true);
+$e = $pkg->addDependency('PEAR', '1.3.5', 'ge', 'pkg', true);
 handleError($e);
 $e = $pkg->addDependency('HTML_QuickForm', '3.2.4', 'gt', 'pkg', true);
 handleError($e);

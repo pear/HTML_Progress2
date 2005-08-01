@@ -29,61 +29,41 @@ Features:
     </maintainer>
   </maintainers>
   <release>
-    <version>2.0.0RC1</version>
-    <date>2005-06-23</date>
+    <version>2.0.0RC2</version>
+    <date>2005-08-01</date>
     <license>PHP License 3.0</license>
     <state>beta</state>
     <notes>---
-  It is important to notice that even if i will continue to maintains the HTML_Progress
-  for possible bugs, no features will be added in this package. Even if it will not marks
-  as deprecated, i suggest to migrate to HTML_Progress2 (see docs/migrationGuide.txt).
+  i will open another one month timeframe until stable release, or if a bug is found
+  until third release candidate.
+  Please, test it as much as possible, and report all you think important.
 ---
-* news
-- The HTML_Progress2 package has now a series of mini guides (see docs/ directory)
-- The HTML_Progress2_Lite class is recommended to users that does not want to install PEAR.
-  This class has no dependencies.
-- News examples are available: See Multiple, Label, Lite version, Preload.
-- Adds the *autorun* option on HTML_Progress2_Monitor to run a progress monitor
-  without need to push the Start button.
+
+* bugs
+- fixed Monitor stops before end when setMaximum is set to value higher than 200 (bug #4885)
+  Thanks to Roman Stachura.
 
 * changes
-- DM and UI classes (from HTML_Progress 1.x) were merged into the main class.
-- Model class (from HTML_Progress 1.x) was removed.
-- A new error handling system that support native PEAR_Error (default), but also PEAR_ErrorStack,
-  and any other system you might want to plug-in.
-- Progress2 and Generator does not support anymore external pre-set config file.
-- All examples have been revisited (removed those who have the same goals).
-- HTML_Progress2::getPercentComplete() method has an optional parameter.
-  Return may be float (default) or integer.
-- HTML_Progress2 API changed a bit to include the new label system:
-  . setCellCount() accept now zero as minimum value for smooth progress meter
-    (see also HTML_Progress2_Lite).
-  . moveNext() should replace incValue() (still exists)
-  . moveStep() should replace setValue() (still exists)
-  . setLabelAttributes() replaced setStringAttributes() (was removed)
-  . isStringPainted() and setStringPainted() were removed
-  . getString() was also removed
-  . setString() was removed and replaced by addLabel()
-- HTML_Progress2_Monitor::callProgressHandler() public method was removed.
-- HTML_Progress2 included now the features of HTML_Progress_Lite:
-  window frame, buttons, labels (text, step, crossbar).
+- observer pattern is now built with Event_Dispatcher package
+- removes all HTML_CSS dependencies
+- getStyle() and getScript() optimized now when its request the html stream generation
+  (raw data only or data with script tags)
 
 * improvements
-- Generator ActionProcess got two new methods to easily get PHP and/or CSS source code generated.
-- More compatibilities with PHP5 (adds __construct method).
+- generation of stylesheet is (average) 20 times faster without HTML_CSS
 
 * QA
-- Updates headers comment block on all files
-- Dependencies has been revisited to higher level
-- Examples were removed from main package and moved into the optional package
-  available at http://pear.laurent-laville.org/HTML_Progress2/
+- dependencies has been revisited to higher level
+- all Examples are now back into main package. No more additional package.
+- Fix wrong project links into documentation (README, ReleaseVersion)
+  Thanks to Christian Roy to have noticed me.
 </notes>
     <deps>
       <dep type="php" rel="ge" version="4.2.0" optional="no"/>
       <dep type="pkg" rel="ge" version="1.4.1" optional="no">PHP_Compat</dep>
       <dep type="pkg" rel="ge" version="1.2.1" optional="no">HTML_Common</dep>
+      <dep type="pkg" rel="ge" version="0.9.1" optional="no">Event_Dispatcher</dep>
       <dep type="pkg" rel="ge" version="1.3.5" optional="yes">PEAR</dep>
-      <dep type="pkg" rel="ge" version="0.3.4" optional="yes">HTML_CSS</dep>
       <dep type="pkg" rel="gt" version="3.2.4" optional="yes">HTML_QuickForm</dep>
       <dep type="pkg" rel="ge" version="1.0.4" optional="yes">HTML_QuickForm_Controller</dep>
       <dep type="pkg" rel="ge" version="1.0.1" optional="yes">Image_Color</dep>
@@ -105,14 +85,16 @@ Features:
     <provides type="function" name="HTML_Progress2_Generator::createProgressBar" />
     <provides type="function" name="HTML_Progress2_Generator::createProgressStructure" />
     <provides type="class" name="HTML_Progress2_Monitor" />
-    <provides type="function" name="HTML_Progress2_Monitor::notify" />
-    <provides type="function" name="HTML_Progress2_Monitor::setProgressHandler" />
+    <provides type="function" name="HTML_Progress2_Monitor::addListener" />
+    <provides type="function" name="HTML_Progress2_Monitor::removeListener" />
     <provides type="function" name="HTML_Progress2_Monitor::isStarted" />
     <provides type="function" name="HTML_Progress2_Monitor::isCanceled" />
     <provides type="function" name="HTML_Progress2_Monitor::run" />
     <provides type="function" name="HTML_Progress2_Monitor::setProgressElement" />
-    <provides type="class" name="HTML_Progress2_Observer" />
-    <provides type="function" name="HTML_Progress2_Observer::notify" />
+    <provides type="function" name="HTML_Progress2_Monitor::getProgressElement" />
+    <provides type="function" name="HTML_Progress2_Monitor::getStyle" />
+    <provides type="function" name="HTML_Progress2_Monitor::getScript" />
+    <provides type="function" name="HTML_Progress2_Monitor::toHtml" />
     <provides type="class" name="ActionDisplay" extends="HTML_QuickForm_Action_Display" />
     <provides type="class" name="Property1" extends="HTML_QuickForm_Page" />
     <provides type="class" name="Property2" extends="HTML_QuickForm_Page" />
@@ -173,6 +155,60 @@ Features:
       <file role="doc" baseinstalldir="HTML" name="docs/gettingStartedGuide.txt"/>
       <file role="doc" baseinstalldir="HTML" name="docs/migrationGuide.txt"/>
       <file role="doc" baseinstalldir="HTML" name="docs/progress2LiteGuide.txt"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/circle/circle.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/circle/ellipse.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorbasic.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorcustom.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorignore.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorlogger.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorstackcustom.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorstackignore.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorstacklogger.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/generator/generatorcus.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/generator/generatordef.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/generator/itdynamic.html"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/ancestor.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bgimages.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bluesand.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bullit.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/download.gif"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/javadanse.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/nostring.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/progress2_number.js"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/userstring.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/half.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/monitor.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/label/mixed.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/label/percent1.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/label/percent2.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/label/text1.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/label/text2.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/label/windowstyle.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/lite/liteall.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/lite/litebasic.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/lite/mailer2.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/lite/windowstyle2.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/monitor/itdynamic.html"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitorcus.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitordef.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitordyn.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitorlog.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitorpg2.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/multiple/mixed.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/multiple/vertical.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/observer/observer1.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/observer/observer2.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/polygonal/rectangle.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/polygonal/square.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/polygonal/squareback.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/preload/hidden.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/preload/mailer1.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/preload/swf.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/template/cross.png"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/template/itxstatic.html"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/template/itxstatic.php"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/template/wizard.png"/>
+      <file role="doc" baseinstalldir="HTML" name="examples/vertical/vlimit.php"/>
       <file role="php" baseinstalldir="HTML" name="Progress2/Error.php">
         <replace type="package-info" from="@package_version@" to="version"/>
       </file>
@@ -180,9 +216,6 @@ Features:
         <replace type="package-info" from="@package_version@" to="version"/>
       </file>
       <file role="php" baseinstalldir="HTML" name="Progress2/Monitor.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Observer.php">
         <replace type="package-info" from="@package_version@" to="version"/>
       </file>
       <file role="php" baseinstalldir="HTML" name="Progress2/Generator/Default.php">
@@ -251,6 +284,37 @@ Features:
   </release>
   <changelog>
     <release>
+      <version>2.0.0RC2</version>
+      <date>2005-08-01</date>
+      <license>PHP License 3.0</license>
+      <state>beta</state>
+      <notes>---
+  i will open another one month timeframe until stable release, or if a bug is found
+  until third release candidate.
+  Please, test it as much as possible, and report all you think important.
+---
+
+* bugs
+- fixed Monitor stops before end when setMaximum is set to value higher than 200 (bug #4885)
+  Thanks to Roman Stachura.
+
+* changes
+- observer pattern is now built with Event_Dispatcher package
+- removes all HTML_CSS dependencies
+- getStyle() and getScript() optimized now when its request the html stream generation
+  (raw data only or data with script tags)
+
+* improvements
+- generation of stylesheet is (average) 20 times faster without HTML_CSS
+
+* QA
+- dependencies has been revisited to higher level
+- all Examples are now back into main package. No more additional package.
+- Fix wrong project links into documentation (README, ReleaseVersion)
+  Thanks to Christian Roy to have noticed me.
+</notes>
+    </release>
+    <release>
       <version>2.0.0RC1</version>
       <date>2005-06-23</date>
       <license>PHP License 3.0</license>
@@ -298,8 +362,7 @@ Features:
 - Updates headers comment block on all files
 - Dependencies has been revisited to higher level
 - Examples were removed from main package and moved into the optional package
-  available at http://pear.laurent-laville.org/HTML_Progress2/
-</notes>
+  available at http://pear.laurent-laville.org/HTML_Progress2/</notes>
     </release>
   </changelog>
 </package>
