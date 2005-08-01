@@ -174,6 +174,17 @@ class HTML_Progress2 extends HTML_Common
     var $dispatcher;
 
     /**
+     * Count the number of observer registered.
+     * The Event_Dispatcher will be add on first observer registration, and
+     * will be removed with the last observer.
+     *
+     * @var        integer
+     * @since      2.0.0RC2
+     * @access     private
+     */
+    var $_observerCount;
+
+    /**
      * Delay in milisecond before each progress cells display.
      * 1000 ms === sleep(1)
      * <strong>usleep()</strong> function does not run on Windows platform.
@@ -557,7 +568,7 @@ class HTML_Progress2 extends HTML_Common
     {
         $this->_initErrorHandler($errorPrefs);
 
-        $this->dispatcher =& Event_Dispatcher::getInstance();
+        $this->_observerCount = 0;
 
         $this->value = 0;
         $this->minimum = 0;
@@ -802,9 +813,7 @@ class HTML_Progress2 extends HTML_Common
         }
 
         if ($oldVal != $min) {
-            $this->dispatcher->post($this, 'setMinimum',
-                array('time' => microtime(), 'value' => $min)
-            );
+            $this->_postNotification('onChange', array('handler' => __FUNCTION__, 'value' => $min));
         }
     }
 
@@ -868,9 +877,7 @@ class HTML_Progress2 extends HTML_Common
         }
 
         if ($oldVal != $max) {
-            $this->dispatcher->post($this, 'setMaximum',
-                array('time' => microtime(), 'value' => $max)
-            );
+            $this->_postNotification('onChange', array('handler' => __FUNCTION__, 'value' => $max));
         }
     }
 
@@ -976,9 +983,7 @@ class HTML_Progress2 extends HTML_Common
         $this->value = $val;
 
         if ($oldVal != $val) {
-            $this->dispatcher->post($this, 'setValue',
-                array('time' => microtime(), 'value' => $val)
-            );
+            $this->_postNotification('onChange', array('handler' => __FUNCTION__, 'value' => $val));
         }
     }
 
@@ -998,9 +1003,7 @@ class HTML_Progress2 extends HTML_Common
         $newVal = min($this->maximum, $newVal);
         $this->value = $newVal;
 
-        $this->dispatcher->post($this, 'incValue',
-            array('time' => microtime(), 'value' => $newVal)
-        );
+        $this->_postNotification('onChange', array('handler' => __FUNCTION__, 'value' => $newVal));
     }
 
     /**
@@ -1013,13 +1016,11 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
-     * @see        setValue()
+     * @see        moveNext()
      * @tutorial   progress.movestep.pkg
      */
     function moveStep($step)
     {
-        static $determinate;
-
         if (!is_int($step)) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$step',
@@ -1027,90 +1028,27 @@ class HTML_Progress2 extends HTML_Common
                       'expected' => 'integer',
                       'paramnum' => 1));
 
-        } elseif ($step < $this->minimum) {
+        } elseif ($step < 1) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$step',
                       'was' => $step,
-                      'expected' => 'greater than $min = '.$this->minimum,
+                      'expected' => 'greater than zero',
                       'paramnum' => 1));
 
-        } elseif ($step > $this->maximum) {
+        } elseif ($step > intval(ceil($this->maximum / $this->increment))) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$step',
                       'was' => $step,
-                      'expected' => 'less than $max = '.$this->maximum,
+                      'expected' => 'less than '. intval(ceil($this->maximum / $this->increment)),
                       'paramnum' => 1));
         }
         $oldVal = $this->value;
-        $this->value = $step;
+        $this->value = $step * $this->increment;
+        $this->value = min($this->maximum, $this->value);
 
-        foreach($this->label as $name => $data) {
-            switch($data['type']) {
-            case HTML_PROGRESS2_LABEL_STEP:
-                $this->_changeLabelText($name, $this->value . '/' . $this->maximum);
-                break;
-            case HTML_PROGRESS2_LABEL_PERCENT:
-                if (!$this->indeterminate) {
-                    $this->_changeLabelText($name, $this->getPercentComplete(false) . '%');
-                }
-                break;
-            case HTML_PROGRESS2_LABEL_CROSSBAR:
-                $this->_changeCrossItem($name);
-                break;
-            }
-        }
-
-        $bar  = ob_get_clean();
-
-        if ($this->cellCount > 0) {
-            $cellAmount = ($this->maximum - $this->minimum) / $this->cellCount;
-
-            if ($this->indeterminate) {
-                if (isset($determinate)) {
-                    $determinate++;
-                    $progress = $determinate;
-                } else {
-                    $progress = $determinate = 1;
-                }
-            } else {
-                $progress = ($this->value - $this->minimum) / $cellAmount;
-                $determinate = 0;
-            }
-
-            $bar .= '<script type="text/javascript">'
-                 .  'setProgress'
-                 .  '("' . $this->ident . '",'
-                 .  intval($progress) . ',' . $determinate . ',' . $this->cellCount
-                 .  ');'
-                 .  '</script>';
-
-        } else {
-
-            $position = $this->_computePosition();
-
-            $orient = $this->orientation;
-            $cssText = '';
-            if ($orient == HTML_PROGRESS2_BAR_HORIZONTAL) {
-                if ($this->fillWay == 'reverse') {
-                    $cssText .= 'left:' . $position['left'] . 'px;';
-                }
-                $cssText .= 'width:' . $position['width'] . 'px;';
-            }
-            if ($orient == HTML_PROGRESS2_BAR_VERTICAL) {
-                if ($this->fillWay == 'natural') {
-                    $cssText .= 'top:' . $position['top'] . 'px;';
-                }
-                $cssText .= 'height:' . $position['height'] . 'px;';
-            }
-            $bar .= $this->_changeElementStyle('pbar', '', $cssText);
-        }
-        echo $bar . PHP_EOL;
-        ob_start();
-
-        if ($oldVal != $step) {
-            $this->dispatcher->post($this, 'moveStep',
-                array('time' => microtime(), 'value' => $step)
-            );
+        if ($oldVal != $this->value) {
+            $this->_refreshDisplay($this->value);
+            $this->_postNotification('onChange', array('handler' => __FUNCTION__, 'value' => $step));
         }
     }
 
@@ -1121,13 +1059,18 @@ class HTML_Progress2 extends HTML_Common
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @see        moveStep(), getValue(), getIncrement()
+     * @see        moveStep()
      * @tutorial   progress.movenext.pkg
      */
     function moveNext()
     {
-        $step = $this->value + $this->increment;
-        $this->moveStep($step);
+        $oldVal = $this->value;
+        $this->value  = $oldVal + $this->increment;
+
+        if ($oldVal != $this->value) {
+            $this->_refreshDisplay($this->value);
+            $this->_postNotification('onChange', array('handler' => __FUNCTION__, 'value' => $this->value));
+        }
     }
 
     /**
@@ -2491,6 +2434,7 @@ JS;
                  .  'position:' . $progressAttr['position'] . ';'
                  .  'top:' . $progressAttr['top'] . 'px;'
                  .  'left:' . $progressAttr['left'] . 'px;'
+                 .  'padding-bottom:{_heightshift_}px;'
                  .  'height:{_heightshift_}px;">'
                  .  PHP_EOL;
         }
@@ -2642,8 +2586,7 @@ JS;
                     $strHtml .= $tabs
                              .  '<div id="plbl' . $name . $this->ident
                              .  '" style="position:absolute;' . $style_pos
-                             .  '" class="' . $style_cls . '">'
-                             .  $this->value . '/' . $this->maximum
+                             .  '" class="' . $style_cls . '">&nbsp;'
                              .  '</div>'
                              .  PHP_EOL;
                     break;
@@ -2768,7 +2711,7 @@ JS;
     /**
      * Performs the progress actions
      *
-     * @return     void
+     * @return     mixed
      * @since      2.0.0
      * @access     public
      * @see        sleep(), setProgressHandler()
@@ -2777,7 +2720,7 @@ JS;
     function process()
     {
         if ($this->_callback) {
-            call_user_func_array($this->_callback, array($this->value, &$this));
+            return call_user_func_array($this->_callback, array($this->value, &$this));
         } else {
             // when there is no valid user callback then default is to sleep a bit ...
             $this->sleep();
@@ -2797,9 +2740,9 @@ JS;
      */
     function run()
     {
-        $this->dispatcher->post($this, 'onSubmit', array('time' => microtime()));
+        $this->_postNotification('onSubmit');
         do {
-            $this->process();
+            $ret = $this->process();
             if ($this->getPercentComplete() == 1) {
                 if ($this->indeterminate) {
                     $this->setValue(0);
@@ -2807,9 +2750,13 @@ JS;
                     break;
                 }
             }
-            $this->moveNext();
+            if (is_null($ret)) {
+                $this->moveNext();
+            } else {
+                $this->moveStep($ret);
+            }
         } while(1);
-        $this->dispatcher->post($this, 'onLoad', array('time' => microtime()));
+        $this->_postNotification('onLoad');
     }
 
     /**
@@ -2858,7 +2805,7 @@ JS;
      * @see        removeListener()
      * @tutorial   progress.addlistener.pkg
      */
-    function addListener($callback)
+    function addListener($callback, $filter = true)
     {
         if (!is_callable($callback)) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'warning',
@@ -2866,9 +2813,23 @@ JS;
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
                       'paramnum' => 1));
+
+        } elseif (!is_bool($filter)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'warning',
+                array('var' => '$filter',
+                      'element' => 'boolean',
+                      'was' => gettype($filter),
+                      'paramnum' => 2));
         }
 
-        $this->dispatcher->addObserver($callback);
+        $this->dispatcher =& Event_Dispatcher::getInstance();
+
+        if ($filter) {
+            $this->dispatcher->addObserver($callback, null, get_class($this));
+        } else {
+            $this->dispatcher->addObserver($callback);
+        }
+        $this->_observerCount++;
     }
 
     /**
@@ -2884,7 +2845,98 @@ JS;
      */
     function removeListener($callback)
     {
-        return $this->dispatcher->removeObserver($callback);
+        $result = $this->dispatcher->removeObserver($callback, null, get_class($this));
+
+        if ($result) {
+            $this->_observerCount--;
+            if ($this->_observerCount == 0) {
+                unsset($this->dispatcher);
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Refresh the progress meter display.
+     *
+     * @param      integer   $value         new value of the progress meter
+     *
+     * @return     void
+     * @since      2.0.0RC2
+     * @access     private
+     * @see        moveStep(), moveNext()
+     */
+    function _refreshDisplay($value)
+    {
+        static $determinate;
+
+        foreach($this->label as $name => $data) {
+            switch($data['type']) {
+            case HTML_PROGRESS2_LABEL_STEP:
+                if (!$this->indeterminate) {
+                    $this->_changeLabelText($name, intval(ceil($value / $this->increment))
+                                                 . '/'
+                                                 . intval(ceil($this->maximum / $this->increment))
+                    );
+                }
+                break;
+            case HTML_PROGRESS2_LABEL_PERCENT:
+                if (!$this->indeterminate) {
+                    $this->_changeLabelText($name, $this->getPercentComplete(false) . '%');
+                }
+                break;
+            case HTML_PROGRESS2_LABEL_CROSSBAR:
+                $this->_changeCrossItem($name);
+                break;
+            }
+        }
+
+        $bar  = ob_get_clean();
+
+        if ($this->cellCount > 0) {
+            $cellAmount = ($this->maximum - $this->minimum) / $this->cellCount;
+
+            if ($this->indeterminate) {
+                if (isset($determinate)) {
+                    $determinate++;
+                    $progress = $determinate;
+                } else {
+                    $progress = $determinate = 1;
+                }
+            } else {
+                $progress = ($this->value - $this->minimum) / $cellAmount;
+                $determinate = 0;
+            }
+
+            $bar .= '<script type="text/javascript">'
+                 .  'setProgress'
+                 .  '("' . $this->ident . '",'
+                 .  intval($progress) . ',' . $determinate . ',' . $this->cellCount
+                 .  ');'
+                 .  '</script>';
+
+        } else {
+
+            $position = $this->_computePosition();
+
+            $orient = $this->orientation;
+            $cssText = '';
+            if ($orient == HTML_PROGRESS2_BAR_HORIZONTAL) {
+                if ($this->fillWay == 'reverse') {
+                    $cssText .= 'left:' . $position['left'] . 'px;';
+                }
+                $cssText .= 'width:' . $position['width'] . 'px;';
+            }
+            if ($orient == HTML_PROGRESS2_BAR_VERTICAL) {
+                if ($this->fillWay == 'natural') {
+                    $cssText .= 'top:' . $position['top'] . 'px;';
+                }
+                $cssText .= 'height:' . $position['height'] . 'px;';
+            }
+            $bar .= $this->_changeElementStyle('pbar', '', $cssText);
+        }
+        echo $bar . PHP_EOL;
+        ob_start();
     }
 
     /**
@@ -3413,6 +3465,27 @@ JS;
              . '</script>';
 
         return $cmd;
+    }
+
+    /**
+     * Post a new notification to all observers registered.
+     * This notification occured only if a dispatcher exists. That means if
+     * at least one observer was registered.
+     *
+     * @param      string    $event         Name of the notification handler
+     * @param      array     $info          (optional) Additional information about the notification
+     *
+     * @return     void
+     * @since      2.0.0RC2
+     * @access     private
+     */
+    function _postNotification($event, $info = array())
+    {
+        if (isset($this->dispatcher)) {
+            $info['sender'] = get_class($this);
+            $info['time']   = microtime();
+            $this->dispatcher->post($this, $event, $info);
+        }
     }
 
     /**
