@@ -1,6 +1,6 @@
 <?php
 /**
- * Progress2 Monitor using ITDynamic QF renderer, 
+ * Progress2 Monitor using ITDynamic QF renderer,
  * and a class-method as user callback.
  *
  * @version    $Id$
@@ -11,12 +11,14 @@
  */
 require_once 'HTML/Progress2/Monitor.php';
 require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
-require_once 'HTML/Template/ITX.php';
+require_once 'HTML/Template/Sigma.php';
 
 class myClassHandler
 {
-    function myMethod($pValue, &$pMon)
+    function myMethod($pValue, &$pb)
     {
+        global $pm;
+
         switch ($pValue) {
          case 10:
             $pic = 'picture1.jpg';
@@ -31,13 +33,12 @@ class myClassHandler
             $pic = null;
         }
         if (!is_null($pic)) {
-            $pMon->setCaption('upload %file% in progress ... '
-                            . 'Start at %percent%%',
-                array('file' => $pic, 'percent' => $pValue)
-                );
+            $pm->setCaption('upload %file% in progress ... '
+                          . 'Start at %percent%%',
+                            array('file' => $pic, 'percent' => $pValue)
+            );
         }
-        $bar =& $pMon->getProgressElement();
-        $bar->sleep();
+        $pb->sleep();
     }
 }
 
@@ -46,9 +47,7 @@ $pm = new HTML_Progress2_Monitor('frmMonitor5', array(
     'start'  => 'Upload',
     'cancel' => 'Stop',
     'button' => array('style' => 'width:80px;')
-    )
-);
-$pm->setProgressHandler(array('myClassHandler','myMethod'));
+));
 
 $pb =& $pm->getProgressElement();
 $pb->setAnimSpeed(50);
@@ -57,15 +56,16 @@ $pb->setProgressAttributes('background-color=#EEE');
 $pb->setCellAttributes('inactive-color=#FFF active-color=#444444');
 $pb->setLabelAttributes('pct1', 'color=navy');
 $pb->setLabelAttributes('monitorStatus', 'color=navy font-size=10');
+$pb->setProgressHandler(array('myClassHandler','myMethod'));
 
 $pm->setProgressElement($pb);
 
-$tpl =& new HTML_Template_ITX('.');
+$tpl =& new HTML_Template_Sigma('.');
 $tpl->loadTemplateFile('itdynamic.html');
 
 $tpl->setVariable(array(
     'qf_style'  => $pm->getStyle(),
-    'qf_script' => $pm->getScript()
+    'qf_script' => $pm->getScript(false)
     )
 );
 
@@ -77,3 +77,6 @@ $pm->accept($renderer);
 $tpl->show();
 $pm->run();
 ?>
+
+</body>
+</html>
