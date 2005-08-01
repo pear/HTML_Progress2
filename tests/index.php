@@ -70,19 +70,19 @@ $testcases = array(
     'HTML_Progress2_TestCase_drawCircleSegments',
     'HTML_Progress2_TestCase_setAnimSpeed',
     'HTML_Progress2_TestCase_setProgressHandler',
-    'HTML_Progress2_TestCase_addListener',
-    'HTML_Progress2_TestCase_removeListener'
+//    'HTML_Progress2_TestCase_addListener',
+//    'HTML_Progress2_TestCase_removeListener'
 );
 
 $suite = new PHPUnit_TestSuite();
 
 foreach ($testcases as $testcase) {
-        include_once $testcase . '.php';
-        $suite->addTestSuite($testcase);
+    include_once $testcase . '.php';
+    $suite->addTestSuite($testcase);
 }
 
 $listener = new HTML_TestListener();
-    $result = TestUnit::run($suite, $listener);
+$result = TestUnit::run($suite, $listener);
 $result->removeListener($listener);
 $result->report();
 ?>
