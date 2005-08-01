@@ -1,7 +1,7 @@
 <?php
 /**
  * API moveStep Unit tests for HTML_Progress2 class.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
@@ -34,7 +34,7 @@ class HTML_Progress2_TestCase_moveStep extends PHPUnit_TestCase
         unset($this->progress);
     }
 
-    function _methodExists($name) 
+    function _methodExists($name)
     {
         if (substr(PHP_VERSION,0,1) < '5') {
             $n = strtolower($name);
@@ -62,7 +62,7 @@ class HTML_Progress2_TestCase_moveStep extends PHPUnit_TestCase
             $this->assertTrue(false, $msg);
         } else {
             $this->assertTrue(true);
-	}
+    }
     }
 
     /**
@@ -82,7 +82,7 @@ class HTML_Progress2_TestCase_moveStep extends PHPUnit_TestCase
         if (!$this->_methodExists('moveStep')) {
             return;
         }
-        $this->progress->moveStep(0);
+        $this->progress->moveStep(-1);
         $this->_getResult();
     }
 
