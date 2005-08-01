@@ -96,6 +96,26 @@ class HTML_Progress2_Monitor
      */
     var $_form;
 
+    /**
+     * Stores the event dispatcher which handles notifications
+     *
+     * @var        array
+     * @since      2.0.0RC2
+     * @access     protected
+     */
+    var $dispatcher;
+
+    /**
+     * Count the number of observer registered.
+     * The Event_Dispatcher will be add on first observer registration, and
+     * will be removed with the last observer.
+     *
+     * @var        integer
+     * @since      2.0.0RC2
+     * @access     private
+     */
+    var $_observerCount;
+
 
     /**
      * Constructor (ZE1)
@@ -161,6 +181,7 @@ class HTML_Progress2_Monitor
         }
 
         $this->_id = md5(microtime());
+        $this->_observerCount = 0;
 
         $this->_form = new HTML_QuickForm($formName);
         $this->_form->removeAttribute('name');        // XHTML compliance
@@ -203,7 +224,7 @@ class HTML_Progress2_Monitor
 
     /**
      * Adds a new observer to the Event Dispatcher that will listen
-     * for all messages emitted by this HTML_Progress2_Monitor instance.
+     * for all messages emitted by this HTML_Progress2 instance.
      *
      * @param      mixed     $callback      PHP callback that will act as listener
      *
@@ -211,20 +232,22 @@ class HTML_Progress2_Monitor
      * @since      2.0.0
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
-     * @see        getListeners(), removeListener()
+     * @see        removeListener()
      * @tutorial   monitor.addlistener.pkg
      */
     function addListener($callback)
     {
         if (!is_callable($callback)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'warning',
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'exception',
                 array('var' => '$callback',
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
                       'paramnum' => 1));
         }
 
-        $this->_progress->dispatcher->addObserver($callback, null, get_class($this));
+        $this->dispatcher =& Event_Dispatcher::getInstance();
+        $this->dispatcher->addObserver($callback);
+        $this->_observerCount++;
     }
 
     /**
@@ -235,26 +258,29 @@ class HTML_Progress2_Monitor
      * @return     bool                     True if observer was removed, false otherwise
      * @since      2.0.0
      * @access     public
-     * @see        getListeners(), addListener()
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
+     * @see        addListener()
      * @tutorial   monitor.removelistener.pkg
      */
     function removeListener($callback)
     {
-        return $this->_progress->dispatcher->removeObserver($callback, null, get_class($this));
-    }
+        if (!is_callable($callback)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'exception',
+                array('var' => '$callback',
+                      'element' => 'valid Class-Method/Function',
+                      'was' => 'callback',
+                      'paramnum' => 1));
+        }
 
-    /**
-     * Returns an array of all the listeners attached to this progress monitor.
-     *
-     * @return     array
-     * @since      2.0.0
-     * @access     public
-     * @see        addListener(), removeListener()
-     * @tutorial   monitor.getlisteners.pkg
-     */
-    function getListeners()
-    {
-        return $this->_progress->dispatcher->_ro;
+        $result = $this->dispatcher->removeObserver($callback);
+
+        if ($result) {
+            $this->_observerCount--;
+            if ($this->_observerCount == 0) {
+                unsset($this->dispatcher);
+            }
+        }
+        return $result;
     }
 
     /**
@@ -284,7 +310,7 @@ class HTML_Progress2_Monitor
         $action = $this->_form->getSubmitValues();
         $canceled = isset($action['cancel']);
         if ($canceled) {
-            $this->_progress->dispatcher->post($this, 'onCancel', array('time' => microtime()));
+            $this->_postNotification('onCancel');
         }
         return $canceled;
     }
@@ -301,21 +327,10 @@ class HTML_Progress2_Monitor
     {
         if ($this->isStarted() && !$this->isCanceled()) {
             $this->_progress->_status = 'show';
-            $this->_progress->dispatcher->post($this, 'onSubmit', array('time' => microtime()));
 
-            do {
-                $this->_progress->process();
-                if ($this->_progress->getPercentComplete() == 1) {
-                    if ($this->_progress->isIndeterminate()) {
-                        $this->_progress->setValue(0);
-                    } else {
-                        break;
-                    }
-                }
-                $this->_progress->moveNext();
-            } while(1);
-
-            $this->_progress->dispatcher->post($this, 'onLoad', array('time' => microtime()));
+            $this->_postNotification('onSubmit');
+            $this->_progress->run();
+            $this->_postNotification('onLoad');
         }
     }
 
@@ -340,21 +355,7 @@ class HTML_Progress2_Monitor
                       'expected' => 'HTML_Progress2 object',
                       'paramnum' => 1));
         }
-        $this->_progress =& $bar;
-
-        $barAttr = $bar->getProgressAttributes();
-        $width = $barAttr['width'] + 70;
-
-        $formTpl = "\n<form{attributes}>"
-                 . "\n<div>"
-                 . "\n{hidden}"
-                 . "<table width=\"{$width}\" border=\"0\">"
-                 . "\n{content}"
-                 . "\n</table>"
-                 . "\n</div>"
-                 . "\n</form>";
-        $renderer =& $this->_form->defaultRenderer();
-        $renderer->setFormTemplate($formTpl);
+        $this->_progress = $bar;
 
         $bar =& $this->_form->getElement('progressBar');
         $bar->setText( $this->_progress->toHtml() );
@@ -433,7 +434,34 @@ class HTML_Progress2_Monitor
      */
     function toHtml()
     {
+        $barAttr = $this->_progress->getProgressAttributes();
+        $width = $barAttr['width'] + 70;
+
+        $formTpl = "\n<form{attributes}>"
+                 . "\n<div>"
+                 . "\n{hidden}"
+                 . "<table width=\"{$width}\" border=\"0\">"
+                 . "\n{content}"
+                 . "\n</table>"
+                 . "\n</div>"
+                 . "\n</form>";
+        $renderer =& $this->_form->defaultRenderer();
+        $renderer->setFormTemplate($formTpl);
+
         return $this->_form->toHtml();
+    }
+
+    /**
+     *
+     *
+     * @return     void
+     * @since      2.0.0RC2
+     * @access     public
+     * @tutorial   monitor.display.pkg
+     */
+    function display()
+    {
+        echo $this->toHtml();
     }
 
     /**
@@ -499,9 +527,28 @@ class HTML_Progress2_Monitor
         foreach($args as $name => $value) {
             $caption = str_replace("%$name%", $value, $caption);
         }
-        $this->_progress->setLabelAttributes($this->caption['id'],
-            array('value' => $caption)
-            );
+        $this->_progress->setLabelAttributes($this->caption['id'], array('value' => $caption));
+    }
+
+    /**
+     * Post a new notification to all observers registered.
+     * This notification occured only if a dispatcher exists. That means if
+     * at least one observer was registered.
+     *
+     * @param      string    $event         Name of the notification handler
+     * @param      array     $info          (optional) Additional information about the notification
+     *
+     * @return     void
+     * @since      2.0.0RC2
+     * @access     private
+     */
+    function _postNotification($event, $info = array())
+    {
+        if (isset($this->dispatcher)) {
+            $info['sender'] = get_class($this);
+            $info['time']   = microtime();
+            $this->dispatcher->post($this, $event, $info);
+        }
     }
 }
 ?>
