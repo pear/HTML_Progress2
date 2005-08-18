@@ -116,7 +116,6 @@ define ('HTML_PROGRESS2_ERROR_INVALID_OPTION',   -103);
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/HTML_Progress2
- * @tutorial   HTML_Progress2.pkg
  */
 
 class HTML_Progress2 extends HTML_Common
@@ -663,7 +662,6 @@ class HTML_Progress2 extends HTML_Common
      * @return     string
      * @since      2.0.0
      * @access     public
-     * @tutorial   progress.apiversion.pkg
      */
     function apiVersion()
     {
@@ -677,7 +675,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setIndeterminate()
-     * @tutorial   progress.isindeterminate.pkg
      */
     function isIndeterminate()
     {
@@ -698,7 +695,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        isIndeterminate()
-     * @tutorial   progress.setindeterminate.pkg
      */
     function setIndeterminate($continuous)
     {
@@ -720,7 +716,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setBorderPainted()
-     * @tutorial   progress.isborderpainted.pkg
      */
     function isBorderPainted()
     {
@@ -738,7 +733,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        isBorderPainted()
-     * @tutorial   progress.setborderpainted.pkg
      */
     function setBorderPainted($paint)
     {
@@ -760,7 +754,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setMinimum()
-     * @tutorial   progress.getminimum.pkg
      */
     function getMinimum()
     {
@@ -779,7 +772,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getMinimum()
-     * @tutorial   progress.setminimum.pkg
      */
     function setMinimum($min)
     {
@@ -824,7 +816,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setMaximum()
-     * @tutorial   progress.getmaximum.pkg
      */
     function getMaximum()
     {
@@ -843,7 +834,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getMaximum()
-     * @tutorial   progress.setmaximum.pkg
      */
     function setMaximum($max)
     {
@@ -888,7 +878,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setIncrement()
-     * @tutorial   progress.getincrement.pkg
      */
     function getIncrement()
     {
@@ -905,7 +894,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getIncrement()
-     * @tutorial   progress.setincrement.pkg
      */
     function setIncrement($inc)
     {
@@ -935,7 +923,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setValue(), incValue()
-     * @tutorial   progress.getvalue.pkg
      */
     function getValue()
     {
@@ -954,7 +941,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getValue(), incValue()
-     * @tutorial   progress.setvalue.pkg
      */
     function setValue($val)
     {
@@ -995,7 +981,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        getValue(), setValue()
-     * @tutorial   progress.incvalue.pkg
      */
     function incValue()
     {
@@ -1017,7 +1002,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        moveNext()
-     * @tutorial   progress.movestep.pkg
      */
     function moveStep($step)
     {
@@ -1060,7 +1044,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        moveStep()
-     * @tutorial   progress.movenext.pkg
      */
     function moveNext()
     {
@@ -1084,7 +1067,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getValue(), getMaximum()
-     * @tutorial   progress.getpercentcomplete.pkg
      */
     function getPercentComplete($float = true)
     {
@@ -1118,7 +1100,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setOrientation()
-     * @tutorial   progress.getorientation.pkg
      */
     function getOrientation()
     {
@@ -1137,7 +1118,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getOrientation()
-     * @tutorial   progress.setorientation.pkg
      */
     function setOrientation($orient)
     {
@@ -1189,7 +1169,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setFillWay()
-     * @tutorial   progress.getfillway.pkg
      */
     function getFillWay()
     {
@@ -1207,7 +1186,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getFillWay()
-     * @tutorial   progress.setfillway.pkg
      */
     function setFillWay($way)
     {
@@ -1236,7 +1214,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setCellCount()
-     * @tutorial   progress.getcellcount.pkg
      */
     function getCellCount()
     {
@@ -1253,7 +1230,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getCellCount()
-     * @tutorial   progress.setcellcount.pkg
      */
     function setCellCount($cells)
     {
@@ -1286,7 +1262,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setCellAttributes()
-     * @tutorial   progress.getcellattributes.pkg
      */
     function getCellAttributes($asString = false)
     {
@@ -1344,7 +1319,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getCellAttributes()
-     * @tutorial   progress.setcellattributes.pkg
      */
     function setCellAttributes($attributes, $cell = null)
     {
@@ -1394,7 +1368,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        setCellCoordinates()
-     * @tutorial   progress.getcellcoordinates.pkg
      */
     function getCellCoordinates()
     {
@@ -1413,7 +1386,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getCellCoordinates()
-     * @tutorial   progress.setcellcoordinates.pkg
      */
     function setCellCoordinates($xgrid, $ygrid, $coord = array())
     {
@@ -1501,7 +1473,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setBorderAttributes()
-     * @tutorial   progress.getborderattributes.pkg
      */
     function getBorderAttributes($asString = false)
     {
@@ -1539,7 +1510,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        getBorderAttributes()
-     * @tutorial   progress.setborderattributes.pkg
      */
     function setBorderAttributes($attributes)
     {
@@ -1558,7 +1528,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setFrameAttributes()
-     * @tutorial   progress.setframeattributes.pkg
      */
     function getFrameAttributes($asString = false)
     {
@@ -1589,7 +1558,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_OPTION
-     * @tutorial   progress.setframeattributes.pkg
      */
     function setFrameAttributes($attributes = array())
     {
@@ -1638,7 +1606,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setLabelAttributes()
-     * @tutorial   progress.getlabelattributes.pkg
      */
     function getLabelAttributes($name, $asString = false)
     {
@@ -1691,7 +1658,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getLabelAttributes(), addLabel()
-     * @tutorial   progress.setlabelattributes.pkg
      */
     function setLabelAttributes($name, $attributes)
     {
@@ -1724,7 +1690,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setLabelAttributes(), removeLabel()
-     * @tutorial   progress.addlabel.pkg
      */
     function addLabel($type, $name, $value = '&nbsp;')
     {
@@ -1867,7 +1832,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        addLabel()
-     * @tutorial   progress.removelabel.pkg
      */
     function removeLabel($name)
     {
@@ -1900,7 +1864,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setProgressAttributes()
-     * @tutorial   progress.getprogressattributes.pkg
      */
     function getProgressAttributes($asString = false)
     {
@@ -1946,7 +1909,6 @@ class HTML_Progress2 extends HTML_Common
      * @since      2.0.0
      * @access     public
      * @see        getProgressAttributes()
-     * @tutorial   progress.setprogressattributes.pkg
      */
     function setProgressAttributes($attributes)
     {
@@ -1963,7 +1925,6 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setScript()
-     * @tutorial   progress.getscript.pkg
      */
     function getScript($raw = true)
     {
@@ -2075,7 +2036,6 @@ JS;
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getScript()
-     * @tutorial   progress.setscript.pkg
      */
     function setScript($url)
     {
@@ -2115,7 +2075,6 @@ JS;
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setCellAttributes()
-     * @tutorial   progress.drawcirclesegments.pkg
      */
     function drawCircleSegments($dir = '.', $fileMask = 'c%s.png')
     {
@@ -2188,7 +2147,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        setAnimSpeed()
-     * @tutorial   progress.getanimspeed.pkg
      */
     function getAnimSpeed()
     {
@@ -2205,7 +2163,6 @@ JS;
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getAnimSpeed()
-     * @tutorial   progress.setanimspeed.pkg
      */
     function setAnimSpeed($delay)
     {
@@ -2242,7 +2199,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
-     * @tutorial   progress.getstyle.pkg
      */
     function getStyle($raw = true)
     {
@@ -2347,7 +2303,6 @@ JS;
      * @return     array
      * @since      2.0.0
      * @access     public
-     * @tutorial   progress.toarray.pkg
      */
     function toArray()
     {
@@ -2380,7 +2335,6 @@ JS;
      * @return     string
      * @since      2.0.0
      * @access     public
-     * @tutorial   progress.tohtml.pkg
      */
     function toHtml()
     {
@@ -2633,7 +2587,6 @@ JS;
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @tutorial   progress.display.pkg
      */
     function display()
     {
@@ -2647,7 +2600,6 @@ JS;
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @tutorial   progress.hide.pkg
      */
     function hide()
     {
@@ -2669,7 +2621,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        getAnimSpeed(), setAnimSpeed(), process()
-     * @tutorial   progress.sleep.pkg
      */
     function sleep()
     {
@@ -2693,7 +2644,6 @@ JS;
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        process()
-     * @tutorial   progress.setprogresshandler.pkg
      */
     function setProgressHandler($handler)
     {
@@ -2714,7 +2664,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        sleep(), setProgressHandler()
-     * @tutorial   progress.process.pkg
      */
     function process()
     {
@@ -2735,7 +2684,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        process(), setProgressHandler()
-     * @tutorial   progress.run.pkg
      */
     function run()
     {
@@ -2765,7 +2713,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        setIdent()
-     * @tutorial   progress.getident.pkg
      */
     function getIdent()
     {
@@ -2780,7 +2727,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        getIdent()
-     * @tutorial   progress.setident.pkg
      */
     function setIdent($ident = null)
     {
@@ -2802,7 +2748,6 @@ JS;
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        removeListener()
-     * @tutorial   progress.addlistener.pkg
      */
     function addListener($callback)
     {
@@ -2829,7 +2774,6 @@ JS;
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        addListener()
-     * @tutorial   progress.removelistener.pkg
      */
     function removeListener($callback)
     {
@@ -3588,7 +3532,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        _errorHandler()
-     * @tutorial   progress.raiseerror.pkg
      */
     function raiseError()
     {
@@ -3608,7 +3551,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        getError(), raiseError()
-     * @tutorial   progress.haserrors.pkg
      */
     function hasErrors()
     {
@@ -3622,7 +3564,6 @@ JS;
      * @since      2.0.0
      * @access     public
      * @see        hasErrors(), raiseError()
-     * @tutorial   progress.geterror.pkg
      */
     function getError()
     {

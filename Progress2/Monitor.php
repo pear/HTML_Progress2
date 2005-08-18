@@ -42,7 +42,6 @@ require_once 'HTML/QuickForm.php';
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/HTML_Progress2
- * @tutorial   HTML_Progress2_Monitor.pkg
  */
 
 class HTML_Progress2_Monitor
@@ -233,7 +232,6 @@ class HTML_Progress2_Monitor
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        removeListener()
-     * @tutorial   monitor.addlistener.pkg
      */
     function addListener($callback)
     {
@@ -260,7 +258,6 @@ class HTML_Progress2_Monitor
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        addListener()
-     * @tutorial   monitor.removelistener.pkg
      */
     function removeListener($callback)
     {
@@ -289,7 +286,6 @@ class HTML_Progress2_Monitor
      * @return     bool
      * @since      2.0.0
      * @access     public
-     * @tutorial   monitor.isstarted.pkg
      */
     function isStarted()
     {
@@ -303,7 +299,6 @@ class HTML_Progress2_Monitor
      * @return     bool
      * @since      2.0.0
      * @access     public
-     * @tutorial   monitor.iscanceled.pkg
      */
     function isCanceled()
     {
@@ -321,7 +316,6 @@ class HTML_Progress2_Monitor
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @tutorial   monitor.run.pkg
      */
     function run()
     {
@@ -344,7 +338,6 @@ class HTML_Progress2_Monitor
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getProgressElement()
-     * @tutorial   monitor.setprogresselement.pkg
      */
     function setProgressElement(&$bar)
     {
@@ -369,7 +362,6 @@ class HTML_Progress2_Monitor
      * @since      2.0.0
      * @access     public
      * @see        setProgressElement()
-     * @tutorial   monitor.getprogresselement.pkg
      */
     function &getProgressElement()
     {
@@ -385,7 +377,6 @@ class HTML_Progress2_Monitor
      * @since      2.0.0
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
-     * @tutorial   monitor.getstyle.pkg
      */
     function getStyle($raw = true)
     {
@@ -409,7 +400,6 @@ class HTML_Progress2_Monitor
      * @since      2.0.0
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @access     public
-     * @tutorial   monitor.getscript.pkg
      */
     function getScript($raw = true)
     {
@@ -430,7 +420,6 @@ class HTML_Progress2_Monitor
      * @return     string
      * @since      2.0.0
      * @access     public
-     * @tutorial   monitor.tohtml.pkg
      */
     function toHtml()
     {
@@ -457,7 +446,6 @@ class HTML_Progress2_Monitor
      * @return     void
      * @since      2.0.0RC2
      * @access     public
-     * @tutorial   monitor.display.pkg
      */
     function display()
     {
@@ -472,7 +460,6 @@ class HTML_Progress2_Monitor
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @tutorial   monitor.accept.pkg
      */
     function accept(&$renderer)
     {
@@ -505,7 +492,6 @@ class HTML_Progress2_Monitor
      *                                      template var -> message text
      * @since      2.0.0
      * @access     public
-     * @tutorial   monitor.setcaption.pkg
      */
     function setCaption($caption = '&nbsp;', $args = array())
     {
