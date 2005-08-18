@@ -20,6 +20,9 @@ require_once 'HTML/Progress2.php';
 
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
+/**
+ * @ignore
+ */
 class HTTP_Request_DownloadListener extends HTTP_Request_Listener
 {
    /**

@@ -12,7 +12,9 @@
 require_once 'HTML/Progress2/Monitor.php';
 require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
 require_once 'HTML/Template/Sigma.php';
-
+/**
+ * @ignore
+ */
 class myClassHandler
 {
     function myMethod($pValue, &$pb)
