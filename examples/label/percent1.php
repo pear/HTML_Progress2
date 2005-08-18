@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/label/percent1.php
+ *             percent1 source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/labelpercent1.png
+ *             screenshot (Image PNG, 669x361 pixels) 5.02 Kb
  */
 require_once 'HTML/Progress2.php';
 

@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/label/windowstyle.php
+ *             windowstyle source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/labelwindowstyle.png
+ *             screenshot (Image PNG, 267x99 pixels) 773 bytes
  */
 require_once 'HTML/Progress2.php';
 
