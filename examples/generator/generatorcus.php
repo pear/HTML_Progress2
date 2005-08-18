@@ -17,12 +17,12 @@ require_once 'HTML/Progress2/Generator.php';
  */
 require_once 'HTML/Progress2/Generator/ITDynamic.php';
 
-/* 2. 'ActionDisplay' is default classname that should exists 
+/* 2. 'ActionDisplay' is default classname that should exists
       to manage wizard/tabbed display. But you can also create
-      your own class under a new name. Then you've to give 
+      your own class under a new name. Then you've to give
       the new name to HTML_Progress2_Generator.
       For example:
-      
+
       class MyDisplayHandler extends HTML_QuickForm_Action_Display
       {
            ...
@@ -31,9 +31,13 @@ require_once 'HTML/Progress2/Generator/ITDynamic.php';
       'ActionDisplay' ('HTML/Progress2/Generator/Default.php')
       will be used.
  */
+
+/**
+ * @ignore
+ */
 class MyDisplayHandler extends HTML_QuickForm_Action_Display
 {
-    function _renderForm(&$page) 
+    function _renderForm(&$page)
     {
         $pageName = $page->getAttribute('name');
         $tabPreview = array_slice ($page->controller->_tabs, -2, 1);
@@ -63,22 +67,25 @@ class MyDisplayHandler extends HTML_QuickForm_Action_Display
     }
 }
 
-/* 3. 'ActionProcess' is default classname that should exists 
+/* 3. 'ActionProcess' is default classname that should exists
       to save your progress bar php/css source-code. But you can also create
-      your own class under a new name. Then you've to give 
+      your own class under a new name. Then you've to give
       the new name to HTML_Progress2_Generator.
       For example:
-      
+
       class MyProcessHandler extends HTML_QuickForm_Action
       {
            ...
       }
       If your 'MyProcessHandler' class is not defined, then default
-      'ActionProcess' ('HTML/Progress2/Generator/Process.php') 
+      'ActionProcess' ('HTML/Progress2/Generator/Process.php')
       will be used.
  */
 require_once 'HTML/Progress2/Generator/Process.php';
 
+/**
+ * @ignore
+ */
 class MyProcessHandler extends ActionProcess
 {
     function perform(&$page, $actionName)
@@ -91,7 +98,7 @@ class MyProcessHandler extends ActionProcess
             $page->isFormBuilt() or $page->buildForm();
             $page->controller->isValid();
 
-            // what kind of source code is requested  
+            // what kind of source code is requested
             $code = $page->exportValue('phpcss');
             $pb = $page->controller->createProgressBar();
 
@@ -115,7 +122,7 @@ class MyProcessHandler extends ActionProcess
 
 session_start();
 
-$tabbed = new HTML_Progress2_Generator('PBwizard', 
+$tabbed = new HTML_Progress2_Generator('PBwizard',
     array('display' => 'MyDisplayHandler', 'process' => 'MyProcessHandler')
 );
 $tabbed->run();

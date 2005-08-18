@@ -1,7 +1,7 @@
 <?php
 /**
  * Customize error renderer with PEAR_ErrorStack.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
@@ -12,6 +12,9 @@ require_once 'HTML/Progress2.php';
 require_once 'HTML/Progress2/Error.php';
 require_once 'PEAR/ErrorStack.php';
 
+/**
+ * @ignore
+ */
 class HTML_Progress2_ErrorStack
 {
     function HTML_Progress2_ErrorStack()
@@ -45,7 +48,7 @@ class HTML_Progress2_ErrorStack
     function log($err)
     {
         global $prefs;
-        
+
         $lineFormat = '<b>%1$s:</b> %2$s<br/>[%3$s]<hr/>'."<br/>\n";
         $contextFormat = 'in <b>%1$s</b> on line <b>%2$s</b>';
 
@@ -57,26 +60,26 @@ class HTML_Progress2_ErrorStack
         }
 
         $context = $err['context'];
-            
+
         if ($context) {
             $file  = $context['file'];
             $line  = $context['line'];
-                
+
             $contextExec = sprintf($contextFormat, $file, $line);
         } else {
             $contextExec = '';
         }
-    
-        printf($lineFormat, 
-               ucfirst(get_class($this)) . ' ' . $err['level'], 
-               $err['message'], 
-               $contextExec); 
+
+        printf($lineFormat,
+               ucfirst(get_class($this)) . ' ' . $err['level'],
+               $err['message'],
+               $contextExec);
     }
 
     function errorHandler($err)
     {
         global $halt_onException;
-        
+
         if ($halt_onException) {
             if ($err['level'] == 'exception') {
                 return PEAR_ERRORSTACK_DIE;
@@ -119,6 +122,6 @@ $pb2->setMinimum(-1);
 // B2. Exception
 $pb2->setIndeterminate('true');
 
-print 'still alive !';  
+print 'still alive !';
 
 ?>

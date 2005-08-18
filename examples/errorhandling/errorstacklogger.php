@@ -1,7 +1,7 @@
 <?php
 /**
  * Customize error renderer with PEAR_ErrorStack and PEAR::Log.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
@@ -13,6 +13,9 @@ require_once 'HTML/Progress2/Error.php';
 require_once 'PEAR/ErrorStack.php';
 require_once 'Log.php';
 
+/**
+ * @ignore
+ */
 class HTML_Progress2_ErrorStack
 {
     function HTML_Progress2_ErrorStack()
@@ -22,7 +25,7 @@ class HTML_Progress2_ErrorStack
         $s->setErrorMessageTemplate($t);
         $s->setMessageCallback(array(&$this,'getMessage'));
         $s->setContextCallback(array(&$this,'getBacktrace'));
-        
+
         $ident = $_SERVER['REMOTE_ADDR'];
         $conf  = array('lineFormat' => '%1$s - %2$s [%3$s] %4$s');
         $file = &Log::singleton('file', 'html_progress2_err.log', $ident, $conf);
@@ -35,7 +38,7 @@ class HTML_Progress2_ErrorStack
         $composite = &Log::singleton('composite');
         $composite->addChild($display);
         $composite->addChild($file);
-        
+
         $s->setLogger($composite);
         $s->pushCallback(array(&$this,'errorHandler'));
     }
@@ -47,13 +50,13 @@ class HTML_Progress2_ErrorStack
     }
 
     /**
-     *  default ErrorStack message callback is 
+     *  default ErrorStack message callback is
      *  PEAR_ErrorStack::getErrorMessage()
      */
     function getMessage(&$stack, $err, $template = false)
     {
-    	global $prefs;
-    	
+        global $prefs;
+
         $message = $stack->getErrorMessage($stack, $err, $template);
 
         $lineFormat = '%1$s %2$s [%3$s]';
@@ -69,17 +72,17 @@ class HTML_Progress2_ErrorStack
         }
 
         $context = $err['context'];
-            
+
         if ($context) {
             $file  = $context['file'];
             $line  = $context['line'];
-                
+
             $contextExec = sprintf($contextFormat, $file, $line);
         } else {
             $contextExec = '';
         }
-    
-        $msg = sprintf($lineFormat, '', $message, $contextExec); 
+
+        $msg = sprintf($lineFormat, '', $message, $contextExec);
         return trim($msg);
     }
 
@@ -97,7 +100,7 @@ class HTML_Progress2_ErrorStack
     function errorHandler($err)
     {
         global $halt_onException;
-        
+
         if ($halt_onException) {
             if ($err['level'] == 'exception') {
                 return PEAR_ERRORSTACK_DIE;
@@ -154,6 +157,6 @@ $pb2->setMinimum(-1);
 // B2. Exception
 $pb2->setIndeterminate('true');
 
-print 'still alive !';  
+print 'still alive !';
 
 ?>

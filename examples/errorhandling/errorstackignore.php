@@ -1,8 +1,8 @@
 <?php
 /**
- * Simply ignores html_progress2 errors that occurs 
+ * Simply ignores html_progress2 errors that occurs
  * with PEAR_ErrorStack handler.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
@@ -13,6 +13,9 @@ require_once 'HTML/Progress2.php';
 require_once 'HTML/Progress2/Error.php';
 require_once 'PEAR/ErrorStack.php';
 
+/**
+ * @ignore
+ */
 class HTML_Progress2_ErrorStack
 {
     function HTML_Progress2_ErrorStack()
@@ -89,6 +92,6 @@ for ($i=0; $i<$countErrors; $i++) {
     dump('PB2 html_progress2_errorstack ('.$i.')', $e);
 }
 
-print 'still alive !';  
+print 'still alive !';
 
 ?>
