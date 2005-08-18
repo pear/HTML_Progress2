@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/horizontal/bullit.php
+ *             bullit source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/bullit.png
+ *             screenshot (Image PNG, 220x50 pixels) 337 bytes
  */
 require_once 'HTML/Progress2.php';
 

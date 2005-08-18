@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/horizontal/nostring.php
+ *             nostring source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/nostring.png
+ *             screenshot (Image PNG, 200x30 pixels) 246 bytes
  */
 require_once 'HTML/Progress2.php';
 

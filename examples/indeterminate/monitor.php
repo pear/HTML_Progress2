@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/indeterminate/monitor.php
+ *             monitor source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/monitor.png
+ *             screenshot (Image PNG, 471x131 pixels) 2.27 Kb
  */
 require_once 'HTML/Progress2/Monitor.php';
 

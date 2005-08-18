@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/circle/circle.php
+ *             circle source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/circle040.png
+ *             screenshot (Image PNG, 110x55 pixels) 652 bytes
  */
 require_once 'HTML/Progress2.php';
 

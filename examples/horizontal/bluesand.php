@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/horizontal/bluesand.php
+ *             bluesand source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/bluesand.png
+ *             screenshot (Image PNG, 190x40 pixels) 352 bytes
  */
 require_once 'HTML/Progress2.php';
 
