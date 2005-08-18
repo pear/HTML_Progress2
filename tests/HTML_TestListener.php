@@ -5,6 +5,7 @@
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
+ * @ignore
  */
 
 class HTML_TestListener extends PHPUnit_TestListener

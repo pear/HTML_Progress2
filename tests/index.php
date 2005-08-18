@@ -5,6 +5,7 @@
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
+ * @ignore
  */
 
 require_once 'TestUnit.php';

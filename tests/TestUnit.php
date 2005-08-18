@@ -6,10 +6,14 @@
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
+ * @ignore
  */
 
 require_once 'PHPUnit.php';
 
+/**
+ * @ignore
+ */
 class TestUnit extends PHPUnit
 {
     function &run(&$suite, $listener) {
@@ -21,6 +25,9 @@ class TestUnit extends PHPUnit
     }
 }
 
+/**
+ * @ignore
+ */
 class TestResult extends PHPUnit_TestResult
 {
     /* report result of test run */

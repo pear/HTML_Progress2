@@ -1,10 +1,11 @@
 <?php
 /**
  * API getFrameAttributes Unit tests for HTML_Progress2 class.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
+ * @ignore
  */
 
 class HTML_Progress2_TestCase_getFrameAttributes extends PHPUnit_TestCase
@@ -34,7 +35,7 @@ class HTML_Progress2_TestCase_getFrameAttributes extends PHPUnit_TestCase
         unset($this->progress);
     }
 
-    function _methodExists($name) 
+    function _methodExists($name)
     {
         if (substr(PHP_VERSION,0,1) < '5') {
             $n = strtolower($name);
@@ -62,7 +63,7 @@ class HTML_Progress2_TestCase_getFrameAttributes extends PHPUnit_TestCase
             $this->assertTrue(false, $msg);
         } else {
             $this->assertTrue(true);
-	}
+        }
     }
 
     /**

@@ -1,10 +1,11 @@
 <?php
 /**
  * API setCellCount Unit tests for HTML_Progress2 class.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
+ * @ignore
  */
 
 class HTML_Progress2_TestCase_setCellCount extends PHPUnit_TestCase
@@ -34,7 +35,7 @@ class HTML_Progress2_TestCase_setCellCount extends PHPUnit_TestCase
         unset($this->progress);
     }
 
-    function _methodExists($name) 
+    function _methodExists($name)
     {
         if (substr(PHP_VERSION,0,1) < '5') {
             $n = strtolower($name);
@@ -62,9 +63,9 @@ class HTML_Progress2_TestCase_setCellCount extends PHPUnit_TestCase
             $this->assertTrue(false, $msg);
         } else {
             $this->assertTrue(true);
-	}
+        }
     }
-   
+
     /**
      * TestCases for method setCellCount().
      */
@@ -94,7 +95,7 @@ class HTML_Progress2_TestCase_setCellCount extends PHPUnit_TestCase
         $this->progress->setCellCount(1);
         $data = $this->progress->toArray();
 
-        $this->assertEquals(19, $data['progress']['width'], 
+        $this->assertEquals(19, $data['progress']['width'],
             'default-size HORIZONTAL-1-cell no-border : w=19 h=24.');
     }
 
@@ -107,7 +108,7 @@ class HTML_Progress2_TestCase_setCellCount extends PHPUnit_TestCase
         $this->progress->setCellCount(2);
         $data = $this->progress->toArray();
 
-        $this->assertEquals(36, $data['progress']['height'], 
+        $this->assertEquals(36, $data['progress']['height'],
             'default-size VERTICAL-2-cells no-border : w=24 h=36.');
     }
 

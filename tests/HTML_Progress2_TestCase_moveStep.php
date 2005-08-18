@@ -5,6 +5,7 @@
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
+ * @ignore
  */
 
 class HTML_Progress2_TestCase_moveStep extends PHPUnit_TestCase
@@ -62,7 +63,7 @@ class HTML_Progress2_TestCase_moveStep extends PHPUnit_TestCase
             $this->assertTrue(false, $msg);
         } else {
             $this->assertTrue(true);
-    }
+        }
     }
 
     /**
