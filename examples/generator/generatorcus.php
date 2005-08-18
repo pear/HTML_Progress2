@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/generator/generatorcus.php
+ *             generatorcus source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/generatorcus.png
+ *             screenshot (Image PNG, 720x204 pixels) 25.2 Kb
  */
 require_once 'HTML/Progress2/Generator.php';
 

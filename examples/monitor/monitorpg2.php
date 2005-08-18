@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * PEAR::HTML_Page2 package made it easy to build
  * a very simple Progress2 Monitor.
@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/monitor/monitorpg2.php
+ *             monitorpg2 source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/monitordef.png
+ *             screenshot (same as monitordef)
  */
 require_once 'HTML/Progress2/Monitor.php';
 require_once 'HTML/Page2.php';
@@ -18,7 +22,7 @@ $p = new HTML_Page2(array(
         'doctype'  => "XHTML 1.0 Strict",
         'language' => 'en',
         'cache'    => 'false'
-     ));        
+     ));
 
 $p->setTitle('PEAR::HTML_Progress2 - Simple Monitor');
 $p->setMetaData('author', 'Laurent Laville');

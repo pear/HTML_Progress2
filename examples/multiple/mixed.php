@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/multiple/mixed.php
+ *             mixed source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/mixed.png
+ *             screenshot (Image PNG, 719x255 pixels) 4.93 Kb
  */
 require_once 'HTML/Progress2.php';
 

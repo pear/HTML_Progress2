@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/observer/observer2.php
+ *             observer2 source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/observer2.png
+ *             screenshot (Image PNG, 438x216 pixels) 1.36 Kb
  */
 require_once 'HTML/Progress2.php';
 

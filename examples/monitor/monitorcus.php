@@ -9,6 +9,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/monitor/monitorcus.php
+ *             monitorcus source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/monitorcus.png
+ *             screenshot (Image PNG, 468x130 pixels) 2.58 Kb
  */
 require_once 'HTML/Progress2/Monitor.php';
 

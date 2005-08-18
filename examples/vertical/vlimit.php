@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/vertical/vlimit.php
+ *             vlimit source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/vlimit.png
+ *             screenshot (Image PNG, 80x190 pixels) 616 bytes
  */
 require_once 'HTML/Progress2.php';
 

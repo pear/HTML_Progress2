@@ -7,6 +7,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/preload/hidden.php
+ *             hidden source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/hidden1.png
+ *             screenshot (Image PNG, 389x101 pixels) 694 bytes
  */
 require_once 'HTML/Progress2.php';
 

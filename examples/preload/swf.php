@@ -13,6 +13,8 @@
  * @subpackage Examples
  * @link       http://www.qarbon.com
  * @access     public
+ * @example    examples/preload/swf.php
+ *             swf source code
  */
 require_once 'HTTP/Request.php';
 require_once 'HTTP/Request/Listener.php';

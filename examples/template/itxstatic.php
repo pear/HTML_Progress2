@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/template/itxstatic.php
+ *             itxstatic source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/itxstatic.png
+ *             screenshot (Image PNG, 539x354 pixels) 24 Kb
  */
 require_once 'HTML/QuickForm.php';
 require_once 'HTML/QuickForm/Renderer/ITStatic.php';

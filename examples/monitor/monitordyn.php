@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/monitor/monitordyn.php
+ *             monitordyn source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/monitordyn.png
+ *             screenshot (Image PNG, 623x154 pixels) 3.59 Kb
  */
 require_once 'HTML/Progress2/Monitor.php';
 require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
