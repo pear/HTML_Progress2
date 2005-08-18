@@ -1,12 +1,14 @@
 <?php
 /**
  * Customize error renderer with default PEAR_Error object.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/errorhandling/errorcustom.php
+ *             errorcustom source code
  */
 require_once 'HTML/Progress2.php';
 require_once 'PEAR.php';
@@ -23,7 +25,7 @@ function dump($title, $e)
 function myErrorCallback($pb_error)
 {
     $keys = array('error_message_prefix', 'mode', 'level', 'code', 'message');
-    
+
     foreach ($keys as $i => $k) {
         printf("%s = %s <br/>\n", $k, $pb_error->$k);
     }
@@ -79,6 +81,6 @@ $pb2->setMinimum(-1);
 // B2. Exception
 $pb2->setIndeterminate('true');
 
-print 'still alive !';  
+print 'still alive !';
 
 ?>

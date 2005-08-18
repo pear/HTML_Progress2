@@ -7,6 +7,8 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/errorhandling/errorbasic.php
+ *             errorbasic source code
  */
 
 require_once 'HTML/Progress2.php';

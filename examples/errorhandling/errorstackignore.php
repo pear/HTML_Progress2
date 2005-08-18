@@ -8,6 +8,8 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/errorhandling/errorstackignore.php
+ *             errorstackignore source code
  */
 require_once 'HTML/Progress2.php';
 require_once 'HTML/Progress2/Error.php';

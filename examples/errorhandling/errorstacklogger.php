@@ -7,6 +7,8 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/errorhandling/errorstacklogger.php
+ *             errorstacklogger source code
  */
 require_once 'HTML/Progress2.php';
 require_once 'HTML/Progress2/Error.php';

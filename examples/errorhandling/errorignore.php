@@ -2,12 +2,14 @@
 /**
  * Simply ignores html_progress2 errors that occurs
  * with PEAR_Error handler.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/errorhandling/errorignore.php
+ *             errorignore source code
  */
 require_once 'HTML/Progress2.php';
 
@@ -46,6 +48,6 @@ if ($countErrors > 0) {
     }
 }
 
-print 'still alive !';  
+print 'still alive !';
 
 ?>
