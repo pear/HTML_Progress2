@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/lite/litebasic.php
+ *             litebasic source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/litebasic.png
+ *             screenshot (Image PNG, 425x314 pixels) 3.57 Kb
  */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

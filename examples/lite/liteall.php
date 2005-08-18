@@ -8,6 +8,10 @@
  * @package    HTML_Progress2
  * @subpackage Examples
  * @access     public
+ * @example    examples/lite/liteall.php
+ *             liteall source code
+ * @link       http://www.laurent-laville.org/img/progress/screenshot/liteall.png
+ *             screenshot (Image PNG, 690x300 pixels) 4.14 Kb
  */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
