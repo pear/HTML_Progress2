@@ -1,0 +1,26 @@
+2005-09-01 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Final version (stable) 2.0.0 released.
+
+2005-08-18 Laurent Laville <pear@laurent-laville.org>
+
+    * Added @example tag to have ability to display (highlight) source code
+
+    * Added @link tag to have ability to display a screenshot (PNG image)
+
+    * Removed @tutorial tag on Monitor.php and Progress2.php files
+      to prepare "The Definitive Guide" documentation
+
+    * Added @ignore tag on all unit testcases and some examples
+      to prevent includes in API docs
+
+    * Added ChangeLog, and NEWS files
+
+2005-08-01 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Version 2.0.0RC2 released.
+
+2005-06-23 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Version 2.0.0RC1 released.
+

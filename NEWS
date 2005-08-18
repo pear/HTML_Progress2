@@ -1,0 +1,70 @@
+Changes since version 2.0.0RC2 (2005-08-01)
+
+  |     * Added ChangeLog, and NEWS files
+
+Changes to examples/*/*.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Added @example tag to have ability to display (highlight) source code
+  |
+  |     * Added @link tag to have ability to display a screenshot (PNG image)
+  |
+
+Changes to examples/lite/lite*.php, examples/lite/windowstyle2.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Changed comment shape to prevent phpDocumentor 1.2.3
+  |       wrong file assigning
+  |
+
+Changes to examples/preload/swf.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Added @ignore tag to prevent includes in API docs
+  |
+
+Changes to examples/monitor/monitordyn.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Added @ignore tag to prevent includes in API docs
+  |
+
+Changes to examples/generator/generatorcus.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Added @ignore tag to prevent includes in API docs
+  |
+
+Changes to examples/errorhandling/errorstack*.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Added @ignore tag to prevent includes in API docs
+  |
+
+Changes to tests/*.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Added @ignore tag to prevent includes in API docs
+  |
+
+Changes to Progress2.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Removed all @tutorial tags
+  |
+
+Changes to Progress2/Monitor.php
+
+  | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Removed all @tutorial tags
+  |
+
