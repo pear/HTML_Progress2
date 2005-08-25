@@ -2,6 +2,22 @@
 
     * VERSION: Final version (stable) 2.0.0 released.
 
+2005-08-25 Laurent Laville <pear@laurent-laville.org>
+
+    For HTML_Progress2_Lite class only :
+
+    * frame attribute border renamed to border-width
+      to keep a unified attribute names (follow CSS standard)
+
+    * add font-style attribute for all label categories
+      (allow to use italic for percent and text labels)
+
+    * background-color has transparent rather than null string
+      by default (CSS standard)
+
+    * fixed my first bug in setLabelAttributes method
+      related to font group attributes
+
 2005-08-18 Laurent Laville <pear@laurent-laville.org>
 
     * Added @example tag to have ability to display (highlight) source code

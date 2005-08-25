@@ -2,6 +2,22 @@ Changes since version 2.0.0RC2 (2005-08-01)
 
   |     * Added ChangeLog, and NEWS files
 
+Changes to Progress2Lite.php
+
+  | 2005-08-25 Laurent Laville <pear@laurent-laville.org>
+  |
+  |    * frame attribute border renamed to border-width
+  |      to keep a unified attribute names (follow CSS standard)
+  |
+  |    * add font-style attribute for all label categories
+  |      (allow to use italic for percent and text labels)
+  |
+  |    * background-color has transparent rather than null string
+  |      by default (CSS standard)
+  |
+  |    * fixed my first bug in setLabelAttributes method
+  |      related to font group attributes
+
 Changes to examples/*/*.php
 
   | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
