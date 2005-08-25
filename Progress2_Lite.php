@@ -236,7 +236,7 @@ class HTML_Progress2_Lite
      *    'width' => 320,       # frame width
      *    'height' => 90,       # frame height
      *    'color' => '#C0C0C0', # frame color
-     *    'border' => 2,                                         # frame border width
+     *    'border-width' => 2,                                   # frame border width
      *    'border-style' => 'solid',                             # frame border style (solid,
      *                                                           # dashed, dotted, inset ...)
      *    'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'    # frame border color (3dfx)
@@ -264,10 +264,11 @@ class HTML_Progress2_Lite
      *      'width' => 0,                   # label width
      *      'height' => 0,                  # label height
      *      'align' => 'left',              # label align
-     *      'background-color' => '',       # label background color
+     *      'background-color' => 'transparent',          # label background color
      *      'font-family' => 'Verdana, Tahoma, Arial',    # label font family
      *      'font-size' => 11,                            # label font size
      *      'font-weight' => 'normal',                    # label font weight
+     *      'font-style' => 'normal',                     # label font style
      *      'color' => '#000000'                          # label font color
      * );
      * </code>
@@ -388,10 +389,11 @@ class HTML_Progress2_Lite
                 'width' => 0,
                 'height' => 0,
                 'align' => 'left',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
+                'font-style' => 'normal',
                 'color' => '#000000'
             );
             break;
@@ -406,10 +408,11 @@ class HTML_Progress2_Lite
                 'width' => 0,
                 'height' => 0,
                 'align' => 'center',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
+                'font-style' => 'normal',
                 'color' => '#000000'
             );
             break;
@@ -422,10 +425,11 @@ class HTML_Progress2_Lite
                 'width' => 10,
                 'height' => 0,
                 'align' => 'right',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
+                'font-style' => 'normal',
                 'color' => '#000000'
             );
             break;
@@ -438,10 +442,11 @@ class HTML_Progress2_Lite
                 'width' => 50,
                 'height' => 0,
                 'align' => 'right',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
+                'font-style' => 'normal',
                 'color' => '#000000'
             );
             break;
@@ -454,10 +459,11 @@ class HTML_Progress2_Lite
                 'width' => 10,
                 'height' => 0,
                 'align' => 'center',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
+                'font-style' => 'normal',
                 'color' => '#000000'
             );
             break;
@@ -536,7 +542,7 @@ class HTML_Progress2_Lite
             'width' => 320,
             'height' => 90,
             'color' => '#C0C0C0',
-            'border' => 2,
+            'border-width' => 2,
             'border-style' => 'solid',
             'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'
         );
@@ -636,11 +642,13 @@ class HTML_Progress2_Lite
                 }
 
             } elseif ($attrName == 'font-size') {
-                $this->label[$name]['font-size'] = $fontsize = $attrVal;
+                $this->label[$name]['font-size'] = $font = $attrVal;
             } elseif ($attrName == 'font-family') {
-                $this->label[$name]['font-family'] = $attrVal;
+                $this->label[$name]['font-family'] = $font = $attrVal;
             } elseif ($attrName == 'font-weight') {
-                $this->label[$name]['font-weight'] = $attrVal;
+                $this->label[$name]['font-weight'] = $font = $attrVal;
+            } elseif ($attrName == 'font-style') {
+                $this->label[$name]['font-style'] = $font = $attrVal;
 
             } elseif ($attrName == 'value') {
                 $this->label[$name]['value'] = $attrVal;
@@ -660,11 +668,12 @@ class HTML_Progress2_Lite
                 $this->label[$name]['align'] = $attrVal;
             }
         }
-        if (isset($fontsize)) {
+        if (isset($font)) {
             if ($this->_status != 'new') {
                 $cssText = 'fontSize:' . $this->label[$name]['font-size'] . 'px;'
                          . 'fontFamily:' . $this->label[$name]['font-family'] . ';'
-                         . 'fontWeight:' . $this->label[$name]['font-weight'] . ';';
+                         . 'fontWeight:' . $this->label[$name]['font-weight'] . ';'
+                         . 'fontStyle:' . $this->label[$name]['font-style'] . ';';
 
                 $bar .= $this->_changeElementStyle('plbl', $name, $cssText);
             }
@@ -799,8 +808,8 @@ class HTML_Progress2_Lite
                    . 'background-color:' . $this->foreground_color . ';';
 
         if ($this->frame['show']) {
-            if ($this->frame['border'] > 0) {
-                $border = 'border-width:' . $this->frame['border'] . 'px;'
+            if ($this->frame['border-width'] > 0) {
+                $border = 'border-width:' . $this->frame['border-width'] . 'px;'
                         . 'border-style:' . $this->frame['border-style'] . ';'
                         . 'border-color:' . $this->frame['border-color'] . ';';
             }
