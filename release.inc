@@ -21,6 +21,7 @@ $release['notes'] = <<<NOTES
 * bugs
 - Fixed my first bug in HTML_Progress2_Lite::setLabelAttributes() method
 related to font group attributes.
+- Fixed bug in moveNext() method: avoid exceed max limit
 
 * Quality Assurance
 The Definitive (User) Guide:

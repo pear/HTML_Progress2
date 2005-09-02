@@ -1,6 +1,10 @@
-2005-09-01 Laurent Laville <pear@laurent-laville.org>
+2005-09-xx Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: Final version (stable) 2.0.0 released.
+
+2005-09-02 Laurent Laville <pear@laurent-laville.org>
+
+    * Fixed bug in moveNext() method: avoid exceed max limit
 
 2005-08-25 Laurent Laville <pear@laurent-laville.org>
 
