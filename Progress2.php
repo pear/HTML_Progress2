@@ -1049,6 +1049,7 @@ class HTML_Progress2 extends HTML_Common
     {
         $oldVal = $this->value;
         $this->value  = $oldVal + $this->increment;
+        $this->value = min($this->maximum, $this->value);
 
         if ($oldVal != $this->value) {
             $this->_refreshDisplay($this->value);
