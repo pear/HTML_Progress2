@@ -1,8 +1,6 @@
 <?php
 /**
- * The HTML_Progress2_Lite class allow you to add a quick
- * horizontal or vertical loading bar to any of your xhtml document.
- * You should have a browser that accept DHTML feature.
+ * Standalone HTML loading bar with only PHP and JS interface.
  *
  * PHP versions 4 and 5
  *
@@ -19,6 +17,7 @@
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    CVS: $Id$
  * @link       http://pear.php.net/package/HTML_Progress2
+ * @since      File available since Release 2.0.0RC1
  */
 
 if (!function_exists('ob_get_clean')) {
@@ -53,17 +52,39 @@ if (!defined('PHP_EOL')) {
 }
 
 /**
+ * Standalone HTML loading bar with only PHP and JS interface.
+ *
  * The HTML_Progress2_Lite class allow you to add a quick
  * horizontal or vertical loading bar to any of your xhtml document.
  * You should have a browser that accept DHTML feature.
  *
- * PHP versions 4 and 5
+ * This class has no dependency and can be used completely outside
+ * the PEAR infrastructure.
  *
- * LICENSE: This source file is subject to version 3.0 of the PHP license
- * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
- * the PHP License and are unable to obtain it through the web, please
- * send a note to license@php.net so we can mail you a copy immediately.
+ * Here is a basic example:
+ * <code>
+ * <html>
+ * <body>
+ * <?php
+ * require_once 'HTML/Progress2_Lite.php';
+ *
+ * function myProcess()
+ * {
+ *     for ($i=0; $i<100000; $i++) { }
+ * }
+ *
+ * $pbl = new HTML_Progress2_Lite();
+ * $pbl->addLabel('text','txt1','Progress2 Lite - Basic Example');
+ * $pbl->display();
+ *
+ * for($i=1; $i<=100; $i++) {
+ *     $pbl->moveStep($i);
+ *     myProcess();
+ * }
+ * ?>
+ * </body>
+ * </html>
+ * </code>
  *
  * @category   HTML
  * @package    HTML_Progress2
@@ -78,6 +99,7 @@ if (!defined('PHP_EOL')) {
  *             From an original idea of Mike Turin
  * @link       http://www.phpclasses.org/browse/package/1964.html
  *             Improve version of Gerd Weitenberg
+ * @since      Class available since Release 2.0.0RC1
  */
 
 class HTML_Progress2_Lite
