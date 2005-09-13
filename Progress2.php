@@ -376,7 +376,7 @@ class HTML_Progress2 extends HTML_Common
      *    'width' => 320,       # width
      *    'height' => 90,       # height
      *    'color' => '#C0C0C0', # color
-     *    'border' => 2,                                         # border width
+     *    'border-width' => 2,                                   # border width
      *    'border-style' => 'solid',                             # border style
      *                                                           # (solid, dashed, dotted ...)
      *    'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'    # border color (3dfx)
@@ -449,7 +449,7 @@ class HTML_Progress2 extends HTML_Common
      *      'width' => 0,                   # label width
      *      'height' => 0,                  # label height
      *      'align' => 'left',              # label align
-     *      'background-color' => '',       # label background color
+     *      'background-color' => 'transparent',          # label background color
      *      'font-family' => 'Verdana, Tahoma, Arial',    # label font family
      *      'font-size' => 11,                            # label font size
      *      'font-weight' => 'normal',                    # label font weight
@@ -1689,7 +1689,7 @@ class HTML_Progress2 extends HTML_Common
             'width' => 320,
             'height' => 90,
             'color' => '#C0C0C0',
-            'border' => 2,
+            'border-width' => 2,
             'border-style' => 'solid',
             'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'
         );
@@ -1767,7 +1767,7 @@ class HTML_Progress2 extends HTML_Common
      * <li>font-family       = Verdana, Tahoma, Arial
      * <li>font-weight       = normal
      * <li>color             = #000000
-     * <li>background-color  =
+     * <li>background-color  = transparent
      * <li>align             = right
      * <li>valign            = right
      * </ul>
@@ -1868,7 +1868,7 @@ class HTML_Progress2 extends HTML_Common
                 'height' => 0,
                 'align' => 'left',
                 'valign' => 'top',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
@@ -1888,7 +1888,7 @@ class HTML_Progress2 extends HTML_Common
                 'height' => 0,
                 'align' => 'center',
                 'valign' => 'bottom',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
@@ -1906,7 +1906,7 @@ class HTML_Progress2 extends HTML_Common
                 'height' => 0,
                 'align' => 'right',
                 'valign' => 'top',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
@@ -1924,7 +1924,7 @@ class HTML_Progress2 extends HTML_Common
                 'height' => 0,
                 'align' => 'right',
                 'valign' => 'right',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
@@ -1942,7 +1942,7 @@ class HTML_Progress2 extends HTML_Common
                 'height' => 0,
                 'align' => 'center',
                 'valign' => 'top',
-                'background-color' => '',
+                'background-color' => 'transparent',
                 'font-size' => 11,
                 'font-family' => 'Verdana, Tahoma, Arial',
                 'font-weight' => 'normal',
@@ -2395,10 +2395,7 @@ JS;
                 $styles .= $tab . 'height: '. $data['height'] .'px;'. PHP_EOL;
             }
             $styles .= $tab . 'text-align: '. $data['align'] .';'. PHP_EOL;
-
-            if (!empty($data['background-color'])) {
-                $styles .= $tab . 'background-color: '. $data['background-color'] .';'. PHP_EOL;
-            }
+            $styles .= $tab . 'background-color: '. $data['background-color'] .';'. PHP_EOL;
 
             $styles .= $tab . 'font-size: '. $data['font-size'] .'px;'. PHP_EOL;
             $styles .= $tab . 'font-family: '. $data['font-family'] .';'. PHP_EOL;
@@ -2520,8 +2517,8 @@ JS;
             $topshift = $progressAttr['top'];
             $leftshift = $progressAttr['left'];
             $border = '';
-            if ($this->frame['border'] > 0) {
-                $border = 'border-width:' . $this->frame['border'] . 'px;'
+            if ($this->frame['border-width'] > 0) {
+                $border = 'border-width:' . $this->frame['border-width'] . 'px;'
                         . 'border-style:' . $this->frame['border-style'] . ';'
                         . 'border-color:' . $this->frame['border-color'] . ';';
             }
