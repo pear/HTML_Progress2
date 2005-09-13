@@ -1,8 +1,6 @@
 <?php
 /**
- * The HTML_Progress2 class allow you to add a loading bar
- * to any of your xhtml document.
- * You should have a browser that accept DHTML feature.
+ * HTML loading bar with only PHP and JS interface.
  *
  * PHP versions 4 and 5
  *
@@ -19,6 +17,7 @@
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    CVS: $Id$
  * @link       http://pear.php.net/package/HTML_Progress2
+ * @since      File available since Release 2.0.0RC1
  */
 
 require_once 'HTML/Common.php';
@@ -97,17 +96,35 @@ define ('HTML_PROGRESS2_ERROR_INVALID_OPTION',   -103);
 
 
 /**
+ * HTML loading bar with only PHP and JS interface.
+ *
  * The HTML_Progress2 class allow you to add a loading bar
  * to any of your xhtml document.
  * You should have a browser that accept DHTML feature.
  *
- * PHP versions 4 and 5
+ * Here is a basic example:
+ * <code>
+ * <?php
+ * require_once 'HTML/Progress2.php';
  *
- * LICENSE: This source file is subject to version 3.0 of the PHP license
- * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
- * the PHP License and are unable to obtain it through the web, please
- * send a note to license@php.net so we can mail you a copy immediately.
+ * $pb = new HTML_Progress2();
+ * $pb->setAnimSpeed(50);
+ * ?>
+ * <html>
+ * <head>
+ * <?php
+ * echo $pb->getStyle(false);
+ * echo $pb->getScript(false);
+ * ?>
+ * </head>
+ * <body>
+ * <?php
+ * $pb->display();
+ * $pb->run();
+ * ?>
+ * </body>
+ * </html>
+ * </code>
  *
  * @category   HTML
  * @package    HTML_Progress2
@@ -116,6 +133,7 @@ define ('HTML_PROGRESS2_ERROR_INVALID_OPTION',   -103);
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/HTML_Progress2
+ * @since      Class available since Release 2.0.0RC1
  */
 
 class HTML_Progress2 extends HTML_Common
