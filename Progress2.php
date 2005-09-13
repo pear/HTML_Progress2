@@ -542,18 +542,14 @@ class HTML_Progress2 extends HTML_Common
      * Constructor (ZE2) Summary
      *
      *   Creates a natural horizontal progress bar that displays ten separated cells
-     *   with no border and no labels.
+     *   with no border and only percent label.
      *   The initial and minimum values are 0, and the maximum is 100.
-     *   <code>
-     *   $bar = new HTML_Progress2();
-     *   </code>
      *
      * @param      array     $errorPrefs    (optional) Hash of params to configure error handler
      * @param      int       $orient        (optional) Orientation of progress bar
      * @param      int       $min           (optional) Minimum value of progress bar
      * @param      int       $max           (optional) Maximum value of progress bar
      * @param      mixed     $percentLabel  (optional) Progress bar percent label id.
-     *
      *
      * @since      2.0.0
      * @access     protected
@@ -657,8 +653,13 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the current API version compatible with php.version_compare()
+     * Returns the current API version.
      *
+     * This function return a "PHP-standardized" version number string.
+     * This is useful if you would like to write programs working only on some
+     * versions of HTML_Progress2. See also php version_compare() function.
+     *
+     * @link       http://www.php.net/manual/en/function.version-compare.php
      * @return     string
      * @since      2.0.0
      * @access     public
@@ -669,7 +670,17 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns mode of the progress bar (determinate or not).
+     * Returns mode of the progress meter.
+     *
+     * There are two types of progress meters: determinate and undeterminate.
+     *
+     * Determinate progress meters are used when you know the length of time
+     * that an operation will take. The progress meter will fill up and,
+     * once full, the operation should be finished.
+     *
+     * Undeterminate progress meters are used when you do not know the length
+     * of time of an operation. The progress meter will have an animation
+     * such a sliding box.
      *
      * @return     boolean
      * @since      2.0.0
@@ -682,11 +693,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the $indeterminate property of the progress bar, which determines
-     * whether the progress bar is in determinate or indeterminate mode.
-     * An indeterminate progress bar continuously displays animation indicating
-     * that an operation of unknown length is occuring.
-     * By default, this property is false.
+     * Sets the mode of progress meter.
+     *
+     * Default progress meters are in determinate mode ($continuous = TRUE), but
+     * can be switched anytime in indeterminate mode ($continuous = FALSE).
      *
      * @param      boolean   $continuous    whether countinuously displays animation
      *
@@ -710,7 +720,10 @@ class HTML_Progress2 extends HTML_Common
 
     /**
      * Determines whether the progress bar border is painted or not.
-     * The default is false.
+     *
+     * By default, each progress bar (horizontal, vertical) has no border.
+     * This function gave ability to know if you've already set a border
+     * (return TRUE), or not (return FALSE).
      *
      * @return     boolean
      * @since      2.0.0
@@ -723,8 +736,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the value of $_paintBorder property, which determines whether the
-     * progress bar should paint its border. The default is false.
+     * Decides to paint or not a border to the progress bar.
+     *
+     * This function gave ability to set ($paint = TRUE) or remove ($paint = FALSE)
+     * a border to the current progress bar.
      *
      * @param      boolean   $paint         whether the progress bar should paint its border
      *
@@ -748,7 +763,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the progress bar's minimum value. The default value is 0.
+     * Returns the progress meter minimum value.
+     *
+     * Get the minimum value at which the progress meter will start.
+     * The default value is zero and can't be negative.
      *
      * @return     integer
      * @since      2.0.0
@@ -761,11 +779,14 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the progress bar's minimum value.
-     * If the minimum value is different from previous minimum,
-     * all change listeners are notified.
+     * Sets the progress meter minimum value.
      *
-     * @param      integer   $min           progress bar's minimal value
+     * Set the minimum value at which the progress meter will start.
+     * The default value is zero and can't be negative.
+     * If the new minimum is different than previous value, all listeners
+     * are notified.
+     *
+     * @param      integer   $min           progress meter's minimal value
      *
      * @return     void
      * @since      2.0.0
@@ -810,7 +831,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the progress bar's maximum value. The default value is 100.
+     * Returns the progress meter maximum value.
+     *
+     * Get the maximum value at which the progress meter will stop.
+     * The default value is 100 and can't be less than minimum.
      *
      * @return     integer
      * @since      2.0.0
@@ -823,11 +847,14 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the progress bar's maximum value.
-     * If the maximum value is different from previous maximum,
-     * all change listeners are notified.
+     * Sets the progress meter maximum value.
      *
-     * @param      integer   $max           progress bar's maximal value
+     * Set the maximum value at which the progress meter will stop.
+     * The default value is 100 and can't be less than minimum.
+     * If the new maximum is different than previous value, all listeners
+     * are notified.
+     *
+     * @param      integer   $max           progress meter's maximal value
      *
      * @return     void
      * @since      2.0.0
@@ -872,7 +899,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the progress bar's increment value. The default value is +1.
+     * Returns the progress meter increment value.
+     *
+     * Get step of progress property of a progress meter.
+     * The default value is +1.
      *
      * @return     integer
      * @since      2.0.0
@@ -885,9 +915,12 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the progress bar's increment value.
+     * Sets the progress meter increment value.
      *
-     * @param      integer   $inc           progress bar's increment value
+     * Defines step of progress property of a progress meter.
+     * Allows to ajust default value (+1).
+     *
+     * @param      integer   $inc           progress meter's increment value
      *
      * @return     void
      * @since      2.0.0
@@ -915,9 +948,11 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the progress bar's current value. The value is always between
+     * Returns the progress meter current value.
+     *
+     * Get the current value of the progress meter that is always between
      * the minimum and maximum values, inclusive.
-     * By default, the value is initialized with the minimum value.
+     * The default value is equal to minimum.
      *
      * @return     integer
      * @since      2.0.0
@@ -930,11 +965,13 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the progress bar's current value.
-     * If the new value is different from previous value,
-     * all change listeners are notified.
+     * Sets the progress meter current value.
      *
-     * @param      integer   $val           progress bar's current value
+     * Set the current value of the progress meter that is always between
+     * the minimum and maximum values, inclusive. If the new value is different
+     * from previous, then all listeners are notified.
+     *
+     * @param      integer   $val           progress meter's current value
      *
      * @return     void
      * @since      2.0.0
@@ -974,13 +1011,16 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Updates the progress bar's current value by adding increment value.
-     * All change listeners are notified.
+     * Updates the internal progress meter current value.
+     *
+     * The new current value is equal to previous value increase by
+     * increment value. All listeners are notified.
+     * See also moveNext() method if you want a refresh display too.
      *
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @see        getValue(), setValue()
+     * @see        getValue(), setValue(), moveNext()
      */
     function incValue()
     {
@@ -992,8 +1032,12 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Changes new step value of the progress bar.
-     * All change listeners are notified.
+     * Changes new value of the progress meter by step increase.
+     *
+     * Move current value to the next step of the progress meter
+     * defined by its increment. If result value is different than previous,
+     * then all listeners are notified.
+     * Caution: a step is always between 1 and (maximum / taskcount) rounded fractions up.
      *
      * @param      integer   $step          new step value
      *
@@ -1037,8 +1081,11 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Changes value of the progress bar to the next step.
-     * All change listeners are notified.
+     * Changes new value of the progress meter by increment increase.
+     *
+     * Move current value to the next value of the progress meter
+     * defined by its increment. If result value is different than previous,
+     * then all listeners are notified.
      *
      * @return     void
      * @since      2.0.0
@@ -1058,8 +1105,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the percent complete for the progress bar. Note that this number is
-     * between 0.00 and 1.00.
+     * Returns the percent complete of the progress meter.
+     *
+     * Note that this number is between 0.00 and 1.00 when $float = true.
+     * And this number is between 0 and 100 when $float = false.
      *
      * @param      boolean   $float         (optional) float or integer format
      *
@@ -1093,9 +1142,14 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns HTML_PROGRESS2_BAR_HORIZONTAL or HTML_PROGRESS2_BAR_VERTICAL,
-     * depending on the orientation of the progress bar.
-     * The default orientation is HTML_PROGRESS2_BAR_HORIZONTAL.
+     * Returns orientation of the progress bar.
+     *
+     * There are only two distinct orientations for a progress bar:
+     * horizontal and vertical, identified by two constants:
+     * HTML_PROGRESS2_BAR_HORIZONTAL and HTML_PROGRESS2_BAR_VERTICAL.
+     * While circle and other polygonal progress meter are identified by
+     * two other constants: HTML_PROGRESS2_CIRCLE and HTML_PROGRESS2_POLYGONAL.
+     * The default orientation is horizontal.
      *
      * @return     integer
      * @since      2.0.0
@@ -1108,9 +1162,14 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the progress bar's orientation, which must be HTML_PROGRESS2_BAR_HORIZONTAL
-     * or HTML_PROGRESS2_BAR_VERTICAL.
-     * The default orientation is HTML_PROGRESS2_BAR_HORIZONTAL.
+     * Sets orientation of the progress bar.
+     *
+     * There are only two distinct orientations for a progress bar:
+     * horizontal and vertical, identified by two constants:
+     * HTML_PROGRESS2_BAR_HORIZONTAL and HTML_PROGRESS2_BAR_VERTICAL.
+     * While circle and other polygonal progress meter are identified by
+     * two other constants: HTML_PROGRESS2_CIRCLE and HTML_PROGRESS2_POLYGONAL.
+     * The default orientation is horizontal.
      *
      * @param      integer   $orient        Orientation (horizontal or vertical)
      *
@@ -1159,7 +1218,9 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns 'natural' or 'reverse', depending of the fill way of progress bar.
+     * Returns fill option of the progress meter.
+     *
+     * Get 'natural' or 'reverse', depending of the fill way of progress meter.
      * For horizontal progress bar, natural way is from left to right, and reverse
      * way is from right to left.
      * For vertical progress bar, natural way is from down to up, and reverse
@@ -1177,7 +1238,9 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the progress bar's fill way, which must be 'natural' or 'reverse'.
+     * Sets fill option of the progress meter.
+     *
+     * Sets the progress meter fill option: must be 'natural' or 'reverse'.
      * The default fill way is 'natural'.
      *
      * @param      string    $way           fill direction (natural or reverse)
@@ -1209,7 +1272,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the number of cell in the progress bar. The default value is 10.
+     * Returns count of cell in the progress meter.
+     *
+     * Get the number of cell defined to a progress meter. It must be positive.
+     * The default value is 10.
      *
      * @return     integer
      * @since      2.0.0
@@ -1222,9 +1288,12 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the number of cell in the progress bar
+     * Sets count of cell in the progress meter.
      *
-     * @param      integer   $cells         Cell count on progress bar
+     * Defines the number of cell to a progress meter. It must be positive.
+     * The default value is 10.
+     *
+     * @param      integer   $cells         Cell count on progress meter
      *
      * @return     void
      * @since      2.0.0
@@ -1254,7 +1323,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the common and private cell attributes. Assoc array (defaut) or string
+     * Returns cell attributes values.
+     *
+     * Get all cell attributes in a associative array with key-value couple
+     * (by default). Get the attributes as string is also possible.
      *
      * @param      bool      $asString      (optional) whether to return the attributes as string
      *
@@ -1284,7 +1356,9 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the cell attributes for an existing cell.
+     * Sets cell attributes values.
+     *
+     * Sets cell attributes for all cells (default) or a specific an existing cell.
      *
      * Defaults are:
      * <ul>
@@ -1363,7 +1437,13 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the coordinates of each cell for a polygonal progress shape.
+     * Returns coordinates of each cell for a polygonal progress meter.
+     *
+     * Get array of all cell coordinates (x,y) that define a polygonal
+     * progress meter.
+     * For example, a 3x3 square as: (0,0) for top left corner,
+     * (2,0) for top right corner, (2,2) for bottom right corner, and
+     * (0,2) for bottom left corner.
      *
      * @return     array
      * @since      2.0.0
@@ -1376,7 +1456,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Set the coordinates of each cell for a polygonal progress shape.
+     * Sets coordinates of each cell for a polygonal progress meter.
+     *
+     * A polygonal progress meter is defined by its size (width, height) and its
+     * cells coordinates (array of couple x,y screen coordinates).
      *
      * @param      integer   $xgrid     The grid width in cell size
      * @param      integer   $ygrid     The grid height in cell size
@@ -1465,7 +1548,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the progress bar's border attributes. Assoc array (defaut) or string.
+     * Returns progress bar's border attributes values.
+     *
+     * Get all border attributes in a associative array with key-value couple
+     * (by default). Get the attributes as string is also possible.
      *
      * @param      bool      $asString      (optional) whether to return the attributes as string
      *
@@ -1497,6 +1583,9 @@ class HTML_Progress2 extends HTML_Common
     /**
      * Sets the progress bar's border attributes.
      *
+     * Defines all border attributes (color, size, ...) a progress bar
+     * (only horizontal or vertical) can handle.
+     *
      * Defaults are:
      * <ul>
      * <li>class   = progressBorder%s
@@ -1520,7 +1609,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the frame attributes. Assoc array (defaut) or string.
+     * Returns frame attributes values.
+     *
+     * Get all frame attributes in a associative array with key-value couple
+     * (by default). Get the attributes as string is also possible.
      *
      * @param      bool      $asString      (optional) whether to return the attributes as string
      *
@@ -1550,7 +1642,9 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Build a frame around the progress bar.
+     * Sets the progress meter frame attributes.
+     *
+     * Allows to build a customisable frame (color, size) around the progress meter.
      *
      * @param      null|array     $attributes    (optional) hash of style parameters
      *
@@ -1597,7 +1691,12 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the label attributes. Assoc array (defaut) or string.
+     * Returns attributes values of an existing label.
+     *
+     * Get all attributes of an existing label identified by $name argument.
+     * This identifier must be the same as the one given to addLabel() method.
+     * Return attributes values in a associative array with key-value couple
+     * (by default). Get the attributes as string is also possible.
      *
      * @param      string    $name          progress label id.
      * @param      bool      $asString      (optional) whether to return the attributes as string
@@ -1635,7 +1734,11 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets label attributes.
+     * Sets attributes values of an existing label.
+     *
+     * Defines attributes (font, color, size, alignement ...) of an existing label.
+     * Whether an attribute is not specified, previous or default value
+     * is used instead.
      *
      * Defaults are:
      * <ul>
@@ -1680,7 +1783,16 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Add a new label to the progress bar.
+     * Add a new label to the progress meter.
+     *
+     * Defines a new label identifier choosen between five categories:
+     * <ul>
+     * <li>HTML_PROGRESS2_LABEL_TEXT constant if you want a simple text zone
+     * <li>HTML_PROGRESS2_LABEL_BUTTON constant if you want a form button
+     * <li>HTML_PROGRESS2_LABEL_STEP constant if you want a step resume progress
+     * <li>HTML_PROGRESS2_LABEL_PERCENT constant if you want current progress value
+     * <li>HTML_PROGRESS2_LABEL_CROSSBAR constant if you want a little javascript animation
+     * </ul>
      *
      * @param      string    $type          Label type (text,button,step,percent,crossbar)
      * @param      string    $name          Label name
@@ -1824,7 +1936,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Removes a label to the progress bar.
+     * Removes a label to the progress meter.
+     *
+     * The label identifier must exists or it cannot be remove. This is the same
+     * identifier as the one given to addLabel() method.
      *
      * @param      string    $name          Label name
      *
@@ -1856,7 +1971,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Returns the progress attributes. Assoc array (defaut) or string.
+     * Returns the progress background attributes values.
+     *
+     * Get all background attributes in a associative array with key-value couple
+     * (by default). Get the attributes as string is also possible.
      *
      * @param      bool      $asString      (optional) whether to return the attributes as string
      *
@@ -1886,9 +2004,9 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Sets the common progress bar attributes.
+     * Sets the progress background attributes values.
      *
-     * Defaults are:
+     * Background attributes are color and size, with default values:
      * <ul>
      * <li>background-color  = #FFFFFF
      * <li>auto-size         = true
@@ -1917,7 +2035,10 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Get the javascript URL or inline code to manage progress bar.
+     * Returns javascript progress meter handler.
+     *
+     * Get the javascript URL or inline code that will handle the progress meter
+     * refresh.
      *
      * @param      boolean   (optional) html output with script tags or just raw data
      *
@@ -2028,7 +2149,10 @@ JS;
     }
 
     /**
-     * Set the external JavaScript code (file) to manage progress element.
+     * Sets the javascript progress meter handler.
+     *
+     * Defines the javascript source (URL or inline code) that will handle
+     * the progress meter refresh.
      *
      * @param      string    $url           URL to the linked Progress JavaScript
      *
@@ -2066,7 +2190,10 @@ JS;
     }
 
     /**
-     * Draw all circle segment pictures
+     * Draw all circle segment pictures.
+     *
+     * This function build/prepare all circle segment PNG pictures that will be
+     * send to browser output. Requires PEAR::Image_Color and PHP:gd extension.
      *
      * @param      string    $dir           (optional) Directory where pictures should be created
      * @param      string    $fileMask      (optional) sprintf format for pictures filename
@@ -2142,7 +2269,11 @@ JS;
     }
 
     /**
-     * Returns delay execution of the progress bar
+     * Returns delay execution of the progress meter.
+     *
+     * Given a delay in process of the progress meter is only necessary
+     * if you need demonstration or also smooth animation.
+     * The default value is zero (no delay).
      *
      * @return     integer
      * @since      2.0.0
@@ -2155,7 +2286,11 @@ JS;
     }
 
     /**
-     * Set the delays progress bar execution for the given number of miliseconds.
+     * Sets delay execution of the progress meter.
+     *
+     * The delay (in milisecond) cannot exceed 1000 (1 second), that is enough
+     * to smooth an animation. User process should slow down animation and in most
+     * case the default value (zero) will be efficient.
      *
      * @param      integer   $delay         Delay in milisecond.
      *
@@ -2192,7 +2327,9 @@ JS;
     }
 
     /**
-     * Get the cascading style sheet to put inline on HTML document
+     * Returns the cascading style sheet (CSS).
+     *
+     * Get the CSS required to display the progress meter in a HTML document.
      *
      * @param      boolean   (optional) html output with script tags or just raw data
      *
@@ -2299,7 +2436,10 @@ JS;
     }
 
     /**
-     * Returns the progress bar structure in an array.
+     * Returns the progress meter structure into an array.
+     *
+     * Get all progress meter properties, couple key-value, into a php array.
+     * This structure is read-only, a dump-like information.
      *
      * @return     array
      * @since      2.0.0
@@ -2331,7 +2471,9 @@ JS;
     }
 
     /**
-     * Returns the progress structure as HTML.
+     * Returns the progress meter structure as HTML.
+     *
+     * Get html code required to display the progress meter in any html document.
      *
      * @return     string
      * @since      2.0.0
@@ -2348,14 +2490,14 @@ JS;
         $cellAttr = $this->getCellAttributes();
 
         /**
-         *  Adds a progress bar legend in html code is possible.
+         *  Adds a progress meter caption in html code is possible.
          *  See HTML_Common::setComment() method.
          */
         if (strlen($comment) > 0) {
             $strHtml .= $tabs . "<!-- $comment -->" . PHP_EOL;
         }
 
-        //  Start of Top progress bar frame
+        //  Start of Top progress meter frame
         if ($this->frame['show']) {
             $topshift = $progressAttr['top'];
             $leftshift = $progressAttr['left'];
@@ -2393,14 +2535,14 @@ JS;
                  .  PHP_EOL;
         }
 
-        //  Start of progress bar border
+        //  Start of progress meter border
         $strHtml .= $tabs
                  .  '<div id="pbrd' . $this->ident . '"'
                  .  ' style="position:absolute;top:{_topshift_}px;left:{_leftshift_}px;"'
                  .  ' class="' . sprintf($borderAttr['class'], $this->ident) . '">'
                  .  PHP_EOL;
 
-        //  Start of progress bar
+        //  Start of progress meter
         if ($this->cellCount == 0) {
             $strHtml .= $tabs
                      .  '<div id="pbar' . $this->ident . '" style="'
@@ -2437,12 +2579,12 @@ JS;
                  .  $progressHtml
                  .  PHP_EOL;
 
-        //  Enf of progress bar
+        //  Enf of progress meter
         $strHtml .= $tabs
                  .  '</div>'
                  .  PHP_EOL;
 
-        //  Enf of progress bar border
+        //  Enf of progress meter border
         $strHtml .= $tabs
                  .  '</div>'
                  .  PHP_EOL;
@@ -2450,7 +2592,7 @@ JS;
         $cyshift = 0;
         $heightshift = $progressAttr['height'];
 
-        //  Start of progress bar labels
+        //  Start of progress meter labels
         foreach ($this->label as $name => $data) {
 
             $align = $data['align'];
@@ -2564,7 +2706,7 @@ JS;
             }
         }
 
-        //  Enf of Top progress bar frame
+        //  End of Top progress meter frame
         $strHtml .= $tabs
                  .  '</div>'
                  .  PHP_EOL;
@@ -2583,7 +2725,10 @@ JS;
     }
 
     /**
-     * Renders the new value of progress bar.
+     * Renders the new value of progress meter.
+     *
+     * This method should be used only to display initial state of the progress meter.
+     * Next steps to refresh display must use either moveStep() or moveNext() methods.
      *
      * @return     void
      * @since      2.0.0
@@ -2596,7 +2741,10 @@ JS;
     }
 
     /**
-     * Hides the progress bar.
+     * Hides the progress meter.
+     *
+     * Once the process is over this method provides a solution
+     * to remove/hide the progress meter of the browser screen.
      *
      * @return     void
      * @since      2.0.0
@@ -2612,8 +2760,11 @@ JS;
     }
 
     /**
-     * Default user callback when none are defined.
-     * Delay execution of progress meter for the given number of milliseconds.
+     * Delay execution.
+     *
+     * The HTML_Progress2::sleep() function delays program execution
+     * for the given number of milliseconds.
+     * This is the default user callback when none are defined.
      *
      * NOTE: The function {@link http://www.php.net/manual/en/function.usleep.php}
      *       did not work on Windows systems until PHP 5.0.0
@@ -2636,7 +2787,14 @@ JS;
     }
 
     /**
-     * Sets the user callback function that execute all actions pending progress
+     * Sets the user progress callback function.
+     *
+     * The process() function will call the user-callback defined here by this
+     * setProgressHandler() method.
+     *
+     * The user-supplied progress function must return either positive
+     * for a step progression, using moveStep() method,
+     * or NULL for a standard progression, using moveNext() method.
      *
      * @param      mixed     $handler       Name of function or a class-method.
      *
@@ -2659,7 +2817,10 @@ JS;
     }
 
     /**
-     * Performs the progress actions
+     * Performs the progress user process.
+     *
+     * This function call the user-specified progress function, defined by
+     * setProgressHandler() method. Default callback is the HTML_Progress2::sleep() method.
      *
      * @return     mixed
      * @since      2.0.0
@@ -2677,9 +2838,13 @@ JS;
     }
 
     /**
-     * Runs the progress bar (both modes: indeterminate and determinate),
-     * and execute all actions defined in user callback identified by
-     * method setProgressHandler.
+     * Runs the progress meter.
+     *
+     * This function accept both modes: indeterminate and determinate,
+     * and execute all actions defined in the user callback identified by
+     * setProgressHandler() method.
+     *
+     * All observers are also notified of main changes (start, stop meter).
      *
      * @return     void
      * @since      2.0.0
@@ -2708,7 +2873,10 @@ JS;
     }
 
     /**
-     * Returns the current identification string.
+     * Returns the progress meter identifier.
+     *
+     * Each progress meter has its own identifier. That allows to display more than
+     * only once meter at same time on same page.
      *
      * @return     string
      * @since      2.0.0
@@ -2721,7 +2889,12 @@ JS;
     }
 
     /**
-     * Sets this Progress instance's identification string.
+     * Sets the progress meter identifier.
+     *
+     * Each progress meter has its own identifier. That allows to display more than
+     * only once meter at same time on same page.
+     * If no identification string is given, then the default identifier will be
+     * six first characters of md5 hash value of the current unix timestamp.
      *
      * @param      mixed     $ident         (optional) the new identification string.
      *
@@ -2739,6 +2912,8 @@ JS;
     }
 
     /**
+     * Attachs a new observer.
+     *
      * Adds a new observer to the Event Dispatcher that will listen
      * for all messages emitted by this HTML_Progress2 instance.
      *
@@ -2767,6 +2942,9 @@ JS;
 
     /**
      * Removes a registered observer.
+     *
+     * Detachs a previously registered observer and remove the Event Dispatcher
+     * if there is no more observer registered.
      *
      * @param      mixed     $callback      PHP callback that act as listener
      *
@@ -3527,7 +3705,11 @@ JS;
     }
 
     /**
-     * A basic wrapper around the default PEAR_Error object
+     * A basic wrapper around the default PEAR_Error object.
+     *
+     * This method throws any internal API error that could be raised
+     * due to a wrong programming. It will use your error handler system defined
+     * at class construction (by first argument).
      *
      * @return     mixed
      * @since      2.0.0
@@ -3546,7 +3728,10 @@ JS;
     }
 
     /**
-     * Determine whether there are errors into the HTML_Progress2 stack
+     * Determine whether there are errors into the HTML_Progress2 stack.
+     *
+     * This function gave you ability to be aware of API errors presence
+     * in user scripts.
      *
      * @return     integer
      * @since      2.0.0
@@ -3559,7 +3744,10 @@ JS;
     }
 
     /**
-     * Pop an error off of the HTML_Progress2 stack
+     * Pop an error off of the HTML_Progress2 stack.
+     *
+     * Get all error data (code, message, level, context) from an object (PEAR_Error, ...)
+     * or a simple php array.
      *
      * @return     false|array|PEAR_Error
      * @since      2.0.0
