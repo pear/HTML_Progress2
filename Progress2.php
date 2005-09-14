@@ -1379,8 +1379,6 @@ class HTML_Progress2 extends HTML_Common
      * Sets cell attributes for all cells (default) or a specific an existing cell.
      *
      * Defaults are:
-     * <ul>
-     * <li>Common :
      *     <ul>
      *     <li>id             = pcel%01s
      *     <li>class          = cell
@@ -1402,7 +1400,6 @@ class HTML_Progress2 extends HTML_Common
      *         <li>height     = 15
      *         </ul>
      *     </ul>
-     * </ul>
      *
      * @param      mixed     $attributes    Associative array or string of HTML tag attributes
      * @param      int       $cell          (optional) Cell index
@@ -1663,6 +1660,19 @@ class HTML_Progress2 extends HTML_Common
      * Sets the progress meter frame attributes.
      *
      * Allows to build a customisable frame (color, size) around the progress meter.
+     *
+     * Defaults are:
+     * <ul>
+     * <li>show          = true
+     * <li>left          = 200
+     * <li>top           = 100
+     * <li>width         = 320
+     * <li>height        = 90
+     * <li>color         = #C0C0C0
+     * <li>border-width  = 2
+     * <li>border-style  = solid
+     * <li>border-color  = #DFDFDF #404040 #404040 #DFDFDF
+     * </ul>
      *
      * @param      null|array     $attributes    (optional) hash of style parameters
      *
@@ -2374,9 +2384,11 @@ JS;
         $styles  = '.' . sprintf($borderAttr['class'], $this->ident) . ' {' . PHP_EOL;
         $styles .= $tab . 'width: '. $progressAttr['width'] .'px;'. PHP_EOL;
         $styles .= $tab . 'height: '. $progressAttr['height'] .'px;'. PHP_EOL;
-        $styles .= $tab . 'border-width: '. $borderAttr['width'] .'px;'. PHP_EOL;
-        $styles .= $tab . 'border-style: '. $borderAttr['style'] .';'. PHP_EOL;
-        $styles .= $tab . 'border-color: '. $borderAttr['color'] .';'. PHP_EOL;
+        if ($this->isBorderPainted()) {
+            $styles .= $tab . 'border-width: '. $borderAttr['width'] .'px;'. PHP_EOL;
+            $styles .= $tab . 'border-style: '. $borderAttr['style'] .';'. PHP_EOL;
+            $styles .= $tab . 'border-color: '. $borderAttr['color'] .';'. PHP_EOL;
+        }
 
         if ($this->cellCount > 0) {
             $styles .= $tab . 'background-color: '. $progressAttr['background-color'] .';'. PHP_EOL;
