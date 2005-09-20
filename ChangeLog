@@ -2,6 +2,31 @@
 
     * VERSION: Final version (stable) 2.0.0 released.
 
+2005-09-20 Laurent Laville <pear@laurent-laville.org>
+
+    * auto-size progress meter attribute was removed
+
+    * active cell, and background progress meter support now
+      background-image, background-repeat, background-position attributes
+
+2005-09-14 Laurent Laville <pear@laurent-laville.org>
+
+    * bugs fixes:
+      setBorderPainted(false) inefficient with setBorderAttributes()
+      and a positive width attribute value. Always show a border
+      arround the progress bar.
+
+2005-09-13 Laurent Laville <pear@laurent-laville.org>
+
+    * follows w3 / css standard (in Progress2.php):
+      - frame border attribute is renamed to border-width
+      - all labels background-color attribute have default transparent value rather than empty
+
+    * updates Progress2.php and Progress2_Lite.php headers comment block
+
+    * updates Progress2.php API comment blocks:
+      following pattern -> summary + long description
+
 2005-09-02 Laurent Laville <pear@laurent-laville.org>
 
     * Fixed bug in moveNext() method: avoid exceed max limit
