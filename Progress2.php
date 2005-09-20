@@ -348,8 +348,10 @@ class HTML_Progress2 extends HTML_Common
      *
      * <code>
      * $progress = array(
-     *    'background-color' => '#FFFFFF',  # bar background color
-     *    'auto-size' => true,              # compute best progress size
+     *    'background-color' => '#FFFFFF',      # bar background color
+     *    'background-image' => 'none',         # bar background image
+     *    'background-repeat' => 'no-repeat',   # bar background image repeat option
+     *    'background-position' => 'top left',  # bar background image start position
      *    'width' => 0,                     # bar width
      *    'height' => 0,                    # bar height
      *    'left' => 10,                     # position from left
@@ -422,6 +424,9 @@ class HTML_Progress2 extends HTML_Common
      *    'font-size' => 8,                      # font size
      *    'color' => '#000000',                  # foreground color
      *    'background-color' => '#FFFFFF',       # background color
+     *    'background-image' => 'none',          # cell background image
+     *    'background-repeat' => 'no-repeat',    # cell background image repeat option
+     *    'background-position' => 'top left',   # cell background image start position
      *    'width' => 15,                         # cell width
      *    'height' => 20,                        # cell height
      *    'spacing' => 2                         # cell spacing
@@ -596,7 +601,9 @@ class HTML_Progress2 extends HTML_Common
         $this->frame  = array('show' => false);
         $this->_progress = array(
             'background-color' => '#FFFFFF',
-            'auto-size' => true,
+            'background-image' => 'none',
+            'background-repeat' => 'no-repeat',
+            'background-position' => 'top left',
             'width' => 0,
             'height' => 0,
             'left' => 10,
@@ -618,6 +625,9 @@ class HTML_Progress2 extends HTML_Common
             'font-size' => 8,
             'color' => '#000000',
             'background-color' => '#FFFFFF',
+            'background-image' => 'none',
+            'background-repeat' => 'no-repeat',
+            'background-position' => 'top left',
             'width' => 15,
             'height' => 20,
             'spacing' => 2
@@ -1388,7 +1398,10 @@ class HTML_Progress2 extends HTML_Common
      *     <li>font-family    = Courier, Verdana
      *     <li>font-size      = lowest value from cell width, cell height, and font size
      *     <li>color          = #000000
-     *     <li>background-color = #FFFFFF (added for progress circle shape on release 1.2.0)
+     *     <li>background-color    = #FFFFFF
+     *     <li>background-image    = none
+     *     <li>background-repeat   = no-repeat
+     *     <li>background-position = top left
      *     <li>Horizontal Bar :
      *         <ul>
      *         <li>width      = 15
@@ -2036,8 +2049,10 @@ class HTML_Progress2 extends HTML_Common
      *
      * Background attributes are color and size, with default values:
      * <ul>
-     * <li>background-color  = #FFFFFF
-     * <li>auto-size         = true
+     * <li>background-color    = #FFFFFF
+     * <li>background-image    = none
+     * <li>background-repeat   = no-repeat
+     * <li>background-position = top left
      * <li>Horizontal Bar :
      *     <ul>
      *     <li>width         = (cell_count * (cell_width + cell_spacing)) + cell_spacing
@@ -2389,6 +2404,11 @@ JS;
             $styles .= $tab . 'border-style: '. $borderAttr['style'] .';'. PHP_EOL;
             $styles .= $tab . 'border-color: '. $borderAttr['color'] .';'. PHP_EOL;
         }
+        if ($progressAttr['background-image'] !== 'none') {
+            $styles .= $tab . 'background-image: url('. $progressAttr['background-image'] .');'. PHP_EOL;
+            $styles .= $tab . 'background-repeat: '. $progressAttr['background-repeat'] .';'. PHP_EOL;
+            $styles .= $tab . 'background-position: '. $progressAttr['background-position'] .';'. PHP_EOL;
+        }
 
         if ($this->cellCount > 0) {
             $styles .= $tab . 'background-color: '. $progressAttr['background-color'] .';'. PHP_EOL;
@@ -2442,12 +2462,16 @@ JS;
         $styles .= '}'. PHP_EOL . PHP_EOL;
 
         $styles .= $cellClsA . ' {' . PHP_EOL;
-        if ($this->orientation !== HTML_PROGRESS2_CIRCLE) {
+        if ($cellAttr['background-image'] == 'none') {
             $styles .= $tab . 'background-color: '. $cellAttr['active-color'] .';'. PHP_EOL;
-        }
-        if (isset($cellAttr['background-image'])) {
+        } else {
             $styles .= $tab . 'background-image: url("'. $cellAttr['background-image'] .'");'. PHP_EOL;
-            $styles .= $tab . 'background-repeat: no-repeat;'. PHP_EOL;
+            if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
+                $styles .= $tab . 'background-repeat: no-repeat;'. PHP_EOL;
+            } else {
+                $styles .= $tab . 'background-repeat: '. $cellAttr['background-repeat'] .';'. PHP_EOL;
+                $styles .= $tab . 'background-position: '. $cellAttr['background-position'] .';'. PHP_EOL;
+            }
         }
         $styles .= $tab . 'visibility: hidden;'. PHP_EOL;
         $styles .= '}'. PHP_EOL . PHP_EOL;
@@ -3439,10 +3463,6 @@ JS;
      */
     function _updateProgressSize()
     {
-        if (!$this->_progress['auto-size']) {
-            return;
-        }
-
         $cell_width   = $this->cell['width'];
         $cell_height  = $this->cell['height'];
         $cell_spacing = $this->cell['spacing'];
