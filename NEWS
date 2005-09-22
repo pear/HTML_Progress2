@@ -4,6 +4,10 @@ Changes since version 2.0.0RC2 (2005-08-01)
 
 Changes to Progress2_Lite.php
 
+  | 2005-09-13 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * updates headers comment block
+  |
   | 2005-08-25 Laurent Laville <pear@laurent-laville.org>
   |
   |    * frame attribute border renamed to border-width
@@ -72,6 +76,37 @@ Changes to tests/*.php
 
 Changes to Progress2.php
 
+  | 2005-09-22 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * standardized observer notify interface
+  |       with onSubmit and onLoad events.
+  |
+  | 2005-09-20 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * auto-size progress meter attribute was removed
+  |
+  |     * active cell, and background progress meter support now
+  |       background-image, background-repeat, background-position attributes
+  |
+  | 2005-09-14 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * bugs fixes:
+  |       setBorderPainted(false) inefficient with setBorderAttributes()
+  |       and a positive width attribute value. Always show a border
+  |       arround the progress bar.
+  |
+  | 2005-09-13 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * updates headers comment block (package and methods)
+  |
+  |     * follows w3 / css standard
+  |       - frame border attribute is renamed to border-width
+  |       - all labels background-color attribute have default transparent value rather than empty
+  |
+  | 2005-09-02 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Fixed bug in moveNext() method: avoid exceed max limit
+  |
   | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
   |
   |     * Removed all @tutorial tags
@@ -79,6 +114,14 @@ Changes to Progress2.php
 
 Changes to Progress2/Monitor.php
 
+  | 2005-09-22 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * updates headers comment block (package and methods)
+  |
+  |     * fixes problem with onCancel notification
+  |
+  |     * standardized notification interface
+  |
   | 2005-08-18 Laurent Laville <pear@laurent-laville.org>
   |
   |     * Removed all @tutorial tags
