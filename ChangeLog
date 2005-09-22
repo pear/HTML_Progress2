@@ -4,8 +4,14 @@
 
 2005-09-22 Laurent Laville <pear@laurent-laville.org>
 
+    For HTML_Progress2 class only :
     * standardized observer notify interface
       with onSubmit and onLoad events.
+
+    For HTML_Progress2_Monitor class only :
+    * updates headers comment block (package and methods)
+    * fixes problem with onCancel notification
+    * standardized notification interface
 
 2005-09-20 Laurent Laville <pear@laurent-laville.org>
 
