@@ -1,6 +1,11 @@
-2005-09-xx Laurent Laville <pear@laurent-laville.org>
+2005-10-01 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: Final version (stable) 2.0.0 released.
+
+2005-09-22 Laurent Laville <pear@laurent-laville.org>
+
+    * standardized observer notify interface
+      with onSubmit and onLoad events.
 
 2005-09-20 Laurent Laville <pear@laurent-laville.org>
 

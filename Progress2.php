@@ -2904,7 +2904,7 @@ JS;
      */
     function run()
     {
-        $this->_postNotification('onSubmit');
+        $this->_postNotification('onSubmit', array('handler' => __FUNCTION__, 'value' => $this->getValue()));
         do {
             $ret = $this->process();
             if ($this->getPercentComplete() == 1) {
@@ -2920,7 +2920,7 @@ JS;
                 $this->moveStep($ret);
             }
         } while(1);
-        $this->_postNotification('onLoad');
+        $this->_postNotification('onLoad', array('handler' => __FUNCTION__, 'value' => $this->getValue()));
     }
 
     /**
