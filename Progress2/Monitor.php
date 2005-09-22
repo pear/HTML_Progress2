@@ -1,7 +1,6 @@
 <?php
 /**
- * The HTML_Progress2_Monitor class allow an easy way to display progress
- * in a dialog box. The user-end can cancel the task.
+ * Monitoring of HTML loading bar into a dialog box.
  *
  * PHP versions 4 and 5
  *
@@ -18,22 +17,45 @@
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    CVS: $Id$
  * @link       http://pear.php.net/package/HTML_Progress2
+ * @since      File available since Release 2.0.0RC1
  */
 
 require_once 'HTML/Progress2.php';
 require_once 'HTML/QuickForm.php';
 
 /**
- * The HTML_Progress2_Monitor class allow an easy way to display progress
- * in a dialog box. The user-end can cancel the task.
+ * Monitoring of HTML loading bar into a dialog box.
  *
- * PHP versions 4 and 5
+ * The HTML_Progress2_Monitor class allow an easy way to display progress bar
+ * into a dialog box, and observe all changes easily. User-end can stop task
+ * at anytime.
  *
- * LICENSE: This source file is subject to version 3.0 of the PHP license
- * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
- * the PHP License and are unable to obtain it through the web, please
- * send a note to license@php.net so we can mail you a copy immediately.
+ * Here is a basic example:
+ * <code>
+ * <?php
+ * require_once 'HTML/Progress2/Monitor.php';
+ *
+ * $pm = new HTML_Progress2_Monitor();
+ *
+ * $pb =& $pm->getProgressElement();
+ * $pb->setAnimSpeed(200);
+ * $pb->setIncrement(10);
+ * ?>
+ * <html>
+ * <head>
+ * <?php
+ * echo $pm->getStyle(false);
+ * echo $pm->getScript(false);
+ * ?>
+ * </head>
+ * <body>
+ * <?php
+ * $pm->display();
+ * $pm->run();
+ * ?>
+ * </body>
+ * </html>
+ * </code>
  *
  * @category   HTML
  * @package    HTML_Progress2
@@ -42,6 +64,7 @@ require_once 'HTML/QuickForm.php';
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/HTML_Progress2
+ * @since      Class available since Release 2.0.0RC1
  */
 
 class HTML_Progress2_Monitor
@@ -203,7 +226,7 @@ class HTML_Progress2_Monitor
         $this->_form->addElement('header', 'windowname', $this->windowname);
         $this->_form->addElement('static', 'progressBar');
 
-        if ($this->isStarted() && !$this->isCanceled()) {
+        if ($this->isStarted()) {
             $style = array('disabled'=>'true');
         } else {
             $style = null;
@@ -222,6 +245,8 @@ class HTML_Progress2_Monitor
     }
 
     /**
+     * Adds a new observer.
+     *
      * Adds a new observer to the Event Dispatcher that will listen
      * for all messages emitted by this HTML_Progress2 instance.
      *
@@ -250,6 +275,9 @@ class HTML_Progress2_Monitor
 
     /**
      * Removes a registered observer.
+     *
+     * This function removes a registered observer, and if there are no more
+     * observer, remove the event dispatcher interface too.
      *
      * @param      mixed     $callback      PHP callback that act as listener
      *
@@ -281,7 +309,10 @@ class HTML_Progress2_Monitor
     }
 
     /**
-     * Returns TRUE if progress was started by user, FALSE otherwise.
+     * Detect if progress monitor is started.
+     *
+     * This function returns TRUE if progress monitor was started by user,
+     * FALSE otherwise.
      *
      * @return     bool
      * @since      2.0.0
@@ -294,7 +325,10 @@ class HTML_Progress2_Monitor
     }
 
     /**
-     * Returns TRUE if progress was canceled by user, FALSE otherwise.
+     * Detect if progress monitor is stopped.
+     *
+     * This function returns TRUE if progress monitor was canceled by user,
+     * FALSE otherwise.
      *
      * @return     bool
      * @since      2.0.0
@@ -303,15 +337,17 @@ class HTML_Progress2_Monitor
     function isCanceled()
     {
         $action = $this->_form->getSubmitValues();
-        $canceled = isset($action['cancel']);
-        if ($canceled) {
-            $this->_postNotification('onCancel');
-        }
-        return $canceled;
+        return (isset($action['cancel']));
     }
 
     /**
-     * Display Monitor and catch user action (cancel button).
+     * Runs the progress monitor.
+     *
+     * This function accept both modes: indeterminate and determinate,
+     * and execute all actions defined in the user callback identified by
+     * HTML_Progress2::setProgressHandler() method.
+     *
+     * All observers are also notified of main changes (start, stop meter).
      *
      * @return     void
      * @since      2.0.0
@@ -319,17 +355,25 @@ class HTML_Progress2_Monitor
      */
     function run()
     {
-        if ($this->isStarted() && !$this->isCanceled()) {
+        if ($this->isCanceled()) {
+            $this->_postNotification('onCancel',
+                array('handler' => __FUNCTION__, 'value' => $this->_progress->getValue()));
+        }
+        if ($this->isStarted()) {
             $this->_progress->_status = 'show';
 
-            $this->_postNotification('onSubmit');
+            $this->_postNotification('onSubmit',
+                array('handler' => __FUNCTION__, 'value' => $this->_progress->getValue()));
             $this->_progress->run();
-            $this->_postNotification('onLoad');
+            $this->_postNotification('onLoad',
+                array('handler' => __FUNCTION__, 'value' => $this->_progress->getValue()));
         }
     }
 
     /**
-     * Attach a progress bar to this monitor.
+     * Links a progress bar to this monitor.
+     *
+     * This function allow to define a complete progress bar from scratch.
      *
      * @param      object    $bar           a html_progress2 instance
      *
@@ -355,8 +399,10 @@ class HTML_Progress2_Monitor
     }
 
     /**
-     * Returns a reference to the progress bar object
-     * used with the monitor.
+     * Returns a reference to the progress bar.
+     *
+     * This function returns a reference to the progress meter
+     * used with the monitor. Its allow to change easily part or all basic options.
      *
      * @return     object
      * @since      2.0.0
@@ -369,7 +415,9 @@ class HTML_Progress2_Monitor
     }
 
     /**
-     * Returns progress styles (StyleSheet).
+     * Returns the cascading style sheet (CSS).
+     *
+     * Get the CSS required to display the progress meter in a HTML document.
      *
      * @param      boolean   (optional) html output with script tags or just raw data
      *
@@ -392,7 +440,10 @@ class HTML_Progress2_Monitor
     }
 
     /**
-     * Returns the javascript URL or inline code to manage progress bar.
+     * Returns javascript progress meter handler.
+     *
+     * Get the javascript URL or inline code that will handle the progress meter
+     * refresh.
      *
      * @param      boolean   (optional) html output with script tags or just raw data
      *
@@ -415,7 +466,9 @@ class HTML_Progress2_Monitor
     }
 
     /**
-     * Returns Monitor forms as a Html string.
+     * Returns the progress monitor structure as HTML.
+     *
+     * Get html code required to display the progress monitor in any html document.
      *
      * @return     string
      * @since      2.0.0
@@ -441,7 +494,11 @@ class HTML_Progress2_Monitor
     }
 
     /**
+     * Renders the initial state of progress monitor.
      *
+     * This function should be used only to display initial state of the
+     * progress monitor with default QF renderer. If you use another QF renderer
+     * (Smarty, ITDynamic, ...) read template engine renderer related documentation.
      *
      * @return     void
      * @since      2.0.0RC2
@@ -453,7 +510,9 @@ class HTML_Progress2_Monitor
     }
 
     /**
-     * Accepts a renderer
+     * Accepts a renderer.
+     *
+     * Accepts a QF renderer for design pattern.
      *
      * @param      object    $renderer      An HTML_QuickForm_Renderer object
      *
@@ -518,6 +577,7 @@ class HTML_Progress2_Monitor
 
     /**
      * Post a new notification to all observers registered.
+     *
      * This notification occured only if a dispatcher exists. That means if
      * at least one observer was registered.
      *
