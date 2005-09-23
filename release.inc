@@ -14,24 +14,33 @@ $release['state']   = 'stable';
 
 // Notes about this new release
 $release['notes'] = <<<NOTES
+* news (HTML_Progress)
+- active cell, and background progress meter support now
+background-image, background-repeat, background-position attributes
+
 * news (HTML_Progress_Lite)
 - add font-style attribute for all label categories
 (ability to use italic for percent and text labels)
+
+* improvements
+- standardized observer notify interface for all events
 
 * bugs
 - Fixed my first bug in HTML_Progress2_Lite::setLabelAttributes() method
 related to font group attributes.
 - Fixed bug in moveNext() method: avoid exceed max limit
+- Fixed bug setBorderPainted(false) inefficient with setBorderAttributes()
 
 * Quality Assurance
 The Definitive (User) Guide:
 - include a complete english guide for both beginners and expert users.
   This is the many html files version. Others format are
   available to download at URI http://pear.laurent-laville.org/HTML_Progress2/docs
-More W3C/CSS standard compliance with HTML_Progress_Lite class:
+More W3C/CSS standard compliance:
 - background-color attribute has transparent rather than null string by default
 - frame attribute border renamed to border-width
 API documentation generation:
+- updates headers comment block (package and methods)
 - added @example tag to have ability to display (highlight) source code
 - added @link tag to have ability to display a screenshot (PNG image)
 - removed all @tutorial tag
