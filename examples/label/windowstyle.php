@@ -20,18 +20,18 @@ $pb->setIncrement(10);
 $pb->setCellCount(0);
 $pb->setProgressAttributes(array(
     'position' => 'absolute',
-    'auto-size' => false,
     'width' => 172,
     'height' => 24
-    ));
+));
 $pb->setCellAttributes(array(
     'active-color' => '#0033FF',
     'inactive-color' => '#CCCCCC'
-    ));
+));
+$pb->setBorderPainted(true);
 $pb->setBorderAttributes(array(
     'width' => 1,
     'color' => '#404040 #dfdfdf #dfdfdf #404040'
-    ));
+));
 $pb->setFrameAttributes(array('width' => 200, 'height' => 70));
 
 $pb->setLabelAttributes('pct1', array('left' => 130, 'top' => 9));
