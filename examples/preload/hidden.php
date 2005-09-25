@@ -31,7 +31,6 @@ $pb->setAnimSpeed(200);
 $pb->setIncrement(10);
 $pb->setProgressAttributes(array(
     'position' => 'absolute',
-    'auto-size' => false,
     'width' => 220,
     'height' => 24
 ));

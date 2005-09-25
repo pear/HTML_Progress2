@@ -39,7 +39,6 @@ $pb2->setAnimSpeed(80);
 $pb2->setIncrement(5);
 $pb2->setProgressAttributes(array(
     'position' => 'absolute',
-    'auto-size' => false,
     'width' => 600,
     'height' => 100,
     'top' => 220,
