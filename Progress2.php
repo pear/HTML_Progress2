@@ -3463,6 +3463,10 @@ JS;
      */
     function _updateProgressSize()
     {
+        if ($this->cellCount == 0) {
+            return;
+        }
+
         $cell_width   = $this->cell['width'];
         $cell_height  = $this->cell['height'];
         $cell_spacing = $this->cell['spacing'];
