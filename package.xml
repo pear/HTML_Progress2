@@ -29,35 +29,46 @@ Features:
     </maintainer>
   </maintainers>
   <release>
-    <version>2.0.0RC2</version>
-    <date>2005-08-01</date>
+    <version>2.0.0</version>
+    <date>2005-10-01</date>
     <license>PHP License 3.0</license>
-    <state>beta</state>
-    <notes>---
-  i will open another one month timeframe until stable release, or if a bug is found
-  until third release candidate.
-  Please, test it as much as possible, and report all you think important.
----
+    <state>stable</state>
+    <notes>* news (HTML_Progress)
+- active cell, and background progress meter support now
+background-image, background-repeat, background-position attributes
 
-* bugs
-- fixed Monitor stops before end when setMaximum is set to value higher than 200 (bug #4885)
-  Thanks to Roman Stachura.
-
-* changes
-- observer pattern is now built with Event_Dispatcher package
-- removes all HTML_CSS dependencies
-- getStyle() and getScript() optimized now when its request the html stream generation
-  (raw data only or data with script tags)
+* news (HTML_Progress_Lite)
+- add font-style attribute for all label categories
+(ability to use italic for percent and text labels)
 
 * improvements
-- generation of stylesheet is (average) 20 times faster without HTML_CSS
+- standardized observer notify interface for all events
 
-* QA
-- dependencies has been revisited to higher level
-- all Examples are now back into main package. No more additional package.
-- Fix wrong project links into documentation (README, ReleaseVersion)
-  Thanks to Christian Roy to have noticed me.
-</notes>
+* bugs
+- Fixed my first bug in HTML_Progress2_Lite::setLabelAttributes() method
+related to font group attributes.
+- Fixed bug in moveNext() method: avoid exceed max limit
+- Fixed bug setBorderPainted(false) inefficient with setBorderAttributes()
+
+* Quality Assurance
+The Definitive (User) Guide:
+- include a complete english guide for both beginners and expert users.
+  This is the many html files version. Others format are
+  available to download at URI http://pear.laurent-laville.org/HTML_Progress2/docs
+More W3C/CSS standard compliance:
+- background-color attribute has transparent rather than null string by default
+- frame attribute border renamed to border-width
+API documentation generation:
+- updates headers comment block (package and methods)
+- added @example tag to have ability to display (highlight) source code
+- added @link tag to have ability to display a screenshot (PNG image)
+- removed all @tutorial tag
+- added @ignore tag on all unit testcases and some others files
+to avoid includes in API docs
+
+
+Live demos, screenshots, source codes and much more are available on my
+project homepage at http://pear.laurent-laville.org/HTML_Progress2</notes>
     <deps>
       <dep type="php" rel="ge" version="4.2.0" optional="no"/>
       <dep type="pkg" rel="ge" version="1.4.1" optional="no">PHP_Compat</dep>
@@ -73,216 +84,375 @@ Features:
       <dep type="pkg" rel="ge" version="1.8.7" optional="yes">Log</dep>
       <dep type="ext" rel="has" optional="yes">gd</dep>
     </deps>
-    <provides type="class" name="HTML_Progress2_Error" extends="PEAR_Error" />
-    <provides type="function" name="HTML_Progress2_Error::getLevel" />
-    <provides type="function" name="HTML_Progress2_Error::log" />
-    <provides type="function" name="HTML_Progress2_Error::sprintContextExec" />
-    <provides type="class" name="HTML_Progress2_Generator" extends="HTML_QuickForm_Controller" />
-    <provides type="function" name="HTML_Progress2_Generator::createTabs" />
-    <provides type="function" name="HTML_Progress2_Generator::createButtons" />
-    <provides type="function" name="HTML_Progress2_Generator::enableButton" />
-    <provides type="function" name="HTML_Progress2_Generator::disableButton" />
-    <provides type="function" name="HTML_Progress2_Generator::createProgressBar" />
-    <provides type="function" name="HTML_Progress2_Generator::createProgressStructure" />
-    <provides type="class" name="HTML_Progress2_Monitor" />
-    <provides type="function" name="HTML_Progress2_Monitor::addListener" />
-    <provides type="function" name="HTML_Progress2_Monitor::removeListener" />
-    <provides type="function" name="HTML_Progress2_Monitor::isStarted" />
-    <provides type="function" name="HTML_Progress2_Monitor::isCanceled" />
-    <provides type="function" name="HTML_Progress2_Monitor::run" />
-    <provides type="function" name="HTML_Progress2_Monitor::setProgressElement" />
-    <provides type="function" name="HTML_Progress2_Monitor::getProgressElement" />
-    <provides type="function" name="HTML_Progress2_Monitor::getStyle" />
-    <provides type="function" name="HTML_Progress2_Monitor::getScript" />
-    <provides type="function" name="HTML_Progress2_Monitor::toHtml" />
-    <provides type="class" name="ActionDisplay" extends="HTML_QuickForm_Action_Display" />
-    <provides type="class" name="Property1" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Property2" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Property3" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Property4" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Preview" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Save" extends="HTML_QuickForm_Page" />
-    <provides type="function" name="Property1::buildForm" />
-    <provides type="function" name="Property2::buildForm" />
-    <provides type="function" name="Property3::buildForm" />
-    <provides type="function" name="Property4::buildForm" />
-    <provides type="function" name="Preview::buildForm" />
-    <provides type="function" name="Save::buildForm" />
-    <provides type="class" name="ActionPreview" extends="HTML_QuickForm_Action" />
-    <provides type="function" name="ActionPreview::perform" />
-    <provides type="class" name="ActionProcess" extends="HTML_QuickForm_Action" />
-    <provides type="function" name="ActionProcess::perform" />
-    <provides type="function" name="ActionProcess::sprintCSS" />
-    <provides type="function" name="ActionProcess::sprintPHP" />
-    <provides type="function" name="ActionProcess::exportOutput" />
-    <provides type="class" name="HTML_Progress2" extends="HTML_Common" />
-    <provides type="function" name="HTML_Progress2::apiVersion" />
-    <provides type="function" name="HTML_Progress2::isIndeterminate" />
-    <provides type="function" name="HTML_Progress2::setIndeterminate" />
-    <provides type="function" name="HTML_Progress2::isBorderPainted" />
-    <provides type="function" name="HTML_Progress2::setBorderPainted" />
-    <provides type="function" name="HTML_Progress2::getMinimum" />
-    <provides type="function" name="HTML_Progress2::setMinimum" />
-    <provides type="function" name="HTML_Progress2::getMaximum" />
-    <provides type="function" name="HTML_Progress2::setMaximum" />
-    <provides type="function" name="HTML_Progress2::getIncrement" />
-    <provides type="function" name="HTML_Progress2::setIncrement" />
-    <provides type="function" name="HTML_Progress2::getValue" />
-    <provides type="function" name="HTML_Progress2::setValue" />
-    <provides type="function" name="HTML_Progress2::incValue" />
-    <provides type="function" name="HTML_Progress2::moveStep" />
-    <provides type="function" name="HTML_Progress2::moveNext" />
-    <provides type="function" name="HTML_Progress2::getPercentComplete" />
-    <provides type="function" name="HTML_Progress2::getOrientation" />
-    <provides type="function" name="HTML_Progress2::setOrientation" />
-    <provides type="function" name="HTML_Progress2::getFillWay" />
-    <provides type="function" name="HTML_Progress2::setFillWay" />
-    <provides type="function" name="HTML_Progress2::getCellCount" />
-    <provides type="function" name="HTML_Progress2::setCellCount" />
-    <provides type="function" name="HTML_Progress2::getCellAttributes" />
-    <provides type="function" name="HTML_Progress2::setCellAttributes" />
-    <provides type="function" name="HTML_Progress2::getCellCoordinates" />
-    <provides type="function" name="HTML_Progress2::setCellCoordinates" />
-    <provides type="function" name="HTML_Progress2::getBorderAttributes" />
-    <provides type="function" name="HTML_Progress2::setBorderAttributes" />
-    <provides type="function" name="HTML_Progress2::getFrameAttributes" />
-    <provides type="function" name="HTML_Progress2::setFrameAttributes" />
-    <provides type="function" name="HTML_Progress2::getLabelAttributes" />
-    <provides type="class" name="HTML_Progress2_Lite" />
-    <provides type="function" name="ob_get_clean" />
     <filelist>
-      <file role="doc" baseinstalldir="HTML" name="docs/errorHandlerGuide.txt"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/gettingStartedGuide.txt"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/migrationGuide.txt"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/progress2LiteGuide.txt"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/circle/circle.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/circle/ellipse.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorbasic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorcustom.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorignore.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorlogger.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorstackcustom.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorstackignore.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/errorhandling/errorstacklogger.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/generatorcus.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/generatordef.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/itdynamic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/ancestor.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bgimages.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bluesand.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bullit.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/download.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/javadanse.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/nostring.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/progress2_number.js"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/userstring.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/half.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/monitor.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/label/mixed.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/label/percent1.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/label/percent2.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/label/text1.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/label/text2.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/label/windowstyle.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/lite/liteall.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/lite/litebasic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/lite/mailer2.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/lite/windowstyle2.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/itdynamic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitorcus.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitordef.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitordyn.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitorlog.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/monitorpg2.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/multiple/mixed.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/multiple/vertical.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/observer1.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/observer2.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/polygonal/rectangle.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/polygonal/square.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/polygonal/squareback.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/hidden.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/mailer1.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/swf.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/template/cross.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/template/itxstatic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/template/itxstatic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/template/wizard.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/vertical/vlimit.php"/>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Error.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Monitor.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/Default.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/HTMLPage2.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/ITDynamic.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/pages.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/Preview.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/Process.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2/Generator/SmartyDynamic.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_Bug28.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_addLabel.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_addListener.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_drawCircleSegments.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getBorderAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getCellAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getFrameAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getLabelAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getPercentComplete.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_getProgressAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_moveStep.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_removeLabel.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_removeListener.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setAnimSpeed.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setBorderPainted.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setCellAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setCellCoordinates.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setCellCount.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setFillWay.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setFrameAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setIncrement.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setIndeterminate.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setLabelAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setMaximum.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setMinimum.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setOrientation.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setProgressHandler.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setScript.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setString.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress2_TestCase_setValue.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_TestListener.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/index.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/progress2.js"/>
-      <file role="test" baseinstalldir="HTML" name="tests/styles.css"/>
-      <file role="test" baseinstalldir="HTML" name="tests/TestUnit.php"/>
-      <file role="php" baseinstalldir="HTML" name="Progress2.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress2_Lite.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
+      <dir baseinstalldir="HTML" name="/">
+       <dir name="docs">
+        <dir name="TDG">
+         <file role="doc" name="blank.gif"/>
+         <file role="doc" name="book.css"/>
+         <file role="doc" name="ch01.html"/>
+         <file role="doc" name="ch01s02.html"/>
+         <file role="doc" name="ch01s03.html"/>
+         <file role="doc" name="ch02.html"/>
+         <file role="doc" name="ch03.html"/>
+         <file role="doc" name="ch04.html"/>
+         <file role="doc" name="ch05.html"/>
+         <file role="doc" name="ch05s02.html"/>
+         <file role="doc" name="ch05s03.html"/>
+         <file role="doc" name="ch06.html"/>
+         <file role="doc" name="ch06s02.html"/>
+         <file role="doc" name="ch07.html"/>
+         <file role="doc" name="ch07s02.html"/>
+         <file role="doc" name="ch08.html"/>
+         <file role="doc" name="ch08s02.html"/>
+         <file role="doc" name="ch08s03.html"/>
+         <file role="doc" name="ch08s04.html"/>
+         <file role="doc" name="ch09.html"/>
+         <file role="doc" name="ch09s02.html"/>
+         <file role="doc" name="ch09s03.html"/>
+         <file role="doc" name="ch10.html"/>
+         <file role="doc" name="ch10s02.html"/>
+         <file role="doc" name="ch10s03.html"/>
+         <file role="doc" name="ch11.html"/>
+         <file role="doc" name="ch11s02.html"/>
+         <file role="doc" name="ch12.html"/>
+         <file role="doc" name="ch13.html"/>
+         <file role="doc" name="ch13s02.html"/>
+         <file role="doc" name="ch13s03.html"/>
+         <file role="doc" name="ch13s04.html"/>
+         <file role="doc" name="ch13s05.html"/>
+         <file role="doc" name="ch14.html"/>
+         <file role="doc" name="ch14s02.html"/>
+         <file role="doc" name="ch15.html"/>
+         <file role="doc" name="ch15s02.html"/>
+         <file role="doc" name="ch16.html"/>
+         <file role="doc" name="ch16s02.html"/>
+         <file role="doc" name="ch16s03.html"/>
+         <file role="doc" name="ch16s04.html"/>
+         <file role="doc" name="ch16s05.html"/>
+         <file role="doc" name="ch17.html"/>
+         <file role="doc" name="ch18.html"/>
+         <file role="doc" name="ch18s02.html"/>
+         <file role="doc" name="ch18s03.html"/>
+         <file role="doc" name="ch18s04.html"/>
+         <file role="doc" name="index.html"/>
+         <file role="doc" name="pngbehavior.htc"/>
+         <file role="doc" name="pr01.html"/>
+         <file role="doc" name="pr01s02.html"/>
+         <file role="doc" name="pt01.html"/>
+         <file role="doc" name="pt02.html"/>
+         <file role="doc" name="pt03.html"/>
+         <file role="doc" name="pt04.html"/>
+         <file role="doc" name="pt05.html"/>
+         <file role="doc" name="re01.html"/>
+         <file role="doc" name="re02.html"/>
+         <file role="doc" name="re03.html"/>
+         <file role="doc" name="re04.html"/>
+         <file role="doc" name="re05.html"/>
+         <file role="doc" name="re06.html"/>
+         <file role="doc" name="re07.html"/>
+         <file role="doc" name="re08.html"/>
+         <file role="doc" name="re09.html"/>
+         <file role="doc" name="re10.html"/>
+         <file role="doc" name="re11.html"/>
+         <file role="doc" name="re12.html"/>
+         <file role="doc" name="re13.html"/>
+         <file role="doc" name="re14.html"/>
+         <file role="doc" name="re15.html"/>
+         <file role="doc" name="re16.html"/>
+         <file role="doc" name="re17.html"/>
+         <file role="doc" name="re18.html"/>
+         <file role="doc" name="re19.html"/>
+         <file role="doc" name="re20.html"/>
+         <file role="doc" name="re21.html"/>
+         <file role="doc" name="re22.html"/>
+         <file role="doc" name="re23.html"/>
+         <file role="doc" name="re24.html"/>
+         <file role="doc" name="re25.html"/>
+         <file role="doc" name="re26.html"/>
+         <file role="doc" name="re27.html"/>
+         <file role="doc" name="re28.html"/>
+         <file role="doc" name="re29.html"/>
+         <file role="doc" name="re30.html"/>
+         <file role="doc" name="re31.html"/>
+         <file role="doc" name="re32.html"/>
+         <file role="doc" name="re33.html"/>
+         <file role="doc" name="re34.html"/>
+         <file role="doc" name="re35.html"/>
+         <file role="doc" name="re36.html"/>
+         <file role="doc" name="re37.html"/>
+         <file role="doc" name="re38.html"/>
+         <file role="doc" name="re39.html"/>
+         <file role="doc" name="re40.html"/>
+         <file role="doc" name="re41.html"/>
+         <file role="doc" name="re42.html"/>
+         <file role="doc" name="re43.html"/>
+         <file role="doc" name="re44.html"/>
+         <file role="doc" name="re45.html"/>
+         <file role="doc" name="re46.html"/>
+         <file role="doc" name="re47.html"/>
+         <file role="doc" name="re48.html"/>
+         <file role="doc" name="re49.html"/>
+         <file role="doc" name="re50.html"/>
+         <file role="doc" name="re51.html"/>
+         <file role="doc" name="re52.html"/>
+         <file role="doc" name="re53.html"/>
+         <file role="doc" name="re54.html"/>
+         <file role="doc" name="re55.html"/>
+         <dir name="img">
+          <file role="doc" name="basic1.png"/>
+          <file role="doc" name="border1.png"/>
+          <file role="doc" name="bullit.png"/>
+          <file role="doc" name="created-with-docbook.png"/>
+          <file role="doc" name="example.png"/>
+          <file role="doc" name="external-link.gif"/>
+          <file role="doc" name="indeterminate1.png"/>
+          <file role="doc" name="indeterminate2.png"/>
+          <file role="doc" name="mixed2.png"/>
+          <file role="doc" name="monitor0.png"/>
+          <file role="doc" name="monitor1.png"/>
+          <file role="doc" name="monitor2.png"/>
+          <file role="doc" name="pear_progress2.gif"/>
+          <file role="doc" name="vertical1.png"/>
+          <dir name="admons">
+           <file role="doc" name="caution.png"/>
+           <file role="doc" name="important.png"/>
+           <file role="doc" name="note.png"/>
+           <file role="doc" name="tip.png"/>
+           <file role="doc" name="warning.png"/>
+          </dir> <!-- docs/TDG/img/admons -->
+          <dir name="callouts">
+           <file role="doc" name="1.gif"/>
+           <file role="doc" name="2.gif"/>
+           <file role="doc" name="3.gif"/>
+           <file role="doc" name="4.gif"/>
+           <file role="doc" name="5.gif"/>
+           <file role="doc" name="6.gif"/>
+           <file role="doc" name="7.gif"/>
+           <file role="doc" name="8.gif"/>
+           <file role="doc" name="9.gif"/>
+           <file role="doc" name="10.gif"/>
+           <file role="doc" name="11.gif"/>
+           <file role="doc" name="12.gif"/>
+           <file role="doc" name="13.gif"/>
+           <file role="doc" name="14.gif"/>
+           <file role="doc" name="15.gif"/>
+          </dir> <!-- docs/TDG/img/callouts -->
+         </dir> <!-- docs/TDG/img -->
+        </dir> <!-- docs/TDG -->
+       </dir> <!-- docs -->
+       <dir name="examples">
+        <dir name="circle">
+         <file role="doc" name="circle.php"/>
+         <file role="doc" name="ellipse.php"/>
+        </dir> <!-- examples/circle -->
+        <dir name="errorhandling">
+         <file role="doc" name="errorbasic.php"/>
+         <file role="doc" name="errorcustom.php"/>
+         <file role="doc" name="errorignore.php"/>
+         <file role="doc" name="errorlogger.php"/>
+         <file role="doc" name="errorstackcustom.php"/>
+         <file role="doc" name="errorstackignore.php"/>
+         <file role="doc" name="errorstacklogger.php"/>
+        </dir> <!-- examples/errorhandling -->
+        <dir name="generator">
+         <file role="doc" name="generatorcus.php"/>
+         <file role="doc" name="generatordef.php"/>
+         <file role="doc" name="itdynamic.html"/>
+        </dir> <!-- examples/generator -->
+        <dir name="horizontal">
+         <file role="doc" name="ancestor.php"/>
+         <file role="doc" name="bgimages.php"/>
+         <file role="doc" name="bgimagesEnh.php"/>
+         <file role="doc" name="bluesand.php"/>
+         <file role="doc" name="bullit.php"/>
+         <file role="doc" name="degrade.jpg"/>
+         <file role="doc" name="download.gif"/>
+         <file role="doc" name="javadanse.php"/>
+         <file role="doc" name="nostring.php"/>
+         <file role="doc" name="pave-blanc-24.png"/>
+         <file role="doc" name="progress2_number.js"/>
+         <file role="doc" name="userstring.php"/>
+        </dir> <!-- examples/horizontal -->
+        <dir name="indeterminate">
+         <file role="doc" name="half.php"/>
+         <file role="doc" name="monitor.php"/>
+        </dir> <!-- examples/indeterminate -->
+        <dir name="label">
+         <file role="doc" name="mixed.php"/>
+         <file role="doc" name="percent1.php"/>
+         <file role="doc" name="percent2.php"/>
+         <file role="doc" name="text1.php"/>
+         <file role="doc" name="text2.php"/>
+         <file role="doc" name="windowstyle.php"/>
+        </dir> <!-- examples/label -->
+        <dir name="lite">
+         <file role="doc" name="liteall.php"/>
+         <file role="doc" name="litebasic.php"/>
+         <file role="doc" name="mailer2.php"/>
+         <file role="doc" name="windowstyle2.php"/>
+        </dir> <!-- examples/lite -->
+        <dir name="monitor">
+         <file role="doc" name="itdynamic.html"/>
+         <file role="doc" name="monitorcus.php"/>
+         <file role="doc" name="monitordef.php"/>
+         <file role="doc" name="monitordyn.php"/>
+         <file role="doc" name="monitorlog.php"/>
+         <file role="doc" name="monitorpg2.php"/>
+        </dir> <!-- examples/monitor -->
+        <dir name="multiple">
+         <file role="doc" name="mixed.php"/>
+         <file role="doc" name="vertical.php"/>
+        </dir> <!-- examples/multiple -->
+        <dir name="observer">
+         <file role="doc" name="observer1.php"/>
+         <file role="doc" name="observer2.php"/>
+        </dir> <!-- examples/observer -->
+        <dir name="polygonal">
+         <file role="doc" name="rectangle.php"/>
+         <file role="doc" name="square.php"/>
+         <file role="doc" name="squareback.php"/>
+        </dir> <!-- examples/polygonal -->
+        <dir name="preload">
+         <file role="doc" name="hidden.php"/>
+         <file role="doc" name="mailer1.php"/>
+         <file role="doc" name="swf.php"/>
+        </dir> <!-- examples/preload -->
+        <dir name="template">
+         <file role="doc" name="cross.png"/>
+         <file role="doc" name="itxstatic.html"/>
+         <file role="doc" name="itxstatic.php"/>
+         <file role="doc" name="wizard.png"/>
+        </dir> <!-- examples/template -->
+        <dir name="vertical">
+         <file role="doc" name="vlimit.php"/>
+        </dir> <!-- examples/vertical -->
+       </dir> <!-- examples -->
+       <dir name="Progress2">
+        <file role="php" name="Error.php">
+          <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+        <file role="php" name="Generator.php">
+          <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+        <file role="php" name="Monitor.php">
+          <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+        <dir name="Generator">
+         <file role="php" name="Default.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="HTMLPage2.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="ITDynamic.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="pages.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="Preview.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="Process.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="SmartyDynamic.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+        </dir> <!-- Progress2/Generator -->
+       </dir> <!-- Progress2 -->
+       <dir name="tests">
+        <file role="test" name="HTML_Progress2_Bug28.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_addLabel.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_addListener.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_drawCircleSegments.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_getBorderAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_getCellAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_getFrameAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_getLabelAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_getPercentComplete.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_getProgressAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_moveStep.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_removeLabel.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_removeListener.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setAnimSpeed.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setBorderPainted.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setCellAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setCellCoordinates.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setCellCount.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setFillWay.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setFrameAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setIncrement.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setIndeterminate.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setLabelAttributes.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setMaximum.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setMinimum.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setOrientation.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setProgressHandler.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setScript.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setString.php"/>
+        <file role="test" name="HTML_Progress2_TestCase_setValue.php"/>
+        <file role="test" name="HTML_TestListener.php"/>
+        <file role="test" name="index.php"/>
+        <file role="test" name="progress2.js"/>
+        <file role="test" name="styles.css"/>
+        <file role="test" name="TestUnit.php"/>
+       </dir> <!-- tests -->
+       <file role="doc" name="ChangeLog"/>
+       <file role="doc" name="NEWS"/>
+       <file role="php" name="Progress2.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="php" name="Progress2_Lite.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- / -->
     </filelist>
   </release>
   <changelog>
+    <release>
+      <version>2.0.0</version>
+      <date>2005-10-01</date>
+      <license>PHP License 3.0</license>
+      <state>stable</state>
+      <notes>* news (HTML_Progress)
+- active cell, and background progress meter support now
+background-image, background-repeat, background-position attributes
+
+* news (HTML_Progress_Lite)
+- add font-style attribute for all label categories
+(ability to use italic for percent and text labels)
+
+* improvements
+- standardized observer notify interface for all events
+
+* bugs
+- Fixed my first bug in HTML_Progress2_Lite::setLabelAttributes() method
+related to font group attributes.
+- Fixed bug in moveNext() method: avoid exceed max limit
+- Fixed bug setBorderPainted(false) inefficient with setBorderAttributes()
+
+* Quality Assurance
+The Definitive (User) Guide:
+- include a complete english guide for both beginners and expert users.
+  This is the many html files version. Others format are
+  available to download at URI http://pear.laurent-laville.org/HTML_Progress2/docs
+More W3C/CSS standard compliance:
+- background-color attribute has transparent rather than null string by default
+- frame attribute border renamed to border-width
+API documentation generation:
+- updates headers comment block (package and methods)
+- added @example tag to have ability to display (highlight) source code
+- added @link tag to have ability to display a screenshot (PNG image)
+- removed all @tutorial tag
+- added @ignore tag on all unit testcases and some others files
+to avoid includes in API docs
+
+
+Live demos, screenshots, source codes and much more are available on my
+project homepage at http://pear.laurent-laville.org/HTML_Progress2</notes>
+    </release>
     <release>
       <version>2.0.0RC2</version>
       <date>2005-08-01</date>
@@ -311,8 +481,7 @@ Features:
 - dependencies has been revisited to higher level
 - all Examples are now back into main package. No more additional package.
 - Fix wrong project links into documentation (README, ReleaseVersion)
-  Thanks to Christian Roy to have noticed me.
-</notes>
+  Thanks to Christian Roy to have noticed me.</notes>
     </release>
     <release>
       <version>2.0.0RC1</version>
