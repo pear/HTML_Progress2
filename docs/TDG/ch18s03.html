@@ -1,0 +1,151 @@
+<html xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0">
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+   <title>Multiple Labels usage </title>
+   <link href="book.css" rel="stylesheet" type="text/css">
+   <meta content="DocBook XSL Stylesheets V1.69.0" name="generator">
+   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
+   <link href="ch18.html" rel="up" title="Chapter 18. Examples">
+   <link href="ch18s02.html" rel="prev" title="Indeterminate Mode usage ">
+   <link href="ch18s04.html" rel="next" title="Monitoring usage ">
+</head>
+<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
+<table class="qfamsHeader">
+   <tr>
+      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
+         <h1>HTML_Progress2 : The Definitive Guide</h1>
+
+         <p>
+         <div class="navheader">
+            <table summary="Navigation header" width="100%">
+               <tr>
+                  <th align="center" colspan="3">Multiple Labels usage </th>
+               </tr>
+               <tr>
+                  <td align="left" width="20%"><a accesskey="p" href="ch18s02.html">Prev</a> </td>
+                  <th align="center" width="60%">Chapter 18. Examples</th><td align="right" width="20%"> <a accesskey="n" href="ch18s04.html">Next</a></td>
+               </tr>
+            </table>
+         </div></p>
+      </td>
+   </tr>
+</table>
+<div class="sect1" lang="en"><div class="titlepage"><div><div>
+            <h2 class="title" style="clear: both">
+            <a name="examples.label.multiple"></a>Multiple Labels usage </h2>
+         </div>
+      </div>
+   </div>
+   <div class="toc">
+      <dl><dt><span class="sect2"><a href="ch18s03.html#examples.label.1"></a></span></dt>
+      </dl>
+   </div>
+   <div class="sect2" lang="en"><div class="titlepage"></div>
+
+      <p></p>
+      <div class="figure"><a name="id4828600"></a>
+
+         <p class="title"><b>Figure 18.3. Multi Labels usage </b></p><div class="screenshot"><div><img alt="Multi Labels usage" src="img/mixed2.png"></div>
+         </div>
+      </div>
+
+      <p></p>
+
+      <p>Goals of this example is to show multiple labels usage. All four kind of label are presented with 
+      <code class="methodname">addLabel()</code> and 
+      <code class="methodname">setLabelAttributes()</code> methods implementation. </p>
+
+      <p></p>
+      <div class="example"><a name="id4828163"></a>
+
+         <p class="title"><b>Example 18.3. Four kind of progress label </b></p>
+<pre class="programlisting">
+      
+&lt;?php
+require_once 'HTML/Progress2.php';
+
+$pb = new HTML_Progress2();
+$pb-&gt;setAnimSpeed(300);
+$pb-&gt;setIncrement(10);
+
+// Adds additional labels
+$pb-&gt;addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt1', 'Fire at will');
+
+$pb-&gt;addLabel(HTML_PROGRESS2_LABEL_CROSSBAR, 'crs1');
+$pb-&gt;setLabelAttributes('crs1', array(
+    'valign' =&gt; 'top',
+    'align'  =&gt; 'center',
+    'width'  =&gt; 170,
+    'color'  =&gt; 'blue'
+));
+
+$pb-&gt;addLabel(HTML_PROGRESS2_LABEL_STEP, 'stp1');
+$pb-&gt;setLabelAttributes('stp1', array(
+    'valign' =&gt; 'bottom',
+    'color'  =&gt; 'blue'
+));
+
+$pb-&gt;addLabel(HTML_PROGRESS2_LABEL_BUTTON, 'btn1', 'Run again');
+$pb-&gt;setLabelAttributes('btn1', array(
+    'width' =&gt; 100,
+    'top' =&gt; 0,
+    'color' =&gt; 'red'
+));
+?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+&lt;title&gt;Labels Progress2 example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+&lt;?php echo $pb-&gt;getStyle(); ?&gt;
+
+body {
+    background-color: #E0E0E0;
+    color: #000000;
+    font-family: Verdana, Arial;
+}
+// --&gt;
+&lt;/style&gt;
+&lt;?php echo $pb-&gt;getScript(false); ?&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+$pb-&gt;display();
+$pb-&gt;run();
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+      
+     </pre>
+      </div>
+
+      <p></p>
+   </div>
+</div>
+<table class="qfamsFooter">
+   <tr>
+      <td align="left">HTML_Progress2 : The Definitive Guide</td>
+      <td align="right">v 1.0.0 : September 23, 2005</td>
+   </tr>
+</table>
+<div class="navfooter"><hr>
+   <table summary="Navigation footer" width="100%">
+      <tr>
+         <td align="left" width="40%"><a accesskey="p" href="ch18s02.html">Prev</a> </td>
+         <td align="center" width="20%"><a accesskey="u" href="ch18.html">Up</a></td>
+         <td align="right" width="40%"> <a accesskey="n" href="ch18s04.html">Next</a></td>
+      </tr>
+      <tr>
+         <td align="left" valign="top" width="40%">Indeterminate Mode usage  </td>
+         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
+         <td align="right" valign="top" width="40%"> Monitoring usage 
+         </td>
+      </tr>
+   </table>
+</div>
+</body>
+</html> 

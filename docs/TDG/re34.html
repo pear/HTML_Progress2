@@ -1,0 +1,139 @@
+<html xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0">
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+   <title>HTML_Progress2::getLabelAttributes</title>
+   <link href="book.css" rel="stylesheet" type="text/css">
+   <meta content="DocBook XSL Stylesheets V1.69.0" name="generator">
+   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
+   <link href="ch16s04.html#reference.api.graph.label" rel="up" title="Labels ">
+   <link href="re33.html" rel="prev" title="HTML_Progress2::setFrameAttributes">
+   <link href="re35.html" rel="next" title="HTML_Progress2::setLabelAttributes">
+</head>
+<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
+<table class="qfamsHeader">
+   <tr>
+      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
+         <h1>HTML_Progress2 : The Definitive Guide</h1>
+
+         <p>
+         <div class="navheader">
+            <table summary="Navigation header" width="100%">
+               <tr>
+                  <th align="center" colspan="3"><code class="function">HTML_Progress2::getLabelAttributes</code></th>
+               </tr>
+               <tr>
+                  <td align="left" width="20%"><a accesskey="p" href="re33.html">Prev</a> </td>
+                  <th align="center" width="60%">Labels </th>
+                  <td align="right" width="20%"> <a accesskey="n" href="re35.html">Next</a></td>
+               </tr>
+            </table>
+         </div></p>
+      </td>
+   </tr>
+</table>
+<div class="refentry" lang="en"><a name="package.html.html-progress2.html-progress2.getlabelattributes"></a><div class="titlepage"></div>
+   <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p><code class="function">HTML_Progress2::getLabelAttributes</code> &#8212; Returns attributes values of an existing label </p>
+   </div>
+   <div class="refsynopsisdiv">
+      <h2>Synopsis</h2><div class="funcsynopsis">
+<pre class="funcsynopsisinfo">
+      require_once 'HTML/Progress2.php';
+     </pre>
+         <table border="0" cellpadding="0" cellspacing="0" style="padding-bottom: 1em" summary="Function synopsis">
+            <tr>
+               <td><code class="funcdef">mixed <b class="fsfunc">HTML_Progress2::getLabelAttributes</b>(</code></td>
+               <td><var class="pdparam">$name</var>, 
+               </td>
+               <td> </td>
+            </tr>
+            <tr>
+               <td> </td>
+               <td><var class="pdparam"> $asString = FALSE</var><code>)</code>;</td>
+               <td> </td>
+            </tr>
+         </table>
+         <table border="0" cellpadding="0" cellspacing="0" summary="Function argument synopsis">
+            <tr>
+               <td>string  </td>
+               <td><var class="pdparam">$name</var>;</td>
+            </tr>
+            <tr>
+               <td>bool  </td>
+               <td><var class="pdparam"> $asString = FALSE</var>;</td>
+            </tr>
+         </table>
+      </div>
+   </div>
+   <div class="refsect1" lang="en"><a name="package.html.html-progress2.html-progress2.getlabelattributes.desc"></a>
+      <h2>Description</h2>
+
+      <p>Get all attributes of an existing label identified by $name argument. This identifier must be the same as the one given to addLabel() method. Return attributes values in a associative array with key-value couple (by default). Get the attributes as string is also possible. </p>
+   </div>
+   <div class="refsect1" lang="en"><a name="package.html.html-progress2.html-progress2.getlabelattributes.param"></a>
+      <h2>Parameter</h2>
+
+      <p></p>
+      <div class="variablelist">
+         <dl><dt><span class="term"> <span class="type">string</span> 
+            <em class="parameter"><code>$name</code></em> </span></dt>
+            <dd>
+
+            <p>progress label id. </p></dd>
+         </dl>
+      </div>
+
+      <p></p>
+      <div class="variablelist">
+         <dl><dt><span class="term"> <span class="type">boolean</span> 
+            <em class="parameter"><code>$asString</code></em> </span></dt>
+            <dd>
+
+            <p>(optional) whether to return the attributes as string </p></dd>
+         </dl>
+      </div>
+
+      <p></p>
+   </div>
+   <div class="refsect1" lang="en"><a name="package.html.html-progress2.html-progress2.getlabelattributes.see"></a>
+      <h2>See</h2>
+
+      <p><span class="emphasis"><em>see</em></span> 
+      <a href="re35.html" title="HTML_Progress2::setLabelAttributes"><code class="function">HTML_Progress2::setLabelAttributes</code></a> </p>
+   </div>
+   <div class="refsect1" lang="en"><a name="package.html.html-progress2.html-progress2.getlabelattributes.throws"></a>
+      <h2>Throws</h2>
+
+      <p><span class="emphasis"><em>throws</em></span> HTML_PROGRESS2_ERROR_INVALID_INPUT </p>
+   </div>
+   <div class="refsect1" lang="en"><a name="package.html.html-progress2.html-progress2.getlabelattributes.note"></a>
+      <h2>Note</h2>
+
+      <p><span class="emphasis"><em>since</em></span> 2.0.0 </p>
+
+      <p>This function can not be called statically.</p></div>
+</div>
+<table class="qfamsFooter">
+   <tr>
+      <td align="left">HTML_Progress2 : The Definitive Guide</td>
+      <td align="right">v 1.0.0 : September 23, 2005</td>
+   </tr>
+</table>
+<div class="navfooter"><hr>
+   <table summary="Navigation footer" width="100%">
+      <tr>
+         <td align="left" width="40%"><a accesskey="p" href="re33.html">Prev</a> </td>
+         <td align="center" width="20%"><a accesskey="u" href="ch16s04.html#reference.api.graph.label">Up</a></td>
+         <td align="right" width="40%"> <a accesskey="n" href="re35.html">Next</a></td>
+      </tr>
+      <tr>
+         <td align="left" valign="top" width="40%"><code class="function">HTML_Progress2::setFrameAttributes</code> </td>
+         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
+         <td align="right" valign="top" width="40%"> <code class="function">HTML_Progress2::setLabelAttributes</code></td>
+      </tr>
+   </table>
+</div>
+</body>
+</html> 

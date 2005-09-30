@@ -1,0 +1,282 @@
+<html xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0">
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+   <title>Sigma template engine integration </title>
+   <link href="book.css" rel="stylesheet" type="text/css">
+   <meta content="DocBook XSL Stylesheets V1.69.0" name="generator">
+   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
+   <link href="ch08.html" rel="up" title="Chapter 8. Quick Start with HTML_Progress2_Monitor">
+   <link href="ch08s03.html" rel="prev" title="Default improved render">
+   <link href="pt03.html" rel="next" title="Part III. Migrating Guide">
+</head>
+<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
+<table class="qfamsHeader">
+   <tr>
+      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
+         <h1>HTML_Progress2 : The Definitive Guide</h1>
+
+         <p>
+         <div class="navheader">
+            <table summary="Navigation header" width="100%">
+               <tr>
+                  <th align="center" colspan="3">Sigma template engine integration </th>
+               </tr>
+               <tr>
+                  <td align="left" width="20%"><a accesskey="p" href="ch08s03.html">Prev</a> </td>
+                  <th align="center" width="60%">Chapter 8. Quick Start with HTML_Progress2_Monitor</th><td align="right" width="20%"> <a accesskey="n" href="pt03.html">Next</a></td>
+               </tr>
+            </table>
+         </div></p>
+      </td>
+   </tr>
+</table>
+<div class="sect1" lang="en"><div class="titlepage"><div><div>
+            <h2 class="title" style="clear: both"><a name="monitor.sigma"></a>Sigma template engine integration </h2>
+         </div>
+      </div>
+   </div>
+
+   <p>After we have seen how to modify layout presentation, and how to link monitor with the main user task. We will now see how to combine a work to do (task) and listen events when they are triggered. </p>
+
+   <p>In this example we will simulate pictures upload monitoring. Here is a preview of final result. </p>
+   <div class="screenshot"><div><img src="img/monitor2.png"></div>
+   </div>
+
+   <p></p>
+
+   <p></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'HTML/Progress2/Monitor.php';
+require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
+require_once 'HTML/Template/Sigma.php';
+
+function getmicrotime($time)
+{
+    list($usec, $sec) = explode(' ', $time);
+    return ((float)$usec + (float)$sec);
+
+}
+
+class myObservatory
+{
+    function myObserver(&amp;$notification) <a name="monitor2.observer"></a><img alt="1" border="0" src="img/callouts/1.gif">
+    {
+        static $time_start;
+        global $pm;
+
+        $notifyName = $notification-&gt;getNotificationName();
+        $notifyInfo = $notification-&gt;getNotificationInfo();
+        $notifyObj  =&amp;$notification-&gt;getNotificationObject(); <a name="monitor2.meter"></a><img alt="2" border="0" src="img/callouts/2.gif">
+
+        switch ($notifyName) {
+            case 'onSubmit':
+                $time_start = getmicrotime($notifyInfo['time']);
+                break;
+            case 'onLoad':
+                $time_elapse = getmicrotime($notifyInfo['time']) - $time_start;
+                $pm-&gt;setCaption("upload done (elapse time = $time_elapse  sec.)");
+                break;
+            case 'onChange':
+                $pValue = $notifyInfo['value'];
+                if ($pValue == 10) {
+                    $pic = 'picture1.jpg';
+                } elseif ($pValue == 45) {
+                    $pic = 'picture2.jpg';
+                } elseif ($pValue == 70) {
+                    $pic = 'picture3.jpg';
+                } else {
+                    $pic = false;
+                }
+                if ($pic) {
+                    $pm-&gt;setCaption("upload $pic in progress ... "
+                                  . "Start at $pValue%");
+                }
+        }
+        $notifyObj-&gt;sleep(); <a name="monitor2.meter"></a><img alt="2" border="0" src="img/callouts/2.gif">
+    }
+}
+
+$pm = new HTML_Progress2_Monitor('uploadMonitor', array(
+    'title'  =&gt; 'Upload your pictures',
+    'start'  =&gt; 'Upload',
+    'cancel' =&gt; 'Stop',
+    'button' =&gt; array('style' =&gt; 'width:80px;')
+));
+
+$pb =&amp; $pm-&gt;getProgressElement();  <a name="monitor2.meter"></a><img alt="2" border="0" src="img/callouts/2.gif">
+$pb-&gt;setAnimSpeed(50);
+$pb-&gt;setCellCount(20);
+$pb-&gt;setProgressAttributes('background-color=#EEE');
+$pb-&gt;setCellAttributes('inactive-color=#FFF active-color=#444');
+$pb-&gt;setLabelAttributes('pct1', 'color=navy');
+$pb-&gt;setLabelAttributes('monitorStatus', 'color=navy font-size=10');
+$pb-&gt;addListener(array('myObservatory','myObserver')); <a name="monitor2.observer"></a><img alt="1" border="0" src="img/callouts/1.gif">
+
+$pm-&gt;setProgressElement($pb);
+
+$tpl =&amp; new HTML_Template_Sigma('.'); <a name="monitor2.renderer"></a><img alt="4" border="0" src="img/callouts/4.gif">
+$tpl-&gt;loadTemplateFile('itdynamic.html');
+
+$tpl-&gt;setVariable(array(
+    'qf_style'  =&gt; $pm-&gt;getStyle(),       <a name="monitor2.css.js"></a><img alt="3" border="0" src="img/callouts/3.gif">
+    'qf_script' =&gt; $pm-&gt;getScript(false)  <a name="monitor2.css.js"></a><img alt="3" border="0" src="img/callouts/3.gif">
+));
+
+$renderer =&amp; new HTML_QuickForm_Renderer_ITDynamic($tpl); <a name="monitor2.renderer"></a><img alt="4" border="0" src="img/callouts/4.gif">
+$renderer-&gt;setElementBlock(array('buttons' =&gt; 'qf_buttons'));
+
+$pm-&gt;accept($renderer);
+
+$tpl-&gt;show();
+$pm-&gt;run();
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+   </pre>
+
+   <p></p>
+
+   <p></p>
+   <div class="calloutlist">
+      <table border="0" summary="Callout list">
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor2.observer"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Main task (upload pictures simulation) is combined with events observation. User callback is not attached to the progress meter but as an observer (<code class="methodname">myObserver()</code> method of 
+               <code class="classname">myObservatory</code> class). </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor2.meter"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Progress meter linked to the monitor is retrieved in observer user callback as instance 
+               <code class="varname">$notifyObj</code>. Smooth animation with 
+               <code class="methodname">HTML_Progress2::sleep()</code> is then possible. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor2.css.js"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Cascading style sheet and javascript code are merged into template file 
+               <span class="bold"><strong>itdynamic.html</strong></span> for a good progress meter presentation and handling. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor2.renderer"><img alt="4" border="0" src="img/callouts/4.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>This time we use QF ITDynamic renderer and Sigma as template engine. </p>
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <p></p>
+
+   <p>Template file <span class="bold"><strong>itdynamic.html</strong></span> used by Sigma is: </p>
+<pre class="programlisting">
+    
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+&lt;title&gt;Progress2 Monitor - ITDynamic renderer &lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+body {
+    font-family: Verdana, Arial;
+}
+th {
+    font-family: sans-serif;
+    font-size: small;
+    color: #FFF;
+    background-color: #AAA;
+}
+.maintable {
+    border: thin dashed #D0D0D0;
+    background-color : #EEE;
+}
+{qf_style}
+//--&gt;
+&lt;/style&gt;
+{qf_script}
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;ITDynamic QF renderer&lt;/h1&gt;
+&lt;p&gt;This example simulate a pictures uploads.&lt;br/&gt;
+First image upload at 10%, second at 45%, and third at 70%.&lt;/p&gt;
+
+&lt;form{qf_attributes}&gt;
+&lt;!-- BEGIN qf_hidden_block --&gt;
+&lt;div style="display: none;"&gt;
+  &lt;!-- BEGIN qf_hidden_loop --&gt;{qf_hidden}&lt;!-- END qf_hidden_loop --&gt;
+&lt;/div&gt;
+&lt;!-- END qf_hidden_block --&gt;
+
+&lt;table class="maintable" width="600" align="center"&gt;
+&lt;!-- BEGIN qf_main_loop --&gt;
+&lt;tr&gt;&lt;td valign="top"&gt;
+  &lt;table width="100%" cellpadding="4"&gt;
+  &lt;!-- BEGIN qf_header --&gt;&lt;tr&gt;&lt;th&gt;{qf_header}&lt;/th&gt;&lt;/tr&gt;&lt;!-- END qf_header --&gt;
+  &lt;!-- BEGIN qf_element --&gt;&lt;tr&gt;&lt;td&gt;{qf_element}&lt;/td&gt;&lt;/tr&gt;&lt;!-- END qf_element --&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;!-- END qf_main_loop --&gt;
+&lt;/table&gt;
+
+&lt;!-- BEGIN qf_buttons --&gt;
+&lt;table width="600" align="center"&gt;
+&lt;tr&gt;
+  &lt;td align="right"&gt;
+&lt;!-- BEGIN qf_buttons_loop --&gt;
+  &lt;!-- BEGIN qf_buttons_element --&gt;{qf_separator}{qf_element}&lt;!-- END qf_buttons_element --&gt;
+&lt;!-- END qf_buttons_loop --&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;!-- END qf_buttons --&gt;
+
+&lt;/form&gt;
+
+&lt;!-- BEGIN qf_errors --&gt;
+&lt;!-- BEGIN qf_error_loop --&gt;
+{qf_error}&lt;br /&gt;
+&lt;!-- END qf_error_loop --&gt;
+&lt;!-- END qf_errors --&gt;
+    
+   </pre>
+
+   <p></p>
+</div>
+<table class="qfamsFooter">
+   <tr>
+      <td align="left">HTML_Progress2 : The Definitive Guide</td>
+      <td align="right">v 1.0.0 : September 23, 2005</td>
+   </tr>
+</table>
+<div class="navfooter"><hr>
+   <table summary="Navigation footer" width="100%">
+      <tr>
+         <td align="left" width="40%"><a accesskey="p" href="ch08s03.html">Prev</a> </td>
+         <td align="center" width="20%"><a accesskey="u" href="ch08.html">Up</a></td>
+         <td align="right" width="40%"> <a accesskey="n" href="pt03.html">Next</a></td>
+      </tr>
+      <tr>
+         <td align="left" valign="top" width="40%">Default improved render </td>
+         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
+         <td align="right" valign="top" width="40%"> Part III. Migrating Guide</td>
+      </tr>
+   </table>
+</div>
+</body>
+</html> 

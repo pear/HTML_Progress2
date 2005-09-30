@@ -1,0 +1,234 @@
+<html xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0">
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+   <title>How to observe events ?</title>
+   <link href="book.css" rel="stylesheet" type="text/css">
+   <meta content="DocBook XSL Stylesheets V1.69.0" name="generator">
+   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
+   <link href="ch07.html" rel="up" title="Chapter 7. Listener">
+   <link href="ch07.html" rel="prev" title="Chapter 7. Listener">
+   <link href="ch08.html" rel="next" title="Chapter 8. Quick Start with HTML_Progress2_Monitor">
+</head>
+<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
+<table class="qfamsHeader">
+   <tr>
+      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
+         <h1>HTML_Progress2 : The Definitive Guide</h1>
+
+         <p>
+         <div class="navheader">
+            <table summary="Navigation header" width="100%">
+               <tr>
+                  <th align="center" colspan="3">How to observe events ?</th>
+               </tr>
+               <tr>
+                  <td align="left" width="20%"><a accesskey="p" href="ch07.html">Prev</a> </td>
+                  <th align="center" width="60%">Chapter 7. Listener</th><td align="right" width="20%"> <a accesskey="n" href="ch08.html">Next</a></td>
+               </tr>
+            </table>
+         </div></p>
+      </td>
+   </tr>
+</table>
+<div class="sect1" lang="en"><div class="titlepage"><div><div>
+            <h2 class="title" style="clear: both"><a name="listener.observe"></a>How to observe events ?</h2></div>
+      </div>
+   </div>
+
+   <p>Suppose we decide to send a mail after a process is over (progress meter reach 100%) and keep aware some users. We will see how to do this now. </p>
+
+   <p><span class="bold"><strong>First step</strong></span> is to declare a function (user callback) that will observe all progress meter events. </p>
+
+   <p>Interface of such function (callback) is pretty easy. It requires only one argument passed by reference (<code class="varname">$notification</code>) and that should contains a 
+   <span class="emphasis"><em>PEAR::Event_Dispatcher</em></span> instance. </p>
+
+   <p>Here are, in purpose of our tutorial, a function that will observe events and send a mail, at end of process, to webmaster@site.com with a short message that gave time elapsed. </p>
+
+   <p><span class="bold"><strong>Second step</strong></span> is to attach this function (user callback) to the progress meter with the 
+   <code class="methodname">addListener()</code> method. </p>
+
+   <p></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'HTML/Progress2.php';
+
+function getmicrotime($time)
+{
+    list($usec, $sec) = explode(' ', $time);
+    return ((float)$usec + (float)$sec);
+
+}
+
+function myObserver(&amp;$notification) <a name="listener.cbUser"></a><img alt="5" border="0" src="img/callouts/5.gif">
+{
+    static $time_start;
+
+    $notifyName = $notification-&gt;getNotificationName(); <a name="listener.notify.name"></a><img alt="1" border="0" src="img/callouts/1.gif">
+    $notifyInfo = $notification-&gt;getNotificationInfo(); <a name="listener.notify.info"></a><img alt="2" border="0" src="img/callouts/2.gif">
+
+    switch ($notifyName) {
+        case 'onSubmit':  <a name="listener.notify.onsubmit"></a><img alt="3" border="0" src="img/callouts/3.gif">
+            $time_start = getmicrotime($notifyInfo['time']);
+            break;
+        case 'onLoad':    <a name="listener.notify.onload"></a><img alt="4" border="0" src="img/callouts/4.gif">
+            $time_elapse = getmicrotime($notifyInfo['time']) - $time_start;
+            error_log ('process ID=5 is over (elapse time = '. $time_elapse . ' sec.)',
+                       3, 'progress_observer.log');
+            break;
+    }
+}
+
+$pb = new HTML_Progress2();
+$pb-&gt;setAnimSpeed(200);
+$pb-&gt;setIncrement(10);
+$pb-&gt;addListener('myObserver'); <a name="listener.cbUser"></a><img alt="5" border="0" src="img/callouts/5.gif">
+?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+&lt;title&gt;Observer Pattern&lt;/title&gt;
+
+&lt;?php
+echo $pb-&gt;getStyle(false);
+echo $pb-&gt;getScript(false);
+?&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+$pb-&gt;display();
+$pb-&gt;run();  
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+   </pre>
+
+   <p></p>
+
+   <p></p>
+   <div class="calloutlist">
+      <table border="0" summary="Callout list">
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#listener.notify.name"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p><code class="varname">$notifyName</code> contains event name triggered. Three issues : 
+               <span class="emphasis"><em>onSubmit</em></span>, 
+               <span class="emphasis"><em>onLoad</em></span>, 
+               <span class="emphasis"><em>onChange</em></span>. </p>
+
+               <p></p>
+               <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <table border="0" summary="Caution">
+                     <tr>
+                        <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Caution]" src="img/admons/caution.png"></td>
+                        <th align="left">Caution</th>
+                     </tr>
+                     <tr>
+                        <td align="left" valign="top"> Event name is case sensitive: 
+                           <span class="emphasis"><em>onsubmit</em></span> does not match 
+                           <span class="emphasis"><em>onSubmit</em></span>. 
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+
+               <p></p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#listener.notify.info"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p><code class="varname">$notifyInfo</code> contains array of additional informations. </p>
+
+               <p>For example : </p>
+<pre class="programlisting">
+Array
+(
+    [handler] =&gt; run
+    [value] =&gt; 100
+    [sender] =&gt; html_progress2
+    [time] =&gt; 0.26838700 1127382686
+)
+      </pre>
+
+               <p></p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#listener.notify.onsubmit"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>When progress meter start, it trigger a 
+               <span class="emphasis"><em>onSubmit</em></span> event through the 
+               <code class="methodname">run()</code> method. This event is catched into user callback and with help of additionnal info we compute and store start time. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#listener.notify.onload"><img alt="4" border="0" src="img/callouts/4.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>When progress meter reach 100%, it trigger a 
+               <span class="emphasis"><em>onLoad</em></span> event through the 
+               <code class="methodname">run()</code> method. This event is catched into user callback. We compute elapse time and send final result by mail to the webmaster of site.com </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#listener.cbUser"><img alt="5" border="0" src="img/callouts/5.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>All observers attached, are notified by each event. It's up to you to decide if you have to process an event or not. Here we will proceed only two events: 
+               <span class="emphasis"><em>onSubmit</em></span>, 
+               <span class="emphasis"><em>onLoad</em></span>. </p>
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <p></p>
+
+   <p><span class="bold"><strong>Third step</strong></span> (optional) is stop listen events and then detach user function (callback) to the progress meter with the 
+   <code class="methodname">removeListener()</code> method. </p>
+   <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+      <table border="0" summary="Note">
+         <tr>
+            <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Note]" src="img/admons/note.png"></td>
+            <th align="left">Note</th>
+         </tr>
+         <tr>
+            <td align="left" valign="top"> While there are any observers attached, progress meter will continue to notify them of each event when they occured. 
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <p></p>
+</div>
+<table class="qfamsFooter">
+   <tr>
+      <td align="left">HTML_Progress2 : The Definitive Guide</td>
+      <td align="right">v 1.0.0 : September 23, 2005</td>
+   </tr>
+</table>
+<div class="navfooter"><hr>
+   <table summary="Navigation footer" width="100%">
+      <tr>
+         <td align="left" width="40%"><a accesskey="p" href="ch07.html">Prev</a> </td>
+         <td align="center" width="20%"><a accesskey="u" href="ch07.html">Up</a></td>
+         <td align="right" width="40%"> <a accesskey="n" href="ch08.html">Next</a></td>
+      </tr>
+      <tr>
+         <td align="left" valign="top" width="40%">Chapter 7. Listener </td>
+         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
+         <td align="right" valign="top" width="40%"> Chapter 8. Quick Start with HTML_Progress2_Monitor</td>
+      </tr>
+   </table>
+</div>
+</body>
+</html> 

@@ -1,0 +1,178 @@
+<html xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0">
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+   <title>Default render</title>
+   <link href="book.css" rel="stylesheet" type="text/css">
+   <meta content="DocBook XSL Stylesheets V1.69.0" name="generator">
+   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
+   <link href="ch08.html" rel="up" title="Chapter 8. Quick Start with HTML_Progress2_Monitor">
+   <link href="ch08.html" rel="prev" title="Chapter 8. Quick Start with HTML_Progress2_Monitor">
+   <link href="ch08s03.html" rel="next" title="Default improved render">
+</head>
+<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
+<table class="qfamsHeader">
+   <tr>
+      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
+         <h1>HTML_Progress2 : The Definitive Guide</h1>
+
+         <p>
+         <div class="navheader">
+            <table summary="Navigation header" width="100%">
+               <tr>
+                  <th align="center" colspan="3">Default render</th>
+               </tr>
+               <tr>
+                  <td align="left" width="20%"><a accesskey="p" href="ch08.html">Prev</a> </td>
+                  <th align="center" width="60%">Chapter 8. Quick Start with HTML_Progress2_Monitor</th><td align="right" width="20%"> <a accesskey="n" href="ch08s03.html">Next</a></td>
+               </tr>
+            </table>
+         </div></p>
+      </td>
+   </tr>
+</table>
+<div class="sect1" lang="en"><div class="titlepage"><div><div>
+            <h2 class="title" style="clear: both"><a name="monitor.default"></a>Default render</h2></div>
+      </div>
+   </div>
+
+   <p>Without any change, we can get a decent dialog box with a default progress meter such as : </p>
+   <div class="screenshot"><div><img src="img/monitor0.png"></div>
+   </div>
+
+   <p>As you can see in source code below, there are no difficulties. </p>
+<pre class="programlisting">
+&lt;?php
+require_once 'HTML/Progress2/Monitor.php';
+
+$pm = new HTML_Progress2_Monitor(); <a name="monitor0.new.form"></a><img alt="1" border="0" src="img/callouts/1.gif">
+
+$pb =&amp; $pm-&gt;getProgressElement(); <a name="monitor0.meter.options"></a><img alt="2" border="0" src="img/callouts/2.gif">
+$pb-&gt;setAnimSpeed(200);
+$pb-&gt;setIncrement(10);
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;?php
+echo $pm-&gt;getStyle(false);  <a name="monitor0.css.js"></a><img alt="3" border="0" src="img/callouts/3.gif">
+echo $pm-&gt;getScript(false); <a name="monitor0.css.js"></a><img alt="3" border="0" src="img/callouts/3.gif">
+?&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;?php
+$pm-&gt;display();  <a name="monitor0.display"></a><img alt="4" border="0" src="img/callouts/4.gif">
+$pm-&gt;run();      <a name="monitor0.run"></a><img alt="5" border="0" src="img/callouts/5.gif">
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+   </pre>
+
+   <p></p>
+
+   <p></p>
+   <div class="calloutlist">
+      <table border="0" summary="Callout list">
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor0.new.form"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Without any arguments, all defaults are applied on HTML_Progress2_Monitor new instance construction. </p>
+
+               <p></p>
+               <div class="variablelist">
+                  <dl><dt><span class="term"> $formName (argument 1 of class constructor) 
+                     </span></dt>
+                     <dd>
+
+                     <p>Name of monitor dialog box (QuickForm). Default is 
+                     <span class="bold"><strong>ProgressMonitor</strong></span> </p></dd>
+                  </dl>
+               </div>
+
+               <p></p>
+               <div class="variablelist">
+                  <dl><dt><span class="term"> $attributes (argument 2 of class constructor) 
+                     </span></dt>
+                     <dd>
+
+                     <p>List of renderer options. Default are </p>
+                     <div class="itemizedlist">
+                        <ul type="disc">
+                           <li>dialog box <span class="bold"><strong>title</strong></span> = In progress ... </li>
+                           <li>dialog box <span class="bold"><strong>start</strong></span> button = Start </li>
+                           <li>dialog box <span class="bold"><strong>cancel</strong></span> button = Cancel </li>
+                           <li>dialog box <span class="bold"><strong>button</strong></span> style = no style </li>
+                           <li><span class="bold"><strong>autorun</strong></span> feature = false </li>
+                           <li>dialog box <span class="bold"><strong>caption</strong></span> = bottom left aligned under progress meter </li>
+                        </ul>
+                     </div>
+
+                     <p></p></dd>
+                  </dl>
+               </div>
+
+               <p></p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor0.meter.options"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>For demonstration purpose only, we get embedded basic progress meter into the progress monitor and change increment and speed(delay) to do a smooth animation. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor0.css.js"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>We get cascading stylesheet and javascript code mandatory to a good progress meter presentation and handling. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor0.display"><img alt="4" border="0" src="img/callouts/4.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Show initial state of progress monitor before running. Will works only with default QF renderer. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#monitor0.run"><img alt="5" border="0" src="img/callouts/5.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Catch user actions (start, stop) and meter progression. </p>
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <p></p>
+
+   <p>This monitor do nothing yet. In next example we will see how to improve a bit the presentation. </p>
+</div>
+<table class="qfamsFooter">
+   <tr>
+      <td align="left">HTML_Progress2 : The Definitive Guide</td>
+      <td align="right">v 1.0.0 : September 23, 2005</td>
+   </tr>
+</table>
+<div class="navfooter"><hr>
+   <table summary="Navigation footer" width="100%">
+      <tr>
+         <td align="left" width="40%"><a accesskey="p" href="ch08.html">Prev</a> </td>
+         <td align="center" width="20%"><a accesskey="u" href="ch08.html">Up</a></td>
+         <td align="right" width="40%"> <a accesskey="n" href="ch08s03.html">Next</a></td>
+      </tr>
+      <tr>
+         <td align="left" valign="top" width="40%">Chapter 8. Quick Start with HTML_Progress2_Monitor </td>
+         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
+         <td align="right" valign="top" width="40%"> Default improved render</td>
+      </tr>
+   </table>
+</div>
+</body>
+</html> 

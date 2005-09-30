@@ -1,0 +1,177 @@
+<html xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0">
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+   <title>Monitoring usage </title>
+   <link href="book.css" rel="stylesheet" type="text/css">
+   <meta content="DocBook XSL Stylesheets V1.69.0" name="generator">
+   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
+   <link href="ch18.html" rel="up" title="Chapter 18. Examples">
+   <link href="ch18s03.html" rel="prev" title="Multiple Labels usage ">
+</head>
+<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
+<table class="qfamsHeader">
+   <tr>
+      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
+         <h1>HTML_Progress2 : The Definitive Guide</h1>
+
+         <p>
+         <div class="navheader">
+            <table summary="Navigation header" width="100%">
+               <tr>
+                  <th align="center" colspan="3">Monitoring usage </th>
+               </tr>
+               <tr>
+                  <td align="left" width="20%"><a accesskey="p" href="ch18s03.html">Prev</a> </td>
+                  <th align="center" width="60%">Chapter 18. Examples</th><td align="right" width="20%"> </td>
+               </tr>
+            </table>
+         </div></p>
+      </td>
+   </tr>
+</table>
+<div class="sect1" lang="en"><div class="titlepage"><div><div>
+            <h2 class="title" style="clear: both"><a name="examples.monitor"></a>Monitoring usage </h2>
+         </div>
+      </div>
+   </div>
+   <div class="toc">
+      <dl><dt><span class="sect2"><a href="ch18s04.html#examples.monitor.1"></a></span></dt>
+      </dl>
+   </div>
+   <div class="sect2" lang="en"><div class="titlepage"></div>
+
+      <p></p>
+      <div class="figure"><a name="id4828847"></a>
+
+         <p class="title"><b>Figure 18.4. Monitoring usage </b></p><div class="screenshot"><div><img alt="Monitoring usage" src="img/monitor1.png"></div>
+         </div>
+      </div>
+
+      <p></p>
+
+      <p>Goals of this example are to show how to include a progress bar into a quickform window, that can be stop at any time by user-end, and used this monitor with the indeterminate mode. </p>
+
+      <p></p>
+      <div class="example"><a name="id4828811"></a>
+
+         <p class="title"><b>Example 18.4. progress bar into a quickform window 
+         </b></p>
+<pre class="programlisting">
+      
+&lt;?php
+require_once 'HTML/Progress2/Monitor.php';
+
+function myFunctionHandler($pValue, &amp;$pb)
+{
+    global $pm;
+
+    $pb-&gt;sleep();
+
+    if (!$pb-&gt;isIndeterminate()) {
+        if (fmod($pValue,10) == 0) {
+            $pm-&gt;setCaption('myFunctionHandler -&gt; progress value is = %value%',
+                array('value' =&gt; $pValue)
+            );
+        }
+    } elseif ($pValue == 60) {
+        $pb-&gt;setIndeterminate(false);
+        $pb-&gt;setValue(0);
+    }
+}
+
+$pm = new HTML_Progress2_Monitor('frmMonitor4', array(
+    'button' =&gt; array('style' =&gt; 'width:80px;'),
+    'autorun' =&gt; true
+    )
+);
+
+$pb =&amp; $pm-&gt;getProgressElement();
+$pb-&gt;setAnimSpeed(100);
+$pb-&gt;setCellCount(20);
+$pb-&gt;setProgressAttributes('background-color=#EEE');
+$pb-&gt;setCellAttributes('inactive-color=#FFF active-color=#444444');
+$pb-&gt;setLabelAttributes('pct1', 'color=navy');
+$pb-&gt;setLabelAttributes('monitorStatus', 'color=navy font-size=10');
+$pb-&gt;setIndeterminate(true);
+$pb-&gt;setProgressHandler('myFunctionHandler');
+
+$pm-&gt;setProgressElement($pb);
+?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+&lt;title&gt;Custom Progress2 Monitor &lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+body {
+    background-color: lightgrey;
+    font-family: Verdana, Arial;
+}
+&lt;?php echo $pm-&gt;getStyle(); ?&gt;
+// --&gt;
+&lt;/style&gt;
+&lt;?php echo $pm-&gt;getScript(false); ?&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;?php
+$renderer =&amp; HTML_QuickForm::defaultRenderer();
+$renderer-&gt;setFormTemplate('
+&lt;form{attributes}&gt;
+  &lt;table width="450" border="0" cellpadding="3" cellspacing="2" bgcolor="#EEEEEE"&gt;
+  {content}
+  &lt;/table&gt;
+&lt;/form&gt;
+');
+$renderer-&gt;setElementTemplate('
+  &lt;tr&gt;
+    &lt;td valign="top" style="padding-left:15px;"&gt;
+    {element}
+    &lt;/td&gt;
+  &lt;/tr&gt;
+');
+$renderer-&gt;setHeaderTemplate('
+  &lt;tr&gt;
+    &lt;td style="background:#7B7B88;color:#ffc;" align="left" colspan="2"&gt;
+      &lt;b&gt;{header}&lt;/b&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+');
+$pm-&gt;accept($renderer);
+
+echo $renderer-&gt;toHtml();
+$pm-&gt;run();
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+      
+     </pre>
+      </div>
+
+      <p></p>
+   </div>
+</div>
+<table class="qfamsFooter">
+   <tr>
+      <td align="left">HTML_Progress2 : The Definitive Guide</td>
+      <td align="right">v 1.0.0 : September 23, 2005</td>
+   </tr>
+</table>
+<div class="navfooter"><hr>
+   <table summary="Navigation footer" width="100%">
+      <tr>
+         <td align="left" width="40%"><a accesskey="p" href="ch18s03.html">Prev</a> </td>
+         <td align="center" width="20%"><a accesskey="u" href="ch18.html">Up</a></td>
+         <td align="right" width="40%"> </td>
+      </tr>
+      <tr>
+         <td align="left" valign="top" width="40%">Multiple Labels usage  </td>
+         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
+         <td align="right" valign="top" width="40%"> </td>
+      </tr>
+   </table>
+</div>
+</body>
+</html> 
