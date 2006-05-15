@@ -22,10 +22,12 @@
 
 require_once 'HTML/Common.php';
 require_once 'Event/Dispatcher.php';
-require_once 'PHP/Compat.php';
 
-PHP_Compat::loadFunction('ob_get_clean');
-PHP_Compat::loadConstant('PHP_EOL');
+if (version_compare(phpversion(), '5.0.0', '<')) {
+    require_once 'PHP/Compat.php';
+    PHP_Compat::loadFunction('ob_get_clean');
+    PHP_Compat::loadConstant('PHP_EOL');
+}
 
 /**#@+
  * Progress Bar shape types
