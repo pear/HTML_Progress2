@@ -1,3 +1,7 @@
+2006-05-15 Laurent Laville <pear@laurent-laville.org>
+
+    * PEAR::PHP_Compat package begin optional dependency (only required for PHP4)
+
 2005-10-01 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: Final version (stable) 2.0.0 released.
