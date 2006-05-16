@@ -1,3 +1,10 @@
+2006-05-16 Laurent Laville <pear@laurent-laville.org>
+
+    * updates headers comment block for quality assurance :
+      - add @since phpdoc tag
+      - upgrade license from PHP 3.0 to 3.01
+      - upgrade copyright until 2006
+
 2006-05-15 Laurent Laville <pear@laurent-laville.org>
 
     * PEAR::PHP_Compat package begin optional dependency (only required for PHP4)
