@@ -4,19 +4,20 @@
  *
  * PHP versions 4 and 5
  *
- * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
  * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
  *
  * @category   HTML
  * @package    HTML_Progress2
  * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  1997-2005 The PHP Group
- * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @copyright  1997-2006 The PHP Group
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    CVS: $Id$
  * @link       http://pear.php.net/package/HTML_Progress2
+ * @since      File available since Release 2.0.0RC1
  */
 
 require_once 'PEAR.php';
@@ -24,21 +25,14 @@ require_once 'PEAR.php';
 /**
  * This class creates a progress error object, extending the PEAR_Error class.
  *
- * PHP versions 4 and 5
- *
- * LICENSE: This source file is subject to version 3.0 of the PHP license
- * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
- * the PHP License and are unable to obtain it through the web, please
- * send a note to license@php.net so we can mail you a copy immediately.
- *
  * @category   HTML
  * @package    HTML_Progress2
  * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  1997-2005 The PHP Group
- * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @copyright  1997-2006 The PHP Group
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/HTML_Progress2
+ * @since      Class available since Release 2.0.0RC1
  */
 
 class HTML_Progress2_Error extends PEAR_Error
@@ -118,7 +112,7 @@ class HTML_Progress2_Error extends PEAR_Error
             }
         }
     }
-    
+
     /**
      * Get error level from an error object
      *
@@ -157,7 +151,7 @@ class HTML_Progress2_Error extends PEAR_Error
     /**
      * Returns the context of execution formatted.
      *
-     * @param      string    $format        the context of execution format 
+     * @param      string    $format        the context of execution format
      *
      * @return     string
      * @since      2.0.0
@@ -173,11 +167,11 @@ class HTML_Progress2_Error extends PEAR_Error
             $context = $this->getBacktrace();
             $context = @array_pop($context);
         }
-   
+
         if ($context) {
             $file  = $context['file'];
             $line  = $context['line'];
-            
+
             if (isset($context['class'])) {
                 $func  = $context['class'];
                 $func .= $context['type'];
@@ -193,9 +187,9 @@ class HTML_Progress2_Error extends PEAR_Error
     }
 
     /**
-     * Print an error message 
+     * Print an error message
      *
-     * @param      array     $userinfo      has of parameters 
+     * @param      array     $userinfo      has of parameters
      *
      * @return     void
      * @since      2.0.0
@@ -212,7 +206,7 @@ class HTML_Progress2_Error extends PEAR_Error
         $display = array_merge($displayDefault, $displayConf);
 
         $contextExec = $this->sprintContextExec($display['contextFormat']);
-        
+
         return sprintf($display['lineFormat'] . $display['eol'], ucfirst($userinfo['level']), $this->getMessage(), $contextExec);
     }
 
@@ -242,7 +236,7 @@ class HTML_Progress2_Error extends PEAR_Error
         $destination = '';
         $extra_headers = '';
         $send = true;
-                
+
         switch ($message_type) {
             case 0:  // LOG_TYPE_SYSTEM:
                 break;
@@ -263,7 +257,7 @@ class HTML_Progress2_Error extends PEAR_Error
             $timestamp = isset($userinfo['time']) ? $userinfo['time'] : $time;
 
             $contextExec = $this->sprintContextExec($log['contextFormat']);
-            $message = sprintf($log['lineFormat'] . $log['eol'], 
+            $message = sprintf($log['lineFormat'] . $log['eol'],
                            strftime($log['timeFormat'], $timestamp),
                            $log['ident'],
                            $userinfo['level'],
@@ -278,7 +272,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * Default internal error handler
      * Dies if the error is an exception (and would have died anyway)
      *
-     * @param      int       $code          a numeric error code. 
+     * @param      int       $code          a numeric error code.
      *                                      Valid are HTML_PROGRESS_ERROR_* constants
      * @param      string    $level         error level ('exception', 'error', 'warning', ...)
      *
@@ -298,9 +292,9 @@ class HTML_Progress2_Error extends PEAR_Error
     /**
      * User callback to generate error messages for any instance
      *
-     * @param      int       $code          a numeric error code. 
+     * @param      int       $code          a numeric error code.
      *                                      Valid are HTML_PROGRESS_ERROR_* constants
-     * @param      mixed     $userinfo      if you need to pass along parameters 
+     * @param      mixed     $userinfo      if you need to pass along parameters
      *                                      for dynamic messages
      *
      * @return     string
@@ -310,7 +304,7 @@ class HTML_Progress2_Error extends PEAR_Error
     function _msgCallback($code, $userinfo)
     {
         $errorMessages = HTML_Progress2_Error::_getErrorMessage();
-        
+
         if (isset($errorMessages[$code])) {
             $mainmsg = $errorMessages[$code];
         } else {
@@ -357,7 +351,7 @@ class HTML_Progress2_Error extends PEAR_Error
                 'invalid callback, parameter #%paramnum% '
                     . '"%var%" expecting %element%,'
                     . ' instead got "%was%" does not exists',
-            HTML_PROGRESS2_ERROR_DEPRECATED => 
+            HTML_PROGRESS2_ERROR_DEPRECATED =>
                 'method is deprecated '
                     . 'use %newmethod% instead of %oldmethod%',
             HTML_PROGRESS2_ERROR_INVALID_OPTION =>
