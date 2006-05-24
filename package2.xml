@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.4.9" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
-http://pear.php.net/dtd/tasks-1.0.xsd
-http://pear.php.net/dtd/package-2.0
-http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.4.9" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_Progress2</name>
  <channel>pear.php.net</channel>
  <summary>How to include a loading bar in your XHTML documents quickly and easily.</summary>
@@ -22,60 +19,35 @@ Features:
 - allows many progress meter on same page without uses of iframe solution.
 - error handling system that support native PEAR_Error, but also PEAR_ErrorStack, and
   any other system you might want to plug-in.
-- PHP 5 ready.
- </description>
+- PHP 5 ready.</description>
  <lead>
   <name>Laurent Laville</name>
   <user>farell</user>
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2005-10-01</date>
+ <date>2006-05-24</date>
+ <time>13:46:26</time>
  <version>
-  <release>2.0.0</release>
+  <release>2.0.1</release>
   <api>2.0.0</api>
  </version>
  <stability>
   <release>stable</release>
   <api>stable</api>
  </stability>
- <license>PHP License 3.0</license>
- <notes>* news (HTML_Progress)
-- active cell, and background progress meter support now
-background-image, background-repeat, background-position attributes
+ <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+ <notes>* bugs
+- fixes closing html style tag to avoid javascript error; see console of Firefox.
+- fixes Bug #7437 : wrong text in Doc (thanks to Stefan Valouch for reading it carefully)
 
-* news (HTML_Progress_Lite)
-- add font-style attribute for all label categories
-(ability to use italic for percent and text labels)
-
-* improvements
-- standardized observer notify interface for all events
-
-* bugs
-- Fixed my first bug in HTML_Progress2_Lite::setLabelAttributes() method
-related to font group attributes.
-- Fixed bug in moveNext() method: avoid exceed max limit
-- Fixed bug setBorderPainted(false) inefficient with setBorderAttributes()
+* news
+- PEAR::PHP_Compat package begin optional dependency (only required for PHP4)
+- upgrade license from PHP 3.0 to 3.01
 
 * Quality Assurance
-The Definitive (User) Guide:
-- include a complete english guide for both beginners and expert users.
-  This is the many html files version. Others format are
-  available to download at URI http://pear.laurent-laville.org/HTML_Progress2/docs
-More W3C/CSS standard compliance:
-- background-color attribute has transparent rather than null string by default
-- frame attribute border renamed to border-width
-API documentation generation:
-- updates headers comment block (package and methods)
-- added @example tag to have ability to display (highlight) source code
-- added @link tag to have ability to display a screenshot (PNG image)
-- removed all @tutorial tag
-- added @ignore tag on all unit testcases and some others files
-to avoid includes in API docs
-
-
-Live demos, screenshots, source codes and much more are available on my
-project homepage at http://pear.laurent-laville.org/HTML_Progress2
+- The Definitive Guide revision number will now follow the package release version.
+- All examples (closing html style tag) were fixed (offline and online).
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -323,17 +295,37 @@ project homepage at http://pear.laurent-laville.org/HTML_Progress2
    </dir> <!-- /examples -->
    <dir name="Progress2">
     <dir name="Generator">
-     <file name="Default.php" role="php" />
-     <file name="HTMLPage2.php" role="php" />
-     <file name="ITDynamic.php" role="php" />
-     <file name="pages.php" role="php" />
-     <file name="Preview.php" role="php" />
-     <file name="Process.php" role="php" />
-     <file name="SmartyDynamic.php" role="php" />
+     <file name="Default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="HTMLPage2.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ITDynamic.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="pages.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Preview.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Process.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="SmartyDynamic.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Progress2/Generator -->
-    <file name="Error.php" role="php" />
-    <file name="Generator.php" role="php" />
-    <file name="Monitor.php" role="php" />
+    <file name="Error.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="Generator.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file name="Monitor.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
    </dir> <!-- /Progress2 -->
    <dir name="tests">
     <file name="HTML_Progress2_Bug28.php" role="test" />
@@ -372,13 +364,14 @@ project homepage at http://pear.laurent-laville.org/HTML_Progress2
     <file name="styles.css" role="test" />
     <file name="TestUnit.php" role="test" />
    </dir> <!-- /tests -->
-   <file name="ChangeLog" role="data" />
-   <file name="NEWS" role="data" />
-   <file name="package.xml" role="data" />
-   <file name="packageV1.php" role="php" />
-   <file name="Progress2.php" role="php" />
-   <file name="Progress2_Lite.php" role="php" />
-   <file name="release.inc" role="data" />
+   <file name="ChangeLog" role="doc" />
+   <file name="NEWS" role="doc" />
+   <file name="Progress2.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file name="Progress2_Lite.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -389,11 +382,6 @@ project homepage at http://pear.laurent-laville.org/HTML_Progress2
    <pearinstaller>
     <min>1.4.3</min>
    </pearinstaller>
-   <package>
-    <name>PHP_Compat</name>
-    <channel>pear.php.net</channel>
-    <min>1.4.1</min>
-   </package>
    <package>
     <name>HTML_Common</name>
     <channel>pear.php.net</channel>
@@ -406,6 +394,11 @@ project homepage at http://pear.laurent-laville.org/HTML_Progress2
    </package>
   </required>
   <optional>
+   <package>
+    <name>PHP_Compat</name>
+    <channel>pear.php.net</channel>
+    <min>1.4.1</min>
+   </package>
    <package>
     <name>PEAR</name>
     <channel>pear.php.net</channel>
@@ -456,6 +449,30 @@ project homepage at http://pear.laurent-laville.org/HTML_Progress2
  <changelog>
   <release>
    <version>
+    <release>2.0.1</release>
+    <api>2.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-05-24</date>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+   <notes>* bugs
+- fixes closing html style tag to avoid javascript error; see console of Firefox.
+- fixes Bug #7437 : wrong text in Doc (thanks to Stefan Valouch for reading it carefully)
+
+* news
+- PEAR::PHP_Compat package begin optional dependency (only required for PHP4)
+- upgrade license from PHP 3.0 to 3.01
+
+* Quality Assurance
+- The Definitive Guide revision number will now follow the package release version.
+- All examples (closing html style tag) were fixed (offline and online).
+   </notes>
+  </release>
+  <release>
+   <version>
     <release>2.0.0</release>
     <api>2.0.0</api>
    </version>
@@ -500,8 +517,7 @@ to avoid includes in API docs
 
 
 Live demos, screenshots, source codes and much more are available on my
-project homepage at http://pear.laurent-laville.org/HTML_Progress2
-   </notes>
+project homepage at http://pear.laurent-laville.org/HTML_Progress2</notes>
   </release>
   <release>
    <version>
