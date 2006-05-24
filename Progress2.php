@@ -2482,7 +2482,7 @@ JS;
             $styles = '<style type="text/css">' . PHP_EOL
                     . '<!--'    . PHP_EOL
                     . $styles   . PHP_EOL
-                    . '// -->'  . PHP_EOL
+                    . ' -->'    . PHP_EOL
                     . '</style>'. PHP_EOL;
         }
         return $styles;
