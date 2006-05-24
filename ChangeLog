@@ -1,3 +1,12 @@
+2006-05-24 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Final version (stable) 2.0.1 released.
+
+      - fixes closing html style tag to avoid javascript error.
+      - fixes Bug #7437 : wrong text in Doc
+        (thanks to Stefan Valouch for reading it carefully)
+      - The Definitive Guide revision number will now follow the package release version.
+
 2006-05-16 Laurent Laville <pear@laurent-laville.org>
 
     * updates headers comment block for quality assurance :

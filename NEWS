@@ -1,3 +1,27 @@
+Changes since version 2.0.0 (2005-10-01)
+
+  | 2006-05-24 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * fixes Bug #7437 : wrong text in Doc
+  |       (thanks to Stefan Valouch for reading it carefully)
+  |     * The Definitive Guide revision number will now follow the package release version.
+
+Changes to examples/*/*.php, Progress2.php
+
+  | 2006-05-24 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * fixes closing html style tag to avoid javascript error.
+
+Changes to Progress2.php, Progress2/*.php
+
+  | 2006-05-16 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * updates headers comment block for quality assurance :
+  |       - add @since phpdoc tag
+  |       - upgrade license from PHP 3.0 to 3.01
+  |       - upgrade copyright until 2006
+
+
 Changes since version 2.0.0RC2 (2005-08-01)
 
   |     * Added ChangeLog, and NEWS files
