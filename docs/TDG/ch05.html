@@ -1,9 +1,9 @@
-<html xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0">
+<html>
 <head>
    <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
    <title>Chapter 5. Quick Start with HTML_Progress2</title>
    <link href="book.css" rel="stylesheet" type="text/css">
-   <meta content="DocBook XSL Stylesheets V1.69.0" name="generator">
+   <meta content="DocBook XSL Stylesheets V1.69.1" name="generator">
    <link href="index.html" rel="start" title="HTML_Progress2 Manual">
    <link href="pt02.html" rel="up" title="Part II. Getting Started">
    <link href="ch04.html" rel="prev" title="Chapter 4. Introduction">
@@ -37,18 +37,18 @@
    <div class="toc">
 
       <p><b>Table of Contents</b></p>
-      <dl><dt><span class="sect1"><a href="ch05.html#id4771688">Designing 
+      <dl><dt><span class="sect1"><a href="ch05.html#id4771837">Designing 
          </a></span></dt>
          <dd>
-         <dl><dt><span class="sect2"><a href="ch05.html#id4771701">Shape</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4771848">Cells</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4771940">Border</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772011">Background</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772082">Fill direction</a></span></dt>
+         <dl><dt><span class="sect2"><a href="ch05.html#id4771850">Shape</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4771998">Cells</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772089">Border</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772160">Background</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772231">Fill direction</a></span></dt>
          </dl></dd><dt><span class="sect1"><a href="ch05s02.html">Processing 
          </a></span></dt>
          <dd>
-         <dl><dt><span class="sect2"><a href="ch05s02.html#id4771610">With a user callback</a></span></dt><dt><span class="sect2"><a href="ch05s02.html#id4772730">Without user callback</a></span></dt>
+         <dl><dt><span class="sect2"><a href="ch05s02.html#id4771759">With a user callback</a></span></dt><dt><span class="sect2"><a href="ch05s02.html#id4772880">Without user callback</a></span></dt>
          </dl></dd><dt><span class="sect1"><a href="ch05s03.html">Strategy of handling 
          </a></span></dt>
          <dd>
-         <dl><dt><span class="sect2"><a href="ch05s03.html#id4772976">Strategy 1: moveNext</a></span></dt><dt><span class="sect2"><a href="ch05s03.html#id4773047">Strategy 2: moveStep</a></span></dt>
+         <dl><dt><span class="sect2"><a href="ch05s03.html#id4773125">Strategy 1: moveNext</a></span></dt><dt><span class="sect2"><a href="ch05s03.html#id4773197">Strategy 2: moveStep</a></span></dt>
          </dl></dd>
       </dl>
    </div>
@@ -62,18 +62,18 @@
 
    <p>There are two main phases in developement and use of a progress meter: designing and processing. </p>
    <div class="sect1" lang="en"><div class="titlepage"><div><div>
-               <h2 class="title" style="clear: both"><a name="id4771688"></a>Designing </h2>
+               <h2 class="title" style="clear: both"><a name="id4771837"></a>Designing </h2>
             </div>
          </div>
       </div>
       <div class="toc">
-         <dl><dt><span class="sect2"><a href="ch05.html#id4771701">Shape</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4771848">Cells</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4771940">Border</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772011">Background</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772082">Fill direction</a></span></dt>
+         <dl><dt><span class="sect2"><a href="ch05.html#id4771850">Shape</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4771998">Cells</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772089">Border</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772160">Background</a></span></dt><dt><span class="sect2"><a href="ch05.html#id4772231">Fill direction</a></span></dt>
          </dl>
       </div>
 
       <p>You have probably your ideas of what it should look like: shape, size, colors. So how to build it ? </p>
       <div class="sect2" lang="en"><div class="titlepage"><div><div>
-                  <h3 class="title"><a name="id4771701"></a>Shape</h3></div>
+                  <h3 class="title"><a name="id4771850"></a>Shape</h3></div>
             </div>
          </div>
 
@@ -107,7 +107,7 @@ $pb = new HTML_Progress2();
 require_once 'HTML/Progress2.php';
 
 $pb = new HTML_Progress2();
-$pb-&gt;setOrient(HTML_PROGRESS2_BAR_VERTICAL);
+$pb-&gt;setOrientation(HTML_PROGRESS2_BAR_VERTICAL);
 ?&gt;
      
     </pre>
@@ -157,7 +157,7 @@ $pb-&gt;setCellAttributes('spacing=0');
          <p></p>
       </div>
       <div class="sect2" lang="en"><div class="titlepage"><div><div>
-                  <h3 class="title"><a name="id4771848"></a>Cells</h3></div>
+                  <h3 class="title"><a name="id4771998"></a>Cells</h3></div>
             </div>
          </div>
 
@@ -212,7 +212,7 @@ $pb-&gt;setCellAttributes('active-color=#FF0000 inactive-color=#FF9900 width=20 
          <p></p>
       </div>
       <div class="sect2" lang="en"><div class="titlepage"><div><div>
-                  <h3 class="title"><a name="id4771940"></a>Border</h3></div>
+                  <h3 class="title"><a name="id4772089"></a>Border</h3></div>
             </div>
          </div>
 
@@ -257,7 +257,7 @@ $pb-&gt;setBorderAttributes(array(
          <p></p>
       </div>
       <div class="sect2" lang="en"><div class="titlepage"><div><div>
-                  <h3 class="title"><a name="id4772011"></a>Background</h3></div>
+                  <h3 class="title"><a name="id4772160"></a>Background</h3></div>
             </div>
          </div>
 
@@ -301,7 +301,7 @@ $pb-&gt;setCellAttributes('inactive-color=transparent');
          <p></p>
       </div>
       <div class="sect2" lang="en"><div class="titlepage"><div><div>
-                  <h3 class="title"><a name="id4772082"></a>Fill direction</h3></div>
+                  <h3 class="title"><a name="id4772231"></a>Fill direction</h3></div>
             </div>
          </div>
 
@@ -359,7 +359,7 @@ $pb-&gt;setLabelAttributes('pct1', array(
 <table class="qfamsFooter">
    <tr>
       <td align="left">HTML_Progress2 : The Definitive Guide</td>
-      <td align="right">v 1.0.0 : September 23, 2005</td>
+      <td align="right">v 2.0.1 : May 24, 2006</td>
    </tr>
 </table>
 <div class="navfooter"><hr>
