@@ -54,7 +54,7 @@ $pb->setProgressHandler('myFunctionHandler');
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

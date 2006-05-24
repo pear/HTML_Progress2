@@ -106,11 +106,11 @@ div.container {
     width: 400px;
     height: 190px;
     background-color: lightblue;
-    border: 2;
+    border: 2px;
     border-color: navy;
     border-style: dashed;
 }
-// -->
+ -->
 </style>
 <?php echo $pb1->getScript(false); ?>
 </head>

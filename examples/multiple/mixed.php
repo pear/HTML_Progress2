@@ -69,7 +69,7 @@ echo $pb2->getStyle();
 body {
     background-color: #C3C6C3;
 }
-// -->
+ -->
 </style>
 <?php echo $pb1->getScript(false); ?>
 </head>

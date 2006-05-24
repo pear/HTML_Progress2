@@ -76,7 +76,7 @@ body {
 }
 
 <?php echo $pm->getStyle(); ?>
-// -->
+ -->
 </style>
 <?php echo $pm->getScript(false); ?>
 </head>

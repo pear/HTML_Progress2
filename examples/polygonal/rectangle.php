@@ -40,7 +40,7 @@ $pb->setCellCoordinates(6,4);     // Rectangle 6x4
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

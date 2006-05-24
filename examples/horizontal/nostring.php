@@ -30,7 +30,7 @@ $pb->setIncrement(10);
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

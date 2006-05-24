@@ -45,7 +45,7 @@ $pb->setLabelAttributes('pct1', array(
 body {
     background-color: #C3C6C3;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

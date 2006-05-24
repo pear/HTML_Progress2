@@ -36,7 +36,7 @@ $w = $h = 3;  // square 3x3
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

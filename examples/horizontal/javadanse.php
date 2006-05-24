@@ -60,7 +60,7 @@ foreach (range(7,9) as $index) {
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

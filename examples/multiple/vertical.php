@@ -73,11 +73,11 @@ div.container {
     top: 80px;
     width: 210px;
     height: 250px;
-    border: 1;
+    border: 4px;
     border-color: navy;
     border-style: dotted;
 }
-// -->
+ -->
 </style>
 <?php echo $pb1->getScript(false); ?>
 </head>

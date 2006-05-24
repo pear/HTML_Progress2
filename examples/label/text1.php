@@ -41,7 +41,7 @@ body {
     color: #000000;
     font-family: Verdana, Arial;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

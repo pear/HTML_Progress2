@@ -35,7 +35,7 @@ $pb->setCellCoordinates(4,4);     // square 4x4
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

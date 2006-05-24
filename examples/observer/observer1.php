@@ -49,7 +49,7 @@ $pb->setBorderAttributes('width=2');
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

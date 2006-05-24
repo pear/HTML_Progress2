@@ -56,7 +56,7 @@ if (file_exists($cacheDir . 'e0.png')) {
 body {
     background-color: #FFFFFF;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

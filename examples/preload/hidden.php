@@ -54,7 +54,7 @@ body {
 }
 
 <?php echo $pb->getStyle(); ?>
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>

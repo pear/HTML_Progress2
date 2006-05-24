@@ -49,7 +49,7 @@ if (file_exists($cacheDir . 'c0.png')) {
 body {
     background-color: #EEEEEE;
 }
-// -->
+ -->
 </style>
 <?php echo $pb->getScript(false); ?>
 </head>
