@@ -43,7 +43,7 @@ $opt1 = array('left' => 50, 'top' => 50, 'width' => 40, 'height' => 270,
 );
 $pbl1 = new HTML_Progress2_Lite($opt1);
 $pbl1->addLabel('percent','pct1');
-$pct1 = array('left' => 50, 'top', 35, 'width' => 40);
+$pct1 = array('left' => 50, 'top' => 35, 'width' => 40);
 $pbl1->setLabelAttributes('pct1', $pct1);
 $pbl1->setDirection('down');
 $pbl1->display();
