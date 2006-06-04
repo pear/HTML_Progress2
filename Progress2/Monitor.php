@@ -302,7 +302,7 @@ class HTML_Progress2_Monitor
         if ($result) {
             $this->_observerCount--;
             if ($this->_observerCount == 0) {
-                unsset($this->dispatcher);
+                unset($this->dispatcher);
             }
         }
         return $result;
