@@ -3,6 +3,8 @@
       - fixes typo error on removeListener() function
         from HTML_Progress2 and HTML_Progress2_Monitor classes
       - updates copyright (begin) date
+      - addListener() and removeListener() signatures changed.
+        Adds notification name serves as a filter
 
 2006-05-24 Laurent Laville <pear@laurent-laville.org>
 
