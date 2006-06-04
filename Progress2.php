@@ -2971,14 +2971,16 @@ JS;
      * for all messages emitted by this HTML_Progress2 instance.
      *
      * @param      mixed     $callback      PHP callback that will act as listener
+     * @param      string    $nName         Expected notification name, serves as a filter
      *
      * @return     void
      * @since      2.0.0
      * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
+     *             HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        removeListener()
      */
-    function addListener($callback)
+    function addListener($callback, $nName = EVENT_DISPATCHER_GLOBAL)
     {
         if (!is_callable($callback)) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'exception',
@@ -2986,10 +2988,17 @@ JS;
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
                       'paramnum' => 1));
+
+        } elseif (!is_string($nName)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$nName',
+                      'was' => gettype($nName),
+                      'expected' => 'string',
+                      'paramnum' => 2));
         }
 
         $this->dispatcher =& Event_Dispatcher::getInstance();
-        $this->dispatcher->addObserver($callback);
+        $this->dispatcher->addObserver($callback, $nName);
         $this->_observerCount++;
     }
 
@@ -3000,14 +3009,16 @@ JS;
      * if there is no more observer registered.
      *
      * @param      mixed     $callback      PHP callback that act as listener
+     * @param      string    $nName         Expected notification name, serves as a filter
      *
      * @return     bool                     True if observer was removed, false otherwise
      * @since      2.0.0
      * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
+     *             HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        addListener()
      */
-    function removeListener($callback)
+    function removeListener($callback, $nName = EVENT_DISPATCHER_GLOBAL)
     {
         if (!is_callable($callback)) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, 'exception',
@@ -3015,9 +3026,16 @@ JS;
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
                       'paramnum' => 1));
+
+        } elseif (!is_string($nName)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$nName',
+                      'was' => gettype($nName),
+                      'expected' => 'string',
+                      'paramnum' => 2));
         }
 
-        $result = $this->dispatcher->removeObserver($callback);
+        $result = $this->dispatcher->removeObserver($callback, $nName);
 
         if ($result) {
             $this->_observerCount--;
