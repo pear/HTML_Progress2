@@ -1,3 +1,16 @@
+Changes since version 2.0.1 (2006-05-24)
+
+  | 2006-07-22 Laurent Laville <pear@laurent-laville.org>
+  | 
+  |     * fixes Bug #8265 : HTML_Page2 wrong dependency
+  |     * removed dupplicates entries in package xml 1.0
+  |
+  | 2006-06-04 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * updates copyright dates
+  |     * Adds notification name serves as a filter
+  |       for addListener() and removeListener(). API signature changed.
+
 Changes since version 2.0.0 (2005-10-01)
 
   | 2006-05-24 Laurent Laville <pear@laurent-laville.org>
