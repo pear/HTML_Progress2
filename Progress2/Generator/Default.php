@@ -36,82 +36,40 @@
 
 class ActionDisplay extends HTML_QuickForm_Action_Display
 {
+    /**
+     * Style sheet for the custom layout
+     *
+     * @var    string
+     * @access public
+     * @since  2.1.0
+     */
+    var $css;
+
+    /**
+     * class constructor
+     *
+     * @param  string  $css  custom stylesheet to apply, or default if not set
+     * @access public
+     * @since  2.1.0
+     */
+    function ActionDisplay($css = null)
+    {
+        // when no user-styles defined, used the default values
+        $this->setStyleSheet($css);
+    }
+
+    /**
+     * Outputs the form.
+     *
+     * @param  object HTML_QuickForm_Page  the page being processed
+     * @access public
+     * @since  2.0.0RC1
+     */
     function _renderForm(&$page)
     {
-        $pageName = $page->getAttribute('name');
-        $tabPreview = array_slice ($page->controller->_tabs, -2, 1);
-
-        $header = '
-<style type="text/css">
-<!--
-body {
-  background-color: #7B7B88;
-  font-family: Verdana, Arial, helvetica;
-  font-size: 10pt;
-}
-
-h1 {
-  color: #FFC;
-  text-align: center;
-}
-
-.maintable {
-  width: 100%;
-  border-width: 0;
-  border-style: thin dashed;
-  border-color: #D0D0D0;
-  background-color: #EEE;
-  cellspacing: 2;
-  cellspadding: 3;
-}
-
-th {
-  text-align: center;
-  color: #FFC;
-  background-color: #AAA;
-  white-space: nowrap;
-}
-
-input {
-  font-family: Verdana, Arial, helvetica;
-}
-
-input.flat {
-  border-style: solid;
-  border-width: 2px 2px 0 2px;
-  border-color: #996;
-}
-
-{%style%}
-// -->
-</style>
-';
-        // on preview tab, add progress bar javascript and stylesheet
-        if ($pageName == $tabPreview[0][0]) {
-            $pb = $page->controller->createProgressBar();
-            $pb->setTab('    ');
-
-            $header .= '
-<script type="text/javascript">
-<!--
-{%javascript%}
-//-->
-</script>
-';
-            $placeHolders = array('{%style%}', '{%javascript%}');
-            $htmlElement = array( $pb->getStyle(), $pb->getScript() );
-
-            $header = str_replace($placeHolders, $htmlElement, $header);
-
-            $pbElement =& $page->getElement('progressBar');
-            $pbElement->setText($pb->toHtml() . '<br /><br />');
-
-        } else {
-            $header = str_replace('{%style%}', '', $header);
-        }
-
         $formTemplate = "\n<form{attributes}>"
-                      . "\n<table style=\"font-size: 8pt;\" class=\"maintable\">"
+                      . "\n<table class=\"maintable\">"
+                      . "\n<caption>HTML_Progress2 Generator</caption>"
                       . "\n{content}"
                       . "\n</table>"
                       . "\n</form>";
@@ -123,16 +81,16 @@ input.flat {
                         . "\n</tr>";
 
         $elementTemplate = "\n<tr valign=\"top\">"
-                         . "\n\t<td align=\"right\" width=\"30%\"><b>{label}</b></td>"
-                         . "\n\t<td align=\"left\">"
+                         . "\n\t<td class=\"qfLabel\">&nbsp;{label}</td>"
+                         . "\n\t<td class=\"qfElement\">"
                          . "\n{element}"
                          . "<!-- BEGIN label_2 -->&nbsp;"
-                         . "<span style=\"font-size:90%;\">{label_2}</span>"
+                         . "<span class=\"qfLabel2\">{label_2}</span>"
                          . "<!-- END label_2 -->"
                          . "\n\t</td>"
                          . "\n</tr>";
 
-        $groupTemplate = "\n\t\t<table style=\"font-size:8pt;\">"
+        $groupTemplate = "\n\t\t<table class=\"group\">"
                        . "\n\t\t<tr>"
                        . "\n\t\t\t{content}"
                        . "\n\t\t</tr>"
@@ -140,7 +98,7 @@ input.flat {
 
         $groupElementTemplate = "<td>{element}"
                               . "<!-- BEGIN label --><br/>"
-                              . "<span style=\"font-size:90%;\">{label}</span>"
+                              . "<span class=\"qfLabel\">{label}</span>"
                               . "<!-- END label -->"
                               . "</td>";
 
@@ -161,10 +119,89 @@ input.flat {
             $renderer->setGroupElementTemplate($groupElementTemplate, $grp);
         }
 
+        $styles = $this->getStyleSheet();
+        $js     = '';
+
+        // on preview tab, add progress bar javascript and stylesheet
+        if ($page->getAttribute('id') == 'Preview') {
+            $pb = $page->controller->createProgressBar();
+            $pb->setTab('    ');
+
+            $styles .= $pb->getStyle();
+            $js      = $pb->getScript();
+
+            $pbElement =& $page->getElement('progressBar');
+            $pbElement->setText($pb->toHtml() . '<br /><br />');
+        }
         $page->accept($renderer);
 
-        echo $header;
-        echo $renderer->toHtml();
+        $body = $renderer->toHtml();
+
+        $html = <<<HTML
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>HTML_Progress2 Generator</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+<!--
+$styles
+ -->
+</style>
+<script type="text/javascript">
+//<![CDATA[
+$js
+//]]>
+</script>
+</head>
+<body>
+$body
+</body>
+</html>
+HTML;
+        echo $html;
+    }
+
+    /**
+     * Returns the custom style sheet to use for layout
+     *
+     * @param  bool  $content (optional) Either return css filename or string contents
+     * @return string
+     * @access public
+     * @since  2.1.0
+     */
+    function getStyleSheet($content = true)
+    {
+        if ($content) {
+            $styles = file_get_contents($this->css);
+        } else {
+            $styles = $this->css;
+        }
+        return $styles;
+    }
+
+    /**
+     * Set the custom style sheet to use your own styles
+     *
+     * @param  string  $css (optional) File to read user-defined styles from
+     * @return bool    true if custom styles, false if default styles applied
+     * @access public
+     * @since  2.1.0
+     */
+    function setStyleSheet($css = null)
+    {
+        // default stylesheet is into package data directory
+        if (!isset($css)) {
+            $this->css = '@data_dir@' . DIRECTORY_SEPARATOR
+                 . '@package_name@' . DIRECTORY_SEPARATOR
+                 . 'default.css';
+        }
+
+        $res = isset($css) && file_exists($css);
+        if ($res) {
+            $this->css = $css;
+        }
+        return $res;
     }
 }
 ?>
