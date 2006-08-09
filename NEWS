@@ -1,7 +1,18 @@
 Changes since version 2.0.1 (2006-05-24)
 
+  | 2006-08-09 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * new interactive debugging tools for Progress2 Generator (Progress2/Dump.php)
+  |     * new QF tableless renderer for Progress2 Generator (Progress2/Tableless.php),
+  |       with its default stylesheet (tableless.css in PEAR data package directory)
+  |     * improve QF default renderer for Progress2 Generator (Progress2/Default.php),
+  |       with its default stylesheet (default.css in PEAR data package directory)
+  |       that can now accept an external css file to change easily the frontend render.
+  |     * new example that demonstrate the new Progress2 Generator architecture
+  |       (examples/generatorcus2.php).
+  |
   | 2006-07-22 Laurent Laville <pear@laurent-laville.org>
-  | 
+  |
   |     * fixes Bug #8265 : HTML_Page2 wrong dependency
   |     * removed dupplicates entries in package xml 1.0
   |

@@ -1,3 +1,12 @@
+2006-08-09 Laurent Laville <pear@laurent-laville.org>
+
+      - Rewrites of HTML_Progress2 Generator class on PEAR_PackageFileManager_Frontend controller pattern
+        This essentially allow to improve presentation layout with stylesheet,
+        and give more power to add a new action or page at runtime.
+      - All remaining code (css class selector still in default renderer was moved
+        to external CSS file: 'default.css')
+      - new methods get and set StyleSheet into default QF renderer (Generator/Default.php)
+
 2006-07-22 Laurent Laville <pear@laurent-laville.org>
 
       - fixes Bug #8265 : HTML_Page2 wrong dependency
