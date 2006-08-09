@@ -1,7 +1,6 @@
 <?php
 /**
- * The six classes below provides GUI for interactive tools:
- * HTML Progress2 Generator.
+ * Common wizard presentation.
  *
  * PHP versions 4 and 5
  *
@@ -22,20 +21,129 @@
  * @since      File available since Release 2.0.0RC1
  */
 
+/**
+ * Creates all tabs and buttons as common layout for the interactive tools:
+ * HTML Progress2 Generator.
+ *
+ * @category   HTML
+ * @package    HTML_Progress2
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  2005-2006 The PHP Group
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    CVS: $Id$
+ * @link       http://pear.php.net/package/HTML_Progress2
+ * @access     private
+ * @since      Class available since Release 2.1.0
+ */
+
+class TabbedPage extends HTML_QuickForm_Page
+{
+    /**
+     * Builds tabs of the Wizard.
+     *
+     * @return void
+     * @since  2.1.0
+     * @access public
+     */
+    function buildTabs()
+    {
+        $this->_formBuilt = true;
+
+        // Here we get all page names in the controller
+        $pages  = array();
+        $myName = $current = $this->getAttribute('id');
+        while (null !== ($current = $this->controller->getPrevName($current))) {
+            $pages[] = $current;
+        }
+        $pages = array_reverse($pages);
+        $pages[] = $current = $myName;
+        while (null !== ($current = $this->controller->getNextName($current))) {
+            $pages[] = $current;
+        }
+        // Here we display buttons for all pages, the current one's is disabled
+        foreach ($pages as $pageName) {
+            $tabs[] = $this->createElement(
+                        'submit', $this->getButtonName($pageName), ucfirst($pageName),
+                        array('class' => 'flat') + ($pageName == $myName? array('disabled' => 'disabled'): array())
+                      );
+        }
+        $this->addGroup($tabs, 'tabs', null, '&nbsp;', false);
+    }
+
+    /**
+     * Builds command buttons of the Wizard.
+     *
+     * @return void
+     * @since  2.1.0
+     * @access public
+     */
+    function buildButtons($disable = null, $commands = null)
+    {
+        $buttons = array('back', 'next', 'cancel', 'reset', 'dump', 'apply', 'process');
+        if (isset($commands)) {
+            $buttons = array_merge($buttons, $commands);
+        }
+
+        if (!isset($disable)) {
+            $disable = array();
+        } elseif (!isset($disable[0])) {
+            $disable = array($disable);
+        }
+
+        $confirm = $attributes = array('class' => 'cmdButton');
+        $confirm['onclick'] = "return(confirm('Are you sure ?'));";
+
+        $prevnext = array();
+
+        foreach ($buttons as $event) {
+            switch ($event) {
+                case 'cancel':
+                    $type = 'submit';
+                    $attrs = $confirm;
+                    break;
+                case 'reset':
+                    $type = 'reset';
+                    $attrs = $confirm;
+                    break;
+                default :
+                    $type = 'submit';
+                    $attrs = $attributes;
+                    break;
+            }
+            if (in_array($event, $disable)) {
+                $attrs['disabled'] = 'true';
+            }
+            if ($event == 'dump') {
+                $dump = $this->controller->_act[$event];
+                if ($dump === false) {
+                    continue;
+                }
+                $opts = array(
+                    '1' => 'Progress2 dump info',
+                    '2' => 'Forms values container',
+                    '3' => 'Included Files',
+                    '4' => 'Declared Classes',
+                    '5' => 'Declared Actions'
+                    );
+                $prevnext[] =&HTML_QuickForm::createElement('select', 'dumpOption', '', $opts);
+            }
+            $prevnext[] =&HTML_QuickForm::createElement($type, $this->getButtonName($event), ucfirst($event), HTML_Common::_getAttrString($attrs));
+        }
+        $this->addGroup($prevnext, 'buttons', '', '&nbsp;', false);
+    }
+}
 
 /**
  *  Class for first Tab:
  *  Progress main properties
  *  @ignore
  */
-class Property1 extends HTML_QuickForm_Page
+class Property1 extends TabbedPage
 {
     function buildForm()
     {
-        $this->_formBuilt = true;
-
-        $this->controller->createTabs($this, array('class' => 'flat'));
-
+        $this->buildTabs();
+        // tab caption
         $this->addElement('header', null, 'Progress2 Generator - Control Panel: main properties');
 
         $shape[] =& $this->createElement('radio', null, null, 'Horizontal', '1');
@@ -61,15 +169,8 @@ class Property1 extends HTML_QuickForm_Page
         $this->addElement('text', 'rAnimSpeed', array('Animation speed :', '(0-1000 ; 0:fast, 1000:slow)'));
         $this->addRule('rAnimSpeed', 'Should be between 0 and 1000', 'rangelength', array(0,1000), 'client');
 
-        $buttons = array('back'   => $this->controller->_buttonBack,
-                         'next'   => $this->controller->_buttonNext,
-                         'cancel' => $this->controller->_buttonCancel,
-                         'reset'  => $this->controller->_buttonReset,
-                         'apply'  => $this->controller->_buttonApply,
-                         'process'=> $this->controller->_buttonSave
-                         );
-        $this->controller->createButtons($this, $buttons, $this->controller->_buttonAttr);
-        $this->controller->disableButton($this, array('back','apply','process'));
+        // Buttons of the wizard to do the job
+        $this->buildButtons(array('back','apply','process'));
     }
 }
 
@@ -78,14 +179,12 @@ class Property1 extends HTML_QuickForm_Page
  *  Cell properties
  *  @ignore
  */
-class Property2 extends HTML_QuickForm_Page
+class Property2 extends TabbedPage
 {
     function buildForm()
     {
-        $this->_formBuilt = true;
-
-        $this->controller->createTabs($this, array('class' => 'flat'));
-
+        $this->buildTabs();
+        // tab caption
         $this->addElement('header', null, 'Progress2 Generator - Control Panel: cell properties');
 
         $this->addElement('text', 'cellid', 'Id mask:', array('size' => 32));
@@ -112,15 +211,8 @@ class Property2 extends HTML_QuickForm_Page
         $cellfont['color']  =& $this->createElement('text', 'color', 'color', array('size' => 7));
         $this->addGroup($cellfont, 'cellfont', 'Font:', ' ');
 
-        $buttons = array('back'   => $this->controller->_buttonBack,
-                         'next'   => $this->controller->_buttonNext,
-                         'cancel' => $this->controller->_buttonCancel,
-                         'reset'  => $this->controller->_buttonReset,
-                         'apply'  => $this->controller->_buttonApply,
-                         'process'=> $this->controller->_buttonSave
-                         );
-        $this->controller->createButtons($this, $buttons, $this->controller->_buttonAttr);
-        $this->controller->disableButton($this, array('apply','process'));
+        // Buttons of the wizard to do the job
+        $this->buildButtons(array('apply','process'));
     }
 }
 
@@ -129,14 +221,12 @@ class Property2 extends HTML_QuickForm_Page
  *  Progress border properties
  *  @ignore
  */
-class Property3 extends HTML_QuickForm_Page
+class Property3 extends TabbedPage
 {
     function buildForm()
     {
-        $this->_formBuilt = true;
-
-        $this->controller->createTabs($this, array('class' => 'flat'));
-
+        $this->buildTabs();
+        // tab caption
         $this->addElement('header', null, 'Progress2 Generator - Control Panel: border properties');
 
         $borderpainted[] =& $this->createElement('radio', null, null, 'Yes', true);
@@ -150,15 +240,8 @@ class Property3 extends HTML_QuickForm_Page
         $borderstyle['color'] =& $this->createElement('text', 'color', 'color', array('size' => 7));
         $this->addGroup($borderstyle, 'borderstyle', null, ' ');
 
-        $buttons = array('back'   => $this->controller->_buttonBack,
-                         'next'   => $this->controller->_buttonNext,
-                         'cancel' => $this->controller->_buttonCancel,
-                         'reset'  => $this->controller->_buttonReset,
-                         'apply'  => $this->controller->_buttonApply,
-                         'process'=> $this->controller->_buttonSave
-                         );
-        $this->controller->createButtons($this, $buttons, $this->controller->_buttonAttr);
-        $this->controller->disableButton($this, array('apply','process'));
+        // Buttons of the wizard to do the job
+        $this->buildButtons(array('apply','process'));
     }
 }
 
@@ -167,14 +250,12 @@ class Property3 extends HTML_QuickForm_Page
  *  Label properties
  *  @ignore
  */
-class Property4 extends HTML_QuickForm_Page
+class Property4 extends TabbedPage
 {
     function buildForm()
     {
-        $this->_formBuilt = true;
-
-        $this->controller->createTabs($this, array('class' => 'flat'));
-
+        $this->buildTabs();
+        // tab caption
         $this->addElement('header', null, 'Progress2 Generator - Control Panel: string properties');
 
         $stringpainted[] =& $this->createElement('radio', null, null, 'Yes', true);
@@ -212,15 +293,8 @@ class Property4 extends HTML_QuickForm_Page
         $stringweight[] =& $this->createElement('radio', null, null, 'Bold', 'bold');
         $this->addGroup($stringweight, 'stringweight', 'Font weight:');
 
-        $buttons = array('back'   => $this->controller->_buttonBack,
-                         'next'   => $this->controller->_buttonNext,
-                         'cancel' => $this->controller->_buttonCancel,
-                         'reset'  => $this->controller->_buttonReset,
-                         'apply'  => $this->controller->_buttonApply,
-                         'process'=> $this->controller->_buttonSave
-                         );
-        $this->controller->createButtons($this, $buttons, $this->controller->_buttonAttr);
-        $this->controller->disableButton($this, array('apply','process'));
+        // Buttons of the wizard to do the job
+        $this->buildButtons(array('apply','process'));
     }
 }
 
@@ -229,27 +303,18 @@ class Property4 extends HTML_QuickForm_Page
  *  Show a preview of your progress bar design.
  *  @ignore
  */
-class Preview extends HTML_QuickForm_Page
+class Preview extends TabbedPage
 {
     function buildForm()
     {
-        $this->_formBuilt = true;
-
-        $this->controller->createTabs($this, array('class' => 'flat'));
-
+        $this->buildTabs();
+        // tab caption
         $this->addElement('header', null, 'Progress2 Generator - Control Panel: run demo');
 
         $this->addElement('static', 'progressBar', 'Your progress meter looks like:');
 
-        $buttons = array('back'   => $this->controller->_buttonBack,
-                         'next'   => $this->controller->_buttonNext,
-                         'cancel' => $this->controller->_buttonCancel,
-                         'reset'  => $this->controller->_buttonReset,
-                         'apply'  => $this->controller->_buttonApply,
-                         'process'=> $this->controller->_buttonSave
-                         );
-        $this->controller->createButtons($this, $buttons, $this->controller->_buttonAttr);
-        $this->controller->disableButton($this, array('reset','process'));
+        // Buttons of the wizard to do the job
+        $this->buildButtons(array('reset','process'));
     }
 }
 
@@ -258,29 +323,20 @@ class Preview extends HTML_QuickForm_Page
  *  Save PHP and/or CSS code
  *  @ignore
  */
-class Save extends HTML_QuickForm_Page
+class Save extends TabbedPage
 {
     function buildForm()
     {
-        $this->_formBuilt = true;
-
-        $this->controller->createTabs($this, array('class' => 'flat'));
-
+        $this->buildTabs();
+        // tab caption
         $this->addElement('header', null, 'Progress2 Generator - Control Panel: save PHP/CSS code');
 
         $code[] =& $this->createElement('checkbox', 'P', null, 'PHP');
         $code[] =& $this->createElement('checkbox', 'C', null, 'CSS');
         $this->addGroup($code, 'phpcss', 'PHP and/or StyleSheet source code:');
 
-        $buttons = array('back'   => $this->controller->_buttonBack,
-                         'next'   => $this->controller->_buttonNext,
-                         'cancel' => $this->controller->_buttonCancel,
-                         'reset'  => $this->controller->_buttonReset,
-                         'apply'  => $this->controller->_buttonApply,
-                         'process'=> $this->controller->_buttonSave
-                         );
-        $this->controller->createButtons($this, $buttons, $this->controller->_buttonAttr);
-        $this->controller->disableButton($this, array('next','apply'));
+        // Buttons of the wizard to do the job
+        $this->buildButtons(array('next','apply'));
     }
 }
 ?>
