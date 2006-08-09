@@ -45,31 +45,6 @@ require_once 'HTML/Progress2/Generator/pages.php';
 
 class HTML_Progress2_Generator extends HTML_QuickForm_Controller
 {
-    /**#@+
-     * Attributes of wizard form.
-     *
-     * @var        mixed
-     * @since      2.0.0
-     * @access     private
-     */
-    var $_buttonBack   = '<< Back';
-    var $_buttonNext   = 'Next >>';
-    var $_buttonCancel = 'Cancel';
-    var $_buttonReset  = 'Reset';
-    var $_buttonApply  = 'Preview';
-    var $_buttonSave   = 'Save';
-    var $_buttonAttr   = array('style'=>'width:80px;');
-    /**#@-*/
-
-    /**
-     * Tabs element of wizard form.
-     *
-     * @var        array
-     * @since      2.0.0
-     * @access     private
-     */
-    var $_tabs;
-
     /**
      * The progress object renders into this generator.
      *
@@ -79,6 +54,59 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      */
     var $_progress;
 
+    /**
+     * All default wizard pages definition
+     *
+     * @var        array
+     * @since      2.1.0
+     * @access     private
+     */
+    var $_tabs = array(
+        array('@' => array(
+                  'class' => 'Property1',
+                  'id' => 'page1',
+                  'name' => 'Progress')
+            ),
+        array('@' => array(
+                  'class' => 'Property2',
+                  'id' => 'page2',
+                  'name' => 'Cell')
+            ),
+        array('@' => array(
+                  'class' => 'Property3',
+                  'id' => 'page3',
+                  'name' => 'Border')
+            ),
+        array('@' => array(
+                  'class' => 'Property4',
+                  'id' => 'page4',
+                  'name' => 'String')
+            ),
+        array('@' => array(
+                  'class' => 'Preview',
+                  'id' => 'page5',
+                  'name' => 'Preview')
+            ),
+        array('@' => array(
+                  'class' => 'Save',
+                  'id' => 'page6',
+                  'name' => 'Save')
+            )
+        );
+
+    /**
+     * All default wizard controller actions definition
+     *
+     * @var        array
+     * @since      2.1.0
+     * @access     private
+     */
+    var $_act = array(
+        'preview' => 'ActionPreview',
+        'display' => 'ActionDisplay',
+        'process' => 'ActionProcess',
+        'dump'    => false
+    );
 
     /**
      * Constructor (ZE1)
@@ -142,53 +170,18 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
                       'expected' => 'array',
                       'paramnum' => 2));
         }
-        parent::HTML_QuickForm_Controller($controllerName);
 
-        // Check if Action(s) are customized
-        $ActionPreview = isset($attributes['preview'])? $attributes['preview']: 'ActionPreview';
-        $ActionDisplay = isset($attributes['display'])? $attributes['display']: 'ActionDisplay';
-        $ActionProcess = isset($attributes['process'])? $attributes['process']: 'ActionProcess';
+        // build a new modal controller
+        parent::HTML_QuickForm_Controller($controllerName, true);
 
-        $this->_tabs = array(
-            0 => array('page1', 'Property1', 'Progress'),
-            1 => array('page2', 'Property2', 'Cell'),
-            2 => array('page3', 'Property3', 'Border'),
-            3 => array('page4', 'Property4', 'String'),
-            4 => array('page5', 'Preview',   'Preview'),
-            5 => array('page6', 'Save',      'Save')
-        );
+        // add all wizard default pages
+        $this->addPages();
 
-        foreach ($this->_tabs as $tab) {
-            list($pageName, $className, $tabName) = $tab;
-            // Add each tab of the wizard
-            $this->addPage(new $className($pageName));
-
-            // These actions manage going directly to the pages with the same name
-            $this->addAction($pageName, new HTML_QuickForm_Action_Direct());
-        }
-        $preview =& $this->getPage('page5');
-
-        // The customized actions
-        if (!class_exists($ActionPreview)) {
-            include_once 'HTML/Progress2/Generator/Preview.php';
-            $ActionPreview = 'ActionPreview';
-        }
-        if (!class_exists($ActionDisplay)) {
-            include_once 'HTML/Progress2/Generator/Default.php';
-            $ActionDisplay = 'ActionDisplay';
-        }
-        if (!class_exists($ActionProcess)) {
-            include_once 'HTML/Progress2/Generator/Process.php';
-            $ActionProcess = 'ActionProcess';
-        }
-        $preview->addAction('apply', new $ActionPreview());
-        $this->addAction('display', new $ActionDisplay());
-        $this->addAction('process', new $ActionProcess());
-        $this->addAction('cancel',  new $ActionProcess());
+        // add all wizard default actions
+        $this->addActions($attributes);
 
         // set ProgressBar default values on first run
-        $sess = $this->container();
-        $defaults = $sess['defaults'];
+        $sess =& $this->container();
 
         if (count($sess['defaults']) == 0) {
             $this->setDefaults(array(
@@ -225,193 +218,160 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
     }
 
     /**
-     * Adds all necessary tabs to the given page object.
+     * Returns a unique instance of the given progress generator wizard.
      *
-     * @param      object    $page          Page where to put the button
-     * @param      mixed     $attributes    (optional) Either a typical HTML attribute string
-     *                                      or an associative array.
+     * @param      string    $controllerName(optional) Name of generator wizard (QuickForm)
+     * @param      array     $attributes    (optional) List of renderer options
+     * @param      array     $errorPrefs    (optional) Hash of params to configure error handler
+     *
+     * @return     object    HTML_Progress2_Generator
+     * @since      2.1.0
+     * @access     public
+     */
+    function &singleton($controllerName = 'ProgressGenerator', $attributes = array(),
+                        $errorPrefs = array())
+    {
+        static $generator;
+
+        if (!isset($generator)) {
+            $generator =& new HTML_Progress2_Generator($controllerName, $attributes, $errorPrefs);
+        }
+
+        return $generator;
+    }
+
+    /**
+     * Adds all pages of wizard at once
+     *
+     * @param  mixed $pages  Wizard pages definition array or null if used defaults
+     * @return void
+     * @access public
+     * @since  2.1.0
+     */
+    function addPages($pages = null)
+    {
+         if (!isset($pages)) {
+             // default wizard pages
+             $pages = $this->_tabs;
+         }
+
+         foreach($pages as $page) {
+             $this->addPage($page);
+         }
+    }
+
+    /**
+     * Add a specific page to wizard or each page one by one
+     *
+     * @param  array $page  a single Wizard page definition
+     * @return void
+     * @access public
+     * @since  2.1.0
+     */
+    function addPage($page)
+    {
+        $className = $page['@']['class'];
+        $pageName  = $page['@']['name'];
+
+        $qfcPage =& new $className($pageName);
+        parent::addPage($qfcPage);
+
+        // adds additional action
+        foreach ($page as $action => $attr) {
+            if ($action == '#' || $action == '@') {
+                continue;
+            }
+            $qfcPage->addAction($action, new $attr['@']['class']);
+        }
+
+        // adds common action on each page
+        $this->addAction($pageName, new HTML_QuickForm_Action_Direct());
+    }
+
+    /**
+     * Adds common actions for the frontend wizard
+     *
+     * @access public
+     * @since  2.1.0
+     */
+    function addActions($actions = null)
+    {
+        if (isset($actions) && is_array($actions)) {
+            $this->_act = array_merge($this->_act, $actions);
+        }
+
+        // adds preview action
+        $ActionPreview = $this->_act['preview'];
+        if (!class_exists($ActionPreview)) {
+            include_once 'HTML/Progress2/Generator/Preview.php';
+            $ActionPreview = 'ActionPreview';
+        }
+        $this->addAction('apply', new $ActionPreview() );
+
+        // adds display driver
+        $ActionDisplay = $this->_act['display'];
+        if (!class_exists($ActionDisplay)) {
+            include_once 'HTML/Progress2/Generator/Default.php';
+            $ActionDisplay = 'ActionDisplay';
+        }
+        $this->addAction('display', new $ActionDisplay() );
+
+        // adds basic actions (abort, commit, reset)
+        $ActionProcess = $this->_act['process'];
+        if (!class_exists($ActionProcess)) {
+            include_once 'HTML/Progress2/Generator/Process.php';
+            $ActionProcess = 'ActionProcess';
+        }
+        $this->addAction('cancel',  new $ActionProcess() );
+        $this->addAction('process', new $ActionProcess() );
+
+        // adds dump class action (if necessary)
+        $ActionDump = $this->_act['dump'];
+        if ($ActionDump) {
+            if (!class_exists($ActionDump)) {
+                include_once 'HTML/Progress2/Generator/Dump.php';
+                $ActionDump = 'ActionDump';
+            }
+            $this->addAction('dump', new $ActionDump() );
+        }
+    }
+
+    /**
+     * Registers a handler for a specific action.
+     *
+     * @param      string    $actionName  name of the action
+     * @param      object    $action      the handler for the action
      * @return     void
-     * @since      2.0.0
      * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
+     * @since      2.1.0
      */
-    function createTabs(&$page, $attributes = null)
+    function addAction($actionName, &$action)
     {
-        if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$page',
-                      'was' => gettype($page),
-                      'expected' => 'HTML_QuickForm_Page object',
-                      'paramnum' => 1));
-
-        } elseif (!is_array($attributes) && !is_string($attributes) && !is_null($attributes)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$attributes',
-                      'was' => gettype($attributes),
-                      'expected' => 'array | string',
-                      'paramnum' => 2));
-        }
-
-        $here = $attributes = HTML_Common::_parseAttributes($attributes);
-        $here['disabled'] = 'disabled';
-        $pageName = $page->getAttribute('name');
-        $jump = array();
-
-        foreach ($this->_tabs as $tab) {
-            list($event, $cls, $label) = $tab;
-            $attrs = ($pageName == $event) ? $here : $attributes;
-            $jump[] =& $page->createElement('submit', $page->getButtonName($event), $label, HTML_Common::_getAttrString($attrs));
-        }
-        $page->addGroup($jump, 'tabs', '', '&nbsp;', false);
+        $this->_act[$actionName] = get_class($action);
+        parent::addAction($actionName, $action);
     }
 
     /**
-     * Adds all necessary buttons to the given page object.
+     * Returns whether or not a file is in the include path.
      *
-     * @param      object    $page          Page where to put the button
-     * @param      array     $buttons       Key/label of each button/event to handle
-     * @param      mixed     $attributes    (optional) Either a typical HTML attribute string
-     *                                      or an associative array.
-     * @return     void
-     * @since      2.0.0
+     * @param      string    $file
      * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
+     * @return     boolean   true if the file is in the include path.
+     * @since      2.1.0
+     * @static
      */
-    function createButtons(&$page, $buttons, $attributes = null)
+    function isIncludeable($file)
     {
-        if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$page',
-                      'was' => gettype($page),
-                      'expected' => 'HTML_QuickForm_Page object',
-                      'paramnum' => 1));
-
-        } elseif (!is_array($buttons)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$buttons',
-                      'was' => gettype($buttons),
-                      'expected' => 'array',
-                      'paramnum' => 2));
-
-        } elseif (!is_array($attributes) && !is_string($attributes) && !is_null($attributes)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$attributes',
-                      'was' => gettype($attributes),
-                      'expected' => 'array | string',
-                      'paramnum' => 3));
+        if (!defined('PATH_SEPARATOR')) {
+            define('PATH_SEPARATOR', strtolower(substr(PHP_OS, 0, 3)) == 'win' ? ';' : ':');
         }
-
-        $confirm = $attributes = HTML_Common::_parseAttributes($attributes);
-        $confirm['onClick'] = "return(confirm('Are you sure ?'));";
-
-        $prevnext = array();
-
-        foreach ($buttons as $event => $label) {
-            if ($event == 'cancel') {
-                $type = 'submit';
-                $attrs = $confirm;
-            } elseif ($event == 'reset') {
-                $type = 'reset';
-                $attrs = $confirm;
-            } else {
-                $type = 'submit';
-                $attrs = $attributes;
-            }
-            $prevnext[] =& $page->createElement($type, $page->getButtonName($event), $label, HTML_Common::_getAttrString($attrs));
-        }
-        $page->addGroup($prevnext, 'buttons', '', '&nbsp;', false);
-    }
-
-    /**
-     * Enables certain buttons for a page.
-     *
-     * Buttons [ = events] : back, next, cancel, reset, apply, help
-     *
-     * @param      object    $page          Page where you want to activate buttons
-     * @param      array     $events        (optional) List of buttons
-     *
-     * @since      2.0.0
-     * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
-     * @see        disableButton()
-     */
-    function enableButton(&$page, $events = array())
-    {
-        if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$page',
-                      'was' => gettype($page),
-                      'expected' => 'HTML_QuickForm_Page object',
-                      'paramnum' => 1));
-
-        } elseif (!is_array($events)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$events',
-                      'was' => gettype($events),
-                      'expected' => 'array',
-                      'paramnum' => 2));
-        }
-        static $all;
-        if (!isset($all)) {
-            $all = array('back','next','cancel','reset','apply','help');
-        }
-        $buttons = (count($events) == 0) ? $all : $events;
-
-        foreach ($buttons as $event) {
-            $group    =& $page->getElement('buttons');
-            $elements =& $group->getElements();
-            foreach (array_keys($elements) as $key) {
-                if ($group->getElementName($key) == $page->getButtonName($event)) {
-                    $elements[$key]->updateAttributes(array('disabled'=>'false'));
-                }
+        foreach (explode(PATH_SEPARATOR, ini_get('include_path')) as $path) {
+            if (file_exists($path . DIRECTORY_SEPARATOR . $file) &&
+                  is_readable($path . DIRECTORY_SEPARATOR . $file)) {
+                return true;
             }
         }
-    }
-
-    /**
-     * Disables certain buttons for a page.
-     *
-     * Buttons [ = events] : back, next, cancel, reset, apply, help
-     *
-     * @param      object    $page          Page where you want to activate buttons
-     * @param      array     $events        (optional) List of buttons
-     *
-     * @since      2.0.0
-     * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
-     * @see        enableButton()
-     */
-    function disableButton(&$page, $events = array())
-    {
-        if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$page',
-                      'was' => gettype($page),
-                      'expected' => 'HTML_QuickForm_Page object',
-                      'paramnum' => 1));
-
-        } elseif (!is_array($events)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$events',
-                      'was' => gettype($events),
-                      'expected' => 'array',
-                      'paramnum' => 2));
-        }
-        static $all;
-        if (!isset($all)) {
-            $all = array('back','next','cancel','reset','apply','help');
-        }
-        $buttons = (count($events) == 0) ? $all : $events;
-
-        foreach ($buttons as $event) {
-            $group    =& $page->getElement('buttons');
-            $elements =& $group->getElements();
-            foreach (array_keys($elements) as $key) {
-                if ($group->getElementName($key) == $page->getButtonName($event)) {
-                    $elements[$key]->updateAttributes(array('disabled'=>'true'));
-                }
-            }
-        }
+        return false;
     }
 
     /**
@@ -426,7 +386,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
         $structure = $this->createProgressStructure();
 
         $this->_progress->setIdent('PB1');
-// indeterminate
+        // indeterminate
         $this->_progress->setBorderPainted($structure['borderpainted']);
 
         $this->_progress->setAnimSpeed($structure['animspeed']);
@@ -435,7 +395,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
         $this->_progress->setCellAttributes($structure['cell']);
         $this->_progress->setCellCount($structure['cellcount']);
         $this->_progress->setBorderAttributes($structure['border']);
-// string
+        // string
         if ($structure['stringpainted']) {
             $labelID = $structure['string']['name'];
             unset($structure['string']['name']);
@@ -443,7 +403,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
             $this->_progress->setLabelAttributes($labelID, $structure['string']);
         }
         $this->_progress->setProgressAttributes($structure['progress']);
-// script
+        // script
         $this->_progress->setMinimum($structure['minimum']);
         $this->_progress->setMaximum($structure['maximum']);
         $this->_progress->setIncrement($structure['increment']);
