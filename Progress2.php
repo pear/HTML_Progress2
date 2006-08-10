@@ -1722,7 +1722,7 @@ class HTML_Progress2 extends HTML_Common
 
         $options = array_merge($default, $attributes);
 
-        foreach($options as $prop => $val) {
+        foreach ($options as $prop => $val) {
             if (in_array($prop, $allowed_options)) {
                 $this->frame[$prop] = $val;
             } else {
@@ -2259,7 +2259,7 @@ JS;
                       'paramnum' => 1));
         }
 
-        include_once 'Image/Color.php';
+        require_once 'Image/Color.php';
 
         $cellAttr  = $this->getCellAttributes();
         $w = $cellAttr['width'];
@@ -2419,7 +2419,7 @@ JS;
         }
         $styles .= '}'. PHP_EOL . PHP_EOL;
 
-        foreach($this->label as $name => $data) {
+        foreach ($this->label as $name => $data) {
             $styles .= '.' . sprintf($data['class'], $name . $this->ident). ' {' . PHP_EOL;
 
             if ($data['width'] > 0) {
@@ -2832,8 +2832,9 @@ JS;
         // convert delay from milliseconds to microseconds
         $usecs = $this->animSpeed * 1000;
 
-        if ((substr(PHP_OS, 0, 3) == 'WIN') && (substr(PHP_VERSION,0,1) < '5') ){
-            for ($i = 0; $i < $usecs; $i++) { }
+        if ((substr(PHP_OS, 0, 3) == 'WIN') && (substr(PHP_VERSION,0,1) < '5')) {
+            for ($i = 0; $i < $usecs; $i++) {
+            }
         } else {
             usleep($usecs);
         }
@@ -2921,7 +2922,7 @@ JS;
             } else {
                 $this->moveStep($ret);
             }
-        } while(1);
+        } while (1);
         $this->_postNotification('onLoad', array('handler' => __FUNCTION__, 'value' => $this->getValue()));
     }
 
@@ -3060,7 +3061,7 @@ JS;
     {
         static $determinate;
 
-        foreach($this->label as $name => $data) {
+        foreach ($this->label as $name => $data) {
             switch($data['type']) {
             case HTML_PROGRESS2_LABEL_STEP:
                 if (!$this->indeterminate) {
@@ -3754,7 +3755,7 @@ JS;
      */
     function _errorHandler($code, $level, $params)
     {
-        include_once 'HTML/Progress2/Error.php';
+        require_once 'HTML/Progress2/Error.php';
 
         $mode = call_user_func($this->_callback_push, $code, $level);
 
