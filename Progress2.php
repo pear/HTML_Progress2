@@ -24,7 +24,7 @@ require_once 'HTML/Common.php';
 require_once 'Event/Dispatcher.php';
 
 if (version_compare(phpversion(), '5.0.0', '<')) {
-    require_once 'PHP/Compat.php';
+    include_once 'PHP/Compat.php';
     PHP_Compat::loadFunction('ob_get_clean');
     PHP_Compat::loadConstant('PHP_EOL');
 }
@@ -696,7 +696,7 @@ class HTML_Progress2 extends HTML_Common
      */
     function apiVersion()
     {
-        return '@package_version@';
+        return '@api_version@';
     }
 
     /**
@@ -2997,7 +2997,7 @@ JS;
                       'paramnum' => 2));
         }
 
-        $this->dispatcher =& Event_Dispatcher::getInstance();
+        $this->dispatcher =& Event_Dispatcher::getInstance('ProgressMeter');
         $this->dispatcher->addObserver($callback, $nName);
         $this->_observerCount++;
     }
