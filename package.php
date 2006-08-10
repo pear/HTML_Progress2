@@ -17,7 +17,7 @@ require_once 'PEAR/PackageFileManager/Frontend.php';
 session_start();
 
 // where to find package sources
-$pkgDir = 'D:/php/pear/HTML_Progress2/package2.xml';
+$pkgDir = 'c:/php/pear/HTML_Progress2/package2.xml';
 
 $web =& PEAR_PackageFileManager_Frontend::singleton('Web', $pkgDir);
 // configuration options
@@ -25,7 +25,7 @@ $web->setOption('baseinstalldir', 'HTML');
 $web->setOption('exportcompatiblev1', true);
 $web->setOption('changelogoldtonew', false);
 $web->setOption('simpleoutput', true);
-$web->setOption('outputdirectory', 'd:/temp');
+$web->setOption('outputdirectory', 'c:/php/pear');
 $web->setOption('filelistgenerator', 'cvs');
 
 // stop if serious error(s)
