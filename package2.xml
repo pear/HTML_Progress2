@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.4.9" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.4.10" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_Progress2</name>
  <channel>pear.php.net</channel>
  <summary>How to include a loading bar in your XHTML documents quickly and easily.</summary>
@@ -26,11 +26,11 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2006-07-22</date>
- <time>14:30:21</time>
+ <date>2006-08-10</date>
+ <time>17:43:02</time>
  <version>
-  <release>2.0.2</release>
-  <api>2.0.0</api>
+  <release>2.1.0</release>
+  <api>2.1.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -39,6 +39,21 @@ Features:
  <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
  <notes>* bugs
 - fixed bug #8265 HTML_Page2 dependency
+- fixed typo error in removeListener() function from HTML_Progress2 and HTML_Progress2_Monitor classes
+
+* news
+- rewrites of HTML_Progress2_Generator to fully separate code from design
+its now easy to change skin with a simple stylesheet (see examples/generator/generatorcus2.php)
+- add alpha version of QF tableless renderer for HTML_Progress2_Generator
+- addListener() and removeListener() signatures changed. Adds notification name serves as a filter.
+- new methods get and set StyleSheet into default QF renderer (Generator/Default.php)
+- All remaining code (css class selector still in default renderer was moved to external CSS file: &apos;default.css&apos;)
+- fixed value return by apiVersion()
+- progress meter use now its own event dispatcher (called &quot;ProgressMeter&quot;)
+
+* Quality Assurance
+- updates copyright date
+- removed dupplicates entries in package xml 1.0
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -212,9 +227,12 @@ Features:
      <file name="errorstacklogger.php" role="doc" />
     </dir> <!-- /examples/errorhandling -->
     <dir name="generator">
+     <file name="generator.css" role="doc" />
      <file name="generatorcus.php" role="doc" />
+     <file name="generatorcus2.php" role="doc" />
      <file name="generatordef.php" role="doc" />
      <file name="itdynamic.html" role="doc" />
+     <file name="pearix.jpg" role="doc" />
     </dir> <!-- /examples/generator -->
     <dir name="horizontal">
      <file name="ancestor.php" role="doc" />
@@ -263,6 +281,7 @@ Features:
     <dir name="observer">
      <file name="observer1.php" role="doc" />
      <file name="observer2.php" role="doc" />
+     <file name="observer3.php" role="doc" />
     </dir> <!-- /examples/observer -->
     <dir name="polygonal">
      <file name="rectangle.php" role="doc" />
@@ -288,6 +307,11 @@ Features:
     <dir name="Generator">
      <file name="Default.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+      <tasks:replace from="@package_name@" to="name" type="package-info" />
+     </file>
+     <file name="Dump.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="HTMLPage2.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -306,6 +330,11 @@ Features:
      </file>
      <file name="SmartyDynamic.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="Tableless.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+      <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+      <tasks:replace from="@package_name@" to="name" type="package-info" />
      </file>
     </dir> <!-- /Progress2/Generator -->
     <file name="Error.php" role="php">
@@ -356,13 +385,16 @@ Features:
     <file name="TestUnit.php" role="test" />
    </dir> <!-- /tests -->
    <file name="ChangeLog" role="doc" />
+   <file name="default.css" role="data" />
    <file name="NEWS" role="doc" />
    <file name="Progress2.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    <tasks:replace from="@api_version@" to="api-version" type="package-info" />
    </file>
    <file name="Progress2_Lite.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
+   <file name="tableless.css" role="data" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -398,13 +430,12 @@ Features:
    <package>
     <name>HTML_QuickForm</name>
     <channel>pear.php.net</channel>
-    <min>3.2.4</min>
-    <exclude>3.2.4</exclude>
+    <min>3.2.6</min>
    </package>
    <package>
     <name>HTML_QuickForm_Controller</name>
     <channel>pear.php.net</channel>
-    <min>1.0.4</min>
+    <min>1.0.6</min>
    </package>
    <package>
     <name>Image_Color</name>
@@ -431,6 +462,11 @@ Features:
     <channel>pear.php.net</channel>
     <min>1.8.7</min>
    </package>
+   <package>
+    <name>HTML_QuickForm_Renderer_Tableless</name>
+    <channel>pear.php.net</channel>
+    <min>0.3.2</min>
+   </package>
    <extension>
     <name>gd</name>
    </extension>
@@ -438,6 +474,36 @@ Features:
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.1.0</release>
+    <api>2.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-08-10</date>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+   <notes>* bugs
+- fixed bug #8265 HTML_Page2 dependency
+- fixed typo error in removeListener() function from HTML_Progress2 and HTML_Progress2_Monitor classes
+
+* news
+- rewrites of HTML_Progress2_Generator to fully separate code from design
+its now easy to change skin with a simple stylesheet (see examples/generator/generatorcus2.php)
+- add alpha version of QF tableless renderer for HTML_Progress2_Generator
+- addListener() and removeListener() signatures changed. Adds notification name serves as a filter.
+- new methods get and set StyleSheet into default QF renderer (Generator/Default.php)
+- All remaining code (css class selector still in default renderer was moved to external CSS file: &apos;default.css&apos;)
+- fixed value return by apiVersion()
+- progress meter use now its own event dispatcher (called &quot;ProgressMeter&quot;)
+
+* Quality Assurance
+- updates copyright date
+- removed dupplicates entries in package xml 1.0
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.0.2</release>
@@ -450,8 +516,7 @@ Features:
    <date>2006-07-22</date>
    <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
    <notes>* bugs
-- fixed bug #8265 HTML_Page2 dependency
-   </notes>
+- fixed bug #8265 HTML_Page2 dependency</notes>
   </release>
   <release>
    <version>
