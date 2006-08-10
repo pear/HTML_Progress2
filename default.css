@@ -7,7 +7,7 @@
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @copyright  2006 Laurent Laville
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS:$
+ * @version    CVS: $Id$
  * @since      File available since Release 2.1.0
  */
 
@@ -30,6 +30,11 @@ table.maintable {
 
 table.maintable, table.group {
   font-size: 8pt;
+}
+
+table.maintable caption {
+  font-size: 180%;
+  padding: 10px 0;
 }
 
 td {
@@ -62,5 +67,11 @@ input.flat {
   border-style: solid;
   border-width: 2px 2px 0 2px;
   border-color: #996;
+}
+
+input.cmdButton {
+  width: 80px;
+  background-color: #EEE;
+  border: 2px solid #996;
 }
 
