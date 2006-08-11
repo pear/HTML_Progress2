@@ -26,8 +26,8 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2006-08-10</date>
- <time>17:43:02</time>
+ <date>2006-08-11</date>
+ <time>12:56:41</time>
  <version>
   <release>2.1.0</release>
   <api>2.1.0</api>
@@ -47,14 +47,14 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
 - add alpha version of QF tableless renderer for HTML_Progress2_Generator
 - addListener() and removeListener() signatures changed. Adds notification name serves as a filter.
 - new methods get and set StyleSheet into default QF renderer (Generator/Default.php)
+- All renderers (Default, Tableless, HTMLPage2, ITDynamic, SmartyDynamic) used now the new architecture with external stylesheet
 - All remaining code (css class selector still in default renderer was moved to external CSS file: &apos;default.css&apos;)
 - fixed value return by apiVersion()
 - progress meter use now its own event dispatcher (called &quot;ProgressMeter&quot;)
 
 * Quality Assurance
 - updates copyright date
-- removed dupplicates entries in package xml 1.0
- </notes>
+- removed dupplicates entries in package xml 1.0</notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
    <dir name="docs">
@@ -233,6 +233,7 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
      <file name="generatordef.php" role="doc" />
      <file name="itdynamic.html" role="doc" />
      <file name="pearix.jpg" role="doc" />
+     <file name="smarty-dynamic.tpl" role="doc" />
     </dir> <!-- /examples/generator -->
     <dir name="horizontal">
      <file name="ancestor.php" role="doc" />
@@ -315,9 +316,13 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
      </file>
      <file name="HTMLPage2.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+      <tasks:replace from="@package_name@" to="name" type="package-info" />
      </file>
      <file name="ITDynamic.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+      <tasks:replace from="@package_name@" to="name" type="package-info" />
      </file>
      <file name="pages.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -330,6 +335,8 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
      </file>
      <file name="SmartyDynamic.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+      <tasks:replace from="@package_name@" to="name" type="package-info" />
      </file>
      <file name="Tableless.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -386,6 +393,8 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
    </dir> <!-- /tests -->
    <file name="ChangeLog" role="doc" />
    <file name="default.css" role="data" />
+   <file name="htmlpage2.css" role="data" />
+   <file name="itdynamic.css" role="data" />
    <file name="NEWS" role="doc" />
    <file name="Progress2.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -394,6 +403,7 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
    <file name="Progress2_Lite.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
+   <file name="smartydynamic.css" role="data" />
    <file name="tableless.css" role="data" />
   </dir> <!-- / -->
  </contents>
@@ -483,7 +493,7 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2006-08-10</date>
+   <date>2006-08-11</date>
    <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
    <notes>* bugs
 - fixed bug #8265 HTML_Page2 dependency
@@ -495,14 +505,14 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
 - add alpha version of QF tableless renderer for HTML_Progress2_Generator
 - addListener() and removeListener() signatures changed. Adds notification name serves as a filter.
 - new methods get and set StyleSheet into default QF renderer (Generator/Default.php)
+- All renderers (Default, Tableless, HTMLPage2, ITDynamic, SmartyDynamic) used now the new architecture with external stylesheet
 - All remaining code (css class selector still in default renderer was moved to external CSS file: &apos;default.css&apos;)
 - fixed value return by apiVersion()
 - progress meter use now its own event dispatcher (called &quot;ProgressMeter&quot;)
 
 * Quality Assurance
 - updates copyright date
-- removed dupplicates entries in package xml 1.0
-   </notes>
+- removed dupplicates entries in package xml 1.0</notes>
   </release>
   <release>
    <version>
