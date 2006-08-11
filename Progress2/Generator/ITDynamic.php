@@ -40,38 +40,105 @@ require_once 'HTML/Template/Sigma.php';
 
 class ActionDisplay extends HTML_QuickForm_Action_Display
 {
+    /**
+     * Style sheet for the custom layout
+     *
+     * @var    string
+     * @access public
+     * @since  2.1.0
+     */
+    var $css;
+
+    /**
+     * class constructor
+     *
+     * @param  string  $css  custom stylesheet to apply, or default if not set
+     * @access public
+     * @since  2.1.0
+     */
+    function ActionDisplay($css = null)
+    {
+        // when no user-styles defined, used the default values
+        $this->setStyleSheet($css);
+    }
+
+    /**
+     * Outputs the form.
+     *
+     * @param  object HTML_QuickForm_Page  the page being processed
+     * @access public
+     * @since  2.0.0RC1
+     */
     function _renderForm(&$page)
     {
-        $pageName = $page->getAttribute('name');
-        $tabPreview = array_slice ($page->controller->_tabs, -2, 1);
-
         // can use either HTML_Template_Sigma or HTML_Template_ITX
         $tpl =& new HTML_Template_Sigma('.', 'cache/');
-
         $tpl->loadTemplateFile('itdynamic.html');
-
-        // on preview tab, add progress bar javascript and stylesheet
-        if ($pageName == $tabPreview[0][0]) {
-            $pb = $page->controller->createProgressBar();
-
-            $tpl->setVariable(array(
-                'qf_style'  => $pb->getStyle(),
-                'qf_script' => $pb->getScript()
-                )
-            );
-
-            $pbElement =& $page->getElement('progressBar');
-            $pbElement->setText($pb->toHtml() . '<br /><br />');
-        }
 
         $renderer =& new HTML_QuickForm_Renderer_ITDynamic($tpl);
         $renderer->setElementBlock(array(
             'buttons'     => 'qf_buttons'
         ));
 
+        $styles = $this->getStyleSheet();
+        $js     = '';
+
+        // on preview tab, add progress bar javascript and stylesheet
+        if ($page->getAttribute('id') == 'Preview') {
+            $pb = $page->controller->createProgressBar();
+
+            $styles .= $pb->getStyle();
+            $js      = $pb->getScript();
+
+            $pbElement =& $page->getElement('progressBar');
+            $pbElement->setText($pb->toHtml() . '<br /><br />');
+        }
         $page->accept($renderer);
 
+        $tpl->setVariable(array('qf_style' => $styles, 'qf_script' => $js));
         $tpl->show();
+    }
+
+    /**
+     * Returns the custom style sheet to use for layout
+     *
+     * @param  bool  $content (optional) Either return css filename or string contents
+     * @return string
+     * @access public
+     * @since  2.1.0
+     */
+    function getStyleSheet($content = true)
+    {
+        if ($content) {
+            $styles = file_get_contents($this->css);
+        } else {
+            $styles = $this->css;
+        }
+        return $styles;
+    }
+
+    /**
+     * Set the custom style sheet to use your own styles
+     *
+     * @param  string  $css (optional) File to read user-defined styles from
+     * @return bool    true if custom styles, false if default styles applied
+     * @access public
+     * @since  2.1.0
+     */
+    function setStyleSheet($css = null)
+    {
+        // default stylesheet is into package data directory
+        if (!isset($css)) {
+            $this->css = '@data_dir@' . DIRECTORY_SEPARATOR
+                 . '@package_name@' . DIRECTORY_SEPARATOR
+                 . 'itdynamic.css';
+        }
+
+        $res = isset($css) && file_exists($css);
+        if ($res) {
+            $this->css = $css;
+        }
+        return $res;
     }
 }
 ?>
