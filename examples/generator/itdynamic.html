@@ -6,72 +6,28 @@
 <meta name="author" content="Laurent Laville" />
 <style type="text/css">
 <!--
-body {
-    background-color: #444444;
-    font-family:      Verdana, Arial, helvetica;
-    font-size:        10pt;
-}
-h1 {
-    color:            #FFC;
-    text-align:       center;
-}
-.maintable {
-    width:            100%;
-    border-width:     0;
-    border-style:     thin dashed;
-    border-color:     #D0D0D0;
-    background-color: #EEE;
-    cellspacing:      2;
-    cellspadding:     3;
-}
-th {
-    text-align:       center;
-    color:            #FFC;
-    background-color: #AAA;
-    white-space:      nowrap;
-}
-input {
-    font-family:      Verdana, Arial, helvetica;
-}
-input.flat {
-    border-style:     solid;
-    border-width:     2px 2px 0 2px;
-    border-color:     #996;
-}
-span.qfError {
-    color:            #FF0000;
-}
-span.qfLabel {
-    font-weight:      bold;
-}
 {qf_style}
-//-->
+ -->
 </style>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 {qf_script}
-//-->
+//]]>
 </script>
 </head>
 <body>
 
 <table width="100%" border="0">
 <tr>
-  <td colspan="3" bgcolor="#ffcc00"><h1>HeadBanner</h1></td>
+  <td colspan="3" class="header"><h1>HeadBanner</h1></td>
 </tr>
 <tr>
-  <td bgcolor="red" valign="top" width="15%" align="left">
-    <font color="white">pseudo-menu 1</font>&nbsp;
-  </td>
-  <td bgcolor="red" valign="top" width="15%" align="left">
-    <font color="white">pseudo-menu 2</font>&nbsp;
-  </td>
-  <td bgcolor="#ffcc00">
-    &nbsp;
-  </td>
+  <td class="menuHeader">pseudo-menu 1 </td>
+  <td class="menuHeader">pseudo-menu 2 </td>
+  <td class="header">&nbsp;            </td>
 </tr>
 <tr>
-  <td colspan="3" bgcolor="#EEEEEE" valign="top">
+  <td colspan="3" class="form">
 
 <form {qf_attributes}>
 <table class="maintable">
@@ -88,12 +44,12 @@ span.qfLabel {
   <!-- END qf_header -->
 
   <!-- BEGIN qf_element -->
-  <tr><td align="right" width="30%"><span class="qfLabel">{qf_label}</span></td><td>{qf_element}</td></tr>
+  <tr><td class="qfLabel">&nbsp;{qf_label}</td><td>{qf_element}</td></tr>
   <!-- END qf_element -->
 
   <!-- BEGIN qf_group -->
   <tr>
-    <td align="right" width="30%"><span class="qfLabel">{qf_group_label}</span></td>
+    <td class="qfLabel">&nbsp;{qf_group_label}</td>
     <td><!-- BEGIN qf_group_error --><span class="qfError">{qf_error}</span><br /><!-- END qf_group_error -->
     <!-- BEGIN qf_group_loop -->
       <!-- BEGIN qf_group_element -->{qf_separator}{qf_element}<!-- END qf_group_element -->
@@ -104,7 +60,7 @@ span.qfLabel {
 
   <!-- BEGIN qf_buttons -->
   <tr>
-    <td align="right"><span class="qfLabel">{qf_group_label}</span></td>
+    <td class="qfLabel">&nbsp;{qf_group_label}</td>
     <td>
     <!-- BEGIN qf_buttons_loop -->
       <!-- BEGIN qf_buttons_element -->{qf_separator}{qf_element}<!-- END qf_buttons_element -->
@@ -114,7 +70,6 @@ span.qfLabel {
   <!-- END qf_buttons -->
 
 <!-- END qf_main_loop -->
-
 </table>
 </form>
 
@@ -127,8 +82,8 @@ span.qfLabel {
 </td>
 </tr>
 <tr>
-  <td colspan="3" bgcolor="white" align="right">
-    <b>powered by PEAR::HTML_Progress2&nbsp;</b>
+  <td colspan="3" class="footer">
+    powered by PEAR::HTML_Progress2
   </td>
 </tr>
 </table>
