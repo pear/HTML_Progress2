@@ -37,10 +37,37 @@ require_once 'HTML/Page2.php';
 
 class ActionDisplay extends HTML_QuickForm_Action_Display
 {
+    /**
+     * Style sheet for the custom layout
+     *
+     * @var    string
+     * @access public
+     * @since  2.1.0
+     */
+    var $css;
+
+    /**
+     * class constructor
+     *
+     * @param  string  $css  custom stylesheet to apply, or default if not set
+     * @access public
+     * @since  2.1.0
+     */
+    function ActionDisplay($css = null)
+    {
+        // when no user-styles defined, used the default values
+        $this->setStyleSheet($css);
+    }
+
+    /**
+     * Outputs the form.
+     *
+     * @param  object HTML_QuickForm_Page  the page being processed
+     * @access public
+     * @since  2.0.0RC1
+     */
     function _renderForm(&$page)
     {
-        $pageName = $page->getAttribute('name');
-        $tabPreview = array_slice ($page->controller->_tabs, -2, 1);
         $tab = '  ';
 
         $p = new HTML_Page2(array(
@@ -54,62 +81,9 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
         $p->setTitle('PEAR::HTML_Progress2 - Generator');
         $p->setMetaData('author', 'Laurent Laville');
 
-        $styles = '
-body {
-  background-color: #7B7B88;
-  font-family: Verdana, Arial, helvetica;
-  font-size: 10pt;
-}
-
-h1 {
-  color: #FFC;
-  text-align: center;
-}
-
-.maintable {
-  width: 100%;
-  border-width: 0;
-  border-style: thin dashed;
-  border-color: #D0D0D0;
-  background-color: #EEE;
-  cellspacing: 2;
-  cellspadding: 3;
-}
-
-th {
-  text-align: center;
-  color: #FFC;
-  background-color: #AAA;
-  white-space: nowrap;
-}
-
-input {
-  font-family: Verdana, Arial, helvetica;
-}
-
-input.flat {
-  border-style: solid;
-  border-width: 2px 2px 0 2px;
-  border-color: #996;
-}
-';
-
-        // on preview tab, add progress bar javascript and stylesheet
-        if ($pageName == $tabPreview[0][0]) {
-            $pb = $page->controller->createProgressBar();
-            $pb->setTab($tab);
-
-            $p->addStyleDeclaration( $styles . $pb->getStyle() );
-            $p->addScriptDeclaration( $pb->getScript() );
-
-            $pbElement =& $page->getElement('progressBar');
-            $pbElement->setText($pb->toHtml() . '<br /><br />');
-        } else {
-            $p->addStyleDeclaration( $styles );
-        }
-
         $formTemplate = "\n<form{attributes}>"
-                      . "\n<table style=\"font-size: 8pt;\" class=\"maintable\">"
+                      . "\n<table class=\"maintable\">"
+                      . "\n<caption>HTML_Progress2 Generator</caption>"
                       . "\n{content}"
                       . "\n</table>"
                       . "\n</form>";
@@ -120,21 +94,29 @@ input.flat {
                         . "\n\t</th>"
                         . "\n</tr>";
 
-        $elementTemplate = "\n\t<tr>"
-                         . "\n\t\t<td align=\"right\" valign=\"top\" width=\"30%\">"
-                         . "<!-- BEGIN required --><span style=\"color: #ff0000\">*</span><!-- END required -->"
-                         . "<b>{label}</b></td>"
-                         . "\n\t\t<td valign=\"top\" align=\"left\">"
-                         . "<!-- BEGIN error --><span style=\"color: #ff0000\">{error}</span><br /><!-- END error -->"
-                         . "\t{element}</td>"
-                         . "\n\t</tr>";
+        $elementTemplate = "\n<tr valign=\"top\">"
+                         . "\n\t<td class=\"qfLabel\">&nbsp;"
+                         . "<!-- BEGIN required --><span class=\"required\">*</span><!-- END required -->"
+                         . "{label}</td>"
+                         . "\n\t<td class=\"qfElement\">"
+                         . "\n{element}"
+                         . "<!-- BEGIN label_2 -->&nbsp;"
+                         . "<span class=\"qfLabel2\">{label_2}</span>"
+                         . "<!-- END label_2 -->"
+                         . "\n\t</td>"
+                         . "\n</tr>";
 
-        $groupTemplate = "<table><tr>{content}</tr></table>";
+        $groupTemplate = "\n\t\t<table class=\"group\">"
+                       . "\n\t\t<tr>"
+                       . "\n\t\t\t{content}"
+                       . "\n\t\t</tr>"
+                       . "\n\t\t</table>";
 
-        $groupElementTemplate = "<td>{element}<br />"
-                              . "<span style=\"font-size:10px;\">"
-                              . "<span class=\"label\">{label}</span>"
-                              . "</span></td>";
+        $groupElementTemplate = "<td>{element}"
+                              . "<!-- BEGIN label --><br/>"
+                              . "<span class=\"qfLabel\">{label}</span>"
+                              . "<!-- END label -->"
+                              . "</td>";
 
         $renderer =& $page->defaultRenderer();
 
@@ -144,10 +126,71 @@ input.flat {
         $renderer->setGroupTemplate($groupTemplate, 'name');
         $renderer->setGroupElementTemplate($groupElementTemplate, 'name');
 
+        $styles = $this->getStyleSheet();
+        $js     = '';
+
+        // on preview tab, add progress bar javascript and stylesheet
+        if ($page->getAttribute('id') == 'Preview') {
+            $pb = $page->controller->createProgressBar();
+            $pb->setTab($tab);
+
+            $styles .= $pb->getStyle();
+            $js      = $pb->getScript();
+
+            $p->addStyleDeclaration($styles);
+            $p->addScriptDeclaration($js);
+
+            $pbElement =& $page->getElement('progressBar');
+            $pbElement->setText($pb->toHtml() . '<br /><br />');
+        } else {
+            $p->addStyleDeclaration($styles);
+        }
         $page->accept($renderer);
 
         $p->addBodyContent( $renderer->toHtml() );
         $p->display();
+    }
+
+    /**
+     * Returns the custom style sheet to use for layout
+     *
+     * @param  bool  $content (optional) Either return css filename or string contents
+     * @return string
+     * @access public
+     * @since  2.1.0
+     */
+    function getStyleSheet($content = true)
+    {
+        if ($content) {
+            $styles = file_get_contents($this->css);
+        } else {
+            $styles = $this->css;
+        }
+        return $styles;
+    }
+
+    /**
+     * Set the custom style sheet to use your own styles
+     *
+     * @param  string  $css (optional) File to read user-defined styles from
+     * @return bool    true if custom styles, false if default styles applied
+     * @access public
+     * @since  2.1.0
+     */
+    function setStyleSheet($css = null)
+    {
+        // default stylesheet is into package data directory
+        if (!isset($css)) {
+            $this->css = '@data_dir@' . DIRECTORY_SEPARATOR
+                 . '@package_name@' . DIRECTORY_SEPARATOR
+                 . 'htmlpage2.css';
+        }
+
+        $res = isset($css) && file_exists($css);
+        if ($res) {
+            $this->css = $css;
+        }
+        return $res;
     }
 }
 ?>
