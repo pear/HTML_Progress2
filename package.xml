@@ -31,7 +31,7 @@ Features:
   </maintainers>
  <release>
   <version>2.1.0</version>
-  <date>2006-08-11</date>
+  <date>2006-08-12</date>
   <license>PHP License 3.01</license>
   <state>stable</state>
   <notes>* bugs
@@ -52,6 +52,7 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
 * Quality Assurance
 - updates copyright date
 - removed dupplicates entries in package xml 1.0
+- The Definitive Guide is up-to-date with FAQ, Appendixes new examples, and the guide for Progress Generator
   </notes>
   <deps>
    <dep type="php" rel="ge" version="4.2.0" optional="no"/>
@@ -104,12 +105,17 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
        <file role="doc" name="created-with-docbook.png"/>
        <file role="doc" name="example.png"/>
        <file role="doc" name="external-link.gif"/>
+       <file role="doc" name="generator0.png"/>
+       <file role="doc" name="generator0b.png"/>
+       <file role="doc" name="generator1.png"/>
+       <file role="doc" name="generator21.png"/>
        <file role="doc" name="indeterminate1.png"/>
        <file role="doc" name="indeterminate2.png"/>
        <file role="doc" name="mixed2.png"/>
        <file role="doc" name="monitor0.png"/>
        <file role="doc" name="monitor1.png"/>
        <file role="doc" name="monitor2.png"/>
+       <file role="doc" name="observer3.png"/>
        <file role="doc" name="pear_progress2.gif"/>
        <file role="doc" name="vertical1.png"/>
       </dir> <!-- /docs/TDG/img -->
@@ -119,6 +125,7 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
       <file role="doc" name="ch01s02.html"/>
       <file role="doc" name="ch01s03.html"/>
       <file role="doc" name="ch02.html"/>
+      <file role="doc" name="ch02s02.html"/>
       <file role="doc" name="ch03.html"/>
       <file role="doc" name="ch04.html"/>
       <file role="doc" name="ch05.html"/>
@@ -140,26 +147,31 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
       <file role="doc" name="ch10s03.html"/>
       <file role="doc" name="ch11.html"/>
       <file role="doc" name="ch11s02.html"/>
+      <file role="doc" name="ch11s03.html"/>
       <file role="doc" name="ch12.html"/>
+      <file role="doc" name="ch12s02.html"/>
       <file role="doc" name="ch13.html"/>
-      <file role="doc" name="ch13s02.html"/>
-      <file role="doc" name="ch13s03.html"/>
-      <file role="doc" name="ch13s04.html"/>
-      <file role="doc" name="ch13s05.html"/>
       <file role="doc" name="ch14.html"/>
       <file role="doc" name="ch14s02.html"/>
+      <file role="doc" name="ch14s03.html"/>
+      <file role="doc" name="ch14s04.html"/>
+      <file role="doc" name="ch14s05.html"/>
       <file role="doc" name="ch15.html"/>
       <file role="doc" name="ch15s02.html"/>
       <file role="doc" name="ch16.html"/>
       <file role="doc" name="ch16s02.html"/>
-      <file role="doc" name="ch16s03.html"/>
-      <file role="doc" name="ch16s04.html"/>
-      <file role="doc" name="ch16s05.html"/>
       <file role="doc" name="ch17.html"/>
+      <file role="doc" name="ch17s02.html"/>
+      <file role="doc" name="ch17s03.html"/>
+      <file role="doc" name="ch17s04.html"/>
+      <file role="doc" name="ch17s05.html"/>
       <file role="doc" name="ch18.html"/>
-      <file role="doc" name="ch18s02.html"/>
-      <file role="doc" name="ch18s03.html"/>
-      <file role="doc" name="ch18s04.html"/>
+      <file role="doc" name="ch19.html"/>
+      <file role="doc" name="ch19s02.html"/>
+      <file role="doc" name="ch19s03.html"/>
+      <file role="doc" name="ch19s04.html"/>
+      <file role="doc" name="ch19s05.html"/>
+      <file role="doc" name="ch19s06.html"/>
       <file role="doc" name="index.html"/>
       <file role="doc" name="pngbehavior.htc"/>
       <file role="doc" name="pr01.html"/>
@@ -425,7 +437,7 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
  <changelog>
    <release>
     <version>2.1.0</version>
-    <date>2006-08-11</date>
+    <date>2006-08-12</date>
     <license>PHP License 3.01</license>
     <state>stable</state>
     <notes>* bugs
@@ -446,6 +458,7 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
 * Quality Assurance
 - updates copyright date
 - removed dupplicates entries in package xml 1.0
+- The Definitive Guide is up-to-date with FAQ, Appendixes new examples, and the guide for Progress Generator
     </notes>
    </release>
    <release>
