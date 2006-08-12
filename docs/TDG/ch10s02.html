@@ -1,13 +1,13 @@
 <html>
 <head>
    <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-   <title>User Interface related</title>
+   <title>Why these changes ?</title>
    <link href="book.css" rel="stylesheet" type="text/css">
    <meta content="DocBook XSL Stylesheets V1.69.1" name="generator">
    <link href="index.html" rel="start" title="HTML_Progress2 Manual">
-   <link href="ch10.html" rel="up" title="Chapter 10. How to adjust your code">
-   <link href="ch10.html" rel="prev" title="Chapter 10. How to adjust your code">
-   <link href="ch10s03.html" rel="next" title="Data Management related">
+   <link href="ch10.html" rel="up" title="Chapter 10. Introduction">
+   <link href="ch10.html" rel="prev" title="Chapter 10. Introduction">
+   <link href="ch10s03.html" rel="next" title="What was removed ?">
 </head>
 <body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
 <table class="qfamsHeader">
@@ -19,11 +19,11 @@
          <div class="navheader">
             <table summary="Navigation header" width="100%">
                <tr>
-                  <th align="center" colspan="3">User Interface related</th>
+                  <th align="center" colspan="3">Why these changes ?</th>
                </tr>
                <tr>
                   <td align="left" width="20%"><a accesskey="p" href="ch10.html">Prev</a> </td>
-                  <th align="center" width="60%">Chapter 10. How to adjust your code</th><td align="right" width="20%"> <a accesskey="n" href="ch10s03.html">Next</a></td>
+                  <th align="center" width="60%">Chapter 10. Introduction</th><td align="right" width="20%"> <a accesskey="n" href="ch10s03.html">Next</a></td>
                </tr>
             </table>
          </div></p>
@@ -31,93 +31,23 @@
    </tr>
 </table>
 <div class="sect1" lang="en"><div class="titlepage"><div><div>
-            <h2 class="title" style="clear: both"><a name="id4778965"></a>User Interface related</h2></div>
+            <h2 class="title" style="clear: both"><a name="id4786460"></a>Why these changes ?</h2></div>
       </div>
    </div>
 
-   <p></p>
-   <div class="variablelist">
-      <dl><dt><span class="term"> setCellCount() </span></dt>
-         <dd>
+   <p>HTML_Progress2 has improved a lot since HTML_Progress 1.2.x. With merge of secondary classes (UI and DM) to the main core class, i've removed duplicated methods and unified API. </p>
 
-         <p>Sets the number of cell in the progress bar </p>
+   <p>With the addition of a new plugin error management, it was the first milestone to have a version a bit less dependent to PEAR. Lot of users are afraid to install a such framework on their system, for many reasons. So second milestone and goal, was to create a new class much lighter and without any dependencies to a such audience: HTML_Progress2_Lite was born. </p>
 
-         <p>This method accept now zero as minimum value for smooth progress meter. That means that a progress bar with zero cell, will render a full bar as HTML_Progress2_Lite do. </p></dd>
-      </dl>
-   </div>
+   <p>The HTML_Progress2_Lite class does not allow to do all that is possible with HTML_Progress2 class. See the 
+   <a href="ch18.html" title="Chapter 18. HTML_Progress2 and HTML_Progress2_Lite features comparative">features comparative</a>. </p>
 
-   <p></p>
-   <div class="variablelist">
-      <dl><dt><span class="term"> setLabelAttributes(), addLabel() </span></dt>
-         <dd>
-
-         <p>With HTML_Progress 1.x you might only defines one custom text label. Now with new multiple label system you can do it at infinite. There is no label number limit (except memory). </p>
-         <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
-            <table border="0" summary="Important">
-               <tr>
-                  <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Important]" src="img/admons/important.png"></td>
-                  <th align="left">Important</th>
-               </tr>
-               <tr>
-                  <td align="left" valign="top"> You have to define first each label you will put around the progress meter by the 
-                     <code class="methodname">addLabel()</code> method, before to set its attributes. 
-                  </td>
-               </tr>
-            </table>
-         </div>
-
-         <p>While with HTML_Progress 1.x, you could have a script like this: </p>
-<pre class="programlisting">
-          
-&lt;?php
-require_once 'HTML/Progress.php';
-
-$bar = new HTML_Progress();
-$bar-&gt;setAnimSpeed(100);
-$bar-&gt;setIncrement(5);
-$bar-&gt;setStringPainted(true);          // get space for the string
-$bar-&gt;setString('');                   // but don't paint it
-
-$ui =&amp; $bar-&gt;getUI();
-$ui-&gt;setStringAttributes('width=350 align=left');
-// ...
-?&gt;
-          
-         </pre>
-
-         <p>which prepare to render a custom string on right side of the progress bar. </p>
-
-         <p>Now with HTML_Progress2, you will have a modified script like: </p>
-
-         <p></p>
-<pre class="programlisting">
-          
-&lt;?php
-require_once 'HTML/Progress2.php';
-
-$bar = new HTML_Progress2();
-$bar-&gt;setAnimSpeed(100);
-$bar-&gt;setIncrement(5);
-$bar-&gt;addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt1', 'Simple static text');
-$bar-&gt;setLabelAttributes('txt1', array(
-    'valign' =&gt; 'top',
-    'left' =&gt; 0
-));
-// ...
-?&gt;
-          
-         </pre>
-
-         <p>The percent info will be render alone at right side of the progress bar (default) and we have added a static text label on top side of the same progress bar. </p></dd>
-      </dl>
-   </div>
-
-   <p></p>
+   <p>And last but not least, a multiple labels system was introduced, that give ability to have more than just one percent text information or one custom text label. </p>
 </div>
 <table class="qfamsFooter">
    <tr>
       <td align="left">HTML_Progress2 : The Definitive Guide</td>
-      <td align="right">v 2.0.1 : May 24, 2006</td>
+      <td align="right">v 2.1.0 : August 12, 2006</td>
    </tr>
 </table>
 <div class="navfooter"><hr>
@@ -128,9 +58,9 @@ $bar-&gt;setLabelAttributes('txt1', array(
          <td align="right" width="40%"> <a accesskey="n" href="ch10s03.html">Next</a></td>
       </tr>
       <tr>
-         <td align="left" valign="top" width="40%">Chapter 10. How to adjust your code </td>
+         <td align="left" valign="top" width="40%">Chapter 10. Introduction </td>
          <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
-         <td align="right" valign="top" width="40%"> Data Management related</td>
+         <td align="right" valign="top" width="40%"> What was removed ?</td>
       </tr>
    </table>
 </div>

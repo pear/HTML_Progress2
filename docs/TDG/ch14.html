@@ -1,13 +1,13 @@
 <html>
 <head>
    <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-   <title>Chapter 14. Events to observe</title>
+   <title>Chapter 14. Error Handler</title>
    <link href="book.css" rel="stylesheet" type="text/css">
    <meta content="DocBook XSL Stylesheets V1.69.1" name="generator">
    <link href="index.html" rel="start" title="HTML_Progress2 Manual">
    <link href="pt04.html" rel="up" title="Part IV. Reference Guide">
-   <link href="ch13s05.html" rel="prev" title="Custom Error Message Generation ">
-   <link href="ch14s02.html" rel="next" title="Additional Events informations ">
+   <link href="ch13.html" rel="prev" title="Chapter 13. Introduction">
+   <link href="ch14s02.html" rel="next" title="Configuring a Handler ">
 </head>
 <body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
 <table class="qfamsHeader">
@@ -19,10 +19,10 @@
          <div class="navheader">
             <table summary="Navigation header" width="100%">
                <tr>
-                  <th align="center" colspan="3">Chapter 14. Events to observe</th>
+                  <th align="center" colspan="3">Chapter 14. Error Handler</th>
                </tr>
                <tr>
-                  <td align="left" width="20%"><a accesskey="p" href="ch13s05.html">Prev</a> </td>
+                  <td align="left" width="20%"><a accesskey="p" href="ch13.html">Prev</a> </td>
                   <th align="center" width="60%">Part IV. Reference Guide</th><td align="right" width="20%"> <a accesskey="n" href="ch14s02.html">Next</a></td>
                </tr>
             </table>
@@ -31,62 +31,166 @@
    </tr>
 </table>
 <div class="chapter" lang="en"><div class="titlepage"><div><div>
-            <h2 class="title"><a name="reference.observer"></a>Chapter 14. Events to observe</h2></div>
+            <h2 class="title"><a name="reference.errorhandler"></a>Chapter 14. Error Handler</h2></div>
       </div>
    </div>
    <div class="toc">
 
       <p><b>Table of Contents</b></p>
-      <dl><dt><span class="sect1"><a href="ch14.html#id4784016">Events Reference 
-         </a></span></dt><dt><span class="sect1"><a href="ch14s02.html">Additional Events informations 
+      <dl><dt><span class="sect1"><a href="ch14.html#id4788336">Introduction</a></span></dt><dt><span class="sect1"><a href="ch14s02.html">Configuring a Handler 
+         </a></span></dt><dt><span class="sect1"><a href="ch14s03.html">Controlling error generation 
+         </a></span></dt><dt><span class="sect1"><a href="ch14s04.html">Error Context Display 
+         </a></span></dt><dt><span class="sect1"><a href="ch14s05.html">Custom Error Message Generation 
          </a></span></dt>
+         <dd>
+         <dl><dt><span class="sect2"><a href="ch14s05.html#id4791152">Option: message_callback 
+            </a></span></dt><dt><span class="sect2"><a href="ch14s05.html#id4791186">Option: context_callback 
+            </a></span></dt>
+         </dl></dd>
       </dl>
    </div>
    <div class="sect1" lang="en"><div class="titlepage"><div><div>
-               <h2 class="title" style="clear: both"><a name="id4784016"></a>Events Reference </h2>
+               <h2 class="title" style="clear: both"><a name="id4788336"></a>Introduction</h2></div>
+         </div>
+      </div>
+
+      <p>After many rewrites, the new error management adding to this major version of HTML_Progress2 provides again more than in branch 1.x </p>
+
+      <p>The HTML_Progress2 package is implemented with a flexible error handler plug-in system. You may use any error handler that you want. Using 
+      <code class="classname">PEAR_Error</code> object (default), but also the 
+      <code class="classname">PEAR_ErrorStack</code> package, or any other error handler you might want to plug in. </p>
+
+      <p>Without any configuration, each HTML_Progress2 API error (basic or exception) will raise a 
+      <code class="classname">HTML_Progress2_Error</code> object that will be return to call script (user script). </p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+         <table border="0" summary="Note">
+            <tr>
+               <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Note]" src="img/admons/note.png"></td>
+               <th align="left">Note</th>
+            </tr>
+            <tr>
+               <td align="left" valign="top"> In HTML_Progress 1.x each API error returns a basic 
+                  <code class="classname">PEAR_Error</code> object. 
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      <p></p>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+         <table border="0" summary="Tip">
+            <tr>
+               <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Tip]" src="img/admons/tip.png"></td>
+               <th align="left">Tip</th>
+            </tr>
+            <tr>
+               <td align="left" valign="top"> Easy to distinct basic PEAR_Error from other PEAR packages to HTML_Progress2 errors, even if there is a better and more robust solution: 
+                  <code class="methodname">HTML_Progress2::hasErrors()</code>. But also provide a unique way to retrieve the level of progress error (warning, error, exception) with the 
+                  <code class="methodname">HTML_Progress2_Error::getLevel() 
+                  </code> method. 
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      <p></p>
+
+      <p>As usual, to check an error, you can use the PEAR error API : </p>
+<pre class="programlisting">
+     
+&lt;?php
+require_once 'HTML/Progress2.php';
+
+$meter = new HTML_Progress2();
+
+$result = $meter-&gt;setValue('37');
+if (PEAR::isError($result)) {
+    // do something when an error is raised
+    $error =&amp; $result;
+}
+?&gt;
+     
+    </pre>
+
+      <p>as well as with : </p>
+<pre class="programlisting">
+     
+&lt;?php
+require_once 'HTML/Progress2.php';
+
+$meter = new HTML_Progress2();
+
+$result = $meter-&gt;setValue('37');
+if ($meter-&gt;hasErrors() &gt; 0) {
+    // do something when an error is raised
+    $error = $meter-&gt;getError();
+}
+?&gt;
+     
+    </pre>
+
+      <p>which provide a portable solution, and output to screen will give something like : </p>
+      <div class="informalexample"><div class="screenco">
+<pre class="screen">
+Exception<a name="error.1.level"></a><img alt="1" border="0" src="img/callouts/1.gif">: invalid input, parameter #1 "$val" was expecting "integer",
+instead got "string"<a name="error.1.message"></a><img alt="2" border="0" src="img/callouts/2.gif"> in html_progress2-&gt;setvalue (file [path_to]\[filename] on line 6)<a name="error.1.context"></a><img alt="3" border="0" src="img/callouts/3.gif">
+     </pre>
+            <div class="calloutlist">
+               <table border="0" summary="Callout list">
+                  <tr>
+                     <td align="left" valign="top" width="5%"><a href="#error.1.level"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
+                     </td>
+                     <td align="left" valign="top">
+
+                        <p>error level </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td align="left" valign="top" width="5%"><a href="#error.1.message"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
+                     </td>
+                     <td align="left" valign="top">
+
+                        <p>message body with context informations </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td align="left" valign="top" width="5%"><a href="#error.1.context"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
+                     </td>
+                     <td align="left" valign="top">
+
+                        <p>call context </p>
+                     </td>
+                  </tr>
+               </table>
             </div>
          </div>
       </div>
 
-      <p></p>
-      <div class="variablelist">
-         <dl><dt><span class="term"> onSubmit </span></dt>
-            <dd>
-
-            <p>This event is triggered by <code class="methodname">run()</code> method when progress meter start process (0%) </p></dd>
-         </dl>
+      <p>Perhaps this standard behavior is not what you want. Don't worry, you can change everything : </p>
+      <div class="itemizedlist">
+         <ul type="disc">
+            <li>display or ignore the error </li>
+            <li>display or hide part of message (error level, body, context) </li>
+         </ul>
       </div>
 
       <p></p>
-      <div class="variablelist">
-         <dl><dt><span class="term"> onLoad </span></dt>
-            <dd>
-
-            <p>This event is triggered by <code class="methodname">run()</code> method when progress meter end process (100%) </p></dd>
-         </dl>
-      </div>
 
       <p></p>
-      <div class="variablelist">
-         <dl><dt><span class="term"> onChange </span></dt>
-            <dd>
-
-            <p>This event is triggered by <code class="methodname">setMinimum()</code>, 
-            <code class="methodname">setMaximum()</code>, 
-            <code class="methodname">setValue()</code>, 
-            <code class="methodname">incValue()</code>, 
-            <code class="methodname">moveStep()</code>, and 
-            <code class="methodname">moveNext()</code> methods each time the current value change. </p></dd>
-         </dl>
-      </div>
-
-      <p></p>
-      <div class="variablelist">
-         <dl><dt><span class="term"> onCancel </span></dt>
-            <dd>
-
-            <p>This event is triggered only by a progress monitor, when user decide (click on button) to stop process. </p></dd>
-         </dl>
+      <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+         <table border="0" summary="Important">
+            <tr>
+               <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Important]" src="img/admons/important.png"></td>
+               <th align="left">Important</th>
+            </tr>
+            <tr>
+               <td align="left" valign="top"> HTML_Progress2 obey at 
+                  <a class="external" href="http://www.php.net/manual/en/ref.errorfunc.php#ini.display-errors" title="http://www.php.net/manual/en/ref.errorfunc.php#ini.display-errors">display_errors</a> and 
+                  <a class="external" href="http://www.php.net/manual/en/ref.errorfunc.php#ini.log-errors" title="http://www.php.net/manual/en/ref.errorfunc.php#ini.log-errors">log_errors</a> protocol, while HTML_Progress 1.x obey at 
+                  <a class="external" href="http://www.php.net/manual-lookup.php?pattern=error_reporting" title="http://www.php.net/manual-lookup.php?pattern=error_reporting">error_reporting</a> protocol. 
+               </td>
+            </tr>
+         </table>
       </div>
 
       <p></p>
@@ -95,20 +199,20 @@
 <table class="qfamsFooter">
    <tr>
       <td align="left">HTML_Progress2 : The Definitive Guide</td>
-      <td align="right">v 2.0.1 : May 24, 2006</td>
+      <td align="right">v 2.1.0 : August 12, 2006</td>
    </tr>
 </table>
 <div class="navfooter"><hr>
    <table summary="Navigation footer" width="100%">
       <tr>
-         <td align="left" width="40%"><a accesskey="p" href="ch13s05.html">Prev</a> </td>
+         <td align="left" width="40%"><a accesskey="p" href="ch13.html">Prev</a> </td>
          <td align="center" width="20%"><a accesskey="u" href="pt04.html">Up</a></td>
          <td align="right" width="40%"> <a accesskey="n" href="ch14s02.html">Next</a></td>
       </tr>
       <tr>
-         <td align="left" valign="top" width="40%">Custom Error Message Generation  </td>
+         <td align="left" valign="top" width="40%">Chapter 13. Introduction </td>
          <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
-         <td align="right" valign="top" width="40%"> Additional Events informations 
+         <td align="right" valign="top" width="40%"> Configuring a Handler 
          </td>
       </tr>
    </table>

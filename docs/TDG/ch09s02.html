@@ -1,13 +1,13 @@
 <html>
 <head>
    <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-   <title>Why these changes ?</title>
+   <title>Default render and css skin</title>
    <link href="book.css" rel="stylesheet" type="text/css">
    <meta content="DocBook XSL Stylesheets V1.69.1" name="generator">
    <link href="index.html" rel="start" title="HTML_Progress2 Manual">
-   <link href="ch09.html" rel="up" title="Chapter 9. Introduction">
-   <link href="ch09.html" rel="prev" title="Chapter 9. Introduction">
-   <link href="ch09s03.html" rel="next" title="What was removed ?">
+   <link href="ch09.html" rel="up" title="Chapter 9. Quick Start with HTML_Progress2_Generator">
+   <link href="ch09.html" rel="prev" title="Chapter 9. Quick Start with HTML_Progress2_Generator">
+   <link href="ch09s03.html" rel="next" title="Template integration">
 </head>
 <body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
 <table class="qfamsHeader">
@@ -19,11 +19,11 @@
          <div class="navheader">
             <table summary="Navigation header" width="100%">
                <tr>
-                  <th align="center" colspan="3">Why these changes ?</th>
+                  <th align="center" colspan="3">Default render and css skin</th>
                </tr>
                <tr>
                   <td align="left" width="20%"><a accesskey="p" href="ch09.html">Prev</a> </td>
-                  <th align="center" width="60%">Chapter 9. Introduction</th><td align="right" width="20%"> <a accesskey="n" href="ch09s03.html">Next</a></td>
+                  <th align="center" width="60%">Chapter 9. Quick Start with HTML_Progress2_Generator</th><td align="right" width="20%"> <a accesskey="n" href="ch09s03.html">Next</a></td>
                </tr>
             </table>
          </div></p>
@@ -31,23 +31,239 @@
    </tr>
 </table>
 <div class="sect1" lang="en"><div class="titlepage"><div><div>
-            <h2 class="title" style="clear: both"><a name="id4777857"></a>Why these changes ?</h2></div>
+            <h2 class="title" style="clear: both">
+            <a name="generator.default"></a>Default render and css skin</h2></div>
       </div>
    </div>
 
-   <p>HTML_Progress2 has improved a lot since HTML_Progress 1.2.x. With merge of secondary classes (UI and DM) to the main core class, i've removed duplicated methods and unified API. </p>
+   <p>Without any change, we can get a decent progress generator tabbed wizard such as : </p>
+   <div class="screenshot"><div><img src="img/generator0.png"></div>
+   </div>
 
-   <p>With the addition of a new plugin error management, it was the first milestone to have a version a bit less dependent to PEAR. Lot of users are afraid to install a such framework on their system, for many reasons. So second milestone and goal, was to create a new class much lighter and without any dependencies to a such audience: HTML_Progress2_Lite was born. </p>
+   <p>Color, font, size and position are defined by default in stylesheet 
+   <span class="bold"><strong>default.css</strong></span> you can find into PEAR HTML_Progress2 data directory. </p>
 
-   <p>The HTML_Progress2_Lite class does not allow to do all that is possible with HTML_Progress2 class. See the 
-   <a href="ch17.html" title="Chapter 17. HTML_Progress2 and HTML_Progress2_Lite features comparative">features comparative</a>. </p>
+   <p>As you can see in source code below, there are no difficulty. </p>
 
-   <p>And last but not least, a multiple labels system was introduced, that give ability to have more than just one percent text information or one custom text label. </p>
+   <p></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'HTML/Progress2/Generator.php';
+
+session_start(); <a name="generator0.sess.start"></a><img alt="1" border="0" src="img/callouts/1.gif">
+
+$tabbed = new HTML_Progress2_Generator(); <a name="generator0.new.form"></a><img alt="2" border="0" src="img/callouts/2.gif">
+$tabbed-&gt;run(); <a name="generator0.run"></a><img alt="3" border="0" src="img/callouts/3.gif">
+?&gt;
+   </pre>
+
+   <p></p>
+
+   <p></p>
+   <div class="calloutlist">
+      <table border="0" summary="Callout list">
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#generator0.sess.start"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p><span class="bold"><strong>HTML_Progress2_Generator</strong></span> does not start a session automatically, you should explicitly call 
+               <a class="external" href="http://www.php.net/manual-lookup.php?pattern=session-start" title="http://www.php.net/manual-lookup.php?pattern=session-start">session_start</a> before instantiating the controller class. A session is required to pass data between the tabbed multi-pages generator wizard. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#generator0.new.form"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Without any arguments, all defaults are applied on HTML_Progress2_Generator new instance construction. </p>
+
+               <p></p>
+               <div class="variablelist">
+                  <dl><dt><span class="term"> $controllerName (argument 1 of class constructor) 
+                     </span></dt>
+                     <dd>
+
+                     <p>Name of generator tabbed wizard (QuickForm Controller). Default is 
+                     <span class="bold"><strong>ProgressGenerator</strong></span> </p></dd>
+                  </dl>
+               </div>
+
+               <p></p>
+               <div class="variablelist">
+                  <dl><dt><span class="term"> $attributes (argument 2 of class constructor) 
+                     </span></dt>
+                     <dd>
+
+                     <p>List of renderer options. Default are </p>
+                     <div class="itemizedlist">
+                        <ul type="disc">
+                           <li><span class="bold"><strong>preview</strong></span> action class = ActionPreview (HTML/Progress2/Generator/Preview.php) </li>
+                           <li><span class="bold"><strong>display</strong></span> action class = ActionDisplay (HTML/Progress2/Generator/Default.php) </li>
+                           <li><span class="bold"><strong>process</strong></span> action class = ActionProcess (HTML/Progress2/Generator/Process.php) </li>
+                           <li><span class="bold"><strong>dump</strong></span> action class = false (no interactive debugging tools by default) </li>
+                        </ul>
+                     </div>
+
+                     <p></p></dd>
+                  </dl>
+               </div>
+
+               <p></p>
+
+               <p></p>
+               <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <table border="0" summary="Note">
+                     <tr>
+                        <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Note]" src="img/admons/note.png"></td>
+                        <th align="left">Note</th>
+                     </tr>
+                     <tr>
+                        <td align="left" valign="top"> Since version 2.1.0, you can use the singleton pattern 
+
+                           <p></p>
+<pre class="programlisting">
+$tabbed =&amp; HTML_Progress2_Generator::singleton();
+        </pre>
+
+                           <p></p>and of course, continue to use direct instanciation (backward compatibility is not break). 
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+
+               <p></p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#generator0.run"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>Catch all user actions (next, back, jump, apply, process) and display controller wizard contents. </p>
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <p></p>
+
+   <p>Now we have seen basic usage, we will try to change the skin with only a new stylesheet. </p>
+
+   <p></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'HTML/Progress2/Generator.php';
+
+session_start();
+
+$tabbed =&amp; HTML_Progress2_Generator::singleton();
+
+$tabbed-&gt;addActions(array('dump' =&gt; 'ActionDump')); <a name="generator0.addaction.dump"></a><img alt="1" border="0" src="img/callouts/1.gif">
+
+$css = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'generator.css'; <a name="generator0.newcssfile"></a><img alt="2" border="0" src="img/callouts/2.gif">
+$tabbed-&gt;addAction('display', new ActionDisplay($css)); <a name="generator0.addaction.display"></a><img alt="3" border="0" src="img/callouts/3.gif">
+
+$tabbed-&gt;run();
+?&gt;
+   </pre>
+
+   <p></p>
+
+   <p></p>
+   <div class="calloutlist">
+      <table border="0" summary="Callout list">
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#generator0.addaction.dump"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>This line allow to add/activate the interactive debugging tools that can give you informations on: progress meter, wizard controller forms data, list of included files (see 
+               <a class="external" href="http://www.php.net/manual-lookup.php?pattern=get-included-files" title="http://www.php.net/manual-lookup.php?pattern=get-included-files">get_included_files</a>), list of declared classes (see 
+               <a class="external" href="http://www.php.net/manual-lookup.php?pattern=get-declared-classes" title="http://www.php.net/manual-lookup.php?pattern=get-declared-classes">get_declared_classes</a>), and list of generator actions defined. </p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#generator0.newcssfile"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>$css defines the location of the new stylesheet to apply. This file will give a grey-orange look and feel such as : </p>
+               <div class="screenshot"><div><img src="img/generator0b.png"></div>
+               </div>
+
+               <p></p>
+               <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <table border="0" summary="Note">
+                     <tr>
+                        <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Note]" src="img/admons/note.png"></td>
+                        <th align="left">Note</th>
+                     </tr>
+                     <tr>
+                        <td align="left" valign="top"> You may find this file into examples/generator of PEAR HTML_Progress2 docs directory. 
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+
+               <p></p>
+            </td>
+         </tr>
+         <tr>
+            <td align="left" valign="top" width="5%"><a href="#generator0.addaction.display"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
+            </td>
+            <td align="left" valign="top">
+
+               <p>This line overload the default display action set during the class instantiation. </p>
+               <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <table border="0" summary="Important">
+                     <tr>
+                        <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Important]" src="img/admons/important.png"></td>
+                        <th align="left">Important</th>
+                     </tr>
+                     <tr>
+                        <td align="left" valign="top"> We are still using the QF default renderer, and the ActionDisplay class (see HTML/Progress2/Generator/Default.php). 
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+
+               <p>We have also possibility to get and set stylesheet with methods 
+               <code class="methodname">ActionDisplay::getStyleSheet()</code>, 
+               <code class="methodname">ActionDisplay::setStyleSheet()</code> like this : </p>
+<pre class="programlisting">
+&lt;?php
+require_once 'HTML/Progress2/Generator.php';
+require_once 'HTML/Progress2/Generator/Default.php';
+
+session_start();
+
+$css = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'generator.css';
+
+$display = new ActionDisplay();
+$display-&gt;setStyleSheet($css);
+
+// var_dump($display-&gt;getStyleSheet(true));
+// var_dump($display-&gt;getStyleSheet());
+
+$tabbed =&amp; HTML_Progress2_Generator::singleton();
+$tabbed-&gt;addAction('display', $display);
+$tabbed-&gt;run();
+?&gt;
+      </pre>
+
+               <p></p>
+            </td>
+         </tr>
+      </table>
+   </div>
+
+   <p></p>
 </div>
 <table class="qfamsFooter">
    <tr>
       <td align="left">HTML_Progress2 : The Definitive Guide</td>
-      <td align="right">v 2.0.1 : May 24, 2006</td>
+      <td align="right">v 2.1.0 : August 12, 2006</td>
    </tr>
 </table>
 <div class="navfooter"><hr>
@@ -58,9 +274,9 @@
          <td align="right" width="40%"> <a accesskey="n" href="ch09s03.html">Next</a></td>
       </tr>
       <tr>
-         <td align="left" valign="top" width="40%">Chapter 9. Introduction </td>
+         <td align="left" valign="top" width="40%">Chapter 9. Quick Start with HTML_Progress2_Generator </td>
          <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
-         <td align="right" valign="top" width="40%"> What was removed ?</td>
+         <td align="right" valign="top" width="40%"> Template integration</td>
       </tr>
    </table>
 </div>
