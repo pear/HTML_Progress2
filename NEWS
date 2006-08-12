@@ -1,5 +1,10 @@
 Changes since version 2.0.1 (2006-05-24)
 
+  | 2006-08-12 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * The Definitive Guide has a new FAQ up-to-date, new examples (see
+  |       Appendixes section) and finally a guide for HTML_Progress2_Generator
+  |
   | 2006-08-09 Laurent Laville <pear@laurent-laville.org>
   |
   |     * new interactive debugging tools for Progress2 Generator (Progress2/Dump.php)

@@ -1,3 +1,10 @@
+2006-08-12 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Final version (stable) 2.1.0 released.
+
+      - The Definitive Guide has a new FAQ up-to-date, new examples (see
+        Appendixes section) and finally a guide for HTML_Progress2_Generator
+
 2006-08-11 Laurent Laville <pear@laurent-laville.org>
 
       - HTMLPage2, ITDynamic, and SmartyDynamic renderers for Progress2 Generator
