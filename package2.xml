@@ -531,20 +531,6 @@ its now easy to change skin with a simple stylesheet (see examples/generator/gen
   </release>
   <release>
    <version>
-    <release>2.0.2</release>
-    <api>2.0.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2006-07-22</date>
-   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
-   <notes>* bugs
-- fixed bug #8265 HTML_Page2 dependency</notes>
-  </release>
-  <release>
-   <version>
     <release>2.0.1</release>
     <api>2.0.0</api>
    </version>
