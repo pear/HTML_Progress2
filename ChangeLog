@@ -1,3 +1,7 @@
+2006-12-20 Laurent Laville <pear@laurent-laville.org>
+
+      - fixed bug #8684 : Problem with generated JavaScript
+
 2006-08-12 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: Final version (stable) 2.1.0 released.
