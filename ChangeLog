@@ -1,6 +1,8 @@
 2006-12-20 Laurent Laville <pear@laurent-laville.org>
 
       - fixed bug #8684 : Problem with generated JavaScript
+      - fixed "examples/generatorcus.php" to use new architecture with
+        external stylesheet introduced on August 11, 2006.
 
 2006-08-12 Laurent Laville <pear@laurent-laville.org>
 

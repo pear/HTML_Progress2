@@ -39,29 +39,37 @@ require_once 'HTML/Progress2/Generator/ITDynamic.php';
 /**
  * @ignore
  */
-class MyDisplayHandler extends HTML_QuickForm_Action_Display
+class MyDisplayHandler extends ActionDisplay
 {
+    function MyDisplayHandler($css = null)
+    {
+        // when no user-styles defined, used the default values
+        parent::ActionDisplay($css);
+    }
+
     function _renderForm(&$page)
     {
-        $pageName = $page->getAttribute('name');
-        $tabPreview = array_slice ($page->controller->_tabs, -2, 1);
-
         $tpl =& new HTML_Template_Sigma('.', 'cache/');
         $tpl->loadTemplateFile('itdynamic.html');
 
+        $styles = $this->getStyleSheet();
+        $js     = '';
+
         // on preview tab, add progress bar javascript and stylesheet
-        if ($pageName == $tabPreview[0][0]) {
+        if ($page->getAttribute('id') == 'Preview') {
             $pb = $page->controller->createProgressBar();
 
-            $tpl->setVariable(array(
-                'qf_style'  => $pb->getStyle(),
-                'qf_script' => $pb->getScript()
-                )
-            );
+            $styles .= $pb->getStyle();
+            $js      = $pb->getScript();
 
             $pbElement =& $page->getElement('progressBar');
             $pbElement->setText($pb->toHtml() . '<br /><br />');
         }
+        $tpl->setVariable(array(
+            'qf_style'  => $styles,
+            'qf_script' => $js
+            )
+        );
 
         $renderer =& new HTML_QuickForm_Renderer_ITDynamic($tpl);
         $renderer->setElementBlock(array('buttons' => 'qf_buttons'));
