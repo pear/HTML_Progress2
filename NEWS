@@ -1,3 +1,21 @@
+Changes since version 2.1.0 (2006-08-12)
+
+  | 2006-12-21 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     *  Drop support of package xml 1.0
+  |        You need now to have at least PEAR 1.4.3 installed
+  |     *  Improved "The Definitive Guide" to be more readable
+  |        (PHP codes source highlighted)
+  |     *  Reduced div tags count to build a progress bar (only 10 rather than 20 )
+  |        and used "className" property rather than "visibility" to switch
+  |        between inactive and active cells
+  |
+  | 2006-12-20 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * fixed bug #8684 : Problem with generated JavaScript
+  |     * fixed "examples/generatorcus.php" to use new architecture with
+  |       external stylesheet introduced on August 11, 2006.
+
 Changes since version 2.0.1 (2006-05-24)
 
   | 2006-08-12 Laurent Laville <pear@laurent-laville.org>

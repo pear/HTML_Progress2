@@ -1,3 +1,14 @@
+2006-12-22 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Final version (stable) 2.1.1 released.
+
+      - used now :
+        "className" property rather than "visibility"
+        reduced div tags count used to build a progress bar (only 10 rather than 20 )
+      - apply more CS (space code indent, ...)
+      - add "alt" attribute to img html-tag to be more xhtml compliant
+      - JS function "hideProgress" lose its second parameter (no more needed)
+
 2006-12-20 Laurent Laville <pear@laurent-laville.org>
 
       - fixed bug #8684 : Problem with generated JavaScript
