@@ -4,8 +4,6 @@ Changes since version 2.1.0 (2006-08-12)
   |
   |     *  Drop support of package xml 1.0
   |        You need now to have at least PEAR 1.4.3 installed
-  |     *  Improved "The Definitive Guide" to be more readable
-  |        (PHP codes source highlighted)
   |     *  Reduced div tags count to build a progress bar (only 10 rather than 20 )
   |        and used "className" property rather than "visibility" to switch
   |        between inactive and active cells
