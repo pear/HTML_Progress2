@@ -2119,33 +2119,32 @@ class HTML_Progress2 extends HTML_Common
 function setProgress(pIdent, pValue, pDeterminate, pCellCount)
 {
     if (pValue == pDeterminate) {
-        for (var i=0; i < pCellCount; i++) {
-            showCell(i, pIdent, 'hidden');
+        for (var i = 0; i < pCellCount; i++) {
+            showCell(i, pIdent, 'I');
         }
     }
     if ((pDeterminate > 0) && (pValue > 0)) {
         var i = (pValue - 1) % pCellCount;
-        showCell(i, pIdent, 'visible');
+        showCell(i, pIdent, 'A');
     } else {
-        for (var i = pValue - 1; i >=0; i--) {
-            showCell(i, pIdent, 'visible');
+        for (var i = pValue - 1; i >= 0; i--) {
+            showCell(i, pIdent, 'A');
         }
     }
 }
 
 function showCell(pCell, pIdent, pVisibility)
 {
-    var name = '%progressCell%' + pCell + 'A' + pIdent;
-    document.getElementById(name).style.visibility = pVisibility;
+    var name = '%progressCell%' + pCell + pIdent;
+    var cellElement = document.getElementById(name);
+    cellElement.className = '%cellCN%' + pIdent + pVisibility;
 }
 
-function hideProgress(pIdent, pCellCount)
+function hideProgress(pIdent)
 {
     var name = 'tfrm' + pIdent;
-    document.getElementById(name).style.visibility = 'hidden';
-    for (var i = 0; i < pCellCount; i++) {
-        showCell(i, pIdent, 'hidden');
-    }
+    var tfrm = document.getElementById(name);
+    tfrm.style.visibility = "hidden";
 }
 
 function setLabelText(pIdent, pName, pText)
@@ -2159,8 +2158,7 @@ function setElementStyle(pPrefix, pName, pIdent, pStyles)
     var name = pPrefix + pName + pIdent;
     var styles = pStyles.split(';');
     styles.pop();
-    for (var i = 0; i < styles.length; i++)
-    {
+    for (var i = 0; i < styles.length; i++) {
         var s = styles[i].split(':');
         var c = 'document.getElementById(name).style.' + s[0] + '="' + s[1] + '"';
         eval(c);
@@ -2182,8 +2180,11 @@ function setRotaryCross(pIdent, pName)
 
 JS;
         $cellAttr = $this->getCellAttributes();
-        $attr = trim(sprintf($cellAttr['id'], '   '));
-        $js = str_replace('%progressCell%', $attr, $js);
+        $attr = array(
+            trim(sprintf($cellAttr['id'], '   ')),
+            trim(sprintf($cellAttr['class'], ' '))
+            );
+        $js = str_replace(array('%progressCell%', '%cellCN%'), $attr, $js);
 
         if ($raw !== true) {
             $js = '<script type="text/javascript">' . PHP_EOL
@@ -2279,9 +2280,9 @@ JS;
 
         $image = imagecreate($w, $h);
 
-        $bg     = Image_Color::allocateColor($image,$cellAttr['background-color']);
-        $colorA = Image_Color::allocateColor($image,$cellAttr['active-color']);
-        $colorI = Image_Color::allocateColor($image,$cellAttr['inactive-color']);
+        $bg     = Image_Color::allocateColor($image, $cellAttr['background-color']);
+        $colorA = Image_Color::allocateColor($image, $cellAttr['active-color']);
+        $colorI = Image_Color::allocateColor($image, $cellAttr['inactive-color']);
 
         imagefilledarc($image, $cx, $cy, $w, $h, 0, 360, $colorI, IMG_ARC_EDGED);
         $filename = $dir . DIRECTORY_SEPARATOR . sprintf($fileMask,0);
@@ -2456,26 +2457,20 @@ JS;
 
         $styles .= $cellClsI . ' {' . PHP_EOL;
         if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
-            $styles .= $tab . 'background-image: url("'. $cellAttr[0]['background-image'] .'");'. PHP_EOL;
-            $styles .= $tab . 'background-repeat: no-repeat;'. PHP_EOL;
+            $styles .= $tab . 'visibility: hidden;'. PHP_EOL;
         } else {
             $styles .= $tab . 'background-color: '. $cellAttr['inactive-color'] .';'. PHP_EOL;
         }
         $styles .= '}'. PHP_EOL . PHP_EOL;
 
         $styles .= $cellClsA . ' {' . PHP_EOL;
-        if ($cellAttr['background-image'] == 'none') {
-            $styles .= $tab . 'background-color: '. $cellAttr['active-color'] .';'. PHP_EOL;
-        } else {
+        $styles .= $tab . 'background-color: '. $cellAttr['active-color'] .';'. PHP_EOL;
+        if ($cellAttr['background-image'] !== 'none') {
             $styles .= $tab . 'background-image: url("'. $cellAttr['background-image'] .'");'. PHP_EOL;
-            if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
-                $styles .= $tab . 'background-repeat: no-repeat;'. PHP_EOL;
-            } else {
-                $styles .= $tab . 'background-repeat: '. $cellAttr['background-repeat'] .';'. PHP_EOL;
-                $styles .= $tab . 'background-position: '. $cellAttr['background-position'] .';'. PHP_EOL;
-            }
+            $styles .= $tab . 'background-repeat: '. $cellAttr['background-repeat'] .';'. PHP_EOL;
+            $styles .= $tab . 'background-position: '. $cellAttr['background-position'] .';'. PHP_EOL;
         }
-        $styles .= $tab . 'visibility: hidden;'. PHP_EOL;
+
         $styles .= '}'. PHP_EOL . PHP_EOL;
 
         if ($raw !== true) {
@@ -2806,7 +2801,7 @@ JS;
     function hide()
     {
         $bar = '<script type="text/javascript">'
-             .  'hideProgress("' . $this->ident . '",' . $this->cellCount . ');'
+             .  'hideProgress("' . $this->ident . '");'
              .  '</script>';
 
         echo $bar . PHP_EOL;
@@ -3147,26 +3142,11 @@ JS;
         $html = '';
 
         if ($way_natural) {
-            // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
-                      .  ' style="position:absolute;'
-                      .  'left:' . $pos . 'px;'
-                      .  'top:' . $cellAttr['spacing'] . 'px;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-
-                $pos += ($cellAttr['width'] + $cellAttr['spacing']);
-            }
-            // then active cells
-            $pos = $cellAttr['spacing'];
-            for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
                       .  'left:' . $pos . 'px;'
                       .  'top:' . $cellAttr['spacing'] . 'px;';
@@ -3178,26 +3158,11 @@ JS;
                 $pos += ($cellAttr['width'] + $cellAttr['spacing']);
             }
         } else {
-            // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
-                      .  ' style="position:absolute;'
-                      .  'left:' . $pos . 'px;'
-                      .  'top:' . $cellAttr['spacing'] . 'px;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-
-                $pos += ($cellAttr['width'] + $cellAttr['spacing']);
-            }
-            // then active cells
-            $pos = $cellAttr['spacing'];
-            for ($i = $this->cellCount - 1; $i >= 0; $i--) {
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
                       .  'left:' . $pos . 'px;'
                       .  'top:' . $cellAttr['spacing'] . 'px;';
@@ -3229,26 +3194,11 @@ JS;
         $html = '';
 
         if ($way_natural) {
-            // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
-                      .  ' style="position:absolute;'
-                      .  'left:' . $cellAttr['spacing'] . 'px;'
-                      .  'top:' . $pos . 'px;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-
-                $pos += ($cellAttr['height'] + $cellAttr['spacing']);
-            }
-            // then active cells
-            $pos = $cellAttr['spacing'];
-            for ($i = $this->cellCount - 1; $i >= 0; $i--) {
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
                       .  'left:' . $cellAttr['spacing'] . 'px;'
                       .  'top:' . $pos . 'px;';
@@ -3260,26 +3210,11 @@ JS;
                 $pos += ($cellAttr['height'] + $cellAttr['spacing']);
             }
         } else {
-            // inactive cells first
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
-                      .  ' style="position:absolute;'
-                      .  'left:' . $cellAttr['spacing'] . 'px;'
-                      .  'top:' . $pos . 'px;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-
-                $pos += ($cellAttr['height'] + $cellAttr['spacing']);
-            }
-            // then active cells
-            $pos = $cellAttr['spacing'];
-            for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
                       .  'left:' . $cellAttr['spacing'] . 'px;'
                       .  'top:' . $pos . 'px;';
@@ -3312,26 +3247,12 @@ JS;
         $html = '';
 
         if ($way_natural) {
-            // inactive cells first
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $top  = $coord[$i][0] * $cellAttr['width'];
                 $left = $coord[$i][1] * $cellAttr['height'];
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
-                      .  ' style="position:absolute;'
-                      .  'left:' . $left . 'px;'
-                      .  'top:' . $top . 'px;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-            }
-            // then active cells
-            for ($i = 0; $i < $this->cellCount; $i++) {
-                $top  = $coord[$i][0] * $cellAttr['width'];
-                $left = $coord[$i][1] * $cellAttr['height'];
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
                       .  'left:' . $left . 'px;'
                       .  'top:' . $top . 'px;';
@@ -3342,26 +3263,12 @@ JS;
             }
         } else {
             $c = count($coord) - 1;
-            // inactive cells first
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $top  = $coord[$c-$i][0] * $cellAttr['width'];
                 $left = $coord[$c-$i][1] * $cellAttr['height'];
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
-                      .  ' style="position:absolute;'
-                      .  'left:' . $left . 'px;'
-                      .  'top:' . $top . 'px;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-            }
-            // then active cells
-            for ($i = 0; $i < $this->cellCount; $i++) {
-                $top  = $coord[$c-$i][0] * $cellAttr['width'];
-                $left = $coord[$c-$i][1] * $cellAttr['height'];
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
                       .  ' style="position:absolute;'
                       .  'left:' . $left . 'px;'
                       .  'top:' . $top . 'px;';
@@ -3392,42 +3299,24 @@ JS;
         $html = '';
 
         if ($way_natural) {
-            // inactive cells first
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;left:0;top:0;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-            }
-            // then active cells
-            for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
-                      .  ' style="position:absolute;left:0;top:0;'
-                      .  '"><img src="' . $cellAttr[$i+1]['background-image'] . '" border="0" />'
+                      .  '"><img src="' . $cellAttr[$i+1]['background-image']
+                      .  '" border="0" alt="" />'
                       .  '</div>'
                       .  PHP_EOL;
             }
         } else {
-            // inactive cells first
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'I' . $this->ident . '"'
+                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;left:0;top:0;'
-                      .  '"></div>'
-                      .  PHP_EOL;
-            }
-            // then active cells
-            for ($i = 0; $i < $this->cellCount; $i++) {
-                $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'],$i) . 'A' . $this->ident . '"'
-                      .  ' class="' . $cellCls . 'A"'
-                      .  ' style="position:absolute;left:0;top:0;'
-                      .  '"><img src="' . $cellAttr[$i+1]['background-image'] . '" border="0" />'
+                      .  '"><img src="' . $cellAttr[$i+1]['background-image']
+                      .  '" border="0" alt="" />'
                       .  '</div>'
                       .  PHP_EOL;
             }
