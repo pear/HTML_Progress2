@@ -21,6 +21,7 @@
  */
 
 require_once 'HTML/Common.php';
+require_once 'HTML/CSS.php';
 require_once 'Event/Dispatcher.php';
 
 if (version_compare(phpversion(), '5.0.0', '<')) {
@@ -2085,7 +2086,7 @@ class HTML_Progress2 extends HTML_Common
      * Get the javascript URL or inline code that will handle the progress meter
      * refresh.
      *
-     * @param      boolean   (optional) html output with script tags or just raw data
+     * @param      boolean   $raw           (optional) html output with script tags or just raw data
      *
      * @return     string
      * @since      2.0.0
@@ -2377,7 +2378,7 @@ JS;
      *
      * Get the CSS required to display the progress meter in a HTML document.
      *
-     * @param      boolean   (optional) html output with script tags or just raw data
+     * @param      boolean   $raw           (optional) html output with script tags or just raw data
      *
      * @return     string
      * @since      2.0.0
@@ -2394,84 +2395,84 @@ JS;
                       'paramnum' => 1));
         }
 
-        $tab = $this->_getTab();
         $progressAttr = $this->getProgressAttributes();
         $borderAttr = $this->getBorderAttributes();
         $cellAttr = $this->getCellAttributes();
 
-        $styles  = '.' . sprintf($borderAttr['class'], $this->ident) . ' {' . PHP_EOL;
-        $styles .= $tab . 'width: '. $progressAttr['width'] .'px;'. PHP_EOL;
-        $styles .= $tab . 'height: '. $progressAttr['height'] .'px;'. PHP_EOL;
+        $css = new HTML_CSS();
+
+        $borderCls = '.' . sprintf($borderAttr['class'], $this->ident);
+        $css->setStyle($borderCls, 'width', $progressAttr['width'].'px');
+        $css->setStyle($borderCls, 'height', $progressAttr['height'].'px');
         if ($this->isBorderPainted()) {
-            $styles .= $tab . 'border-width: '. $borderAttr['width'] .'px;'. PHP_EOL;
-            $styles .= $tab . 'border-style: '. $borderAttr['style'] .';'. PHP_EOL;
-            $styles .= $tab . 'border-color: '. $borderAttr['color'] .';'. PHP_EOL;
+            $css->setStyle($borderCls, 'border-width', $borderAttr['width'].'px');
+            $css->setStyle($borderCls, 'border-style', $borderAttr['style']);
+            $css->setStyle($borderCls, 'border-color', $borderAttr['color']);
         }
         if ($progressAttr['background-image'] !== 'none') {
-            $styles .= $tab . 'background-image: url('. $progressAttr['background-image'] .');'. PHP_EOL;
-            $styles .= $tab . 'background-repeat: '. $progressAttr['background-repeat'] .';'. PHP_EOL;
-            $styles .= $tab . 'background-position: '. $progressAttr['background-position'] .';'. PHP_EOL;
+            $css->setStyle($borderCls, 'background-image', 'url("'. $progressAttr['background-image'] .'")');
+            $css->setStyle($borderCls, 'background-repeat', $progressAttr['background-repeat']);
+            $css->setStyle($borderCls, 'background-position', $progressAttr['background-position']);
         }
-
         if ($this->cellCount > 0) {
-            $styles .= $tab . 'background-color: '. $progressAttr['background-color'] .';'. PHP_EOL;
+            $css->setStyle($borderCls, 'background-color', $progressAttr['background-color']);
         } else {
-            $styles .= $tab . 'background-color: '. $cellAttr['inactive-color'] .';'. PHP_EOL;
+            $css->setStyle($borderCls, 'background-color', $cellAttr['inactive-color']);
         }
-        $styles .= '}'. PHP_EOL . PHP_EOL;
 
-        foreach ($this->label as $name => $data) {
-            $styles .= '.' . sprintf($data['class'], $name . $this->ident). ' {' . PHP_EOL;
+        foreach($this->label as $name => $data) {
+            $style = '.' . sprintf($data['class'], $name . $this->ident);
 
             if ($data['width'] > 0) {
-                $styles .= $tab . 'width: '. $data['width'] .'px;'. PHP_EOL;
+                $css->setStyle($style, 'width', $data['width'].'px');
             }
             if ($data['height'] > 0) {
-                $styles .= $tab . 'height: '. $data['height'] .'px;'. PHP_EOL;
+                $css->setStyle($style, 'height', $data['height'].'px');
             }
-            $styles .= $tab . 'text-align: '. $data['align'] .';'. PHP_EOL;
-            $styles .= $tab . 'background-color: '. $data['background-color'] .';'. PHP_EOL;
-
-            $styles .= $tab . 'font-size: '. $data['font-size'] .'px;'. PHP_EOL;
-            $styles .= $tab . 'font-family: '. $data['font-family'] .';'. PHP_EOL;
-            $styles .= $tab . 'font-weight: '. $data['font-weight'] .';'. PHP_EOL;
-            $styles .= $tab . 'color: '. $data['color'] .';'. PHP_EOL;
-            $styles .= '}'. PHP_EOL . PHP_EOL;
+            $css->setStyle($style, 'text-align', $data['align']);
+            $css->setStyle($style, 'background-color', $data['background-color']);
+            $css->setStyle($style, 'font-size', $data['font-size'].'px');
+            $css->setStyle($style, 'font-family', $data['font-family']);
+            $css->setStyle($style, 'font-weight', $data['font-weight']);
+            $css->setStyle($style, 'color', $data['color']);
         }
 
         $cellClsI = '.' . sprintf($cellAttr['class'], $this->ident) . 'I';
         $cellClsA = '.' . sprintf($cellAttr['class'], $this->ident) . 'A';
+        $css->setStyle($cellClsI, 'width', $cellAttr['width'].'px');
+        $css->setStyle($cellClsI, 'height', $cellAttr['height'].'px');
+        $css->setStyle($cellClsI, 'font-family', $cellAttr['font-family']);
+        $css->setStyle($cellClsI, 'font-size', $cellAttr['font-size'].'px');
 
-        $styles .= $cellClsI . ', ' . $cellClsA . ' {' . PHP_EOL;
-        $styles .= $tab . 'width: '. $cellAttr['width'] .'px;'. PHP_EOL;
-        $styles .= $tab . 'height: '. $cellAttr['height'] .'px;'. PHP_EOL;
-        $styles .= $tab . 'font-family: '. $cellAttr['font-family'] .';'. PHP_EOL;
-        $styles .= $tab . 'font-size: '. $cellAttr['font-size'] .'px;'. PHP_EOL;
         if ($this->orientation == HTML_PROGRESS2_BAR_HORIZONTAL) {
-            $styles .= $tab . 'float: left;'. PHP_EOL;
+            $css->setStyle($cellClsI, 'float', 'left');
         }
         if ($this->orientation == HTML_PROGRESS2_BAR_VERTICAL) {
-            $styles .= $tab . 'float: none;'. PHP_EOL;
+            $css->setStyle($cellClsI, 'float', 'none');
         }
-        $styles .= '}'. PHP_EOL . PHP_EOL;
+        $css->setSameStyle($cellClsA, $cellClsI);
 
-        $styles .= $cellClsI . ' {' . PHP_EOL;
-        if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
-            $styles .= $tab . 'visibility: hidden;'. PHP_EOL;
+        if ($this->orientation !== HTML_PROGRESS2_CIRCLE) {
+            $css->setStyle($cellClsI, 'background-color', $cellAttr['inactive-color']);
+        }
+
+        if ($cellAttr['background-image'] == 'none') {
+            $css->setStyle($cellClsA, 'background-color', $cellAttr['active-color']);
         } else {
-            $styles .= $tab . 'background-color: '. $cellAttr['inactive-color'] .';'. PHP_EOL;
-        }
-        $styles .= '}'. PHP_EOL . PHP_EOL;
-
-        $styles .= $cellClsA . ' {' . PHP_EOL;
-        $styles .= $tab . 'background-color: '. $cellAttr['active-color'] .';'. PHP_EOL;
-        if ($cellAttr['background-image'] !== 'none') {
-            $styles .= $tab . 'background-image: url("'. $cellAttr['background-image'] .'");'. PHP_EOL;
-            $styles .= $tab . 'background-repeat: '. $cellAttr['background-repeat'] .';'. PHP_EOL;
-            $styles .= $tab . 'background-position: '. $cellAttr['background-position'] .';'. PHP_EOL;
+            $css->setStyle($cellClsA, 'background-image', 'url("'. $cellAttr['background-image'] .'")');
+            if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
+                $css->setStyle($cellClsA, 'background-repeat', 'no-repeat');
+            } else {
+                $css->setStyle($cellClsA, 'background-repeat', $cellAttr['background-repeat']);
+                $css->setStyle($cellClsA, 'background-position', $cellAttr['background-position']);
+            }
         }
 
-        $styles .= '}'. PHP_EOL . PHP_EOL;
+        if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
+            $css->setStyle($cellClsI, 'background-image', 'url("'.$cellAttr[0]['background-image'].'")');
+            $css->setStyle($cellClsI, 'background-repeat', 'no-repeat');
+        }
+        $styles = $css->toString();
 
         if ($raw !== true) {
             $styles = '<style type="text/css">' . PHP_EOL
@@ -2481,6 +2482,116 @@ JS;
                     . '</style>'. PHP_EOL;
         }
         return $styles;
+    }
+
+    /**
+     * Import cascading style sheet (CSS) elements
+     *
+     * Set the CSS required to display the progress meter in a HTML document.
+     *
+     * @param      mixed     $styles        CSS elements reference to import
+     *
+     * @return     void
+     * @since      2.2.0
+     * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
+     */
+    function importStyle($styles)
+    {
+        if (is_string($styles)) {
+            $styles = (array)$styles;
+        }
+
+        if (!is_array($styles)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$styles',
+                      'was' => gettype($styles),
+                      'expected' => 'array | string',
+                      'paramnum' => 1));
+        }
+
+        $css = new HTML_CSS();
+
+        $res = $css->parseData($styles);
+        if ($css->isError()) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'error',
+                array('var' => '$styles',
+                      'was' => 'unknown data source',
+                      'expected' => 'valid CSS',
+                      'paramnum' => 1));
+        }
+
+        $pbrd = '.' . sprintf($this->border['class'], $this->ident);
+        $border = $css->grepStyle("/$pbrd/");
+
+        foreach ($border as $b) {
+            $this->_paintBorder = true;
+            foreach ($b as $p => $v) {
+                if (substr($p, 0, 6) == 'border') {
+                    $n = str_replace('border-', '', $p);
+                    if (isset($this->border[$n])) {
+                        if (substr($v, -2) == 'px') {
+                            $this->border[$n] = intval($v);
+                        } else {
+                            $this->border[$n] = $v;
+                        }
+                    }
+                } else {
+                    if ($p == 'background-color' && $this->cellCount == 0) {
+                        $this->cell['inactive-color'] = $v;
+                    } elseif (isset($this->_progress[$p])) {
+                        if (substr($v, -2) == 'px') {
+                            $this->_progress[$p] = intval($v);
+                        } else {
+                            $this->_progress[$p] = $v;
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach ($this->label as $name => $data) {
+            $plbl = '.' . sprintf($data['class'], $name . $this->ident);
+            $label = $css->grepStyle("/$plbl/");
+
+            foreach ($label as $l) {
+                foreach ($l as $p => $v) {
+                    if (substr($p, 0, 4) == 'text') {
+                        $n = str_replace('text-', '', $p);
+                        if (isset($this->label[$name][$n])) {
+                            $this->label[$name][$n] = $v;
+                        }
+                    } elseif (isset($this->label[$name][$p])) {
+                        if (substr($v, -2) == 'px') {
+                            $this->label[$name][$p] = intval($v);
+                        } else {
+                            $this->label[$name][$p] = $v;
+                        }
+                    }
+                }
+            }
+        }
+
+        $pcell = '.' . sprintf($this->cell['class'], $this->ident);
+        $cell = $css->grepStyle("/$pcell/");
+
+        foreach ($cell as $c => $data) {
+            foreach ($data as $p => $v) {
+                if ($p == 'background-color') {
+                    if (strpos($c, $pcell.'A') > 0) {
+                        $this->cell['active-color'] = $v;
+                    } else {
+                        $this->cell['inactive-color'] = $v;
+                    }
+                } else {
+                    if (substr($v, -2) == 'px') {
+                        $this->cell[$p] = intval($v);
+                    } else {
+                        $this->cell[$p] = $v;
+                    }
+                }
+            }
+        }
     }
 
     /**
