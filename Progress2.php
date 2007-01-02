@@ -2577,7 +2577,7 @@ JS;
         foreach ($cell as $c => $data) {
             foreach ($data as $p => $v) {
                 if ($p == 'background-color') {
-                    if (strpos($c, $pcell.'A') > 0) {
+                    if (strpos($c, $pcell.'A') !== false) {
                         $this->cell['active-color'] = $v;
                     } else {
                         $this->cell['inactive-color'] = $v;
@@ -2591,9 +2591,6 @@ JS;
                 } else {
                     if (substr($v, -2) == 'px') {
                         $this->cell[$p] = intval($v);
-                        if ($p == 'width' && strpos($c, $pcell.'A') > 0) {
-                            $this->cell[$p] = $this->cell[$p] - $this->cell['spacing'];
-                        }
                     } else {
                         $this->cell[$p] = $v;
                     }
