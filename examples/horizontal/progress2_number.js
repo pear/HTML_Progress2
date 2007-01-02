@@ -1,18 +1,17 @@
-
 function setProgress(pIdent, pValue, pDeterminate, pCellCount)
 {
     if (pValue == pDeterminate) {
-        for (i=0; i < pCellCount; i++) {
-            showCell(i, pIdent, 'hidden');
+        for (var i = 0; i < pCellCount; i++) {
+            showCell(i, pIdent, 'I');
         }
     }
     if ((pDeterminate > 0) && (pValue > 0)) {
-        i = (pValue - 1) % pCellCount;
-        showCell(i, pIdent, 'visible');
+        var i = (pValue - 1) % pCellCount;
+        showCell(i, pIdent, 'A');
     } else {
-        for (i = pValue - 1; i >=0; i--) {
-            showCell(i, pIdent, 'visible');
-            name = 'pcel' + i + 'A' + pIdent;
+        for (var i = pValue - 1; i >= 0; i--) {
+            showCell(i, pIdent, 'A');
+            var name = 'pcel' + i + pIdent;
             document.getElementById(name).innerHTML = i;
         }
     }
@@ -20,33 +19,45 @@ function setProgress(pIdent, pValue, pDeterminate, pCellCount)
 
 function showCell(pCell, pIdent, pVisibility)
 {
-    name = 'pcel' + pCell + 'A' + pIdent;
-    document.getElementById(name).style.visibility = pVisibility;
+    var name = 'pcel' + pCell + pIdent;
+    var cellElement = document.getElementById(name);
+    cellElement.className = 'cell' + pIdent + pVisibility;
 }
 
-function hideProgress(pIdent, pCellCount)
+function hideProgress(pIdent)
 {
-    document.getElementById('tfrm'+pIdent).style.visibility = 'hidden';
-    for (i = 0; i < pCellCount; i++) {
-        showCell(i, pIdent, 'hidden');	
-    }
+    var name = 'tfrm' + pIdent;
+    var tfrm = document.getElementById(name);
+    tfrm.style.visibility = "hidden";
 }
 
-function setLabelText(pIdent, pName, pText) 
+function setLabelText(pIdent, pName, pText)
 {
-    name = "plbl" + pName + pIdent;
+    var name = 'plbl' + pName + pIdent;
     document.getElementById(name).firstChild.nodeValue = pText;
 }
 
-function setElementStyle(pPrefix, pName, pIdent, pStyles) 
+function setElementStyle(pPrefix, pName, pIdent, pStyles)
 {
-    name = pPrefix + pName + pIdent;
-    styles = pStyles.split(';');
+    var name = pPrefix + pName + pIdent;
+    var styles = pStyles.split(';');
     styles.pop();
-    for (i = 0; i < styles.length; i++)
-    {
-        s = styles[i].split(':');
-        c = 'document.getElementById(name).style.' + s[0] + '="' + s[1] + '"';
+    for (var i = 0; i < styles.length; i++) {
+        var s = styles[i].split(':');
+        var c = 'document.getElementById(name).style.' + s[0] + '="' + s[1] + '"';
         eval(c);
     }
+}
+
+function setRotaryCross(pIdent, pName)
+{
+    var name = 'plbl' + pName + pIdent;
+    var cross = document.getElementById(name).firstChild.nodeValue;
+    switch(cross) {
+        case "--": cross = "\\"; break;
+        case "\\": cross = "|"; break;
+        case "|": cross = "/"; break;
+        default: cross = "--"; break;
+    }
+    document.getElementById(name).firstChild.nodeValue = cross;
 }
