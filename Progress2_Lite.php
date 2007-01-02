@@ -13,7 +13,7 @@
  * @category   HTML
  * @package    HTML_Progress2
  * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2006 The PHP Group
+ * @copyright  2005-2007 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    CVS: $Id$
  * @link       http://pear.php.net/package/HTML_Progress2
@@ -91,7 +91,7 @@ if (!defined('PHP_EOL')) {
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @author     Mika Turin <turin@inbox.lv>
  * @author     Gerd Weitenberg <hahnebuechen@web.de>
- * @copyright  2005-2006 The PHP Group
+ * @copyright  2005-2007 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/HTML_Progress2

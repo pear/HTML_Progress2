@@ -10,7 +10,7 @@
  * @category   HTML
  * @package    HTML_Progress2
  * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2006 The PHP Group
+ * @copyright  2006-2007 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    CVS: $Id$
  * @since      File available since Release 2.1.0
@@ -41,7 +41,7 @@ function varDump($var)
  * @category   HTML
  * @package    HTML_Progress2
  * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2006 Laurent Laville
+ * @copyright  2006-2007 Laurent Laville
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    Release: @package_version@
  * @since      Class available since Release 2.1.0
