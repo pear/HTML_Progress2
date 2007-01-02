@@ -2491,7 +2491,7 @@ JS;
      *
      * @param      mixed     $styles        CSS elements reference to import
      *
-     * @return     void
+     * @return     void|PEAR_Error
      * @since      2.2.0
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
@@ -2586,6 +2586,9 @@ JS;
                 } else {
                     if (substr($v, -2) == 'px') {
                         $this->cell[$p] = intval($v);
+                        if ($p == 'width' && strpos($c, $pcell.'A') > 0) {
+                            $this->cell[$p] = $this->cell[$p] - $this->cell['spacing'];
+                        }
                     } else {
                         $this->cell[$p] = $v;
                     }
