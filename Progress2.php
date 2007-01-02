@@ -2456,9 +2456,8 @@ JS;
             $css->setStyle($cellClsI, 'background-color', $cellAttr['inactive-color']);
         }
 
-        if ($cellAttr['background-image'] == 'none') {
-            $css->setStyle($cellClsA, 'background-color', $cellAttr['active-color']);
-        } else {
+        $css->setStyle($cellClsA, 'background-color', $cellAttr['active-color']);
+        if ($cellAttr['background-image'] !== 'none') {
             $css->setStyle($cellClsA, 'background-image', 'url("'. $cellAttr['background-image'] .'")');
             if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
                 $css->setStyle($cellClsA, 'background-repeat', 'no-repeat');
@@ -2582,6 +2581,12 @@ JS;
                         $this->cell['active-color'] = $v;
                     } else {
                         $this->cell['inactive-color'] = $v;
+                    }
+                } elseif ($p == 'background-image') {
+                    $pattern = "\s*url\s*\([\s\"'`]*([\w:?=@&\/#._;-]+)[\s\"'`]*\)\s*";
+                    $found = preg_match("/$pattern/", $v, $matches);
+                    if ($found) {
+                        $this->cell[$p] = $matches[1];
                     }
                 } else {
                     if (substr($v, -2) == 'px') {
