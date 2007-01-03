@@ -1,3 +1,14 @@
+2007-01-03 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Final version (stable) 2.2.0 released.
+
+      - add new function importStyle() to give ability to import an existing stylesheet
+        and separate PHP code from HTML layout (with CSS)
+      - improved javascript custom handler for JavaDanse example
+        related to version 2.1.1 (bug fixed #8684)
+      - Copyright bumped to 2007
+      - Include a new fresh version of User Guide (TDG) that cover all versions 2.x.x
+
 2006-12-22 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: Final version (stable) 2.1.1 released.
