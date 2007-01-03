@@ -1,204 +1,543 @@
-<html>
-<head>
-   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-   <title>HTML_Progress2 Manual</title>
-   <link href="book.css" rel="stylesheet" type="text/css">
-   <meta content="DocBook XSL Stylesheets V1.69.1" name="generator">
-   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
-   <link href="pr01.html" rel="next" title="Preface">
-</head>
-<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
-<table class="qfamsHeader">
-   <tr>
-      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
-         <h1>HTML_Progress2 : The Definitive Guide</h1>
-
-         <p>
-         <div class="navheader">
-            <table summary="Navigation header" width="100%">
-               <tr>
-                  <th align="center" colspan="3">HTML_Progress2 Manual</th>
-               </tr>
-               <tr>
-                  <td align="left" width="20%"> </td>
-                  <th align="center" width="60%"> </th><td align="right" width="20%"> <a accesskey="n" href="pr01.html">Next</a></td>
-               </tr>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>
+      HTML_Progress2 Manual
+    </title>
+    <link rel="stylesheet" href="book.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
+    <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
+    <link rel="next" href="pr01.html" title="Preface" />
+<style type="text/css">
+/*<![CDATA[*/
+ body {
+  background-color: white;
+  color: black;
+ }
+ :link { color: #0000FF }
+ :visited { color: #840084 }
+ :active { color: #0000FF }
+ p.c1 {font-weight: bold}
+/*]]>*/
+</style>
+  </head>
+  <body>
+    <table class="progress2Header">
+      <tr>
+        <td>
+          <img src="img/pear_progress2.gif" align="left" alt=
+          "PEAR Progress2 logo" />
+          <h1>
+            HTML_Progress2 : The Definitive Guide
+          </h1>
+          <div class="navheader">
+            <table width="100%" summary="Navigation header">
+              <tr>
+                <th colspan="3" align="center">
+                  HTML_Progress2 Manual
+                </th>
+              </tr>
+              <tr>
+                <td width="20%" align="left">
+                  &nbsp;
+                </td>
+                <th width="60%" align="center">
+                  &nbsp;
+                </th>
+                <td width="20%" align="right">
+                  &nbsp;<a accesskey="n" href="pr01.html">Next</a>
+                </td>
+              </tr>
             </table>
-         </div></p>
-      </td>
-   </tr>
-</table>
-<div class="book" lang="en"><div class="titlepage"><div><div>
-            <h1 class="title"><a name="progress2doc"></a>HTML_Progress2 Manual</h1></div>
-         <div>
-            <h2 class="subtitle">First Edition</h2></div>
-         <div><div class="authorgroup">
-               <h4 class="editedby">Edited by</h4>
-               <h3 class="editor"><span class="firstname">Laurent</span> 
-               <span class="surname">Laville</span></h3></div>
-         </div>
-         <div>
-
-            <p class="copyright">Copyright © 2005, 2006 Laurent Laville</p></div>
-         <div><div class="legalnotice"><a name="copyright"></a>
-
-               <p>This work is licensed under the Creative Commons Attribution License. To view a copy of this license, visit 
-               <a class="external" href="http://creativecommons.org/licenses/by/2.0/" title="http://creativecommons.org/licenses/by/2.0/">http://creativecommons.org/licenses/by/2.0/</a>. </p>
-            </div>
-         </div>
-         <div><div class="revhistory">
-               <table border="1" summary="Revision history" width="100%">
-                  <tr>
-                     <th align="left" colspan="2" valign="top"><b>Revision History</b></th>
-                  </tr>
-                  <tr>
-                     <td align="left">Revision 2.1.0</td>
-                     <td align="left">August 12, 2006</td>
-                  </tr>
-                  <tr>
-                     <td align="left" colspan="2"> 
-
-                        <p></p>
-                        <div class="itemizedlist">
-                           <ul type="disc">
-                              <li>FAQ is now up-to-date with the latest informations. See especially the common freeze progress bar problem. </li>
-                              <li>What's new chapter splitted by minor version (2.0, 2.1) with their details. </li>
-                              <li>Finally a quick start guide to use HTML_Progress2_Generator.</li>
-                              <li>New examples with comment in Appendixes section.</li>
-                           </ul>
-                        </div>
-
-                        <p></p>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td align="left">Revision 2.0.1</td>
-                     <td align="left">May 24, 2006</td>
-                  </tr>
-                  <tr>
-                     <td align="left" colspan="2"> 
-
-                        <p></p>
-                        <div class="itemizedlist">
-                           <ul type="disc">
-                              <li>TDG revision number follow the package release version.</li>
-                              <li>Fixes closing html - style tag of examples in Appendixes.</li>
-                              <li>Fixes typo error in chapter 5 (thanks to Stefan Valouch).</li>
-                           </ul>
-                        </div>
-
-                        <p></p>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td align="left">Revision 1.0.0</td>
-                     <td align="left">September 23, 2005</td>
-                  </tr>
-                  <tr>
-                     <td align="left" colspan="2"> 
-
-                        <p></p>
-                        <div class="itemizedlist">
-                           <ul type="disc">
-                              <li>The final (stable) first edition of this Guide.</li>
-                           </ul>
-                        </div>
-
-                        <p></p>
-                     </td>
-                  </tr>
-               </table>
-            </div>
-         </div>
+          </div><br />
+          <br />
+        </td>
+      </tr>
+    </table>
+    <div class="book" lang="en" xml:lang="en">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title">
+              <a name="progress2doc" id="progress2doc"></a>HTML_Progress2
+              Manual
+            </h1>
+          </div>
+          <div>
+            <h2 class="subtitle">
+              First Edition
+            </h2>
+          </div>
+          <div class="authorgroup">
+            <h4 class="editedby">
+              Edited by
+            </h4>
+            <h3 class="editor">
+              <span class="firstname">Laurent</span> <span class=
+              "surname">Laville</span>
+            </h3>
+          </div>
+          <div>
+            <p class="copyright">
+              Copyright © 2005, 2006, 2007 Laurent Laville
+            </p>
+          </div>
+          <div class="legalnotice">
+            <a name="copyright" id="copyright"></a>
+            <p>
+              This work is licensed under the Creative Commons Attribution
+              License. To view a copy of this license, visit <a class=
+              "external" href="http://creativecommons.org/licenses/by/2.0/"
+              title=
+              "http://creativecommons.org/licenses/by/2.0/">http://creativecommons.org/licenses/by/2.0/</a>.
+            </p>
+          </div>
+          <div class="revhistory">
+            <table border="1" width="100%" summary="Revision history">
+              <tr>
+                <th align="left" valign="top" colspan="2">
+                  <b>Revision History</b>
+                </th>
+              </tr>
+              <tr>
+                <td align="left">
+                  Revision 2.2.0
+                </td>
+                <td align="left">
+                  January 2, 2007
+                </td>
+              </tr>
+              <tr>
+                <td align="left" colspan="2">
+                  <div class="itemizedlist">
+                    <ul type="disc">
+                      <li>Add new feature to import an existing stylesheet to
+                      separate PHP code form HTML layout (with CSS). See
+                      migration guide, new features chapter for details.
+                      </li>
+                      <li>Copyright bumped to 2007
+                      </li>
+                      <li>New section for 2.2.x revisons in chapter : What is
+                      new in version 2?
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  Revision 2.1.1
+                </td>
+                <td align="left">
+                  December 21, 2006
+                </td>
+              </tr>
+              <tr>
+                <td align="left" colspan="2">
+                  <div class="itemizedlist">
+                    <ul type="disc">
+                      <li>PHP sources code are now all highlighted to improve
+                      readability
+                      </li>
+                      <li>Fixed path on hide() method page reference for
+                      function synopsis info (missing HTML/)
+                      </li>
+                      <li>Added "alt" html-tag attribute on all
+                      images/screenshots to be more xhtml compliant.
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  Revision 2.1.0
+                </td>
+                <td align="left">
+                  August 12, 2006
+                </td>
+              </tr>
+              <tr>
+                <td align="left" colspan="2">
+                  <div class="itemizedlist">
+                    <ul type="disc">
+                      <li>FAQ is now up-to-date with the latest informations.
+                      See especially the common freeze progress bar problem.
+                      </li>
+                      <li>What's new chapter splitted by minor version (2.0,
+                      2.1) with their details.
+                      </li>
+                      <li>Finally a quick start guide to use
+                      HTML_Progress2_Generator.
+                      </li>
+                      <li>New examples with comment in Appendixes section.
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  Revision 2.0.1
+                </td>
+                <td align="left">
+                  May 24, 2006
+                </td>
+              </tr>
+              <tr>
+                <td align="left" colspan="2">
+                  <div class="itemizedlist">
+                    <ul type="disc">
+                      <li>TDG revision number follow the package release
+                      version.
+                      </li>
+                      <li>Fixes closing html - style tag of examples in
+                      Appendixes.
+                      </li>
+                      <li>Fixes typo error in chapter 5 (thanks to Stefan
+                      Valouch).
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  Revision 1.0.0
+                </td>
+                <td align="left">
+                  September 23, 2005
+                </td>
+              </tr>
+              <tr>
+                <td align="left" colspan="2">
+                  <div class="itemizedlist">
+                    <ul type="disc">
+                      <li>The final (stable) first edition of this Guide.
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <hr />
       </div>
-      <hr></div>
-   <div class="toc">
-
-      <p><b>Table of Contents</b></p>
-      <dl><dt><span class="preface"><a href="pr01.html">Preface</a></span></dt>
-         <dd>
-         <dl><dt><span class="sect1"><a href="pr01.html#preface.structure">Organization of This Book</a></span></dt><dt><span class="sect1"><a href="pr01s02.html">Pre-requisites</a></span></dt>
-         </dl></dd><dt><span class="part"><a href="pt01.html">I. Introduction</a></span></dt>
-         <dd>
-         <dl><dt><span class="chapter"><a href="ch01.html">1. About Progress2</a></span></dt><dt><span class="chapter"><a href="ch02.html">2. What's New in version 2 ?</a></span></dt><dt><span class="chapter"><a href="ch03.html">3. FAQ - Frequently Asked Questions</a></span></dt>
-         </dl></dd><dt><span class="part"><a href="pt02.html">II. Getting Started</a></span></dt>
-         <dd>
-         <dl><dt><span class="chapter"><a href="ch04.html">4. Introduction</a></span></dt><dt><span class="chapter"><a href="ch05.html">5. Quick Start with HTML_Progress2</a></span></dt><dt><span class="chapter"><a href="ch06.html">6. Indeterminate Mode</a></span></dt><dt><span class="chapter"><a href="ch07.html">7. Listener</a></span></dt><dt><span class="chapter"><a href="ch08.html">8. Quick Start with HTML_Progress2_Monitor</a></span></dt><dt><span class="chapter"><a href="ch09.html">9. Quick Start with HTML_Progress2_Generator</a></span></dt>
-         </dl></dd><dt><span class="part"><a href="pt03.html">III. Migrating Guide</a></span></dt>
-         <dd>
-         <dl><dt><span class="chapter"><a href="ch10.html">10. Introduction</a></span></dt><dt><span class="chapter"><a href="ch11.html">11. How to adjust your code</a></span></dt><dt><span class="chapter"><a href="ch12.html">12. New Features in HTML_Progress2 
-            </a></span></dt>
-         </dl></dd><dt><span class="part"><a href="pt04.html">IV. Reference Guide</a></span></dt>
-         <dd>
-         <dl><dt><span class="chapter"><a href="ch13.html">13. Introduction</a></span></dt><dt><span class="chapter"><a href="ch14.html">14. Error Handler</a></span></dt><dt><span class="chapter"><a href="ch15.html">15. Events to observe</a></span></dt><dt><span class="chapter"><a href="ch16.html">16. HTML_Progress2_Lite</a></span></dt><dt><span class="chapter"><a href="ch17.html">17. API - Application Programming Interface</a></span></dt>
-         </dl></dd><dt><span class="part"><a href="pt05.html">V. Appendixes</a></span></dt>
-         <dd>
-         <dl><dt><span class="chapter"><a href="ch18.html">18. HTML_Progress2 and HTML_Progress2_Lite features comparative</a></span></dt><dt><span class="chapter"><a href="ch19.html">19. Examples</a></span></dt>
-         </dl></dd>
-      </dl>
-   </div>
-   <div class="list-of-figures">
-
-      <p><b>List of Figures</b></p>
-      <dl><dt>19.1. <a href="ch19.html#id4837520">Basic usage with default skin</a></dt><dt>19.2. 
-         <a href="ch19s02.html#id4837473">Indeterminate Mode usage </a></dt><dt>19.3. 
-         <a href="ch19s03.html#id4837469">Multi Labels usage </a></dt><dt>19.4. 
-         <a href="ch19s04.html#id4837884">Progress as a listener to Event_Dispatcher</a></dt><dt>19.5. 
-         <a href="ch19s05.html#id4838109">Monitoring usage </a></dt><dt>19.6. 
-         <a href="ch19s06.html#id4838402">Progress Generator wizard usage 
-         </a></dt>
-      </dl>
-   </div>
-   <div class="list-of-tables">
-
-      <p><b>List of Tables</b></p>
-      <dl><dt>12.1. <a href="ch12s02.html#id4788748">Error Handling major changes 
-         </a></dt><dt>14.1. <a href="ch14s02.html#id4790042">Error Handler configuration parameters 
-         </a></dt><dt>14.2. <a href="ch14s04.html#id4790674">Display driver configuration parameters 
-         </a></dt><dt>14.3. <a href="ch14s04.html#id4790866">Log driver configuration parameters 
-         </a></dt><dt>16.1. <a href="ch16s02.html#id4793525">HTML_Progress2_Lite : position and size attributes</a></dt><dt>16.2. 
-         <a href="ch16s02.html#id4793713">HTML_Progress2_Lite : color attributes</a></dt><dt>16.3. 
-         <a href="ch16s02.html#id4793848">HTML_Progress2_Lite : frame attributes</a></dt><dt>16.4. 
-         <a href="ch16s02.html#id4794057">HTML_Progress2_Lite : TEXT label attributes</a></dt><dt>16.5. 
-         <a href="ch16s02.html#id4794317">HTML_Progress2_Lite : BUTTON label attributes</a></dt><dt>16.6. 
-         <a href="ch16s02.html#id4794604">HTML_Progress2_Lite : STEP label attributes</a></dt><dt>16.7. 
-         <a href="ch16s02.html#id4794864">HTML_Progress2_Lite : PERCENT label attributes</a></dt><dt>16.8. 
-         <a href="ch16s02.html#id4795124">HTML_Progress2_Lite : CROSSBAR label attributes</a></dt><dt>18.1. 
-         <a href="ch18.html#id4835787">HTML_Progress2_Lite features comparative</a></dt>
-      </dl>
-   </div>
-   <div class="list-of-examples">
-
-      <p><b>List of Examples</b></p>
-      <dl><dt>19.1. <a href="ch19.html#id4836904">Without any customization</a></dt><dt>19.2. 
-         <a href="ch19s02.html#id4836989">progress bar in indeterminate mode 
-         </a></dt><dt>19.3. <a href="ch19s03.html#id4837665">Four kind of progress label 
-         </a></dt><dt>19.4. <a href="ch19s04.html#id4837855">Progress bar listen to user process</a></dt><dt>19.5. 
-         <a href="ch19s05.html#id4838032">progress bar into a quickform window 
-         </a></dt><dt>19.6. <a href="ch19s06.html#id4838316">Progress Generator build with PEAR::HTML_Page2 
-         </a></dt>
-      </dl>
-   </div>
-</div>
-<table class="qfamsFooter">
-   <tr>
-      <td align="left">HTML_Progress2 : The Definitive Guide</td>
-      <td align="right">v 2.1.0 : August 12, 2006</td>
-   </tr>
-</table>
-<div class="navfooter"><hr>
-   <table summary="Navigation footer" width="100%">
+      <div class="toc">
+        <p class="c1">
+          Table of Contents
+        </p>
+        <dl>
+          <dt>
+            <span class="preface"><a href="pr01.html">Preface</a></span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="sect1"><a href=
+                "pr01.html#preface.structure">Organization of This
+                Book</a></span>
+              </dt>
+              <dt>
+                <span class="sect1"><a href=
+                "pr01s02.html">Pre-requisites</a></span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="part"><a href="pt01.html">I. Introduction</a></span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="chapter"><a href="ch01.html">1. About
+                Progress2</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch02.html">2. What's New in
+                version 2 ?</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch03.html">3. FAQ - Frequently
+                Asked Questions</a></span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="part"><a href="pt02.html">II. Getting
+            Started</a></span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="chapter"><a href="ch04.html">4.
+                Introduction</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch05.html">5. Quick Start with
+                HTML_Progress2</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch06.html">6. Indeterminate
+                Mode</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch07.html">7.
+                Listener</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch08.html">8. Quick Start with
+                HTML_Progress2_Monitor</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch09.html">9. Quick Start with
+                HTML_Progress2_Generator</a></span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="part"><a href="pt03.html">III. Migrating
+            Guide</a></span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="chapter"><a href="ch10.html">10.
+                Introduction</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch11.html">11. How to adjust
+                your code</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch12.html">12. New Features in
+                HTML_Progress2</a></span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="part"><a href="pt04.html">IV. Reference
+            Guide</a></span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="chapter"><a href="ch13.html">13.
+                Introduction</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch14.html">14. Error
+                Handler</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch15.html">15. Events to
+                observe</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch16.html">16.
+                HTML_Progress2_Lite</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch17.html">17. API - Application
+                Programming Interface</a></span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="part"><a href="pt05.html">V. Appendixes</a></span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="chapter"><a href="ch18.html">18. HTML_Progress2
+                and HTML_Progress2_Lite features comparative</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch19.html">19.
+                Examples</a></span>
+              </dt>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+      <div class="list-of-figures">
+        <p class="c1">
+          List of Figures
+        </p>
+        <dl>
+          <dt>
+            19.1. <a href="ch19.html#id4845051">Basic usage with default
+            skin</a>
+          </dt>
+          <dt>
+            19.2. <a href="ch19s02.html#id4845004">Indeterminate Mode usage</a>
+          </dt>
+          <dt>
+            19.3. <a href="ch19s03.html#id4845000">Multi Labels usage</a>
+          </dt>
+          <dt>
+            19.4. <a href="ch19s04.html#id4845415">Progress as a listener to
+            Event_Dispatcher</a>
+          </dt>
+          <dt>
+            19.5. <a href="ch19s05.html#id4845640">Monitoring usage</a>
+          </dt>
+          <dt>
+            19.6. <a href="ch19s06.html#id4845933">Progress Generator wizard
+            usage</a>
+          </dt>
+        </dl>
+      </div>
+      <div class="list-of-tables">
+        <p class="c1">
+          List of Tables
+        </p>
+        <dl>
+          <dt>
+            12.1. <a href="ch12s02.html#id4793751">Error Handling major
+            changes</a>
+          </dt>
+          <dt>
+            14.1. <a href="ch14s02.html#id4797551">Error Handler configuration
+            parameters</a>
+          </dt>
+          <dt>
+            14.2. <a href="ch14s04.html#id4798200">Display driver configuration
+            parameters</a>
+          </dt>
+          <dt>
+            14.3. <a href="ch14s04.html#id4798392">Log driver configuration
+            parameters</a>
+          </dt>
+          <dt>
+            16.1. <a href="ch16s02.html#id4801067">HTML_Progress2_Lite :
+            position and size attributes</a>
+          </dt>
+          <dt>
+            16.2. <a href="ch16s02.html#id4801256">HTML_Progress2_Lite : color
+            attributes</a>
+          </dt>
+          <dt>
+            16.3. <a href="ch16s02.html#id4801391">HTML_Progress2_Lite : frame
+            attributes</a>
+          </dt>
+          <dt>
+            16.4. <a href="ch16s02.html#id4801599">HTML_Progress2_Lite : TEXT
+            label attributes</a>
+          </dt>
+          <dt>
+            16.5. <a href="ch16s02.html#id4801859">HTML_Progress2_Lite : BUTTON
+            label attributes</a>
+          </dt>
+          <dt>
+            16.6. <a href="ch16s02.html#id4802147">HTML_Progress2_Lite : STEP
+            label attributes</a>
+          </dt>
+          <dt>
+            16.7. <a href="ch16s02.html#id4802407">HTML_Progress2_Lite :
+            PERCENT label attributes</a>
+          </dt>
+          <dt>
+            16.8. <a href="ch16s02.html#id4802667">HTML_Progress2_Lite :
+            CROSSBAR label attributes</a>
+          </dt>
+          <dt>
+            18.1. <a href="ch18.html#id4843318">HTML_Progress2_Lite features
+            comparative</a>
+          </dt>
+        </dl>
+      </div>
+      <div class="list-of-examples">
+        <p class="c1">
+          List of Examples
+        </p>
+        <dl>
+          <dt>
+            12.1. <a href="ch12s03.html#id4793816">script: <code class=
+            "filename">examples/horizontal/ancestor.php</code></a>
+          </dt>
+          <dt>
+            12.2. <a href="ch12s03.html#id4794942">script: <code class=
+            "filename">progress2BasicHandler.js</code></a>
+          </dt>
+          <dt>
+            12.3. <a href="ch12s03.html#id4795103"><code class=
+            "filename">ancestor.css</code></a>
+          </dt>
+          <dt>
+            12.4. <a href="ch12s03.html#id4795627">New content of <code class=
+            "filename">ancestor.css</code></a>
+          </dt>
+          <dt>
+            12.5. <a href="ch12s03.html#id4795814"><code class=
+            "filename">ancestor.css</code> with two skins</a>
+          </dt>
+          <dt>
+            19.1. <a href="ch19.html#id4844436">Without any customization</a>
+          </dt>
+          <dt>
+            19.2. <a href="ch19s02.html#id4844520">progress bar in
+            indeterminate mode</a>
+          </dt>
+          <dt>
+            19.3. <a href="ch19s03.html#id4845196">Four kind of progress
+            label</a>
+          </dt>
+          <dt>
+            19.4. <a href="ch19s04.html#id4845387">Progress bar listen to user
+            process</a>
+          </dt>
+          <dt>
+            19.5. <a href="ch19s05.html#id4845563">progress bar into a
+            quickform window</a>
+          </dt>
+          <dt>
+            19.6. <a href="ch19s06.html#id4845848">Progress Generator build
+            with PEAR::HTML_Page2</a>
+          </dt>
+        </dl>
+      </div>
+    </div>
+    <table class="progress2Footer">
       <tr>
-         <td align="left" width="40%"> </td>
-         <td align="center" width="20%"> </td>
-         <td align="right" width="40%"> <a accesskey="n" href="pr01.html">Next</a></td>
+        <td align="left">
+          HTML_Progress2 : The Definitive Guide
+        </td>
+        <td align="right">
+          v 2.2.0 : January 2, 2007
+        </td>
       </tr>
-      <tr>
-         <td align="left" valign="top" width="40%"> </td>
-         <td align="center" width="20%"> </td>
-         <td align="right" valign="top" width="40%"> Preface</td>
-      </tr>
-   </table>
-</div>
-</body>
-</html> 
+    </table>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left">
+            &nbsp;
+          </td>
+          <td width="20%" align="center">
+            &nbsp;
+          </td>
+          <td width="40%" align="right">
+            &nbsp;<a accesskey="n" href="pr01.html">Next</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">
+            &nbsp;
+          </td>
+          <td width="20%" align="center">
+            &nbsp;
+          </td>
+          <td width="40%" align="right" valign="top">
+            &nbsp;Preface
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

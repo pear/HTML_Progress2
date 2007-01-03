@@ -1,362 +1,1052 @@
-<html>
-<head>
-   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-   <title>Processing </title>
-   <link href="book.css" rel="stylesheet" type="text/css">
-   <meta content="DocBook XSL Stylesheets V1.69.1" name="generator">
-   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
-   <link href="ch05.html" rel="up" title="Chapter 5. Quick Start with HTML_Progress2">
-   <link href="ch05.html" rel="prev" title="Chapter 5. Quick Start with HTML_Progress2">
-   <link href="ch05s03.html" rel="next" title="Strategy of handling ">
-</head>
-<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
-<table class="qfamsHeader">
-   <tr>
-      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
-         <h1>HTML_Progress2 : The Definitive Guide</h1>
-
-         <p>
-         <div class="navheader">
-            <table summary="Navigation header" width="100%">
-               <tr>
-                  <th align="center" colspan="3">Processing </th>
-               </tr>
-               <tr>
-                  <td align="left" width="20%"><a accesskey="p" href="ch05.html">Prev</a> </td>
-                  <th align="center" width="60%">Chapter 5. Quick Start with HTML_Progress2</th><td align="right" width="20%"> <a accesskey="n" href="ch05s03.html">Next</a></td>
-               </tr>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>
+      Processing
+    </title>
+    <link rel="stylesheet" href="book.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
+    <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
+    <link rel="up" href="ch05.html" title=
+    "Chapter&nbsp;5.&nbsp;Quick Start with HTML_Progress2" />
+    <link rel="prev" href="ch05.html" title=
+    "Chapter&nbsp;5.&nbsp;Quick Start with HTML_Progress2" />
+    <link rel="next" href="ch05s03.html" title="Strategy of handling " />
+<style type="text/css">
+/*<![CDATA[*/
+ body {
+  background-color: white;
+  color: black;
+ }
+ :link { color: #0000FF }
+ :visited { color: #840084 }
+ :active { color: #0000FF }
+ div.c3 {font-family: monospace;}
+ div.c2 {margin-left: 0.5in; margin-right: 0.5in;}
+ h2.c1 {clear: both}
+/*]]>*/
+</style>
+  </head>
+  <body>
+    <table class="progress2Header">
+      <tr>
+        <td>
+          <img src="img/pear_progress2.gif" align="left" alt=
+          "PEAR Progress2 logo" />
+          <h1>
+            HTML_Progress2 : The Definitive Guide
+          </h1>
+          <div class="navheader">
+            <table width="100%" summary="Navigation header">
+              <tr>
+                <th colspan="3" align="center">
+                  Processing
+                </th>
+              </tr>
+              <tr>
+                <td width="20%" align="left">
+                  <a accesskey="p" href="ch05.html">Prev</a>&nbsp;
+                </td>
+                <th width="60%" align="center">
+                  Chapter&nbsp;5.&nbsp;Quick Start with HTML_Progress2
+                </th>
+                <td width="20%" align="right">
+                  &nbsp;<a accesskey="n" href="ch05s03.html">Next</a>
+                </td>
+              </tr>
             </table>
-         </div></p>
-      </td>
-   </tr>
-</table>
-<div class="sect1" lang="en"><div class="titlepage"><div><div>
-            <h2 class="title" style="clear: both">
-            <a name="quickstart.processing"></a>Processing </h2>
-         </div>
-      </div>
-   </div>
-   <div class="toc">
-      <dl><dt><span class="sect2"><a href="ch05s02.html#id4778320">With a user callback</a></span></dt><dt><span class="sect2"><a href="ch05s02.html#id4779440">Without user callback</a></span></dt>
-      </dl>
-   </div>
-
-   <p>Now we know the basic of progress meter design, its now time to learn how to handle display refresh with the user process. </p>
-
-   <p>There are two main ways : </p>
-   <div class="orderedlist">
-      <ol type="1">
-         <li>
-
-         <p><span class="bold"><strong>with a user callback.</strong></span> The core of HTML_Progress2 checking progression (until end), and handling display refresh for us. </p></li>
-         <li>
-
-         <p><span class="bold"><strong>without user callback.</strong></span> We have to do all tasks that core of HTML_Progress2 can do it for us. </p></li>
-      </ol>
-   </div>
-
-   <p></p>
-   <div class="sect2" lang="en"><div class="titlepage"><div><div>
-               <h3 class="title"><a name="id4778320"></a>With a user callback</h3></div>
-         </div>
-      </div>
-
-      <p>Its the most easy way. We have just to declare the user callback with 
-      <a href="re53.html" title="HTML_Progress2::setProgressHandler"> setProgressHandler() 
-      </a> method, and launch execution with 
-      <a href="re55.html" title="HTML_Progress2::run"> run() </a> method. HTML_Progress2 will check progression of meter (both modes supported: indeterminate, determinate) and stop when 100% is reach. </p>
-
-      <p></p>
-      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
-         <table border="0" summary="Tip">
-            <tr>
-               <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Tip]" src="img/admons/tip.png"></td>
-               <th align="left">Tip</th>
-            </tr>
-            <tr>
-               <td align="left" valign="top"> If you don't specify a callback, default behavior will call HTML_Progress2 
-                  <a href="re52.html" title="HTML_Progress2::sleep"> sleep() 
-                  </a> method in background: delay animation n milliseconds (default = zero). This delay is set by 
-                  <a href="re46.html" title="HTML_Progress2::setAnimSpeed"> setAnimSpeed() 
-                  </a> method. 
-               </td>
-            </tr>
-         </table>
-      </div>
-
-      <p></p>
-
-      <p>Here is an example that demonstrates user callback usage. We suppose that we get image count from any data source and we have to build/display these images. It could be generated by jpgraph (for complex graphics), but here we used five times same script that call a 
-      <code class="function">pearImage()</code> function. Part of code came from 
-      <a class="external" href="http://pear.php.net/package/PEAR_Info" title="http://pear.php.net/package/PEAR_Info">PEAR_Info</a> package. </p>
-
-      <p>Here is a copy of such <code class="function">PEAR_Info::pearImage()</code> function, in the 
-      <code class="filename">pearimage.php</code> script: </p>
-<pre class="programlisting">
-     
-&lt;?php
-function pearImage()
-{
-  $pear_image = 'R0lGODlhaAAyAMT/AMDAwP3+/TWaAvD47Pj89vz++zebBDmcBj6fDEekFluvKmu3PvX68ujz4XvBS8LgrNXqxeHw1ZnPaa/dgvv9+cLqj8LmltD2msnuls';
-  $pear_image .= '3xmszwmf7+/f///wAAAAAAAAAAACH5BAEAAAAALAAAAABoADIAQAX/ICCOZGmeaKqubOtWWjwJphLLgH1XUu//C1Jisfj9YLEKQnSY3GaixWQqQTkYHM4';
-  $pear_image .= 'AMulNLJFC9pEwIW/odKU8cqTfsWoTTtcomU4ZjbR4ZP+AgYKCG0EiZ1AuiossEhwEXRMEg5SVWQ6MmZqKWD0QlqCUEHubpaYlExwRPRZioZZVp7KzKQoS';
-  $pear_image .= 'DxANDLsNXA5simd2FcQYb4YAc2jEU80TmAAIztPCMcjKdg4OEsZJmwIWWQPQI4ikIwtoVQnddgrv8PFlCWgYCwkI+fp5dkvJ/IlUKMCy6tYrDhNIIKLFE';
-  $pear_image .= 'AWCTxse+ABD4SClWA0zovAjcUJFi6EwahxZwoGqHhFA/4IqoICkyxQSKkbo0gDkuBXV4FRAJkRCnTgi2P28IcEfk5xpWppykFJVuScmEvDTEETAVJ6bEp';
-  $pear_image .= 'ypcADPkz3pvKVAICHChkC7siQ08zVqu4Q6hgIFEFZuEn/KMgRUkaBmAQs+cEHgIiHVH5EAFpIgW4+NT6LnaqhDwe/Ov7YOmWZp4MkiAWBIl0kAVsJWuzc';
-  $pear_image .= 'YpdiNgddc0E8cKBAu/FElBwagMb88ZZKDRAkWJtkWhHh3wwUbKHQJN3wQAaXGR2LpArv5oFHRR34C7Mf6oLXZNfqBgNI7oOLhj1f8PaGpygHQ0xtP8MDV';
-  $pear_image .= 'KwYTSKcgxr9/hS6/pCCAAg5M4B9/sWh1YP9/XSgQWRML/idBfKUc4IBET9lFjggKhDYZAELZJYEBI2BDB3ouNBEABwE8gAwiCcSYgAKqPdEVAG7scM8BP';
-  $pear_image .= 'PZ4AIlM+OgjAgpMhRE24OVoBwsIFEGFA7ZkQQBWienWxmRa7XDjKZXhBdAeSmKQwgLuUVLICa6VEKIGcK2mQWoVZHCBXJblJUFkY06yAXlGsPIHBEYdYi';
-  $pear_image .= 'WHb+WQBgaIJqqoHFNpgMGB7dT5ZQuG/WbBAIAUEEFNfwxAWpokTIXJAWdgoJ9kRFG2g5eDRpXSBpEIF0oEQFaZhDbaSFANRgqcJoEDRARLREtxOQpsPO9';
-  $pear_image .= '06ZUeJgjQB6dZUPBAdwcF8KLXXRVQaKFcsRRLJ6vMiiCNKxRE8ECZKgUA3Va4arOAAqdGRWO7uMZH5AL05gvsjQbg6y4NCjQ1kw8TVGcbdoKGKx8j3bGH';
-  $pear_image .= '7nARBArqwi0gkFJBrZiXBQRbHoIgnhSjcEBKfD7c3HMhz+JIQSY3t8GGKW+SUhfUajxGzKd0IoHBNkNQK86ZYEqdzYA8AHQpqXRUm80oHs1CAgMoBxzRq';
-  $pear_image .= 'vzs9CIKECC1JBp7enUpfXHApwVYNAfo16c4IrYPLVdSAJVob7IAtCBFQGHcs/RRdiUDPHA33oADEAIAOw==';
-  header('content-type: image/gif');
-  echo base64_decode($pear_image);
-}
-pearImage();
-?&gt;
-     
-    </pre>
-
-      <p></p>
-
-      <p>And now, the main script. </p>
-<pre class="programlisting">
-&lt;?php
-require_once 'HTML/Progress2.php';
-
-$dataSrc <a name="samp.cb.datasrc"></a><img alt="1" border="0" src="img/callouts/1.gif"> = array('pearimage', 'pearimage', 'pearimage', 'pearimage', 'pearimage');
-
-function myProcess($pValue, &amp;$pBar) <a name="samp.cb.handler"></a><img alt="2" border="0" src="img/callouts/2.gif">
-{
-    static $q = 0;
-    global $dataSrc;
-
-    $pBar-&gt;sleep();
-    if (isset($dataSrc[$q])) {
-        echo '&lt;tr&gt;&lt;td&gt;'
-           . '&lt;img src="'. $dataSrc[$q] .'.php?timestamp=' . time() . '" alt=""/&gt;'
-           . '&lt;b&gt;'.($q+1).'&lt;/b&gt;'
-           . '&lt;/td&gt;&lt;/tr&gt;';
-    }
-    $q++;
-    return $q; <a name="samp.cb.movenext"></a><img alt="3" border="0" src="img/callouts/3.gif">
-}
-
-$pb = new HTML_Progress2();
-$pb-&gt;setAnimSpeed(500);
-$pb-&gt;setIncrement(intval(ceil(100 / count($dataSrc)))); <a name="samp.cb.movenext"></a><img alt="3" border="0" src="img/callouts/3.gif">
-$pb-&gt;setProgressHandler('myProcess'); <a name="samp.cb.handler"></a><img alt="2" border="0" src="img/callouts/2.gif">
-?&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;?php
-echo $pb-&gt;getStyle(false);
-echo $pb-&gt;getScript(false);
-?&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;?php
-$pb-&gt;display();
-echo '&lt;table width="100%"&gt;';
-$pb-&gt;run();
-echo '&lt;/table&gt;';
-$pb-&gt;hide(); <a name="samp.cb.pbhide"></a><img alt="4" border="0" src="img/callouts/4.gif">
-?&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-    </pre>
-
-      <p></p>
-
-      <p>Lets review this example step by step : </p>
-      <div class="calloutlist">
-         <table border="0" summary="Callout list">
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.cb.datasrc"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p><code class="varname">$dataSrc</code> identify the data source. Five call to 
-                  <code class="filename">pearimage.php</code> script. </p>
-               </td>
-            </tr>
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.cb.handler"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p>Main task is to build, and display, five pear logo pictures. This task is defined by user callback : 
-                  <code class="function">myProcess</code> and linked to progress meter by 
-                  <code class="methodname">setProgressHandler()</code> method. </p>
-               </td>
-            </tr>
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.cb.movenext"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p>We used <span class="emphasis"><em>moveStep</em></span> strategy with the 
-                  <code class="literal">return $q</code> code, and increment compute. </p>
-
-                  <p>If you remove this line we use the second strategy called 
-                  <span class="emphasis"><em>moveNext</em></span>. We will talk about it later. Don't be afraid if you don't know yet what is the difference. </p>
-               </td>
-            </tr>
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.cb.pbhide"><img alt="4" border="0" src="img/callouts/4.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p>Task is completed, five logo built and shown. The progress bar is hidden. </p>
-               </td>
-            </tr>
-         </table>
-      </div>
-   </div>
-   <div class="sect2" lang="en"><div class="titlepage"><div><div>
-               <h3 class="title"><a name="id4779440"></a>Without user callback</h3></div>
-         </div>
-      </div>
-
-      <p>To show difference of two implementations, we will re-used the same example of pear logo. </p>
-
-      <p></p>
-<pre class="programlisting">
-&lt;?php
-require_once 'HTML/Progress2.php';
-
-$dataSrc <a name="samp.proc.datasrc"></a><img alt="1" border="0" src="img/callouts/1.gif"> = array('pearimage', 'pearimage', 'pearimage', 'pearimage', 'pearimage');
-
-function myProcess() <a name="samp.proc.handler"></a><img alt="2" border="0" src="img/callouts/2.gif">
-{
-    static $q = 0;
-    global $dataSrc;
-
-    if (isset($dataSrc[$q])) {
-        echo '&lt;tr&gt;&lt;td&gt;'
-           . '&lt;img src="'. $dataSrc[$q] .'.php?timestamp=' . time() . '" alt=""/&gt;'
-           . '&lt;b&gt;'.($q+1).'&lt;/b&gt;'
-           . '&lt;/td&gt;&lt;/tr&gt;';
-    }
-    $q++;
-    return $q; <a name="samp.proc.movenext"></a><img alt="4" border="0" src="img/callouts/4.gif">
-}
-
-$pb = new HTML_Progress2();
-$pb-&gt;setAnimSpeed(500);
-$pb-&gt;setIncrement(intval(ceil(100 / count($dataSrc))));
-?&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;?php
-echo $pb-&gt;getStyle(false);
-echo $pb-&gt;getScript(false);
-?&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;?php
-$pb-&gt;display();
-echo '&lt;table width="100%"&gt;';
-
-foreach ($dataSrc as $script) <a name="samp.proc.loop"></a><img alt="3" border="0" src="img/callouts/3.gif"> {
-    if ($pb-&gt;getPercentComplete() == 1) {
-        break;
-    }
-    $ret = myProcess(); <a name="samp.proc.movenext"></a><img alt="4" border="0" src="img/callouts/4.gif">
-    $pb-&gt;sleep();
-    $pb-&gt;moveStep($ret); <a name="samp.proc.movenext"></a><img alt="4" border="0" src="img/callouts/4.gif">
-}
-
-echo '&lt;/table&gt;';
-$pb-&gt;hide(); <a name="samp.proc.pbhide"></a><img alt="5" border="0" src="img/callouts/5.gif">
-?&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-    </pre>
-
-      <p></p>
-
-      <p>Lets review this example step by step : </p>
-      <div class="calloutlist">
-         <table border="0" summary="Callout list">
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.proc.datasrc"><img alt="1" border="0" src="img/callouts/1.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p><code class="varname">$dataSrc</code> identify again the data source. Five call to 
-                  <code class="filename">pearimage.php</code> script. </p>
-               </td>
-            </tr>
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.proc.handler"><img alt="2" border="0" src="img/callouts/2.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p><code class="function">myProcess</code> is defined as a reusable function and not a callback for progress meter. </p>
-               </td>
-            </tr>
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.proc.loop"><img alt="3" border="0" src="img/callouts/3.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p><code class="methodname">run()</code> method was replaced by a for-each loop. We must : </p>
-
-                  <p></p>
-                  <div class="orderedlist">
-                     <ol type="1">
-                        <li>check if progress meter reach 100% (<code class="methodname">getPercentComplete()</code> method). </li>
-                        <li>refresh display with right method depending on strategy used. </li>
-                     </ol>
-                  </div>
-
-                  <p></p>
-
-                  <p></p>
-               </td>
-            </tr>
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.proc.movenext"><img alt="4" border="0" src="img/callouts/4.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p>We use again the same <span class="emphasis"><em>moveStep</em></span> strategy. </p>
-               </td>
-            </tr>
-            <tr>
-               <td align="left" valign="top" width="5%"><a href="#samp.proc.pbhide"><img alt="5" border="0" src="img/callouts/5.gif"></a> 
-               </td>
-               <td align="left" valign="top">
-
-                  <p>Task is completed, five logo built and shown. The progress bar is hidden. </p>
-               </td>
-            </tr>
-         </table>
-      </div>
-   </div>
-</div>
-<table class="qfamsFooter">
-   <tr>
-      <td align="left">HTML_Progress2 : The Definitive Guide</td>
-      <td align="right">v 2.1.0 : August 12, 2006</td>
-   </tr>
-</table>
-<div class="navfooter"><hr>
-   <table summary="Navigation footer" width="100%">
-      <tr>
-         <td align="left" width="40%"><a accesskey="p" href="ch05.html">Prev</a> </td>
-         <td align="center" width="20%"><a accesskey="u" href="ch05.html">Up</a></td>
-         <td align="right" width="40%"> <a accesskey="n" href="ch05s03.html">Next</a></td>
+          </div><br />
+          <br />
+        </td>
       </tr>
+    </table>
+    <div class="sect1" lang="en" xml:lang="en">
+      <div class="titlepage">
+        <h2 class="title c1">
+          <a name="quickstart.processing" id=
+          "quickstart.processing"></a>Processing
+        </h2>
+      </div>
+      <div class="toc">
+        <dl>
+          <dt>
+            <span class="sect2"><a href="ch05s02.html#id4783590">With a user
+            callback</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href="ch05s02.html#id4784696">Without user
+            callback</a></span>
+          </dt>
+        </dl>
+      </div>
+      <p>
+        Now we know the basic of progress meter design, its now time to learn
+        how to handle display refresh with the user process.
+      </p>
+      <p>
+        There are two main ways :
+      </p>
+      <div class="orderedlist">
+        <ol type="1">
+          <li>
+            <p>
+              <span class="bold"><strong>with a user callback.</strong></span>
+              The core of HTML_Progress2 checking progression (until end), and
+              handling display refresh for us.
+            </p>
+          </li>
+          <li>
+            <p>
+              <span class="bold"><strong>without user callback.</strong></span>
+              We have to do all tasks that core of HTML_Progress2 can do it for
+              us.
+            </p>
+          </li>
+        </ol>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="id4783590" id="id4783590"></a>With a user callback
+          </h3>
+        </div>
+        <p>
+          Its the most easy way. We have just to declare the user callback with
+          <a href="re53.html" title=
+          "HTML_Progress2::setProgressHandler">setProgressHandler()</a> method,
+          and launch execution with <a href="re55.html" title=
+          "HTML_Progress2::run">run()</a> method. HTML_Progress2 will check
+          progression of meter (both modes supported: indeterminate,
+          determinate) and stop when 100% is reach.
+        </p>
+        <div class="tip c2">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="48">
+                <img alt="[Tip]" src="img/admons/tip.png" />
+              </td>
+              <th align="left">
+                Tip
+              </th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                If you don't specify a callback, default behavior will call
+                HTML_Progress2 <a href="re52.html" title=
+                "HTML_Progress2::sleep">sleep()</a> method in background: delay
+                animation n milliseconds (default = zero). This delay is set by
+                <a href="re46.html" title=
+                "HTML_Progress2::setAnimSpeed">setAnimSpeed()</a> method.
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>
+          Here is an example that demonstrates user callback usage. We suppose
+          that we get image count from any data source and we have to
+          build/display these images. It could be generated by jpgraph (for
+          complex graphics), but here we used five times same script that call
+          a <code class="function">pearImage()</code> function. Part of code
+          came from <a class="external" href=
+          "http://pear.php.net/package/PEAR_Info" title=
+          "http://pear.php.net/package/PEAR_Info">PEAR_Info</a> package.
+        </p>
+        <p>
+          Here is a copy of such <code class=
+          "function">PEAR_Info::pearImage()</code> function, in the
+          <code class="filename">pearimage.php</code> script:
+        </p>
+        <div class="php c3">
+          <ol>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">&lt;?php</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">function</span> pearImage<span class=
+                "br0">(</span><span class="br0">)</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="br0">{</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> = <span class=
+                "st0">'R0lGODlhaAAyAMT/AMDAwP3+/TWaAvD47Pj89vz++zebBDmcBj6fDEekFluvKmu3PvX68ujz4XvBS8LgrNXqxeHw1ZnPaa/dgvv9+cLqj8LmltD2msnuls'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'3xmszwmf7+/f///wAAAAAAAAAAACH5BAEAAAAALAAAAABoADIAQAX/ICCOZGmeaKqubOtWWjwJphLLgH1XUu//C1Jisfj9YLEKQnSY3GaixWQqQTkYHM4'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'AMulNLJFC9pEwIW/odKU8cqTfsWoTTtcomU4ZjbR4ZP+AgYKCG0EiZ1AuiossEhwEXRMEg5SVWQ6MmZqKWD0QlqCUEHubpaYlExwRPRZioZZVp7KzKQoS'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'DxANDLsNXA5simd2FcQYb4YAc2jEU80TmAAIztPCMcjKdg4OEsZJmwIWWQPQI4ikIwtoVQnddgrv8PFlCWgYCwkI+fp5dkvJ/IlUKMCy6tYrDhNIIKLFE'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'AWCTxse+ABD4SClWA0zovAjcUJFi6EwahxZwoGqHhFA/4IqoICkyxQSKkbo0gDkuBXV4FRAJkRCnTgi2P28IcEfk5xpWppykFJVuScmEvDTEETAVJ6bEp'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'ypcADPkz3pvKVAICHChkC7siQ08zVqu4Q6hgIFEFZuEn/KMgRUkaBmAQs+cEHgIiHVH5EAFpIgW4+NT6LnaqhDwe/Ov7YOmWZp4MkiAWBIl0kAVsJWuzc'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'YpdiNgddc0E8cKBAu/FElBwagMb88ZZKDRAkWJtkWhHh3wwUbKHQJN3wQAaXGR2LpArv5oFHRR34C7Mf6oLXZNfqBgNI7oOLhj1f8PaGpygHQ0xtP8MDV'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'KwYTSKcgxr9/hS6/pCCAAg5M4B9/sWh1YP9/XSgQWRML/idBfKUc4IBET9lFjggKhDYZAELZJYEBI2BDB3ouNBEABwE8gAwiCcSYgAKqPdEVAG7scM8BP'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'PZ4AIlM+OgjAgpMhRE24OVoBwsIFEGFA7ZkQQBWienWxmRa7XDjKZXhBdAeSmKQwgLuUVLICa6VEKIGcK2mQWoVZHCBXJblJUFkY06yAXlGsPIHBEYdYi'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'WHb+WQBgaIJqqoHFNpgMGB7dT5ZQuG/WbBAIAUEEFNfwxAWpokTIXJAWdgoJ9kRFG2g5eDRpXSBpEIF0oEQFaZhDbaSFANRgqcJoEDRARLREtxOQpsPO9'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'06ZUeJgjQB6dZUPBAdwcF8KLXXRVQaKFcsRRLJ6vMiiCNKxRE8ECZKgUA3Va4arOAAqdGRWO7uMZH5AL05gvsjQbg6y4NCjQ1kw8TVGcbdoKGKx8j3bGH'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'7nARBArqwi0gkFJBrZiXBQRbHoIgnhSjcEBKfD7c3HMhz+JIQSY3t8GGKW+SUhfUajxGzKd0IoHBNkNQK86ZYEqdzYA8AHQpqXRUm80oHs1CAgMoBxzRq'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="re0">$pear_image</span> .= <span class=
+                "st0">'vzs9CIKECC1JBp7enUpfXHApwVYNAfo16c4IrYPLVdSAJVob7IAtCBFQGHcs/RRdiUDPHA33oADEAIAOw=='</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="kw3">header</span><span class=
+                "br0">(</span><span class="st0">'content-type:
+                image/gif'</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; <span class="kw3">echo</span> <span class=
+                "kw3">base64_decode</span><span class=
+                "br0">(</span><span class="re0">$pear_image</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="br0">}</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                pearImage<span class="br0">(</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">?&gt;</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <p>
+          And now, the main script.
+        </p>
+        <div class="php c3">
+          <ol>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">&lt;?php</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw1">require_once</span> <span class=
+                "st0">'HTML/Progress2.php'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="re0">$dataSrc</span> = <span class=
+                "kw3">array</span><span class="br0">(</span><span class=
+                "st0">'pearimage'</span>, <span class="st0">'pearimage'</span>,
+                <span class="st0">'pearimage'</span>, <span class=
+                "st0">'pearimage'</span>, <span class=
+                "st0">'pearimage'</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="kw2">function</span> myProcess<span class=
+                "br0">(</span><span class="re0">$pValue</span>,
+                &amp;<span class="re0">$pBar</span><span class="br0">)</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="br0">{</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw3">static</span> <span class=
+                "re0">$q</span> = <span class="nu0">0</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw3">global</span> <span class=
+                "re0">$dataSrc</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="re0">$pBar</span>-&gt;<span class=
+                "me1">sleep</span><span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw1">if</span> <span class=
+                "br0">(</span><span class="kw3">isset</span><span class=
+                "br0">(</span><span class="re0">$dataSrc</span><span class=
+                "br0">[</span><span class="re0">$q</span><span class=
+                "br0">]</span><span class="br0">)</span><span class=
+                "br0">)</span> <span class="br0">{</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">echo</span>
+                <span class="st0">'&lt;tr&gt;&lt;td&gt;'</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;. <span class=
+                "st0">'&lt;img src="'</span>. <span class=
+                "re0">$dataSrc</span><span class="br0">[</span><span class=
+                "re0">$q</span><span class="br0">]</span> .<span class=
+                "st0">'.php?timestamp='</span> . <span class=
+                "kw3">time</span><span class="br0">(</span><span class=
+                "br0">)</span> . <span class="st0">'" alt=""/&gt;'</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;. <span class=
+                "st0">'&lt;b&gt;'</span>.<span class="br0">(</span><span class=
+                "re0">$q</span><span class="nu0">+1</span><span class=
+                "br0">)</span>.<span class="st0">'&lt;/b&gt;'</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;. <span class=
+                "st0">'&lt;/td&gt;&lt;/tr&gt;'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="br0">}</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="re0">$q</span>++;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw1">return</span> <span class=
+                "re0">$q</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="br0">}</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span> = <span class="kw2">new</span>
+                HTML_Progress2<span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">setAnimSpeed</span><span class="br0">(</span><span class=
+                "nu0">500</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">setIncrement</span><span class="br0">(</span><span class=
+                "kw3">intval</span><span class="br0">(</span><span class=
+                "kw3">ceil</span><span class="br0">(</span><span class=
+                "nu0">100</span> / <span class="kw3">count</span><span class=
+                "br0">(</span><span class="re0">$dataSrc</span><span class=
+                "br0">)</span><span class="br0">)</span><span class=
+                "br0">)</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">setProgressHandler</span><span class=
+                "br0">(</span><span class="st0">'myProcess'</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">?&gt;</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;html&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;head&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">&lt;?php</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class=
+                "re0">$pb</span>-&gt;<span class=
+                "me1">getStyle</span><span class="br0">(</span><span class=
+                "kw2">false</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class=
+                "re0">$pb</span>-&gt;<span class=
+                "me1">getScript</span><span class="br0">(</span><span class=
+                "kw2">false</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">?&gt;</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;/head&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;body&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">&lt;?php</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">display</span><span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class="st0">'&lt;table
+                width="100%"&gt;'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">run</span><span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class=
+                "st0">'&lt;/table&gt;'</span>;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">hide</span><span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">?&gt;</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;/body&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;/html&gt;
+              </div>
+            </li>
+          </ol>
+        </div>
+        <p>
+          Lets review this example step by step :
+        </p>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">Line 4 :</span>
+            </dt>
+            <dd>
+              <p>
+                <code class="varname">$dataSrc</code> identify the data source.
+                Five call to <code class="filename">pearimage.php</code>
+                script.
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Lines 6-20, 25 :</span>
+            </dt>
+            <dd>
+              <p>
+                Main task is to build, and display, five pear logo pictures.
+                This task is defined by user callback : <code class=
+                "function">myProcess</code> and linked to progress meter by
+                <code class="methodname">setProgressHandler()</code> method.
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Lines 19, 24 :</span>
+            </dt>
+            <dd>
+              <p>
+                We used <span class="emphasis"><em>moveStep</em></span>
+                strategy with the <code class="literal">return $q</code> code,
+                and increment compute.
+              </p>
+              <p>
+                If you remove this line we use the second strategy called
+                <span class="emphasis"><em>moveNext</em></span>. We will talk
+                about it later. Don't be afraid if you don't know yet what is
+                the difference.
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Line 40 :</span>
+            </dt>
+            <dd>
+              <p>
+                Task is completed, five logo built and shown. The progress bar
+                is hidden.
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="id4784696" id="id4784696"></a>Without user callback
+          </h3>
+        </div>
+        <p>
+          To show difference of two implementations, we will re-used the same
+          example of pear logo.
+        </p>
+        <div class="php c3">
+          <ol>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">&lt;?php</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw1">require_once</span> <span class=
+                "st0">'HTML/Progress2.php'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="re0">$dataSrc</span> = <span class=
+                "kw3">array</span><span class="br0">(</span><span class=
+                "st0">'pearimage'</span>, <span class="st0">'pearimage'</span>,
+                <span class="st0">'pearimage'</span>, <span class=
+                "st0">'pearimage'</span>, <span class=
+                "st0">'pearimage'</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="kw2">function</span> myProcess<span class=
+                "br0">(</span><span class="br0">)</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="br0">{</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw3">static</span> <span class=
+                "re0">$q</span> = <span class="nu0">0</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw3">global</span> <span class=
+                "re0">$dataSrc</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw1">if</span> <span class=
+                "br0">(</span><span class="kw3">isset</span><span class=
+                "br0">(</span><span class="re0">$dataSrc</span><span class=
+                "br0">[</span><span class="re0">$q</span><span class=
+                "br0">]</span><span class="br0">)</span><span class=
+                "br0">)</span> <span class="br0">{</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">echo</span>
+                <span class="st0">'&lt;tr&gt;&lt;td&gt;'</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;. <span class=
+                "st0">'&lt;img src="'</span>. <span class=
+                "re0">$dataSrc</span><span class="br0">[</span><span class=
+                "re0">$q</span><span class="br0">]</span> .<span class=
+                "st0">'.php?timestamp='</span> . <span class=
+                "kw3">time</span><span class="br0">(</span><span class=
+                "br0">)</span> . <span class="st0">'" alt=""/&gt;'</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;. <span class=
+                "st0">'&lt;b&gt;'</span>.<span class="br0">(</span><span class=
+                "re0">$q</span><span class="nu0">+1</span><span class=
+                "br0">)</span>.<span class="st0">'&lt;/b&gt;'</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;. <span class=
+                "st0">'&lt;/td&gt;&lt;/tr&gt;'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="br0">}</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="re0">$q</span>++;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw1">return</span> <span class=
+                "re0">$q</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="br0">}</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span> = <span class="kw2">new</span>
+                HTML_Progress2<span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">setAnimSpeed</span><span class="br0">(</span><span class=
+                "nu0">500</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">setIncrement</span><span class="br0">(</span><span class=
+                "kw3">intval</span><span class="br0">(</span><span class=
+                "kw3">ceil</span><span class="br0">(</span><span class=
+                "nu0">100</span> / <span class="kw3">count</span><span class=
+                "br0">(</span><span class="re0">$dataSrc</span><span class=
+                "br0">)</span><span class="br0">)</span><span class=
+                "br0">)</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">?&gt;</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;html&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;head&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">&lt;?php</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class=
+                "re0">$pb</span>-&gt;<span class=
+                "me1">getStyle</span><span class="br0">(</span><span class=
+                "kw2">false</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class=
+                "re0">$pb</span>-&gt;<span class=
+                "me1">getScript</span><span class="br0">(</span><span class=
+                "kw2">false</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">?&gt;</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;/head&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;body&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">&lt;?php</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">display</span><span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class="st0">'&lt;table
+                width="100%"&gt;'</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="kw1">foreach</span> <span class=
+                "br0">(</span><span class="re0">$dataSrc</span> <span class=
+                "kw1">as</span> <span class="re0">$script</span><span class=
+                "br0">)</span> <span class="br0">{</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="kw1">if</span> <span class=
+                "br0">(</span><span class="re0">$pb</span>-&gt;<span class=
+                "me1">getPercentComplete</span><span class=
+                "br0">(</span><span class="br0">)</span> == <span class=
+                "nu0">1</span><span class="br0">)</span> <span class=
+                "br0">{</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">break</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="br0">}</span>
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="re0">$ret</span> =
+                myProcess<span class="br0">(</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="re0">$pb</span>-&gt;<span class=
+                "me1">sleep</span><span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                &nbsp; &nbsp; <span class="re0">$pb</span>-&gt;<span class=
+                "me1">moveStep</span><span class="br0">(</span><span class=
+                "re0">$ret</span><span class="br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="br0">}</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &nbsp;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw3">echo</span> <span class=
+                "st0">'&lt;/table&gt;'</span>;
+              </div>
+            </li>
+            <li class="li1 ln-xtra">
+              <div class="de1">
+                <span class="re0">$pb</span>-&gt;<span class=
+                "me1">hide</span><span class="br0">(</span><span class=
+                "br0">)</span>;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                <span class="kw2">?&gt;</span>
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;/body&gt;
+              </div>
+            </li>
+            <li class="li1">
+              <div class="de1">
+                &lt;/html&gt;
+              </div>
+            </li>
+          </ol>
+        </div>
+        <p>
+          Lets review this example step by step :
+        </p>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">Line 4 :</span>
+            </dt>
+            <dd>
+              <p>
+                <code class="varname">$dataSrc</code> identify again the data
+                source. Five call to <code class=
+                "filename">pearimage.php</code> script.
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Lines 6-19 :</span>
+            </dt>
+            <dd>
+              <p>
+                <code class="function">myProcess</code> is defined as a
+                reusable function and not a callback for progress meter.
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Lines 37-44 :</span>
+            </dt>
+            <dd>
+              <p>
+                <code class="methodname">run()</code> method was replaced by a
+                for-each loop. We must :
+              </p>
+              <div class="orderedlist">
+                <ol type="1">
+                  <li>check if progress meter reach 100% (<code class=
+                  "methodname">getPercentComplete()</code> method).
+                  </li>
+                  <li>refresh display with right method depending on strategy
+                  used.
+                  </li>
+                </ol>
+              </div>
+            </dd>
+            <dt>
+              <span class="term">Lines 18, 41, 43 :</span>
+            </dt>
+            <dd>
+              <p>
+                We use again the same <span class=
+                "emphasis"><em>moveStep</em></span> strategy.
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Line 47 :</span>
+            </dt>
+            <dd>
+              <p>
+                Task is completed, five logo built and shown. The progress bar
+                is hidden.
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <table class="progress2Footer">
       <tr>
-         <td align="left" valign="top" width="40%">Chapter 5. Quick Start with HTML_Progress2 </td>
-         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
-         <td align="right" valign="top" width="40%"> Strategy of handling 
-         </td>
+        <td align="left">
+          HTML_Progress2 : The Definitive Guide
+        </td>
+        <td align="right">
+          v 2.2.0 : January 2, 2007
+        </td>
       </tr>
-   </table>
-</div>
-</body>
-</html> 
+    </table>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left">
+            <a accesskey="p" href="ch05.html">Prev</a>&nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ch05.html">Up</a>
+          </td>
+          <td width="40%" align="right">
+            &nbsp;<a accesskey="n" href="ch05s03.html">Next</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">
+            Chapter&nbsp;5.&nbsp;Quick Start with HTML_Progress2&nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top">
+            &nbsp;Strategy of handling
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

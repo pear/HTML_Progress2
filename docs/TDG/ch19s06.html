@@ -1,160 +1,531 @@
-<html>
-<head>
-   <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-   <title>Progress Generator wizard usage </title>
-   <link href="book.css" rel="stylesheet" type="text/css">
-   <meta content="DocBook XSL Stylesheets V1.69.1" name="generator">
-   <link href="index.html" rel="start" title="HTML_Progress2 Manual">
-   <link href="ch19.html" rel="up" title="Chapter 19. Examples">
-   <link href="ch19s05.html" rel="prev" title="Monitoring usage ">
-</head>
-<body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084">
-<table class="qfamsHeader">
-   <tr>
-      <td><img align="left" alt="PEAR Progress2 logo" src="img/pear_progress2.gif">
-         <h1>HTML_Progress2 : The Definitive Guide</h1>
-
-         <p>
-         <div class="navheader">
-            <table summary="Navigation header" width="100%">
-               <tr>
-                  <th align="center" colspan="3">Progress Generator wizard usage </th>
-               </tr>
-               <tr>
-                  <td align="left" width="20%"><a accesskey="p" href="ch19s05.html">Prev</a> </td>
-                  <th align="center" width="60%">Chapter 19. Examples</th><td align="right" width="20%"> </td>
-               </tr>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>
+      Progress Generator wizard usage
+    </title>
+    <link rel="stylesheet" href="book.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
+    <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
+    <link rel="up" href="ch19.html" title="Chapter&nbsp;19.&nbsp;Examples" />
+    <link rel="prev" href="ch19s05.html" title="Monitoring usage " />
+<style type="text/css">
+/*<![CDATA[*/
+ body {
+  background-color: white;
+  color: black;
+ }
+ :link { color: #0000FF }
+ :visited { color: #840084 }
+ :active { color: #0000FF }
+ div.c4 {margin-left: 0.5in; margin-right: 0.5in;}
+ div.c3 {font-family: monospace;}
+ p.c2 {font-weight: bold}
+ h2.c1 {clear: both}
+/*]]>*/
+</style>
+  </head>
+  <body>
+    <table class="progress2Header">
+      <tr>
+        <td>
+          <img src="img/pear_progress2.gif" align="left" alt=
+          "PEAR Progress2 logo" />
+          <h1>
+            HTML_Progress2 : The Definitive Guide
+          </h1>
+          <div class="navheader">
+            <table width="100%" summary="Navigation header">
+              <tr>
+                <th colspan="3" align="center">
+                  Progress Generator wizard usage
+                </th>
+              </tr>
+              <tr>
+                <td width="20%" align="left">
+                  <a accesskey="p" href="ch19s05.html">Prev</a>&nbsp;
+                </td>
+                <th width="60%" align="center">
+                  Chapter&nbsp;19.&nbsp;Examples
+                </th>
+                <td width="20%" align="right">
+                  &nbsp;
+                </td>
+              </tr>
             </table>
-         </div></p>
-      </td>
-   </tr>
-</table>
-<div class="sect1" lang="en"><div class="titlepage"><div><div>
-            <h2 class="title" style="clear: both">
-            <a name="examples.generator"></a>Progress Generator wizard usage </h2>
-         </div>
+          </div><br />
+          <br />
+        </td>
+      </tr>
+    </table>
+    <div class="sect1" lang="en" xml:lang="en">
+      <div class="titlepage">
+        <h2 class="title c1">
+          <a name="examples.generator" id="examples.generator"></a>Progress
+          Generator wizard usage
+        </h2>
       </div>
-   </div>
-   <div class="toc">
-      <dl><dt><span class="sect2"><a href="ch19s06.html#examples.generator.1"></a></span></dt>
-      </dl>
-   </div>
-   <div class="sect2" lang="en"><div class="titlepage"></div>
-
-      <p></p>
-      <div class="figure"><a name="id4838402"></a>
-
-         <p class="title"><b>Figure 19.6. Progress Generator wizard usage 
-         </b></p><div class="screenshot"><div><img alt="Progress Generator wizard usage" src="img/generator21.png"></div>
-         </div>
+      <div class="toc">
+        <dl>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s06.html#examples.generator.1"></a></span>
+          </dt>
+        </dl>
       </div>
-
-      <p></p>
-
-      <p>Goals of this example are to show how to use another driver (HTMLPage2) than the standard (Default), use another external stylesheet to change color scheme easily, and add a user-process to download the PHP/CSS code results. </p>
-
-      <p>HTMLPage2 driver used its own default stylesheet which is a blue skin. Here, we prefer to use the dark-grey skin of SmartyDynamic driver (see $css). </p>
-
-      <p></p>
-      <div class="example"><a name="id4838316"></a>
-
-         <p class="title"><b>Example 19.6. Progress Generator build with PEAR::HTML_Page2 
-         </b></p>
-<pre class="programlisting">
-      
-&lt;?php
-require_once 'HTML/Progress2/Generator.php';
-require_once 'HTML/Progress2/Generator/HTMLPage2.php';
-require_once 'HTML/Progress2/Generator/Process.php';
-
-class MyProcessHandler extends ActionProcess
-{
-    function perform(&amp;$page, $actionName)
-    {
-        if ($actionName == 'cancel') {
-            echo '&lt;h1&gt;Progress2 Generator Demonstration is Over&lt;/h1&gt;';
-            echo '&lt;p&gt;Hope you\'ve enjoyed. See you later!&lt;/p&gt;';
-        } else {
-            // Checks whether the pages of the controller are valid
-            $page-&gt;isFormBuilt() or $page-&gt;buildForm();
-            $page-&gt;controller-&gt;isValid();
-
-            // what kind of source code is requested
-            $code = $page-&gt;exportValue('phpcss');
-            $pb = $page-&gt;controller-&gt;createProgressBar();
-
-            $phpCode = (isset($code['P']) === true);
-            $cssCode = (isset($code['C']) === true);
-
-            if ($cssCode &amp;&amp; !$phpCode) {
-                $strCSS = $this-&gt;sprintCSS($pb);
-                $this-&gt;exportOutput($strCSS, 'text/css');
-            }
-            if ($phpCode) {
-                $strPHP = $this-&gt;sprintPHP($pb, $cssCode);
-                $this-&gt;exportOutput($strPHP, 'text/php');
-            }
-
-            // reset session data
-            $page-&gt;controller-&gt;container(true);
-        }
-    }
-}
-
-session_start();
-
-$tabbed =&amp; HTML_Progress2_Generator::singleton();
-
-$tabbed-&gt;addActions(array('dump' =&gt; 'ActionDump', 'process' =&gt; 'MyProcessHandler'));
-
-$pear = 'c:\php4';
-$css  = $pear . '\pear\data\HTML_Progress2\smartydynamic.css';
-$tabbed-&gt;addAction('display', new ActionDisplay($css));
-
-$tabbed-&gt;run();
-?&gt;
-      
-     </pre>
-      </div>
-
-      <p></p>
-
-      <p></p>
-      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
-         <table border="0" summary="Caution">
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage"></div>
+        <div class="figure">
+          <a name="id4845933" id="id4845933"></a>
+          <p class="title c2">
+            Figure&nbsp;19.6.&nbsp;Progress Generator wizard usage
+          </p>
+          <div class="screenshot">
+            <img src="img/generator21.png" alt=
+            "Progress Generator wizard usage" />
+          </div>
+        </div>
+        <p>
+          Goals of this example are to show how to use another driver
+          (HTMLPage2) than the standard (Default), use another external
+          stylesheet to change color scheme easily, and add a user-process to
+          download the PHP/CSS code results.
+        </p>
+        <p>
+          HTMLPage2 driver used its own default stylesheet which is a blue
+          skin. Here, we prefer to use the dark-grey skin of SmartyDynamic
+          driver (see $css).
+        </p>
+        <div class="example">
+          <a name="id4845848" id="id4845848"></a>
+          <p class="title c2">
+            Example&nbsp;19.6.&nbsp;Progress Generator build with
+            PEAR::HTML_Page2
+          </p>
+          <div class="php c3">
+            <ol>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">&lt;?php</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw1">require_once</span> <span class=
+                  "st0">'HTML/Progress2/Generator.php'</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw1">require_once</span> <span class=
+                  "st0">'HTML/Progress2/Generator/HTMLPage2.php'</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw1">require_once</span> <span class=
+                  "st0">'HTML/Progress2/Generator/Process.php'</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">class</span> MyProcessHandler <span class=
+                  "kw2">extends</span> ActionProcess
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="kw2">function</span>
+                  perform<span class="br0">(</span>&amp;<span class=
+                  "re0">$page</span>, <span class=
+                  "re0">$actionName</span><span class="br0">)</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span>
+                  <span class="br0">(</span><span class=
+                  "re0">$actionName</span> == <span class=
+                  "st0">'cancel'</span><span class="br0">)</span> <span class=
+                  "br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "kw3">echo</span> <span class="st0">'&lt;h1&gt;Progress2
+                  Generator Demonstration is Over&lt;/h1&gt;'</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "kw3">echo</span> <span class="st0">'&lt;p&gt;Hope
+                  you<span class="es0">\'</span>ve enjoyed. See you
+                  later!&lt;/p&gt;'</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="br0">}</span>
+                  <span class="kw1">else</span> <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "co1">// Checks whether the pages of the controller are
+                  valid</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re0">$page</span>-&gt;<span class=
+                  "me1">isFormBuilt</span><span class=
+                  "br0">(</span><span class="br0">)</span> or <span class=
+                  "re0">$page</span>-&gt;<span class=
+                  "me1">buildForm</span><span class="br0">(</span><span class=
+                  "br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re0">$page</span>-&gt;<span class=
+                  "me1">controller</span>-&gt;<span class=
+                  "me1">isValid</span><span class="br0">(</span><span class=
+                  "br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "co1">// what kind of source code is requested</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re0">$code</span> = <span class=
+                  "re0">$page</span>-&gt;<span class=
+                  "me1">exportValue</span><span class=
+                  "br0">(</span><span class="st0">'phpcss'</span><span class=
+                  "br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re0">$pb</span> = <span class=
+                  "re0">$page</span>-&gt;<span class=
+                  "me1">controller</span>-&gt;<span class=
+                  "me1">createProgressBar</span><span class=
+                  "br0">(</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re0">$phpCode</span> = <span class=
+                  "br0">(</span><span class="kw3">isset</span><span class=
+                  "br0">(</span><span class="re0">$code</span><span class=
+                  "br0">[</span><span class="st0">'P'</span><span class=
+                  "br0">]</span><span class="br0">)</span> === <span class=
+                  "kw2">true</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re0">$cssCode</span> = <span class=
+                  "br0">(</span><span class="kw3">isset</span><span class=
+                  "br0">(</span><span class="re0">$code</span><span class=
+                  "br0">[</span><span class="st0">'C'</span><span class=
+                  "br0">]</span><span class="br0">)</span> === <span class=
+                  "kw2">true</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "kw1">if</span> <span class="br0">(</span><span class=
+                  "re0">$cssCode</span> &amp;&amp; !<span class=
+                  "re0">$phpCode</span><span class="br0">)</span> <span class=
+                  "br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <span class="re0">$strCSS</span> = <span class=
+                  "re0">$this</span>-&gt;<span class=
+                  "me1">sprintCSS</span><span class="br0">(</span><span class=
+                  "re0">$pb</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <span class="re0">$this</span>-&gt;<span class=
+                  "me1">exportOutput</span><span class=
+                  "br0">(</span><span class="re0">$strCSS</span>, <span class=
+                  "st0">'text/css'</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "kw1">if</span> <span class="br0">(</span><span class=
+                  "re0">$phpCode</span><span class="br0">)</span> <span class=
+                  "br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <span class="re0">$strPHP</span> = <span class=
+                  "re0">$this</span>-&gt;<span class=
+                  "me1">sprintPHP</span><span class="br0">(</span><span class=
+                  "re0">$pb</span>, <span class=
+                  "re0">$cssCode</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <span class="re0">$this</span>-&gt;<span class=
+                  "me1">exportOutput</span><span class=
+                  "br0">(</span><span class="re0">$strPHP</span>, <span class=
+                  "st0">'text/php'</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "co1">// reset session data</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re0">$page</span>-&gt;<span class=
+                  "me1">controller</span>-&gt;<span class=
+                  "me1">container</span><span class="br0">(</span><span class=
+                  "kw2">true</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw3">session_start</span><span class=
+                  "br0">(</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re0">$tabbed</span> =&amp;
+                  HTML_Progress2_Generator::<span class=
+                  "me2">singleton</span><span class="br0">(</span><span class=
+                  "br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re0">$tabbed</span>-&gt;<span class=
+                  "me1">addActions</span><span class="br0">(</span><span class=
+                  "kw3">array</span><span class="br0">(</span><span class=
+                  "st0">'dump'</span> =&gt; <span class=
+                  "st0">'ActionDump'</span>, <span class="st0">'process'</span>
+                  =&gt; <span class="st0">'MyProcessHandler'</span><span class=
+                  "br0">)</span><span class="br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re0">$pear</span> = <span class=
+                  "st0">'c:<span class="es0">\p</span>hp4'</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re0">$css</span>&nbsp; = <span class=
+                  "re0">$pear</span> . <span class="st0">'<span class=
+                  "es0">\p</span>ear<span class="es0">\d</span>ata<span class=
+                  "es0">\H</span>TML_Progress2<span class=
+                  "es0">\s</span>martydynamic.css'</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re0">$tabbed</span>-&gt;<span class=
+                  "me1">addAction</span><span class="br0">(</span><span class=
+                  "st0">'display'</span>, <span class="kw2">new</span>
+                  ActionDisplay<span class="br0">(</span><span class=
+                  "re0">$css</span><span class="br0">)</span><span class=
+                  "br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re0">$tabbed</span>-&gt;<span class=
+                  "me1">run</span><span class="br0">(</span><span class=
+                  "br0">)</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">?&gt;</span>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="caution c4">
+          <table border="0" summary="Caution">
             <tr>
-               <td align="center" rowspan="2" valign="top" width="48px"><img alt="[Caution]" src="img/admons/caution.png"></td>
-               <th align="left">Caution</th>
+              <td rowspan="2" align="center" valign="top" width="48">
+                <img alt="[Caution]" src="img/admons/caution.png" />
+              </td>
+              <th align="left">
+                Caution
+              </th>
             </tr>
             <tr>
-               <td align="left" valign="top"> Of course you should fix the path of $pear to your own PEAR directory installation. 
-               </td>
+              <td align="left" valign="top">
+                Of course you should fix the path of $pear to your own PEAR
+                directory installation.
+              </td>
             </tr>
-         </table>
+          </table>
+        </div>
       </div>
-
-      <p></p>
-   </div>
-</div>
-<table class="qfamsFooter">
-   <tr>
-      <td align="left">HTML_Progress2 : The Definitive Guide</td>
-      <td align="right">v 2.1.0 : August 12, 2006</td>
-   </tr>
-</table>
-<div class="navfooter"><hr>
-   <table summary="Navigation footer" width="100%">
+    </div>
+    <table class="progress2Footer">
       <tr>
-         <td align="left" width="40%"><a accesskey="p" href="ch19s05.html">Prev</a> </td>
-         <td align="center" width="20%"><a accesskey="u" href="ch19.html">Up</a></td>
-         <td align="right" width="40%"> </td>
+        <td align="left">
+          HTML_Progress2 : The Definitive Guide
+        </td>
+        <td align="right">
+          v 2.2.0 : January 2, 2007
+        </td>
       </tr>
-      <tr>
-         <td align="left" valign="top" width="40%">Monitoring usage  </td>
-         <td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td>
-         <td align="right" valign="top" width="40%"> </td>
-      </tr>
-   </table>
-</div>
-</body>
-</html> 
+    </table>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left">
+            <a accesskey="p" href="ch19s05.html">Prev</a>&nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ch19.html">Up</a>
+          </td>
+          <td width="40%" align="right">
+            &nbsp;
+          </td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">
+            Monitoring usage &nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top">
+            &nbsp;
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
