@@ -2520,11 +2520,14 @@ JS;
                       'paramnum' => 1));
         }
 
-        $pbrd = '.' . sprintf($this->border['class'], $this->ident);
-        $border = $css->grepStyle("/$pbrd/");
+        if (strpos($this->border['class'], '%s') === false) {
+            $pattern = $this->ident . '\.' . $this->border['class'];
+        } else {
+            $pattern = '\.' . sprintf($this->border['class'], $this->ident);
+        }
+        $border = $css->grepStyle("/$pattern/");
 
         foreach ($border as $b) {
-            $this->_paintBorder = true;
             foreach ($b as $p => $v) {
                 if (substr($p, 0, 6) == 'border') {
                     $n = str_replace('border-', '', $p);
@@ -2547,11 +2550,18 @@ JS;
                     }
                 }
             }
+            if ($this->border['width'] > 0) {
+                $this->_paintBorder = true;
+            }
         }
 
         foreach ($this->label as $name => $data) {
-            $plbl = '.' . sprintf($data['class'], $name . $this->ident);
-            $label = $css->grepStyle("/$plbl/");
+            if (strpos($data['class'], '%s') === false) {
+                $pattern = $name . $this->ident . '\.' . $data['class'];
+            } else {
+                $pattern = '\.' . sprintf($data['class'], $name . $this->ident);
+            }
+            $label = $css->grepStyle("/$pattern/");
 
             foreach ($label as $l) {
                 foreach ($l as $p => $v) {
@@ -2572,7 +2582,12 @@ JS;
         }
 
         $pcell = '.' . sprintf($this->cell['class'], $this->ident);
-        $cell = $css->grepStyle("/$pcell/");
+        if (strpos($this->cell['class'], '%s') === false) {
+            $pattern = $this->ident . '\s*\.' . $this->cell['class'];
+        } else {
+            $pattern = '\.' . sprintf($this->cell['class'], $this->ident);
+        }
+        $cell = $css->grepStyle("/$pattern/");
 
         foreach ($cell as $c => $data) {
             foreach ($data as $p => $v) {
