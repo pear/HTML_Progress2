@@ -40,21 +40,22 @@ $p2 = &PEAR_PackageFileManager2::importOptions($packagefile, $options);
 $p2->setPackageType('php');
 $p2->addRelease();
 $p2->generateContents();
-$p2->setReleaseVersion('2.1.1');
-$p2->setAPIVersion('2.1.0');
+$p2->setReleaseVersion('2.2.0');
+$p2->setAPIVersion('2.2.0');
 $p2->setReleaseStability('stable');
 $p2->setAPIStability('stable');
-$p2->setNotes('* bugs
-- fixed bug #8684 : Problem with generated JavaScript
-- fixed "examples/generatorcus.php" to use new architecture with external stylesheet introduced on August 11, 2006.
+$p2->setNotes('* news
+- add new function importStyle() to give ability to import an existing stylesheet
+and separate PHP code from HTML layout (with CSS)
 
-* news (improved code)
-- used now "className" property rather than "visibility"
-and reduced div tags count used to build a progress bar (only 10 rather than 20 )
-- apply more CS (space code indent, ...)
-- add "alt" attribute to img html-tag to be more xhtml compliant
-- JS function "hideProgress" lose its second parameter (no more needed)
+* changes
+- improved javascript custom handler for JavaDanse example related to version 2.1.1 (bug fixed #8684)
+
+* QA
+- include a new revision of User Guide (TDG) that cover all versions 2.x.x
+  see http://pear.laurent-laville.org/HTML_Progress2 for more format to download.
 ');
+$p2->addPackageDepWithChannel('required', 'HTML_CSS', 'pear.php.net', '1.1.2');
 
 if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
     $p2->writePackageFile();
