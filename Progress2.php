@@ -2115,15 +2115,19 @@ class HTML_Progress2 extends HTML_Common
 
         $js = <<< JS
 
-function setProgress(pIdent, pValue, pDeterminate, pCellCount)
+function setProgress(pIdent, pValue, pDeterminate)
 {
+    var name  = 'pbar' + pIdent;
+    var pbar  = document.getElementById(name);
+    var cells = pbar.getElementsByTagName('div');
+
     if (pValue == pDeterminate) {
-        for (var i = 0; i < pCellCount; i++) {
+        for (var i = 0; i < cells.length; i++) {
             showCell(i, pIdent, 'I');
         }
     }
     if ((pDeterminate > 0) && (pValue > 0)) {
-        var i = (pValue - 1) % pCellCount;
+        var i = (pValue - 1) % cells.length;
         showCell(i, pIdent, 'A');
     } else {
         for (var i = pValue - 1; i >= 0; i--) {
@@ -3083,7 +3087,7 @@ JS;
     function setIdent($ident = null)
     {
         if (is_null($ident)) {
-            $this->ident = substr(md5(microtime()), 0, 6);
+            $this->ident = 'PB' . substr(md5(microtime()), 0, 6);
         } else {
             $this->ident = $ident;
         }
@@ -3226,7 +3230,7 @@ JS;
             $bar .= '<script type="text/javascript">'
                  .  'setProgress'
                  .  '("' . $this->ident . '",'
-                 .  intval($progress) . ',' . $determinate . ',' . $this->cellCount
+                 .  intval($progress) . ',' . $determinate
                  .  ');'
                  .  '</script>';
 

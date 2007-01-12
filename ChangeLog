@@ -6,6 +6,8 @@
         style should be apply only by cell classname attribute
       - a progress bar widget (div) is now identified only by {see HTML_Progress2::getIdent()}
         rather than "tfrm" + {HTML_Progress2::getIdent()}
+      - Default progress bar identifier (without prefix "tfrm") cannot be numeric (xhtml compliant)
+      - Improve Javascript function setProgress() which does not need anymore the third parameter.
 
 2007-01-03 Laurent Laville <pear@laurent-laville.org>
 
