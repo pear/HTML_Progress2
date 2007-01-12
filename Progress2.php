@@ -419,7 +419,6 @@ class HTML_Progress2 extends HTML_Common
      *
      * <code>
      * $cell = array(
-     *    'id' => 'pcel%01s',                    # cell identifier mask
      *    'class' => 'cell%s',                   # css class selector
      *    'active-color' => '#006600',           # active color
      *    'inactive-color' => '#CCCCCC',         # inactive color
@@ -620,7 +619,6 @@ class HTML_Progress2 extends HTML_Common
             'color' => '#000000'
         );
         $this->cell = array(
-            'id' => 'pcel%01s',
             'class' => 'cell%s',
             'active-color' => '#006600',
             'inactive-color' => '#CCCCCC',
@@ -2136,15 +2134,14 @@ function setProgress(pIdent, pValue, pDeterminate, pCellCount)
 
 function showCell(pCell, pIdent, pVisibility)
 {
-    var name = '%progressCell%' + pCell + pIdent;
+    var name = 'pcel' + pCell + pIdent;
     var cellElement = document.getElementById(name);
     cellElement.className = '%cellCN%' + pIdent + pVisibility;
 }
 
 function hideProgress(pIdent)
 {
-    var name = 'tfrm' + pIdent;
-    var tfrm = document.getElementById(name);
+    var tfrm = document.getElementById(pIdent);
     tfrm.style.visibility = "hidden";
 }
 
@@ -2181,16 +2178,17 @@ function setRotaryCross(pIdent, pName)
 
 JS;
         $cellAttr = $this->getCellAttributes();
-        $attr = array(
-            trim(sprintf($cellAttr['id'], '   ')),
-            trim(sprintf($cellAttr['class'], ' '))
-            );
-        $js = str_replace(array('%progressCell%', '%cellCN%'), $attr, $js);
+        $attr =
+            trim(sprintf($cellAttr['class'], ' '));
+        $js = str_replace('%cellCN%', $attr, $js);
 
         if ($raw !== true) {
-            $js = '<script type="text/javascript">' . PHP_EOL
-                . '//<![CDATA[' . $js . '//]]>'     . PHP_EOL
-                . '</script>'                       . PHP_EOL;
+            $js = '<script type="text/javascript">'
+                . PHP_EOL . '//<![CDATA['
+                . PHP_EOL . $js
+                . PHP_EOL . '//]]>'
+                . PHP_EOL . '</script>'
+                . PHP_EOL;
         }
         return $js;
     }
@@ -2693,7 +2691,7 @@ JS;
                 $_left = $this->frame['left'];
             }
             $strHtml .= $tabs
-                  .  '<div id="tfrm' . $this->ident . '" style="'
+                  .  '<div id="' . $this->ident . '" style="'
                   .  'position:' . $progressAttr['position'] . ';'
                   .  'top:' . $_top . 'px;'
                   .  'left:' . $_left . 'px;'
@@ -2706,7 +2704,7 @@ JS;
         } else {
             $topshift = $leftshift = 0;
             $strHtml .= $tabs
-                 .  '<div id="tfrm' . $this->ident . '" style="'
+                 .  '<div id="' . $this->ident . '" style="'
                  .  'position:' . $progressAttr['position'] . ';'
                  .  'top:' . $progressAttr['top'] . 'px;'
                  .  'left:' . $progressAttr['left'] . 'px;'
@@ -3276,7 +3274,7 @@ JS;
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $pos . 'px;'
@@ -3292,7 +3290,7 @@ JS;
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $pos . 'px;'
@@ -3328,7 +3326,7 @@ JS;
             $pos = $cellAttr['spacing'];
             for ($i = $this->cellCount - 1; $i >= 0; $i--) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $cellAttr['spacing'] . 'px;'
@@ -3344,7 +3342,7 @@ JS;
             $pos = $cellAttr['spacing'];
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $cellAttr['spacing'] . 'px;'
@@ -3382,7 +3380,7 @@ JS;
                 $top  = $coord[$i][0] * $cellAttr['width'];
                 $left = $coord[$i][1] * $cellAttr['height'];
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $left . 'px;'
@@ -3398,7 +3396,7 @@ JS;
                 $top  = $coord[$c-$i][0] * $cellAttr['width'];
                 $left = $coord[$c-$i][1] * $cellAttr['height'];
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;'
                       .  'left:' . $left . 'px;'
@@ -3432,7 +3430,7 @@ JS;
         if ($way_natural) {
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;left:0;top:0;'
                       .  '"><img src="' . $cellAttr[$i+1]['background-image']
@@ -3443,7 +3441,7 @@ JS;
         } else {
             for ($i = 0; $i < $this->cellCount; $i++) {
                 $html .= $tabs . $tab
-                      .  '<div id="' . sprintf($cellAttr['id'], $i) . $this->ident . '"'
+                      .  '<div id="pcel' . $i . $this->ident . '"'
                       .  ' class="' . $cellCls . 'I"'
                       .  ' style="position:absolute;left:0;top:0;'
                       .  '"><img src="' . $cellAttr[$i+1]['background-image']

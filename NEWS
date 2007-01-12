@@ -1,3 +1,10 @@
+Changes since version 2.2.0 (2007-01-03)
+
+  | 2007-01-12 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * first alpha version of version 2.3.0 with AJAX progress bar support
+  |     * code clean-up and drop support of cell identifier mask; see HTML_Progress2::setCellAttributes
+
 Changes since version 2.1.1 (2006-12-22)
 
   | 2007-01-03 Laurent Laville <pear@laurent-laville.org>
