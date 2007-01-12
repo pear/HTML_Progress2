@@ -8,6 +8,8 @@
         rather than "tfrm" + {HTML_Progress2::getIdent()}
       - Default progress bar identifier (without prefix "tfrm") cannot be numeric (xhtml compliant)
       - Improve Javascript function setProgress() which does not need anymore the third parameter.
+      - Improve Javascript function call to setElementStyle() and removed unecessary arguments
+        TIP: this function allow to build smooth progress bar (without cell: HTML_Progress2::setCellCount(0)
 
 2007-01-03 Laurent Laville <pear@laurent-laville.org>
 

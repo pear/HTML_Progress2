@@ -2155,9 +2155,9 @@ function setLabelText(pIdent, pName, pText)
     document.getElementById(name).firstChild.nodeValue = pText;
 }
 
-function setElementStyle(pPrefix, pName, pIdent, pStyles)
+function setElementStyle(pIdent, pStyles)
 {
-    var name = pPrefix + pName + pIdent;
+    var name = 'pbar' + pIdent;
     var styles = pStyles.split(';');
     styles.pop();
     for (var i = 0; i < styles.length; i++) {
@@ -3252,7 +3252,7 @@ JS;
                 }
                 $cssText .= 'height:' . $position['height'] . 'px;';
             }
-            $bar .= $this->_changeElementStyle('pbar', '', $cssText);
+            $bar .= $this->_changeElementStyle($cssText);
         }
         echo $bar . PHP_EOL;
         ob_start();
@@ -3662,19 +3662,17 @@ JS;
      * Sends a DOM command (emulate cssText attribute) through a javascript function
      * to change styles of a progress bar's element.
      *
-     * @param      string    $prefix        prefix identifier of the element
-     * @param      string    $element       element name (label id.)
      * @param      string    $styles        styles of a DOM element
      *
      * @return     string
      * @since      2.0.0
      * @access     private
      */
-    function _changeElementStyle($prefix, $element, $styles)
+    function _changeElementStyle($styles)
     {
         $cmd = '<script type="text/javascript">'
              . 'setElementStyle'
-             . '("' . $prefix . '","' . $element . '","' . $this->ident . '","' . $styles . '");'
+             . '("' . $this->ident . '","' . $styles . '");'
              . '</script>';
 
         return $cmd;
