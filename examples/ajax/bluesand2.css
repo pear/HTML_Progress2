@@ -1,0 +1,34 @@
+#PB1 .cellI, #PB1 .cellA {
+  width: 10px;
+  height: 20px;
+  font-family: Courier, Verdana;
+  font-size: 8px;
+  float: left;
+}
+
+#PB1 .progressBorder {
+  width: 122px;
+  height: 24px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: navy;
+  background-color: #FFFFFF;
+}
+
+#PB1 .progressPercentLabel {
+  width: 60px;
+  text-align: center;
+  background-color: transparent;
+  font-size: 14px;
+  font-family: Verdana, Tahoma, Arial;
+  font-weight: normal;
+  color: #000000;
+}
+
+#PB1 .cellI {
+  background-color: #EEEECC;
+}
+
+#PB1 .cellA {
+  background-color: #3874B4;
+}
