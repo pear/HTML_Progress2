@@ -114,7 +114,7 @@ class HTML_Progress2_Ajax_Common
     function __construct(&$obj)
     {
         $this->_progress = $obj;
-        $this->method = 'get';
+        $this->method = 'GET';
         $this->timeout = 2000;
         $this->url_args = array('registerTask', 'TaskId');
     }
@@ -143,6 +143,47 @@ class HTML_Progress2_Ajax_Common
     }
 
     /**
+     * get URL that handle Ajax requests.
+     *
+     * Retrieve server script URLs that will handle Ajax client requests.
+     *
+     * @param      int       $action        (optional) fullpath to server script
+     *                                      0: without query string
+     *                                      1: with query string to negociate task id action
+     *                                      2: with query string to proceed task id
+     * @return     string
+     * @since      2.3.0a1
+     * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
+     */
+    function getRequestUri($action = 0)
+    {
+        if (!is_int($action)) {
+            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$action',
+                      'was' => gettype($action),
+                      'expected' => 'integer',
+                      'paramnum' => 1));
+
+        } elseif ($action < 0 || $action > 2) {
+            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$action',
+                      'was' => gettype($action),
+                      'expected' => '0 | 1 | 2',
+                      'paramnum' => 1));
+        }
+
+        $url = $this->url;
+
+        if ($action == 1) {
+            $url = $url .'?'. $this->url_args[0] .'='. urlencode($this->_progress->getIdent());
+        } elseif ($action == 2) {
+            $url = $url .'?'. $this->url_args[1] .'=';
+        }
+        return $url;
+    }
+
+    /**
      * set HTTP Ajax requests method.
      *
      * Defines the request method to send Ajax client data to remote server.
@@ -163,7 +204,7 @@ class HTML_Progress2_Ajax_Common
                       'expected' => 'string',
                       'paramnum' => 1));
 
-        } elseif (!in_array(strtoupper($type), array('GET', 'POST'))) {
+        } elseif (!in_array($type, array('GET', 'POST'))) {
             return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$type',
                       'was' => $type,
@@ -171,6 +212,20 @@ class HTML_Progress2_Ajax_Common
                       'paramnum' => 1));
         }
         $this->method = $type;
+    }
+
+    /**
+     * get HTTP Ajax requests method.
+     *
+     * Retrieve the request method to send Ajax client data to remote server.
+     *
+     * @return     string                   GET or POST
+     * @since      2.3.0a1
+     * @access     public
+     */
+    function getRequestMethod()
+    {
+        return $this->method;
     }
 
     /**
@@ -206,6 +261,20 @@ class HTML_Progress2_Ajax_Common
     }
 
     /**
+     * get the timeout between each polling loop.
+     *
+     * Retrieve the time to wait before requesting new fresh data from remote server
+     *
+     * @return     int
+     * @since      2.3.0a1
+     * @access     public
+     */
+    function getRequestTimeout()
+    {
+        return $this->timeout;
+    }
+
+    /**
      * set action arguments to handle task id.
      *
      * Defines url mapped action to handle task id.
@@ -236,6 +305,22 @@ class HTML_Progress2_Ajax_Common
                       'paramnum' => 2));
         }
         $this->url_args = array($action1, $action2);
+    }
+
+    /**
+     * get action arguments to handle task id.
+     *
+     * Retrieve url mapped action to handle task id.
+     *
+     * @return     array                    0: argument name to handle action of task id creation
+     *                                      1: argument name to handle identify of task id
+     * @since      2.3.0a1
+     * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
+     */
+    function getUrlArguments()
+    {
+        return $this->url_args;
     }
 
     /**
