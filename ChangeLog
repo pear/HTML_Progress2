@@ -1,6 +1,6 @@
 2007-0m-dd Laurent Laville <pear@laurent-laville.org>
 
-    * VERSION: Final version (alpha) 2.3.0a1 released.
+    * VERSION: first alpha version (alpha) 2.3.0a1 released.
 
       - drop support of cell id mask identifier (begin private)
         style should be apply only by cell classname attribute
@@ -10,6 +10,9 @@
       - Improve Javascript function setProgress() which does not need anymore the third parameter.
       - Improve Javascript function call to setElementStyle() and removed unecessary arguments
         TIP: this function allow to build smooth progress bar (without cell: HTML_Progress2::setCellCount(0)
+      - fix typo error (millisecond term) in phpdoc tags
+      - add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
+      - add new methods :  registerAjax(), and fileExists()
 
 2007-01-03 Laurent Laville <pear@laurent-laville.org>
 

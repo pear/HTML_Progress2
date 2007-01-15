@@ -97,6 +97,23 @@ define ('HTML_PROGRESS2_ERROR_DEPRECATED',       -102);
  */
 define ('HTML_PROGRESS2_ERROR_INVALID_OPTION',   -103);
 
+/**
+ * Basic error code that indicate an invalid resource
+ *
+ * @var        integer
+ * @since      2.3.0a1
+ */
+define ('HTML_PROGRESS2_ERROR_INVALID_RESOURCE', -104);
+
+/**
+ * Basic error code that indicate an abstract method used
+ * in Ajax driver. This one is code incompleted.
+ *
+ * @var        integer
+ * @since      2.3.0a1
+ */
+define ('HTML_PROGRESS2_ERROR_ABSTRACT',         -105);
+
 
 /**
  * HTML loading bar with only PHP and JS interface.
@@ -205,7 +222,7 @@ class HTML_Progress2 extends HTML_Common
     var $_observerCount;
 
     /**
-     * Delay in milisecond before each progress cells display.
+     * Delay in millisecond before each progress cells display.
      * 1000 ms === sleep(1)
      * <strong>usleep()</strong> function does not run on Windows platform.
      *
@@ -2337,11 +2354,11 @@ JS;
     /**
      * Sets delay execution of the progress meter.
      *
-     * The delay (in milisecond) cannot exceed 1000 (1 second), that is enough
+     * The delay (in millisecond) cannot exceed 1000 (1 second), that is enough
      * to smooth an animation. User process should slow down animation and in most
      * case the default value (zero) will be efficient.
      *
-     * @param      integer   $delay         Delay in milisecond.
+     * @param      integer   $delay         Delay in millisecond.
      *
      * @return     void
      * @since      2.0.0
@@ -3173,6 +3190,85 @@ JS;
             }
         }
         return $result;
+    }
+
+    /**
+     * Register an Ajax engine in use for progress bar polling.
+     *
+     * Until version 2.2.0 Progress2 has only COMET (streaming) ability. With
+     * first alpha of 2.3.0 version, Progress2 has now Ajax (polling) ability.
+     * A default driver is available and you may register your own Ajax engine easily.
+     *
+     * @param      string    $engine        (optional) Ajax engine driver name
+     *
+     * @return     object|false             instance of HTML_Progress2_Ajax_Common,
+     *                                      false on error
+     * @since      2.3.0a1
+     * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
+     *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
+     */
+    function registerAjax($engine = 'StdDOMxml')
+    {
+        if (!is_string($engine)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$engine',
+                      'was' => gettype($engine),
+                      'expected' => 'string',
+                      'paramnum' => 1));
+        }
+
+        $class = 'HTML_Progress2_Ajax_' . ucfirst($engine);
+
+        // Attempt to include a custom version of the named class, but don't treat
+        // a failure as fatal.  The caller may have already included their own
+        // version of the named class.
+        if (!class_exists($class)) {
+            // Try to include the driver.
+            $file = str_replace('_', '/', $class) . '.php';
+            if (HTML_Progress2::fileExists($file)) {
+                include_once $file;
+            }
+        }
+        // See if the class exists now.
+        if (class_exists($class)) {
+            // Try to instantiate the class.
+            $instance =& new $class($this);
+        } else {
+            $instance = false;
+        }
+        // See if the class is a valid base driver.
+        if (!is_subclass_of($instance, 'HTML_Progress2_Ajax_Common')) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                array('var' => '$engine',
+                      'resource' => $file,
+                      'expected' => 'Ajax driver',
+                      'paramnum' => 1));
+        }
+        return $instance;
+    }
+
+    /**
+     * Checks whether the file exists in the include path
+     *
+     * Method used to check if a file (Ajax engine driver) is available
+     * and readable.
+     *
+     * @param      string    $fileName      file name
+     *
+     * @return     bool
+     * @since      2.3.0a1
+     * @access     protected
+     * @static
+     */
+    function fileExists($fileName)
+    {
+        $fp = @fopen($fileName, 'r', true);
+        if (is_resource($fp)) {
+            fclose($fp);
+            return true;
+        }
+        return false;
     }
 
     /**
