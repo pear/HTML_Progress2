@@ -114,7 +114,16 @@ class HTML_Progress2_Ajax_StdDOMxml extends HTML_Progress2_Ajax_Common
                       'expected' => 'boolean',
                       'paramnum' => 1));
         }
-        $js = file_get_contents('progress2AjaxHandler.js');
+
+        $js = '@data_dir@' . DIRECTORY_SEPARATOR
+            . '@package_name@' . DIRECTORY_SEPARATOR
+            . 'progress2AjaxHandler.js';
+
+        if (file_exists($js)) {
+            $js = file_get_contents($js);
+        } else {
+            $js = '';
+        }
 
         if ($raw !== true) {
             $js = '<script type="text/javascript">'
