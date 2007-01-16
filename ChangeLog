@@ -1,4 +1,4 @@
-2007-0m-dd Laurent Laville <pear@laurent-laville.org>
+2007-01-17 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: first alpha version (alpha) 2.3.0a1 released.
 
@@ -13,6 +13,7 @@
       - fix typo error (millisecond term) in phpdoc tags
       - add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
       - add new methods :  registerAjax(), and fileExists()
+      - add a mini guide HOWTO_AJAX.txt for users of alpha 2.3.0 releases
 
 2007-01-03 Laurent Laville <pear@laurent-laville.org>
 

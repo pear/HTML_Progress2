@@ -1,5 +1,11 @@
 Changes since version 2.2.0 (2007-01-03)
 
+  | 2007-01-16 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * add two ajax progress bar examples
+  |     * add only for alpha releases of version 2.3.0 a mini guide
+  |       to explain how to use an ajax progress bar
+
   | 2007-01-12 Laurent Laville <pear@laurent-laville.org>
   |
   |     * first alpha version of version 2.3.0 with AJAX progress bar support
