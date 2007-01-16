@@ -1,0 +1,140 @@
+===========================================================
+   A quick guide to implement an AJAX Progress Bar
+===========================================================
+
+IMPORTANT:
+This guide will be only available with versions 2.3.0 alpha.
+With final stable version 2.3.0, you can find this howto guide included
+in The Definitive Guide. This last one will not be update until 2.3.0 (stable).
+
+
+1. History
+   All begun with Request #3985 (http://pear.php.net/bugs/bug.php?id=3985)
+   posted on 2005-03-28.
+
+   In 2005, I don't know yet AJAX, that I've learned only recently (end of
+   year 2006). I've searched the most simple architecture that won't break
+   current API, and gave immediat benefits for both PHP4 and PHP5 users.
+
+   As there are many Ajax frameworks, I wouldn't imposed usage of one between
+   many, and let free choice opened. So 2.3.0 alpha 1 will begin with a standard
+   DOM XML Ajax driver. Later, others drivers (such as YUI, Prototype, ...),
+   will be available and allow to use specifics features.
+
+   For now, lets begin explains with the default driver available for all !
+
+
+2. Design details
+
+   NOTE: based on Progress Bar Using AJAX: Design Details, found at
+         https://bpcatalog.dev.java.net/nonav/ajax/progress-bar/design.html
+
+   Tracking the progress of a server-side operation by a client requires at
+   least two operations which include:
+   a. negociate a task identifier with a first client to server request
+   b. a polling loop that will iterate one or more times until server task
+      is completed (100%).
+
+2.1 Progress bar HTML design
+
+    With default driver "HTML/Progress2/Ajax/StdDOMxml.php", you can still
+    continue to use your old design built with versions 2.0.0 to 2.2.0
+
+    Alpha 1 restriction :  cannot use the indeterminate mode
+
+
+2.2 Negociate a task identifier
+
+    Either you will use the same server script to build your progress bar,
+    and handle task (creation, manage), or you will use two differents scripts
+    to 1: build your progress bar, and then 2: to handle task.
+
+    Both options are available. Example ajax/default1.php used the same script,
+    while ajax/default2.php use two separate scripts.
+
+    Behind the magic:  method HTML_Progress2_Ajax_Common::setRequestUri()
+
+    Your are free to use any mechanism to produce a task identifier, but you
+    have to take care that the task id. must be unique.
+
+    Action to negociate a new task id, is by default "registerTask", and mapped
+    Progress Bar ident.
+    Action name can be changed with first parameter value
+    Behind the magic:
+    method HTML_Progress2_Ajax_Common::setUrlArguments($param1, $param2)
+
+    Scriptname: default1.php
+    <code>
+     <?php
+     require_once 'HTML/Progress2.php';
+
+     $pb = new HTML_Progress2();
+     $pb->setIdent('PB1');
+     //...
+     // produces an instance of default (StdDOMxml) Ajax driver
+     $ae = $pb->registerAjax();
+     ?>
+    </code>
+    First request sent by browser will be:  default1.php?registerTask=PB1
+
+    Your script should return an XML content with one tag with two attributes:
+    <?xml version="1.0" encoding="iso-8859-1"?>
+    <progress id="PB1" taskId="32768" />
+
+    Remember taskId should be unique; in default1.php example task id
+    generator is the php function mt_rand().
+
+
+2.3 Handle polling loop
+
+    Action to handle progress of server side user task is by default "taskId",
+    and mapped the same identifier returned by "registerTask" action.
+
+    In our default1.php example second and other requests sent by browser will
+    be:  default1.php?taskId=32768
+
+    processTask() function simulate the user task, and return new percentage
+    value (12 is example below).
+
+    Your script should return an XML content with
+    <?xml version="1.0" encoding="iso-8859-1"?>
+    <progress id="PB1" taskId="32768">
+     <percentage>12</percentage>
+    </progress>
+
+
+2.4 Refreshing progress bar
+
+    Highlight cells is still done by default progress javascript code
+    See: HTML_Progress::getScript(), or external file "progress2Handler.js"
+
+    Callbacks are done by Ajax driver javascript
+    Behind the magic:  method HTML_Progress2_Ajax_StdDOMxml::getScript()
+
+    When server script return <percentage>100</percentage>, the task shoul be
+    completed and Ajax-browser callbacks are stopped.
+
+    Function javascript complete() is run to finish operation.
+
+
+3. Roadmap
+
+   Alpha 1 :
+   - DO NOT support indeterminate mode
+   - DO NOT support progress bar with labels
+
+   Alpha 2 :
+   - add drivers and examples for YAHOO UI, Prototype (and perharps more
+     frameworks).
+   - add support of multiple label system
+
+   Stable :
+   - The Definitive Guide will include these informations and your comments
+
+
+4. Appendixes
+
+   See also examples
+   PEAR/docs/HTML_Progress2/examples/ajax/default1.php
+   PEAR/docs/HTML_Progress2/examples/ajax/default2.php
+
