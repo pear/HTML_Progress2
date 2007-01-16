@@ -56,7 +56,6 @@ if (isset($_REQUEST['registerTask'])) {
 
     $pb = new HTML_Progress2();
     $pb->setIdent('PB1');
-    $pb->setAnimSpeed(200);
     $pb->setIncrement(10);
     $pb->setBorderAttributes('class=progressBorder');
     $pb->setCellAttributes('class=cell');
