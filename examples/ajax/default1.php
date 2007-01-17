@@ -56,7 +56,6 @@ if (isset($_REQUEST['registerTask'])) {
 
     $pb = new HTML_Progress2();
     $pb->setIdent('PB1');
-    $pb->setIncrement(10);
     $pb->setBorderAttributes('class=progressBorder');
     $pb->setCellAttributes('class=cell');
     $pb->setLabelAttributes('pct1', array(
@@ -106,7 +105,7 @@ if ($m != 'GET') {
 }
 $t = $ae->getRequestTimeout();
 if ($t != 2000) {
-    echo "timeout = '$t';\n";
+    echo "timeout = $t;\n";
 }
 echo "url1 = '". $ae->getRequestUri(1) ."';\n";
 echo "url2 = '". $ae->getRequestUri(2) ."';\n";

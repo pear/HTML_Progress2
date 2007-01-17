@@ -19,7 +19,6 @@ require_once 'HTML/Progress2.php';
 
 $pb = new HTML_Progress2();
 $pb->setIdent('PB1');
-$pb->setIncrement(10);
 $pb->setCellAttributes(array(
     'active-color' => '#000084',
     'inactive-color' => '#3A6EA5',
@@ -38,6 +37,8 @@ $pb->setLabelAttributes('pct1', array(
 
 $ae = $pb->registerAjax();
 $ae->setRequestUri('default2task.php');
+$ae->setRequestMethod('POST');
+$ae->setRequestTimeout(1000);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -77,7 +78,7 @@ if ($m != 'GET') {
 }
 $t = $ae->getRequestTimeout();
 if ($t != 2000) {
-    echo "timeout = '$t';\n";
+    echo "timeout = $t;\n";
 }
 echo "url1 = '". $ae->getRequestUri(1) ."';\n";
 echo "url2 = '". $ae->getRequestUri(2) ."';\n";
