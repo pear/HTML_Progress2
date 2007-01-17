@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.5.0RC2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.5.0RC3" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_Progress2</name>
  <channel>pear.php.net</channel>
+ <extends>HTML_Progress</extends>
  <summary>How to include a loading bar in your XHTML documents quickly and easily.</summary>
  <description>This package provides a way to add a loading bar fully customizable in existing XHTML documents.
 Your browser should accept DHTML feature.
@@ -26,27 +27,40 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2007-01-03</date>
- <time>18:52:41</time>
+ <date>2007-01-17</date>
+ <time>13:58:06</time>
  <version>
-  <release>2.2.0</release>
-  <api>2.2.0</api>
+  <release>2.3.0a1</release>
+  <api>2.3.0</api>
  </version>
  <stability>
-  <release>stable</release>
-  <api>stable</api>
+  <release>alpha</release>
+  <api>alpha</api>
  </stability>
  <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
- <notes>* news
-- add new function importStyle() to give ability to import an existing stylesheet
-and separate PHP code from HTML layout (with CSS)
+ <notes>IMPORTANT
+User Guide(s) (offline and online) will not be update until final stable release 2.3.0
+If you want some informations about Ajax progress bar, and how to do it, please
+read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
+See also the two examples in directory examples/ajax.
+Contribution to improve part of guide and perharps drivers are welcome !
+
+HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
+
+* news
+- request #3985: Ajax progress bar
 
 * changes
-- improved javascript custom handler for JavaDanse example related to version 2.1.1 (bug fixed #8684)
-
-* QA
-- include a new revision of User Guide (TDG) that cover all versions 2.x.x
-  see http://pear.laurent-laville.org/HTML_Progress2 for more format to download.
+- drop support of cell id mask identifier (begin private)
+- a progress bar widget (div) is now identified only by {see HTML_Progress2::getIdent()}
+  rather than &quot;tfrm&quot; + {HTML_Progress2::getIdent()}
+- Default progress bar identifier (without prefix &quot;tfrm&quot;) cannot be numeric (xhtml compliant)
+- Improve Javascript function setProgress() which does not need anymore the third parameter.
+- Improve Javascript function call to setElementStyle() and removed unecessary arguments
+- fix typo error (millisecond term) in phpdoc tags
+- add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
+- add new methods :  registerAjax(), and fileExists()
+- add new classes: HTML_Progress2_Ajax_Common, HTML_Progress2_Ajax_StdDOMxml
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -219,6 +233,16 @@ and separate PHP code from HTML layout (with CSS)
     </dir> <!-- /docs/TDG -->
    </dir> <!-- /docs -->
    <dir name="examples">
+    <dir name="ajax">
+     <file name="bluesand2.css" role="doc" />
+     <file name="default1.php" role="doc" />
+     <file name="default2.php" role="doc" />
+     <file name="default2task.php" role="doc" />
+     <file name="download.gif" role="doc" />
+     <file name="Poly9UrlParser.js" role="doc" />
+     <file name="progress2AjaxHandler.js" role="doc" />
+     <file name="progress2Handler.js" role="doc" />
+    </dir> <!-- /examples/ajax -->
     <dir name="circle">
      <file name="circle.php" role="doc" />
      <file name="ellipse.php" role="doc" />
@@ -311,6 +335,16 @@ and separate PHP code from HTML layout (with CSS)
     </dir> <!-- /examples/vertical -->
    </dir> <!-- /examples -->
    <dir name="Progress2">
+    <dir name="Ajax">
+     <file name="Common.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="StdDOMxml.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+      <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+      <tasks:replace from="@package_name@" to="name" type="package-info" />
+     </file>
+    </dir> <!-- /Progress2/Ajax -->
     <dir name="Generator">
      <file name="Default.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -399,13 +433,17 @@ and separate PHP code from HTML layout (with CSS)
    </dir> <!-- /tests -->
    <file name="ChangeLog" role="doc" />
    <file name="default.css" role="data" />
+   <file name="HOWTO_AJAX.txt" role="doc" />
    <file name="htmlpage2.css" role="data" />
    <file name="itdynamic.css" role="data" />
    <file name="NEWS" role="doc" />
+   <file name="Poly9UrlParser.js" role="data" />
    <file name="Progress2.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
     <tasks:replace from="@api_version@" to="api-version" type="package-info" />
    </file>
+   <file name="progress2AjaxHandler.js" role="data" />
+   <file name="progress2Handler.js" role="data" />
    <file name="Progress2_Lite.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
@@ -416,7 +454,7 @@ and separate PHP code from HTML layout (with CSS)
  <dependencies>
   <required>
    <php>
-    <min>4.2.0</min>
+    <min>4.3.0</min>
    </php>
    <pearinstaller>
     <min>1.4.3</min>
@@ -497,6 +535,77 @@ and separate PHP code from HTML layout (with CSS)
  <changelog>
   <release>
    <version>
+    <release>2.3.0a1</release>
+    <api>2.3.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-01-17</date>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+   <notes>IMPORTANT
+User Guide(s) (offline and online) will not be update until final stable release 2.3.0
+If you want some informations about Ajax progress bar, and how to do it, please
+read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
+See also the two examples in directory examples/ajax.
+Contribution to improve part of guide and perharps drivers are welcome !
+
+HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
+
+* news
+- request #3985: Ajax progress bar
+
+* changes
+- drop support of cell id mask identifier (begin private)
+- a progress bar widget (div) is now identified only by {see HTML_Progress2::getIdent()}
+  rather than &quot;tfrm&quot; + {HTML_Progress2::getIdent()}
+- Default progress bar identifier (without prefix &quot;tfrm&quot;) cannot be numeric (xhtml compliant)
+- Improve Javascript function setProgress() which does not need anymore the third parameter.
+- Improve Javascript function call to setElementStyle() and removed unecessary arguments
+- fix typo error (millisecond term) in phpdoc tags
+- add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
+- add new methods :  registerAjax(), and fileExists()
+- add new classes: HTML_Progress2_Ajax_Common, HTML_Progress2_Ajax_StdDOMxml
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.3.0</release>
+    <api>2.3.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-01-16</date>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+   <notes>IMPORTANT
+User Guide(s) (offline and online) will not be update until final stable release 2.3.0
+If you want some informations about Ajax progress bar, and how to do it, please
+read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
+See also the two examples in directory examples/ajax.
+Contribution to improve part of guide and perharps drivers are welcome !
+
+HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
+
+* news
+- request #3985: Ajax progress bar
+
+* changes
+- drop support of cell id mask identifier (begin private)
+- a progress bar widget (div) is now identified only by {see HTML_Progress2::getIdent()}
+  rather than &quot;tfrm&quot; + {HTML_Progress2::getIdent()}
+- Default progress bar identifier (without prefix &quot;tfrm&quot;) cannot be numeric (xhtml compliant)
+- Improve Javascript function setProgress() which does not need anymore the third parameter.
+- Improve Javascript function call to setElementStyle() and removed unecessary arguments
+- fix typo error (millisecond term) in phpdoc tags
+- add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
+- add new methods :  registerAjax(), and fileExists()
+- add new classes: HTML_Progress2_Ajax_Common, HTML_Progress2_Ajax_StdDOMxml</notes>
+  </release>
+  <release>
+   <version>
     <release>2.2.0</release>
     <api>2.2.0</api>
    </version>
@@ -515,8 +624,7 @@ and separate PHP code from HTML layout (with CSS)
 
 * QA
 - include a new revision of User Guide (TDG) that cover all versions 2.x.x
-  see http://pear.laurent-laville.org/HTML_Progress2 for more format to download.
-   </notes>
+  see http://pear.laurent-laville.org/HTML_Progress2 for more format to download.</notes>
   </release>
   <release>
    <version>
