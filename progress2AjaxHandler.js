@@ -5,7 +5,7 @@
  * @package    HTML_Progress2
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: progress2AjaxHandler.js,v 1.1 2007-01-15 17:27:28 farell Exp $
+ * @version    CVS: $Id: progress2AjaxHandler.js,v 1.2 2007-01-17 12:56:40 farell Exp $
  * @since      File available since Release 2.3.0a1
  */
 
@@ -67,17 +67,19 @@ function initRequest()
  */
 function startTask()
 {
+    var url = null;
     var dataSend = null;
     var m = reqMethod.toUpperCase();
 
     if (m == 'GET') {
         // avoid browser url cache problem
-        url1 = url1 + '&dummy=' + new Date().getTime();
+        url = url1 + '&dummy=' + new Date().getTime();
     } else {
         var p = new Poly9.URLParser(url1);
         dataSend = p.getQuerystring();
+        url = url1.substring(0, url1.indexOf('?' + dataSend));
     }
-    req.open(m, url1, true);
+    req.open(m, url, true);
     req.onreadystatechange = processInitialRequest;
     if (m == 'POST') {
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -108,6 +110,7 @@ function processInitialRequest()
             var message = req.responseXML.getElementsByTagName("progress")[0];
             progressId = message.getAttribute("id");
             taskId = message.getAttribute("taskId");
+            url2 = url2 + escape(taskId);
         }
         // do the initial poll in 2 seconds (default timeout)
         setTimeout("pollTaskmaster()", timeout);
@@ -126,18 +129,18 @@ function processInitialRequest()
 function pollTaskmaster()
 {
     var m = reqMethod.toUpperCase();
+    var url = null;
     var dataSend = null;
-
-    url2 = url2 + escape(taskId);
 
     if (m == 'GET') {
         // avoid browser url cache problem
-        url2 = url2 + '&dummy=' + new Date().getTime();
+        url = url2 + '&dummy=' + new Date().getTime();
     } else {
         var p = new Poly9.URLParser(url2);
         dataSend = p.getQuerystring();
+        url = url2.substring(0, url2.indexOf('?' + dataSend));
     }
-    req.open(m, url2, true);
+    req.open(m, url, true);
     req.onreadystatechange = processPollRequest;
     if (m == 'POST') {
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -181,4 +184,3 @@ function processPollRequest()
         }
     }
 }
-
