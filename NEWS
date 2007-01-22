@@ -1,5 +1,13 @@
 Changes since version 2.2.0 (2007-01-03)
 
+  | 2007-01-22 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * second alpha version of version 2.3.0 used HTML_AJAX package rather
+  |       than owner solution to implement the AJAX progress bar support
+  |     * 4 new examples: 3 basic, and 1 with scriptaculous
+  |     * getScript() function can use both PEAR/data dir or custom dir to
+  |       retreive JavaScript handler source code (idea from HTML_AJAX package)
+
   | 2007-01-16 Laurent Laville <pear@laurent-laville.org>
   |
   |     * add two ajax progress bar examples

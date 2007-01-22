@@ -1,3 +1,14 @@
+2007-01-23 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: second alpha version (alpha) 2.3.0a2 released.
+
+      - clean-up old implementation of AJAX progress bar; used now package HTML_AJAX
+      - Javascript function calls used now OOP notation
+      - Javascript code PB handler is now externalized into file HTML_Progress2.js
+      - new method  setupAJAX()
+      - new implementation of method registerAJAX() (renamed too)
+      - getScript() has an optional 2nd parameter to support custom configuration
+
 2007-01-17 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: first alpha version (alpha) 2.3.0a1 released.
