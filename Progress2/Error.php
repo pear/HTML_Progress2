@@ -359,10 +359,7 @@ class HTML_Progress2_Error extends PEAR_Error
             HTML_PROGRESS2_ERROR_INVALID_RESOURCE =>
                 'invalid resource, parameter #%paramnum% '
                     . '"%var%" expecting %expected%,'
-                    . ' instead got "%resource%" does not exists',
-            HTML_PROGRESS2_ERROR_ABSTRACT =>
-                'method "%method%" is is an abstract method that must be '
-                    . 'overridden in a child class',
+                    . ' instead got "%resource%" does not exists'
         );
         return $messages;
     }
