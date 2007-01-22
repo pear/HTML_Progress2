@@ -1,7 +1,7 @@
 <?php
 /**
- * Basic AJAX example that used a PHP callback function
- * to handle progress bar responses
+ * Basic AJAX example that used an auto server to handle progress bar responses
+ * Same as example default2.php, but its also multiple-labels system compatible.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
@@ -9,7 +9,6 @@
  * @subpackage Examples
  * @access     public
  */
-
 if (isset($_GET['reload'])) {
     session_start();
     unset($_SESSION['progressPercentage']);
@@ -27,7 +26,9 @@ $reuseCSS = false;
 //$reuseCSS = true;
 
 $pb = new HTML_Progress2();
-$pb->addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt1', 'Basic AJAX Progress2 example 1');
+$pb->addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt1', 'Basic AJAX Progress2 example 3');
+$pb->addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt2', 'caption ...');
+$pb->setLabelAttributes('txt2', array('valign' => 'bottom'));
 
 if ($reuseCSS) {
     $pb->setIdent('PB1');
@@ -57,13 +58,13 @@ if ($reuseCSS) {
     ));
 }
 
-$pb->registerAJAX('phpcb_server1.php', array('getpercentage'));
+$pb->registerAJAX('auto_server.php', array('RequestFullStatus'));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>Basic Ajax Progress2 example 1</title>
+<title>Basic Ajax Progress2 example 3</title>
 <?php
 if ($reuseCSS) {
     echo '<link rel="stylesheet" type="text/css" href="bluesand2.css"  />'."\n";
@@ -86,7 +87,8 @@ echo $pb->setupAJAX();
 ?>
 <script type="text/javascript">
 //<![CDATA[
-HTML_Progress2.serverCallback = 'getPercentage';
+HTML_Progress2.serverClassName  = 'RequestFullStatus';
+HTML_Progress2.serverMethodName = 'updateTask';
 //]]>
 </script>
 </head>
