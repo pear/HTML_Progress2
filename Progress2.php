@@ -3158,13 +3158,15 @@ class HTML_Progress2 extends HTML_Common
     }
 
     /**
-     * Register an Ajax engine in use for progress bar polling.
+     * Register an external AJAX server to use for progress bar polling.
      *
      * Until version 2.2.0 Progress2 has only COMET (streaming) ability. With
-     * first alpha of 2.3.0 version, Progress2 has now Ajax (polling) ability.
-     * A default driver is available and you may register your own Ajax engine easily.
+     * first alpha of 2.3.0 version, Progress2 has now AJAX (polling) ability.
+     * Use PEAR::HTML_AJAX package as backend.
      *
-     * @param      string    $engine        (optional) Ajax engine driver name
+     * @param      string    $serverUrl     the url the client should be making a request to
+     * @param      array     $stub          (optional) list of proxy definition for
+     * @param      array     $client        (optional) list of client libraries to use
      *
      * @return     void
      * @since      2.3.0a1
