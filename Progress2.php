@@ -105,15 +105,6 @@ define ('HTML_PROGRESS2_ERROR_INVALID_OPTION',   -103);
  */
 define ('HTML_PROGRESS2_ERROR_INVALID_RESOURCE', -104);
 
-/**
- * Basic error code that indicate an abstract method used
- * in Ajax driver. This one is code incompleted.
- *
- * @var        integer
- * @since      2.3.0a1
- */
-define ('HTML_PROGRESS2_ERROR_ABSTRACT',         -105);
-
 
 /**
  * HTML loading bar with only PHP and JS interface.
@@ -498,6 +489,16 @@ class HTML_Progress2 extends HTML_Common
      * @see        getScript(), setScript()
      */
     var $script;
+
+    /**
+     * Resources to handle AJAX progress meter:
+     *
+     * @var        array
+     * @since      2.3.0a2
+     * @access     public
+     * @see        registerAJAX(), setupAJAX()
+     */
+    var $ajax = array();
 
     /**
      * Error message callback.
@@ -2102,14 +2103,17 @@ class HTML_Progress2 extends HTML_Common
      * refresh.
      *
      * @param      boolean   $raw           (optional) html output with script tags or just raw data
+     * @param      string    $path          (optional) directory, with no trailing slash,
+     *                                      where to get HTML_Progress2.js file
      *
      * @return     string
      * @since      2.0.0
      * @access     public
-     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
+     *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
      * @see        setScript()
      */
-    function getScript($raw = true)
+    function getScript($raw = true, $path = null)
     {
         if (!is_bool($raw)) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
@@ -2117,10 +2121,32 @@ class HTML_Progress2 extends HTML_Common
                       'was' => gettype($raw),
                       'expected' => 'boolean',
                       'paramnum' => 1));
+
+        } elseif (isset($path)) {
+            if (!is_string($path)) {
+                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                    array('var' => '$path',
+                          'was' => gettype($path),
+                          'expected' => 'string',
+                          'paramnum' => 2));
+
+            } elseif (!is_dir($path)) {
+                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                    array('var' => '$path',
+                          'resource' => $path,
+                          'expected' => 'directory',
+                          'paramnum' => 2));
+
+            } elseif (!file_exists($js = $path . DIRECTORY_SEPARATOR . 'HTML_Progress2.js')) {
+                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                    array('var' => '$path',
+                          'resource' => $js,
+                          'expected' => 'directory with valid JS handler',
+                          'paramnum' => 2));
+            }
         }
 
         if (!is_null($this->script)) {
-
             if ($raw) {
                 $js = $this->script;   // URL to the linked Progress JavaScript
             } else {
@@ -2130,78 +2156,17 @@ class HTML_Progress2 extends HTML_Common
             return $js;
         }
 
-        $js = <<< JS
+        if (isset($path)) {
+            $js = $path;
+        } else {
+            $js = '@data_dir@' . DIRECTORY_SEPARATOR . '@package_name@';
 
-function setProgress(pIdent, pValue, pDeterminate)
-{
-    var name  = 'pbar' + pIdent;
-    var pbar  = document.getElementById(name);
-    var cells = pbar.getElementsByTagName('div');
-
-    if (pValue == pDeterminate) {
-        for (var i = 0; i < cells.length; i++) {
-            showCell(i, pIdent, 'I');
+            if (strpos($js, '@'.'data_dir@') === 0) {
+                $js = dirname(__FILE__);
+            }
         }
-    }
-    if ((pDeterminate > 0) && (pValue > 0)) {
-        var i = (pValue - 1) % cells.length;
-        showCell(i, pIdent, 'A');
-    } else {
-        for (var i = pValue - 1; i >= 0; i--) {
-            showCell(i, pIdent, 'A');
-        }
-    }
-}
-
-function showCell(pCell, pIdent, pVisibility)
-{
-    var name = 'pcel' + pCell + pIdent;
-    var cellElement = document.getElementById(name);
-    cellElement.className = '%cellCN%' + pIdent + pVisibility;
-}
-
-function hideProgress(pIdent)
-{
-    var tfrm = document.getElementById(pIdent);
-    tfrm.style.visibility = "hidden";
-}
-
-function setLabelText(pIdent, pName, pText)
-{
-    var name = 'plbl' + pName + pIdent;
-    document.getElementById(name).firstChild.nodeValue = pText;
-}
-
-function setElementStyle(pIdent, pStyles)
-{
-    var name = 'pbar' + pIdent;
-    var styles = pStyles.split(';');
-    styles.pop();
-    for (var i = 0; i < styles.length; i++) {
-        var s = styles[i].split(':');
-        var c = 'document.getElementById(name).style.' + s[0] + '="' + s[1] + '"';
-        eval(c);
-    }
-}
-
-function setRotaryCross(pIdent, pName)
-{
-    var name = 'plbl' + pName + pIdent;
-    var cross = document.getElementById(name).firstChild.nodeValue;
-    switch(cross) {
-        case "--": cross = "\\\\"; break;
-        case "\\\\": cross = "|"; break;
-        case "|": cross = "/"; break;
-        default: cross = "--"; break;
-    }
-    document.getElementById(name).firstChild.nodeValue = cross;
-}
-
-JS;
-        $cellAttr = $this->getCellAttributes();
-        $attr =
-            trim(sprintf($cellAttr['class'], ' '));
-        $js = str_replace('%cellCN%', $attr, $js);
+        $js .= DIRECTORY_SEPARATOR . 'HTML_Progress2.js';
+        $js = file_get_contents($js);
 
         if ($raw !== true) {
             $js = '<script type="text/javascript">'
@@ -2951,7 +2916,7 @@ JS;
     function hide()
     {
         $bar = '<script type="text/javascript">'
-             .  'hideProgress("' . $this->ident . '");'
+             .  'HTML_Progress2.hideProgress("' . $this->ident . '");'
              .  '</script>';
 
         echo $bar . PHP_EOL;
@@ -3201,51 +3166,110 @@ JS;
      *
      * @param      string    $engine        (optional) Ajax engine driver name
      *
-     * @return     object|false             instance of HTML_Progress2_Ajax_Common,
-     *                                      false on error
+     * @return     void
      * @since      2.3.0a1
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
      */
-    function registerAjax($engine = 'StdDOMxml')
+    function registerAJAX($serverUrl, $stub = array(), $client = array('all'))
     {
-        if (!is_string($engine)) {
+        if (!is_string($serverUrl)) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$engine',
-                      'was' => gettype($engine),
+                array('var' => '$serverUrl',
+                      'was' => gettype($serverUrl),
+                      'expected' => 'string',
+                      'paramnum' => 1));
+
+        } elseif (!HTML_Progress2::fileExists($serverUrl)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                array('var' => '$serverUrl',
+                      'resource' => $serverUrl,
+                      'expected' => 'AJAX server defined',
+                      'paramnum' => 1));
+
+        } elseif (!is_array($stub)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$stub',
+                      'was' => gettype($stub),
+                      'expected' => 'array',
+                      'paramnum' => 2));
+
+        } elseif (!is_array($client)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$client',
+                      'was' => gettype($client),
+                      'expected' => 'array',
+                      'paramnum' => 3));
+
+        } elseif (count($client) == 0) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'error',
+                array('var' => '$client',
+                      'was' => 'empty array',
+                      'expected' => 'at least one client defined',
+                      'paramnum' => 3));
+        }
+
+        $this->ajax = array('serverUrl' => $serverUrl,
+            'client' => $client, 'stub' => $stub);
+    }
+
+    /**
+     * Include all needed libraries, stubs, and set defaultServer
+     *
+     * @param      string    $serializer    (optional) What encoding you are going to use
+     *                                      for serializing/unserializing data
+     *
+     * @return     string
+     * @since      2.3.0a2
+     * @access     public
+     */
+    function setupAJAX($serializer = null)
+    {
+        if (isset($serializer) && !is_string($serializer)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$serializer',
+                      'was' => gettype($serializer),
                       'expected' => 'string',
                       'paramnum' => 1));
         }
 
-        $class = 'HTML_Progress2_Ajax_' . ucfirst($engine);
+        require_once 'HTML/AJAX/Helper.php';
 
-        // Attempt to include a custom version of the named class, but don't treat
-        // a failure as fatal.  The caller may have already included their own
-        // version of the named class.
-        if (!class_exists($class)) {
-            // Try to include the driver.
-            $file = str_replace('_', '/', $class) . '.php';
-            if (HTML_Progress2::fileExists($file)) {
-                include_once $file;
-            }
+        // auto-register default AJAX values (server, client)
+        if (count($this->ajax) == 0) {
+            $this->ajax = array('serverUrl' => 'server.php',
+                'client' => array('all'), 'stub' => array()
+                );
         }
-        // See if the class exists now.
-        if (class_exists($class)) {
-            // Try to instantiate the class.
-            $instance =& new $class($this);
-        } else {
-            $instance = false;
+        $ajaxHelper = new HTML_AJAX_Helper();
+        $ajaxHelper->serverUrl = $this->ajax['serverUrl'];
+        $ajaxHelper->jsLibraries = $this->ajax['client'];
+        $ajaxHelper->stubs = $this->ajax['stub'];
+
+        $ret = $ajaxHelper->setupAJAX();
+        $setting = '';
+        if ($this->cell['class'] != 'cell%s') {
+            $setting .= PHP_EOL . 'HTML_Progress2.cellClass = ' .
+                $ajaxHelper->escape($this->cell['class']) . ';' ;
         }
-        // See if the class is a valid base driver.
-        if (!is_subclass_of($instance, 'HTML_Progress2_Ajax_Common')) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
-                array('var' => '$engine',
-                      'resource' => $file,
-                      'expected' => 'Ajax driver',
-                      'paramnum' => 1));
+        if ($this->cellCount != 10) {
+            $setting .= PHP_EOL . 'HTML_Progress2.cellCount = ' . $this->cellCount . ';';
         }
-        return $instance;
+        if ($this->minimum != 0) {
+            $setting .= PHP_EOL . 'HTML_Progress2.minimum = ' . $this->minimum . ';';
+        }
+        if ($this->maximum != 100) {
+            $setting .= PHP_EOL . 'HTML_Progress2.maximum = ' . $this->maximum . ';';
+        }
+        if (isset($serializer) && $serializer != 'JSON') {
+            $setting .= PHP_EOL . 'HTML_Progress2.defaultEncoding = ' .
+                $ajaxHelper->escape($serializer) . ';';
+        }
+        $setting .= PHP_EOL;
+        $ret .= $ajaxHelper->encloseInScript(PHP_EOL . '//<![CDATA[' . $setting .
+            '//]]>' . PHP_EOL);
+        return $ret;
     }
 
     /**
@@ -3309,7 +3333,6 @@ JS;
         $bar  = ob_get_clean();
 
         if ($this->cellCount > 0) {
-            $cellAmount = ($this->maximum - $this->minimum) / $this->cellCount;
 
             if ($this->indeterminate) {
                 if (isset($determinate)) {
@@ -3319,12 +3342,13 @@ JS;
                     $progress = $determinate = 1;
                 }
             } else {
-                $progress = ($this->value - $this->minimum) / $cellAmount;
+                $progress = (($this->value - $this->minimum) * $this->cellCount)
+                          / ($this->maximum - $this->minimum);
                 $determinate = 0;
             }
 
             $bar .= '<script type="text/javascript">'
-                 .  'setProgress'
+                 .  'HTML_Progress2.refresh'
                  .  '("' . $this->ident . '",'
                  .  intval($progress) . ',' . $determinate
                  .  ');'
@@ -3727,7 +3751,7 @@ JS;
     function _changeLabelText($element, $text)
     {
         $cmd = '<script type="text/javascript">'
-             . 'setLabelText'
+             . 'HTML_Progress2.setLabelText'
              . '("' . $this->ident . '","' . $element . '","' . $text . '");'
              . '</script>';
 
@@ -3747,7 +3771,7 @@ JS;
     function _changeCrossItem($element)
     {
         $cmd = '<script type="text/javascript">'
-             . 'setRotaryCross'
+             . 'HTML_Progress2.setRotaryCross'
              . '("' . $this->ident . '","' . $element . '");'
              . '</script>';
 
@@ -3767,7 +3791,7 @@ JS;
     function _changeElementStyle($styles)
     {
         $cmd = '<script type="text/javascript">'
-             . 'setElementStyle'
+             . 'HTML_Progress2.setElementStyle'
              . '("' . $this->ident . '","' . $styles . '");'
              . '</script>';
 
