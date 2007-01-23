@@ -27,10 +27,10 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2007-01-17</date>
- <time>13:58:06</time>
+ <date>2007-01-23</date>
+ <time>11:09:03</time>
  <version>
-  <release>2.3.0a1</release>
+  <release>2.3.0a2</release>
   <api>2.3.0</api>
  </version>
  <stability>
@@ -40,27 +40,34 @@ Features:
  <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
  <notes>IMPORTANT
 User Guide(s) (offline and online) will not be update until final stable release 2.3.0
-If you want some informations about Ajax progress bar, and how to do it, please
+If you want some informations about AJAX progress bar, and how to do it, please
 read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
-See also the two examples in directory examples/ajax.
-Contribution to improve part of guide and perharps drivers are welcome !
+See also examples in directory examples/ajax.
+
+Contribution to improve part of guide are welcome ! Do not hesitate to give your
+feedback.
 
 HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
 
 * news
-- request #3985: Ajax progress bar
+- all alpha releases of version 2.3.0 are related to request #3985: Ajax progress bar
+- add PEAR::HTML_AJAX 0.5.0 as an optional dependency
+- HTML_Progress2::getScript() method has a new (optional) parameter to handle
+  custom HTML_Progress2 package installation.
+  If you do not used PEAR installer, parameter #2 ($path) identify location of
+  directory where to find the HTML_Progress2.js file.
+  It will search first in PEAR/data dir, then in same directory where HTML_Progress2
+  is installed or in your user dir ($path).
+  DO NOT add a trailing directory separator at end of the path !
+
+  Credit: on a cool idea of HTML_AJAX !
 
 * changes
-- drop support of cell id mask identifier (begin private)
-- a progress bar widget (div) is now identified only by {see HTML_Progress2::getIdent()}
-  rather than &quot;tfrm&quot; + {HTML_Progress2::getIdent()}
-- Default progress bar identifier (without prefix &quot;tfrm&quot;) cannot be numeric (xhtml compliant)
-- Improve Javascript function setProgress() which does not need anymore the third parameter.
-- Improve Javascript function call to setElementStyle() and removed unecessary arguments
-- fix typo error (millisecond term) in phpdoc tags
-- add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
-- add new methods :  registerAjax(), and fileExists()
-- add new classes: HTML_Progress2_Ajax_Common, HTML_Progress2_Ajax_StdDOMxml
+- clean-up old implementation of AJAX progress bar; used now package HTML_AJAX
+- Javascript function calls used now OOP notation
+- Javascript code PB handler is now externalized into file HTML_Progress2.js
+- new method  setupAJAX()
+- new implementation of method registerAJAX() (renamed too)
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -234,14 +241,24 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
    </dir> <!-- /docs -->
    <dir name="examples">
     <dir name="ajax">
+     <dir name="scriptaculous-js-1.7.0">
+      <file name="effects.js" role="doc" />
+      <file name="prototype.js" role="doc" />
+      <file name="scriptaculous.js" role="doc" />
+     </dir> <!-- /examples/ajax/scriptaculous-js-1.7.0 -->
+     <file name="auto_server.php" role="doc" />
      <file name="bluesand2.css" role="doc" />
      <file name="default1.php" role="doc" />
      <file name="default2.php" role="doc" />
-     <file name="default2task.php" role="doc" />
+     <file name="default3.php" role="doc" />
      <file name="download.gif" role="doc" />
-     <file name="Poly9UrlParser.js" role="doc" />
-     <file name="progress2AjaxHandler.js" role="doc" />
-     <file name="progress2Handler.js" role="doc" />
+     <file name="HTML_Progress2.js" role="doc" />
+     <file name="phpcb_server1.php" role="doc" />
+     <file name="phpcb_server2.php" role="doc" />
+     <file name="RequestStatus.class.php" role="doc" />
+     <file name="scriptaculous1.php" role="doc" />
+     <file name="scriptaculous2.php" role="doc" />
+     <file name="simple_server.php" role="doc" />
     </dir> <!-- /examples/ajax -->
     <dir name="circle">
      <file name="circle.php" role="doc" />
@@ -335,16 +352,6 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
     </dir> <!-- /examples/vertical -->
    </dir> <!-- /examples -->
    <dir name="Progress2">
-    <dir name="Ajax">
-     <file name="Common.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="StdDOMxml.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-      <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
-      <tasks:replace from="@package_name@" to="name" type="package-info" />
-     </file>
-    </dir> <!-- /Progress2/Ajax -->
     <dir name="Generator">
      <file name="Default.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -435,15 +442,13 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
    <file name="default.css" role="data" />
    <file name="HOWTO_AJAX.txt" role="doc" />
    <file name="htmlpage2.css" role="data" />
+   <file name="HTML_Progress2.js" role="data" />
    <file name="itdynamic.css" role="data" />
    <file name="NEWS" role="doc" />
-   <file name="Poly9UrlParser.js" role="data" />
    <file name="Progress2.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
     <tasks:replace from="@api_version@" to="api-version" type="package-info" />
    </file>
-   <file name="progress2AjaxHandler.js" role="data" />
-   <file name="progress2Handler.js" role="data" />
    <file name="Progress2_Lite.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
@@ -526,6 +531,11 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
     <channel>pear.php.net</channel>
     <min>0.3.2</min>
    </package>
+   <package>
+    <name>HTML_AJAX</name>
+    <channel>pear.php.net</channel>
+    <min>0.5.0</min>
+   </package>
    <extension>
     <name>gd</name>
    </extension>
@@ -533,6 +543,49 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.3.0a2</release>
+    <api>2.3.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-01-23</date>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+   <notes>IMPORTANT
+User Guide(s) (offline and online) will not be update until final stable release 2.3.0
+If you want some informations about AJAX progress bar, and how to do it, please
+read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
+See also examples in directory examples/ajax.
+
+Contribution to improve part of guide are welcome ! Do not hesitate to give your
+feedback.
+
+HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
+
+* news
+- all alpha releases of version 2.3.0 are related to request #3985: Ajax progress bar
+- add PEAR::HTML_AJAX 0.5.0 as an optional dependency
+- HTML_Progress2::getScript() method has a new (optional) parameter to handle
+  custom HTML_Progress2 package installation.
+  If you do not used PEAR installer, parameter #2 ($path) identify location of
+  directory where to find the HTML_Progress2.js file.
+  It will search first in PEAR/data dir, then in same directory where HTML_Progress2
+  is installed or in your user dir ($path).
+  DO NOT add a trailing directory separator at end of the path !
+
+  Credit: on a cool idea of HTML_AJAX !
+
+* changes
+- clean-up old implementation of AJAX progress bar; used now package HTML_AJAX
+- Javascript function calls used now OOP notation
+- Javascript code PB handler is now externalized into file HTML_Progress2.js
+- new method  setupAJAX()
+- new implementation of method registerAJAX() (renamed too)
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.3.0a1</release>
@@ -566,8 +619,7 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
 - fix typo error (millisecond term) in phpdoc tags
 - add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
 - add new methods :  registerAjax(), and fileExists()
-- add new classes: HTML_Progress2_Ajax_Common, HTML_Progress2_Ajax_StdDOMxml
-   </notes>
+- add new classes: HTML_Progress2_Ajax_Common, HTML_Progress2_Ajax_StdDOMxml</notes>
   </release>
   <release>
    <version>
