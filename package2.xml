@@ -28,7 +28,7 @@ Features:
   <active>yes</active>
  </lead>
  <date>2007-01-23</date>
- <time>11:09:03</time>
+ <time>11:20:30</time>
  <version>
   <release>2.3.0a2</release>
   <api>2.3.0</api>
@@ -448,6 +448,8 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
    <file name="Progress2.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
     <tasks:replace from="@api_version@" to="api-version" type="package-info" />
+    <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
+    <tasks:replace from="@package_name@" to="name" type="package-info" />
    </file>
    <file name="Progress2_Lite.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
