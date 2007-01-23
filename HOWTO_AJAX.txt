@@ -21,100 +21,114 @@ in The Definitive Guide. This last one will not be update until 2.3.0 (stable).
    DOM XML Ajax driver. Later, others drivers (such as YUI, Prototype, ...),
    will be available and allow to use specifics features.
 
-   For now, lets begin explains with the default driver available for all !
+   While I didn't know HTML_AJAX, I've took a day to learn it, and I've begun
+   to rewrite implementation of AJAX progress meter. Why this choice ? Because
+   it's more easy to use either a simple asynchronous transfer with client and
+   server, or have a combo with JS librairies such as Scriptaculous, YUI, ...
+   And this with only one PEAR package (Special thanks to Joshua Eichorn, who
+   made it possible).
 
+   So alpha 2 and next versions (alpha, beta, stable) will come with
+   HTML_AJAX 0.5.0 or better.
 
 2. Design details
 
-   NOTE: based on Progress Bar Using AJAX: Design Details, found at
-         https://bpcatalog.dev.java.net/nonav/ajax/progress-bar/design.html
+   Tracking the progress of a server-side operation by a client requires only
+   one operation.
+   A polling loop that will iterate one or more times until server task
+   is completed (100%).
+   This is done by JS function HTML_Progress2.statusCheck what will send
+   periodically (update by interval; default is 2 seconds) a request to server
+   either with :
+   - class/method :
+     HTML_Progress2.serverClassName, HTML_Progress2.serverMethodName
+   - or simple php function :
+     HTML_Progress2.serverCallback
+   as callback.
 
-   Tracking the progress of a server-side operation by a client requires at
-   least two operations which include:
-   a. negociate a task identifier with a first client to server request
-   b. a polling loop that will iterate one or more times until server task
-      is completed (100%).
+   When the user-task is over and server return progress bar reach 100%
+   (key: percentage, value: 100), client run function identified by
+   HTML_Progress2.onComplete (default behavior is to reload the same page
+   with query string "reload=true").
+
+   If you want to change this behavior, you have just to change value of public
+   HTML_Progress2.onComplete variable, and identify another function.
+   See scriptaculous1 and scriptaculous2 examples
+
+   Launching polling loop through asynchronous communication, is done by only
+   one client action: run JS function  HTML_Progress2.start with identifier
+   of progress bar (given by HTML_Progress2::getIdent), and with an optional
+   latency (in millisecond) between two request calls.
 
 2.1 Progress bar HTML design
 
-    With default driver "HTML/Progress2/Ajax/StdDOMxml.php", you can still
-    continue to use your old design built with versions 2.0.0 to 2.2.0
+    You can continue to use your old design built with versions 2.0.0 to 2.2.0,
+    details are unchanged.
 
-    Alpha 1 restriction :  cannot use the indeterminate mode
+    Alpha 2 support now the multiple-labels system introduced with version 2.0.0
 
+    See RequestStatus.class.php file, method getFullStatus() for a basic
+    implementation example.
 
-2.2 Negociate a task identifier
+    You have just to return a key-value pair for each label identified at design
+    level with a "labels" key array.
+    <?php
+    require_once 'HTML/Progress2.php';
 
-    Either you will use the same server script to build your progress bar,
-    and handle task (creation, manage), or you will use two differents scripts
-    to 1: build your progress bar, and then 2: to handle task.
+    $pb = new HTML_Progress2();
+    $pb->addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt2', 'caption ...');
+    // label text identifier of "caption ..." is here: txt2
+    ?>
+    So if we want to change 'txt2' label value, at middle of progress (50%),
+    we have to return an array with something like that:
 
-    Both options are available. Example ajax/default1.php used the same script,
-    while ajax/default2.php use two separate scripts.
+    <?php
+    // ...
+    $status = array('percentage' => 50,
+        'labels' => array('txt2' => 'half task done')
+        );
+    return $status;
+    // ...
+    ?>
 
-    Behind the magic:  method HTML_Progress2_Ajax_Common::setRequestUri()
+    * IMPORTANT: ***************************************************************
+    An (HTML_)AJAX server may be return label values that are unkown
+    at design level. No error/warning will be raise !
+    See RequestStatus.class.php file, getFullStatus() method, with this line
+    <?php
+    $this->status['labels']['txt4'] = 'Q4';
+    ?>
+    'txt4' label is undefined on all examples. But if in future we want to add
+    a new text label, we just have to add it in design progress bar level, like
+    this:
+    <?php
+    $pb->addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt4', 'Total tasks : ');
+    ?>
+    ****************************************************************************
 
-    Your are free to use any mechanism to produce a task identifier, but you
-    have to take care that the task id. must be unique.
+2.2 Handle polling loop
 
-    Action to negociate a new task id, is by default "registerTask", and mapped
-    Progress Bar ident.
-    Action name can be changed with first parameter value
-    Behind the magic:
-    method HTML_Progress2_Ajax_Common::setUrlArguments($param1, $param2)
+    You are free to handle your user task as you want, but to refresh the
+    progress meter status, you must at least return an array with the key
+    "percentage" that identify the new value (from 0 to 100) of progress.
 
-    Scriptname: default1.php
-    <code>
-     <?php
-     require_once 'HTML/Progress2.php';
+    You can also return some new label values. You don't have to return all
+    label defined if you want to change only one.
 
-     $pb = new HTML_Progress2();
-     $pb->setIdent('PB1');
-     //...
-     // produces an instance of default (StdDOMxml) Ajax driver
-     $ae = $pb->registerAjax();
-     ?>
-    </code>
-    First request sent by browser will be:  default1.php?registerTask=PB1
-
-    Your script should return an XML content with one tag with two attributes:
-    <?xml version="1.0" encoding="iso-8859-1"?>
-    <progress id="PB1" taskId="32768" />
-
-    Remember taskId should be unique; in default1.php example task id
-    generator is the php function mt_rand().
-
-
-2.3 Handle polling loop
-
-    Action to handle progress of server side user task is by default "taskId",
-    and mapped the same identifier returned by "registerTask" action.
-
-    In our default1.php example second and other requests sent by browser will
-    be:  default1.php?taskId=32768
-
-    processTask() function simulate the user task, and return new percentage
-    value (12 is example below).
-
-    Your script should return an XML content with
-    <?xml version="1.0" encoding="iso-8859-1"?>
-    <progress id="PB1" taskId="32768">
-     <percentage>12</percentage>
-    </progress>
+    See RequestStatus.class.php file, getFullStatus() method for sample of an
+    implementation.
 
 
-2.4 Refreshing progress bar
+2.3 Refreshing progress bar
 
     Highlight cells is still done by default progress javascript code
-    See: HTML_Progress::getScript(), or external file "progress2Handler.js"
+    See: HTML_Progress::getScript(), or external file "HTML_Progress2.js",
+    HTML_Progress2.refresh function.
 
-    Callbacks are done by Ajax driver javascript
-    Behind the magic:  method HTML_Progress2_Ajax_StdDOMxml::getScript()
+    Callback run by HTML_AJAX is HTML_Progress2.statusCheckCallback
 
-    When server script return <percentage>100</percentage>, the task shoul be
-    completed and Ajax-browser callbacks are stopped.
-
-    Function javascript complete() is run to finish operation.
+    Server script should return a result object with at least the 'percentage'
+    property defined. 'labels' is optional.
 
 
 3. Roadmap
@@ -124,9 +138,8 @@ in The Definitive Guide. This last one will not be update until 2.3.0 (stable).
    - DO NOT support progress bar with labels
 
    Alpha 2 :
-   - add drivers and examples for YAHOO UI, Prototype (and perharps more
-     frameworks).
-   - add support of multiple label system
+   - back to old owner implementation of AJAX, and used now the HTML_AJAX package
+   - add support of multiple labels system
 
    Stable :
    - The Definitive Guide will include these informations and your comments
@@ -137,4 +150,7 @@ in The Definitive Guide. This last one will not be update until 2.3.0 (stable).
    See also examples
    PEAR/docs/HTML_Progress2/examples/ajax/default1.php
    PEAR/docs/HTML_Progress2/examples/ajax/default2.php
+   PEAR/docs/HTML_Progress2/examples/ajax/default3.php
+   PEAR/docs/HTML_Progress2/examples/ajax/scriptaculous1.php
+   PEAR/docs/HTML_Progress2/examples/ajax/scriptaculous2.php
 
