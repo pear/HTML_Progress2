@@ -4,7 +4,7 @@ Changes since version 2.2.0 (2007-01-03)
   |
   |     * second alpha version of version 2.3.0 used HTML_AJAX package rather
   |       than owner solution to implement the AJAX progress bar support
-  |     * 4 new examples: 3 basic, and 1 with scriptaculous
+  |     * 5 new examples: 3 basic, and 2 with scriptaculous
   |     * getScript() function can use both PEAR/data dir or custom dir to
   |       retreive JavaScript handler source code (idea from HTML_AJAX package)
 
