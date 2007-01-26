@@ -1,5 +1,12 @@
 Changes since version 2.2.0 (2007-01-03)
 
+  | 2007-01-26 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * HTML_Progress2::toArray() 'script' key
+  |       return false or the name of resource that handle JS backend
+  |     * HTML_Progress2::toArray()   'ajax' key
+  |       return now settings on AJAX client/server
+
   | 2007-01-22 Laurent Laville <pear@laurent-laville.org>
   |
   |     * second alpha version of version 2.3.0 used HTML_AJAX package rather

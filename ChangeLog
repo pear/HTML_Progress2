@@ -1,3 +1,12 @@
+2007-01-xx Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: second alpha version (alpha) 2.3.0a3 released.
+
+      - HTML_Progress2::toArray() return now FALSE when we use default standard JS backend
+        rather than its content, and if defined by HTML_Progress2::setScript() function,
+        the url of alternate script.
+      - HTML_Progress2::toArray() return now settings on AJAX client/server
+
 2007-01-23 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: second alpha version (alpha) 2.3.0a2 released.
