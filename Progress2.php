@@ -2639,6 +2639,7 @@ class HTML_Progress2 extends HTML_Common
             'progress' => $this->_progress,
             'script' => (!is_null($this->script)) ? $this->script : false,
             'ajax' => $this->ajax,
+            'aflax' => $this->aflax,
             'minimum' => $this->minimum,
             'maximum' => $this->maximum,
             'increment' => $this->increment,
