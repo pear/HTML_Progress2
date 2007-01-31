@@ -501,6 +501,20 @@ class HTML_Progress2 extends HTML_Common
     var $ajax = array();
 
     /**
+     * Resources to handle AFLAX upload progress meter:
+     *
+     * @var        array
+     * @since      2.3.0a3
+     * @access     public
+     * @see        registerAFLAX(), setupAFLAX()
+     * @link       http://www.aflax.org
+     *             AFLAX: The AJAX library for the Adobe Flash platform
+     * @link       http://www.flash-db.com/Tutorials/upload/
+     *             Upload file with Flash 8
+     */
+    var $aflax = array();
+
+    /**
      * Error message callback.
      * This will be used to generate the error message
      * from the error code.
@@ -2689,7 +2703,8 @@ class HTML_Progress2 extends HTML_Common
                   .  PHP_EOL;
 
         } else {
-            $topshift = $leftshift = 0;
+            $topshift = $progressAttr['top'];
+            $leftshift = 0;
             $strHtml .= $tabs
                  .  '<div id="' . $this->ident . '" style="'
                  .  'position:' . $progressAttr['position'] . ';'
@@ -2702,7 +2717,7 @@ class HTML_Progress2 extends HTML_Common
         //  Start of progress meter border
         $strHtml .= $tabs
                  .  '<div id="pbrd' . $this->ident . '"'
-                 .  ' style="position:absolute;top:{_topshift_}px;left:{_leftshift_}px;"'
+                 .  ' style="position:absolute;top:' . $topshift . 'px;left:{_leftshift_}px;"'
                  .  ' class="' . sprintf($borderAttr['class'], $this->ident) . '">'
                  .  PHP_EOL;
 
@@ -2753,13 +2768,11 @@ class HTML_Progress2 extends HTML_Common
                  .  '</div>'
                  .  PHP_EOL;
 
-        $cyshift = 0;
-        $heightshift = $progressAttr['height'];
+        $heightshift = $topshift + $progressAttr['height'];
 
         //  Start of progress meter labels
         foreach ($this->label as $name => $data) {
 
-            $align = $data['align'];
             $width = $data['width'];
             $height = $data['height'];
 
@@ -2767,29 +2780,21 @@ class HTML_Progress2 extends HTML_Common
                 switch ($data['valign']) {
                     case 'top':
                         $style_pos = 'top:0;left:{_leftshift_}px;';
-                        if ($data['height'] > 0) {
-                            $topshift = $data['height'];
-                        } else {
-                            $topshift = $progressAttr['height'];
-                        }
-                        $height = $topshift;
-                        $heightshift += $height;
                         break;
                     case 'right':
-                        $style_pos = 'top:{_topshift_}px;'
+                        $style_pos = 'top:' . $topshift . 'px;'
                                    . 'left:{_rxshift_}px;';
                         break;
                     case 'bottom':
-                        $style_pos = 'top:{_cyshift_}px;'
+                        $style_pos = 'top:' . ($topshift + $progressAttr['height']) . 'px;'
                                    . 'left:{_leftshift_}px;';
-                        $cyshift = $progressAttr['height'];
                         if ($data['height'] == 0) {
                             $height = $progressAttr['height'];
                         }
                         $heightshift += $height;
                         break;
                     case 'left':
-                        $style_pos = 'top:{_topshift_}px;left:0;';
+                        $style_pos = 'top:' . $topshift . 'px;left:0;';
                         if ($data['width'] > 0) {
                             $leftshift = $data['width'];
                         } else {
@@ -2798,20 +2803,13 @@ class HTML_Progress2 extends HTML_Common
                         $leftshift += $data['left'];
                         break;
                     case 'center':
-                        $style_pos = 'top:{_cyshift_}px;'
+                        $style_pos = 'top:'. $topshift . 'px;'
                                    . 'left:{_leftshift_}px;';
-                        $cyshift = intval($progressAttr['height']) / 2;
                         $width = $progressAttr['width'];
-                        $align = 'center';
                         break;
                 }
-                if ($this->frame['show']) {
-                    $style_pos .= 'margin-top:5px;'
-                               .  'margin-left:5px;';
-                } else {
-                    $style_pos .= 'margin-top:' . $data['top'] . 'px;'
-                               .  'margin-left:' . $data['left'] . 'px;';
-                }
+                $style_pos .= 'margin-top:' . $data['top'] . 'px;'
+                           .  'margin-left:' . $data['left'] . 'px;';
                 if ($width > 0) {
                     $style_pos .= 'width:' . $width . 'px;';
                 }
@@ -2876,12 +2874,10 @@ class HTML_Progress2 extends HTML_Common
                  .  PHP_EOL;
 
         $placeHolders = array(
-            '{_leftshift_}', '{_topshift_}', '{_heightshift_}',
-            '{_cyshift_}', '{_rxshift_}'
+            '{_leftshift_}', '{_heightshift_}', '{_rxshift_}'
         );
         $htmlElement = array(
-            $leftshift, $topshift, $heightshift,
-            ($topshift + $cyshift), ($leftshift + $progressAttr['width'])
+            $leftshift, $heightshift, ($leftshift + $progressAttr['width'])
         );
         $strHtml = str_replace($placeHolders, $htmlElement, $strHtml);
 
@@ -3174,6 +3170,7 @@ class HTML_Progress2 extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
+     * @see        setupAJAX()
      */
     function registerAJAX($serverUrl, $stub = array(), $client = array('all'))
     {
@@ -3226,6 +3223,8 @@ class HTML_Progress2 extends HTML_Common
      * @return     string
      * @since      2.3.0a2
      * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
+     * @see        registerAJAX()
      */
     function setupAJAX($serializer = null)
     {
@@ -3273,6 +3272,202 @@ class HTML_Progress2 extends HTML_Common
         $ret .= $ajaxHelper->encloseInScript(PHP_EOL . '//<![CDATA[' . $setting .
             '//]]>' . PHP_EOL);
         return $ret;
+    }
+
+    /**
+     * Register an external AFLAX server to upload file with a progress meter.
+     *
+     * Pure PHP solution of upload file with a progress bar is only possible since PHP 5.2.0
+     * AFLAX stands for Asynchronous Flash and XML provides an upload file solution
+     * with integration of progress feedback.
+     *
+     * @param      string    $serverAflaxUrl     the url of the Adobe Flash "aflax.swf" resource
+     * @param      string    $serverUploadUri    the uri of the php script to handle uploaded files
+     * @param      array     $callback          (optional) list of event handler for browse file dialog box
+     * @param      array     $extension         (optional) list of file types for browse file dialog box
+     *
+     * @return     void
+     * @since      2.3.0a3
+     * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
+     *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
+     * @see        setupAFLAX()
+     */
+    function registerAFLAX($serverAflaxUrl, $serverUploadUri,
+                           $callback = array(), $extension = array())
+    {
+        if (!is_string($serverAflaxUrl)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$serverAflaxUrl',
+                      'was' => gettype($serverAflaxUrl),
+                      'expected' => 'string',
+                      'paramnum' => 1));
+
+        } elseif (!HTML_Progress2::fileExists($serverAflaxUrl)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                array('var' => '$serverAflaxUrl',
+                      'resource' => $serverAflaxUrl,
+                      'expected' => 'AFLAX server available',
+                      'paramnum' => 1));
+
+        } elseif (!is_string($serverUploadUri)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$serverUploadUri',
+                      'was' => gettype($serverUploadUri),
+                      'expected' => 'string',
+                      'paramnum' => 2));
+
+        } elseif (!HTML_Progress2::fileExists($serverUploadUri)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                array('var' => '$serverUploadUri',
+                      'resource' => $serverUploadUri,
+                      'expected' => 'Upload script handler available',
+                      'paramnum' => 2));
+
+        } elseif (!is_array($callback)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$callback',
+                      'was' => gettype($callback),
+                      'expected' => 'array',
+                      'paramnum' => 3));
+
+        } elseif (!is_array($extension)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$extension',
+                      'was' => gettype($extension),
+                      'expected' => 'array',
+                      'paramnum' => 4));
+        }
+
+        $this->aflax = array('swf' => $serverAflaxUrl, 'php' => $serverUploadUri,
+            'fext' => $extension, 'jscb' => $callback
+            );
+    }
+
+    /**
+     * Include all needed JS libraries
+     *
+     * @param      boolean   $raw           (optional) html output with script tags or just JS links
+     * @param      string    $path          (optional) directory, with no trailing slash,
+     *                                      where to get HTML_Progress2_AFLAX.js and ajax.js files
+     *
+     * @return     string
+     * @since      2.3.0a3
+     * @access     public
+     * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
+     *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
+     * @see        registerAFLAX()
+     */
+    function setupAFLAX($raw = true, $path = null)
+    {
+        if (!is_bool($raw)) {
+            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$raw',
+                      'was' => gettype($raw),
+                      'expected' => 'boolean',
+                      'paramnum' => 1));
+
+        } elseif (isset($path)) {
+            if (!is_string($path)) {
+                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
+                    array('var' => '$path',
+                          'was' => gettype($path),
+                          'expected' => 'string',
+                          'paramnum' => 2));
+
+            } elseif (!is_dir($path)) {
+                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                    array('var' => '$path',
+                          'resource' => $path,
+                          'expected' => 'directory',
+                          'paramnum' => 2));
+
+            } elseif (!file_exists($js = $path . DIRECTORY_SEPARATOR . 'HTML_Progress2_AFLAX.js')) {
+                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE, 'error',
+                    array('var' => '$path',
+                          'resource' => $js,
+                          'expected' => 'directory with valid JS AFLAX handler',
+                          'paramnum' => 2));
+            }
+        }
+
+        if (!$raw) {
+            $js  = '<script type="text/javascript" src="' . $path . '/aflax.js'
+                . '"></script>' . PHP_EOL;
+            $js .= '<script type="text/javascript" src="' . $path . '/HTML_Progress2_AFLAX.js'
+                . '"></script>' . PHP_EOL;
+
+        } else {
+            if (isset($path)) {
+                $js = $path;
+            } else {
+                $js = '@data_dir@' . DIRECTORY_SEPARATOR . '@package_name@';
+
+                if (strpos($js, '@'.'data_dir@') === 0) {
+                    $js = dirname(__FILE__);
+                }
+            }
+
+            $js = '<script type="text/javascript">'
+                . PHP_EOL . '//<![CDATA['
+                . PHP_EOL . file_get_contents($js . DIRECTORY_SEPARATOR . 'aflax.js')
+                . PHP_EOL . file_get_contents($js . DIRECTORY_SEPARATOR . 'HTML_Progress2_AFLAX.js')
+                . PHP_EOL . '//]]>'
+                . PHP_EOL . '</script>'
+                . PHP_EOL;
+        }
+
+        // auto-register default AFLAX values
+        if (count($this->aflax) == 0) {
+            $this->aflax = array('swf' => 'aflax.swf',
+                'php' => 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/upload.php'
+                );
+        }
+        // default file types you can select on browse file dialog box
+        if (count($this->aflax['fext']) == 0) {
+            $extension = array(
+                array("Archives (*.zip, *.tar, *.tar.gz)", "*.zip; *.tar; *.tar.gz"),
+                array("Images (*.jpg, *.jpeg, *.gif, *.png)", "*.jpg; *.jpeg; *.gif; *.png")
+                );
+            $this->aflax['fext'] = $extension;
+        }
+        // default event handler JS function on browse file dialog box
+        if (count($this->aflax['jscb']) == 0) {
+            $callback = array(
+                'HTML_Progress2_AFLAX_Select',
+                'HTML_Progress2_AFLAX_Progress',
+                'HTML_Progress2_AFLAX_Complete',
+                'HTML_Progress2_AFLAX_HTTPError',
+                'HTML_Progress2_AFLAX_SecurityError',
+                'HTML_Progress2_AFLAX_IOError'
+                );
+            $this->aflax['jscb'] = $callback;
+        }
+
+        $js .= '<script type="text/javascript">'
+            . PHP_EOL . '//<![CDATA['
+            . PHP_EOL . "HTML_Progress2.widgetId = '" . $this->ident . "';"
+            . PHP_EOL . 'var aflax = new AFLAX("' . $this->aflax['swf'] . '");'
+            . PHP_EOL . "var HTML_Progress2_AFLAX_uri = '" . $this->aflax['php'] . "';";
+
+        $max = count($this->aflax['fext']);
+        for ($i = 0; $i < $max; $i++) {
+            $js .= PHP_EOL . "HTML_Progress2_AFLAX_fileTypes[$i] = new Array('"
+                . $this->aflax['fext'][$i][0] . "', '"
+                . $this->aflax['fext'][$i][1] . "');";
+        }
+
+        $max = count($this->aflax['jscb']);
+        for ($i = 0; $i < $max; $i++) {
+            $js .= PHP_EOL . "HTML_Progress2_AFLAX_eventCallback[$i] = '" . $this->aflax['jscb'][$i] . "';";
+        }
+
+        $js .= ''
+            . PHP_EOL . '//]]>'
+            . PHP_EOL . '</script>'
+            . PHP_EOL;
+
+        return $js;
     }
 
     /**
