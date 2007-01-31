@@ -1,5 +1,12 @@
 Changes since version 2.2.0 (2007-01-03)
 
+  | 2007-01-31 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * Add file upload support for both PHP4 and PHP5 users
+  |       with AFLAX and Adobe Flash platform (require at least version 8)
+  |     * HTML_Progress2::toArray()   'aflax' key
+  |       return now settings on AFLAX client/server
+
   | 2007-01-26 Laurent Laville <pear@laurent-laville.org>
   |
   |     * HTML_Progress2::toArray() 'script' key

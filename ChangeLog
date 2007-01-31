@@ -1,4 +1,4 @@
-2007-01-xx Laurent Laville <pear@laurent-laville.org>
+2007-02-02 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: second alpha version (alpha) 2.3.0a3 released.
 
@@ -6,6 +6,10 @@
         rather than its content, and if defined by HTML_Progress2::setScript() function,
         the url of alternate script.
       - HTML_Progress2::toArray() return now settings on AJAX client/server
+      - improve multi-label system and allow more free combination
+      - add phpdoc tags for AJAX support introduced with 2.3.0a2
+      - add support of AFLAX and upload file
+
 
 2007-01-23 Laurent Laville <pear@laurent-laville.org>
 
