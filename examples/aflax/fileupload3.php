@@ -10,8 +10,8 @@
  * - JavaScript backend "ajax.js" and "HTML_Progress2_AFLAX.js" are also in current directory
  * - Files allowed to upload are :
  *   Images (*.jpg, *.jpeg, *.gif, *.png) and Movies (*.mpg, *.mov)
- * - The server script named "http_upload.php" to handle files uploaded reside in current directory
- *   and used PEAR::HTTP_Upload package facility
+ * - The server script named "upload.php" to handle files uploaded reside in current directory
+ *   and used standard PHP functions
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
@@ -76,8 +76,12 @@ $pb->setLabelAttributes('btn3', array(
     ));
 
 $pb->registerAFLAX('aflax.swf',
-    'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/http_upload.php'
-    );
+    'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/upload.php',
+    array(),
+    array(
+        array("Movies (*.mpg, *.mov)", "*.mpg; *.mov"),
+        array("Images (*.jpg, *.jpeg, *.gif, *.png)", "*.jpg; *.jpeg; *.gif; *.png")
+    ));
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
