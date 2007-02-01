@@ -3359,7 +3359,7 @@ class HTML_Progress2 extends HTML_Common
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
      * @see        registerAFLAX()
      */
-    function setupAFLAX($raw = true, $path = null)
+    function setupAFLAX($raw = false, $path = null)
     {
         if (!is_bool($raw)) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT, 'exception',
