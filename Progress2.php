@@ -3486,10 +3486,11 @@ class HTML_Progress2 extends HTML_Common
      */
     function fileExists($fileName)
     {
-        $fp = @fopen($fileName, 'r', true);
-        if (is_resource($fp)) {
-            fclose($fp);
-            return true;
+        foreach (explode(PATH_SEPARATOR, get_include_path()) as $path) {
+            if (file_exists($path . DIRECTORY_SEPARATOR . $fileName) &&
+                  is_readable($path . DIRECTORY_SEPARATOR . $fileName)) {
+                return true;
+            }
         }
         return false;
     }
