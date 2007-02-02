@@ -3340,7 +3340,9 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 4));
         }
 
-        $this->aflax = array('swf' => $serverAflaxUrl, 'php' => $serverUploadUri,
+        $this->aflax = array('swf' => $serverAflaxUrl,
+            'php' => 'http://' . $_SERVER['HTTP_HOST'] .
+                dirname($_SERVER['PHP_SELF']) . '/' . $serverUploadUri,
             'fext' => $extension, 'jscb' => $callback
             );
     }

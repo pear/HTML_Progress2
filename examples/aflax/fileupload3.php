@@ -75,8 +75,7 @@ $pb->setLabelAttributes('btn3', array(
     'action' => 'javascript:HTML_Progress2_AFLAX_cancelUpload();'
     ));
 
-$pb->registerAFLAX('aflax.swf',
-    'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/upload.php',
+$pb->registerAFLAX('aflax.swf', 'upload.php',
     array(),
     array(
         array("Movies (*.mpg, *.mov)", "*.mpg; *.mov"),

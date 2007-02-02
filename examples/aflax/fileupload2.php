@@ -74,9 +74,7 @@ $pb->setLabelAttributes('btn3', array(
     'action' => 'javascript:HTML_Progress2_AFLAX_cancelUpload();'
     ));
 
-$pb->registerAFLAX('aflax.swf',
-    'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/http_upload.php'
-    );
+$pb->registerAFLAX('aflax.swf', 'http_upload.php');
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
