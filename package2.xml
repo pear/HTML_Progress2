@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.5.0RC3" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.5.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_Progress2</name>
  <channel>pear.php.net</channel>
  <extends>HTML_Progress</extends>
@@ -27,10 +27,10 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2007-01-23</date>
- <time>11:20:30</time>
+ <date>2007-02-02</date>
+ <time>10:51:20</time>
  <version>
-  <release>2.3.0a2</release>
+  <release>2.3.0a3</release>
   <api>2.3.0</api>
  </version>
  <stability>
@@ -44,30 +44,15 @@ If you want some informations about AJAX progress bar, and how to do it, please
 read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
 See also examples in directory examples/ajax.
 
-Contribution to improve part of guide are welcome ! Do not hesitate to give your
-feedback.
-
 HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
 
 * news
-- all alpha releases of version 2.3.0 are related to request #3985: Ajax progress bar
-- add PEAR::HTML_AJAX 0.5.0 as an optional dependency
-- HTML_Progress2::getScript() method has a new (optional) parameter to handle
-  custom HTML_Progress2 package installation.
-  If you do not used PEAR installer, parameter #2 ($path) identify location of
-  directory where to find the HTML_Progress2.js file.
-  It will search first in PEAR/data dir, then in same directory where HTML_Progress2
-  is installed or in your user dir ($path).
-  DO NOT add a trailing directory separator at end of the path !
-
-  Credit: on a cool idea of HTML_AJAX !
+- add file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
+  See 3 basic examples (fileupload?.php) in examples/aflax directory
+- HTML_Progress2::toArray() return now settings on AFLAX client/server
 
 * changes
-- clean-up old implementation of AJAX progress bar; used now package HTML_AJAX
-- Javascript function calls used now OOP notation
-- Javascript code PB handler is now externalized into file HTML_Progress2.js
-- new method  setupAJAX()
-- new implementation of method registerAJAX() (renamed too)
+- improve multi-label system and allow more free combination
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -240,6 +225,17 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
     </dir> <!-- /docs/TDG -->
    </dir> <!-- /docs -->
    <dir name="examples">
+    <dir name="aflax">
+     <file name="aflax.js" role="doc" />
+     <file name="aflax.swf" role="doc" />
+     <file name="fileupload1.php" role="doc" />
+     <file name="fileupload2.php" role="doc" />
+     <file name="fileupload3.php" role="doc" />
+     <file name="HTML_Progress2.js" role="doc" />
+     <file name="HTML_Progress2_AFLAX.js" role="doc" />
+     <file name="http_upload.php" role="doc" />
+     <file name="upload.php" role="doc" />
+    </dir> <!-- /examples/aflax -->
     <dir name="ajax">
      <dir name="scriptaculous-js-1.7.0">
       <file name="effects.js" role="doc" />
@@ -438,11 +434,14 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
     <file name="styles.css" role="test" />
     <file name="TestUnit.php" role="test" />
    </dir> <!-- /tests -->
+   <file name="aflax.js" role="data" />
+   <file name="aflax.swf" role="data" />
    <file name="ChangeLog" role="doc" />
    <file name="default.css" role="data" />
    <file name="HOWTO_AJAX.txt" role="doc" />
    <file name="htmlpage2.css" role="data" />
    <file name="HTML_Progress2.js" role="data" />
+   <file name="HTML_Progress2_AFLAX.js" role="data" />
    <file name="itdynamic.css" role="data" />
    <file name="NEWS" role="doc" />
    <file name="Progress2.php" role="php">
@@ -547,6 +546,34 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
  <changelog>
   <release>
    <version>
+    <release>2.3.0a3</release>
+    <api>2.3.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-02-02</date>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+   <notes>IMPORTANT
+User Guide(s) (offline and online) will not be update until final stable release 2.3.0
+If you want some informations about AJAX progress bar, and how to do it, please
+read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
+See also examples in directory examples/ajax.
+
+HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
+
+* news
+- add file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
+  See 3 basic examples (fileupload?.php) in examples/aflax directory
+- HTML_Progress2::toArray() return now settings on AFLAX client/server
+
+* changes
+- improve multi-label system and allow more free combination
+   </notes>
+  </release>
+  <release>
+   <version>
     <release>2.3.0a2</release>
     <api>2.3.0</api>
    </version>
@@ -585,8 +612,7 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
 - Javascript function calls used now OOP notation
 - Javascript code PB handler is now externalized into file HTML_Progress2.js
 - new method  setupAJAX()
-- new implementation of method registerAJAX() (renamed too)
-   </notes>
+- new implementation of method registerAJAX() (renamed too)</notes>
   </release>
   <release>
    <version>
