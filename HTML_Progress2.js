@@ -6,7 +6,7 @@
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @copyright  2007 Laurent Laville
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: HTML_Progress2.js,v 1.1 2007-01-22 17:54:03 farell Exp $
+ * @version    CVS: $Id: HTML_Progress2.js,v 1.2 2007-02-12 15:31:57 farell Exp $
  * @since      File available since Release 2.3.0a2
  */
 
@@ -23,6 +23,7 @@ var HTML_Progress2 = {
     serverClassName: false,
     serverMethodName: false,
     serverCallback: false,
+    requestArgs: false,
     onComplete: 'HTML_Progress2.redirectUrl',
     _inProgress: false,
     _statusInterval: null,
@@ -46,7 +47,13 @@ var HTML_Progress2 = {
         if (HTML_Progress2.serverCallback) {
             HTML_AJAX.callPhpCallback(HTML_Progress2.serverCallback, HTML_Progress2.statusCheckCallback);
         } else {
-            HTML_AJAX.call(HTML_Progress2.serverClassName, HTML_Progress2.serverMethodName, HTML_Progress2.statusCheckCallback);
+            if (HTML_Progress2.requestArgs != false) {
+                var args = new Array();
+                var url = HTML_AJAX.defaultServerUrl + '?' + HTML_Progress2.requestArgs;
+                HTML_AJAX.fullcall(url, HTML_AJAX.defaultEncoding, HTML_Progress2.serverClassName, HTML_Progress2.serverMethodName, HTML_Progress2.statusCheckCallback, args);
+            } else {
+                HTML_AJAX.call(HTML_Progress2.serverClassName, HTML_Progress2.serverMethodName, HTML_Progress2.statusCheckCallback);
+            }
         }
     },
 
@@ -58,7 +65,9 @@ var HTML_Progress2 = {
                    / (HTML_Progress2.maximum - HTML_Progress2.minimum);
         cell = Math.floor(cell);
         HTML_Progress2.refresh(HTML_Progress2.widgetId, cell, 0);
-        HTML_Progress2.setLabelText(HTML_Progress2.widgetId, HTML_Progress2.widgetPercentLabel, result.percentage + '%');
+        if (document.getElementById('plbl' + HTML_Progress2.widgetPercentLabel + HTML_Progress2.widgetId) != null) {
+            HTML_Progress2.setLabelText(HTML_Progress2.widgetId, HTML_Progress2.widgetPercentLabel, result.percentage + '%');
+        }
 
         for (var k in result.labels) {
             if (document.getElementById('plbl' + k + HTML_Progress2.widgetId) != null) {
