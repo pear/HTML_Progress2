@@ -27,32 +27,27 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2007-02-02</date>
- <time>10:51:20</time>
+ <date>2007-02-12</date>
+ <time>17:07:51</time>
  <version>
-  <release>2.3.0a3</release>
+  <release>2.3.0RC1</release>
   <api>2.3.0</api>
  </version>
  <stability>
-  <release>alpha</release>
-  <api>alpha</api>
+  <release>beta</release>
+  <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
- <notes>IMPORTANT
-User Guide(s) (offline and online) will not be update until final stable release 2.3.0
-If you want some informations about AJAX progress bar, and how to do it, please
-read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
-See also examples in directory examples/ajax.
+ <notes>* IMPORTANT
+Final stable release 2.3.0 is plan for February 23rd.
+Please test this version as much as possible on all platform and report to me (by mail,
+or PEAR bug tracker) all problem/bug found.
 
-HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
-
-* news
-- add file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
-  See 3 basic examples (fileupload?.php) in examples/aflax directory
-- HTML_Progress2::toArray() return now settings on AFLAX client/server
-
-* changes
-- improve multi-label system and allow more free combination
+* Features list added since 2.3.0 alpha 2 version:
+- simple AJAX progress bar ; see Request #3985
+- file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
+- file upload support with HTML_AJAX and multiple backend
+(PHP5 and APC,  PHP5 and uploadprogress extension, PHP 4 patch)
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -242,6 +237,16 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
       <file name="prototype.js" role="doc" />
       <file name="scriptaculous.js" role="doc" />
      </dir> <!-- /examples/ajax/scriptaculous-js-1.7.0 -->
+     <dir name="upload">
+      <file name="apc5_upload1.php" role="doc" />
+      <file name="apc5_upload2.php" role="doc" />
+      <file name="auto_server.php" role="doc" />
+      <file name="degrade.jpg" role="doc" />
+      <file name="HTML_Progress2.js" role="doc" />
+      <file name="http_upload.php" role="doc" />
+      <file name="MyUploadProgressMeterStatus.class.php" role="doc" />
+      <file name="pave-blanc-24.png" role="doc" />
+     </dir> <!-- /examples/ajax/upload -->
      <file name="auto_server.php" role="doc" />
      <file name="bluesand2.css" role="doc" />
      <file name="default1.php" role="doc" />
@@ -546,6 +551,29 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
  <changelog>
   <release>
    <version>
+    <release>2.3.0RC1</release>
+    <api>2.3.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2007-02-12</date>
+   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+   <notes>* IMPORTANT
+Final stable release 2.3.0 is plan for February 23rd.
+Please test this version as much as possible on all platform and report to me (by mail,
+or PEAR bug tracker) all problem/bug found.
+
+* Features list added since 2.3.0 alpha 2 version:
+- simple AJAX progress bar ; see Request #3985
+- file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
+- file upload support with HTML_AJAX and multiple backend
+(PHP5 and APC,  PHP5 and uploadprogress extension, PHP 4 patch)
+   </notes>
+  </release>
+  <release>
+   <version>
     <release>2.3.0a3</release>
     <api>2.3.0</api>
    </version>
@@ -569,8 +597,7 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
 - HTML_Progress2::toArray() return now settings on AFLAX client/server
 
 * changes
-- improve multi-label system and allow more free combination
-   </notes>
+- improve multi-label system and allow more free combination</notes>
   </release>
   <release>
    <version>
