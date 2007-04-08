@@ -46,6 +46,7 @@ require_once 'Event/Dispatcher.php';
 if (version_compare(phpversion(), '5.0.0', '<')) {
     include_once 'PHP/Compat.php';
     PHP_Compat::loadFunction('ob_get_clean');
+    PHP_Compat::loadFunction('file_put_contents');
     PHP_Compat::loadConstant('PHP_EOL');
 }
 
@@ -2733,11 +2734,12 @@ class HTML_Progress2 extends HTML_Common
                  .  'height:{_heightshift_}px;">'
                  .  PHP_EOL;
         }
+        $topshift = 0;
 
         //  Start of progress meter border
         $strHtml .= $tabs
                  .  '<div id="pbrd' . $this->ident . '"'
-                 .  ' style="position:absolute;top:' . $topshift . 'px;left:{_leftshift_}px;"'
+                 .  ' style="position:absolute;top:{_topshift_}px;left:{_leftshift_}px;"'
                  .  ' class="' . sprintf($borderAttr['class'], $this->ident) . '">'
                  .  PHP_EOL;
 
@@ -2789,6 +2791,7 @@ class HTML_Progress2 extends HTML_Common
                  .  PHP_EOL;
 
         $heightshift = $topshift + $progressAttr['height'];
+        $bottomdef = $topdef = false;
 
         //  Start of progress meter labels
         foreach ($this->label as $name => $data) {
@@ -2800,21 +2803,32 @@ class HTML_Progress2 extends HTML_Common
                 switch ($data['valign']) {
                     case 'top':
                         $style_pos = 'top:0;left:{_leftshift_}px;';
+                        if ($topdef == false){
+                            if ($height == 0) {
+                                $height = $progressAttr['height'];
+                            }
+                            $topshift += $height;
+                            $heightshift += $height;
+                            $topdef = true;
+                        }
                         break;
                     case 'right':
-                        $style_pos = 'top:' . $topshift . 'px;'
+                        $style_pos = 'top:{_topshift_}px;'
                                    . 'left:{_rxshift_}px;';
                         break;
                     case 'bottom':
-                        $style_pos = 'top:' . ($topshift + $progressAttr['height']) . 'px;'
+                        $style_pos = 'top:{_bottomshift_}px;'
                                    . 'left:{_leftshift_}px;';
-                        if ($data['height'] == 0) {
-                            $height = $progressAttr['height'];
+                        if ($bottomdef == false){
+                            if ($height == 0) {
+                                $height = $progressAttr['height'];
+                            }
+                            $heightshift += $height;
+                            $bottomdef = true;
                         }
-                        $heightshift += $height;
                         break;
                     case 'left':
-                        $style_pos = 'top:' . $topshift . 'px;left:0;';
+                        $style_pos = 'top:{_topshift_}px;left:0;';
                         if ($data['width'] > 0) {
                             $leftshift = $data['width'];
                         } else {
@@ -2823,7 +2837,7 @@ class HTML_Progress2 extends HTML_Common
                         $leftshift += $data['left'];
                         break;
                     case 'center':
-                        $style_pos = 'top:'. $topshift . 'px;'
+                        $style_pos = 'top:{_topshift_}px;'
                                    . 'left:{_leftshift_}px;';
                         $width = $progressAttr['width'];
                         break;
@@ -2894,10 +2908,12 @@ class HTML_Progress2 extends HTML_Common
                  .  PHP_EOL;
 
         $placeHolders = array(
-            '{_leftshift_}', '{_heightshift_}', '{_rxshift_}'
+            '{_topshift_}', '{_leftshift_}', '{_heightshift_}', '{_rxshift_}',
+            '{_bottomshift_}'
         );
         $htmlElement = array(
-            $leftshift, $heightshift, ($leftshift + $progressAttr['width'])
+            $topshift, $leftshift, $heightshift, ($leftshift + $progressAttr['width']),
+            ($topshift + $progressAttr['height'])
         );
         $strHtml = str_replace($placeHolders, $htmlElement, $strHtml);
 
