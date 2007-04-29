@@ -1,3 +1,12 @@
+2007-02-12 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: first release candidate (beta) 2.3.0RC1 released.
+
+      - simple AJAX progress bar ; see Request #3985
+      - file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
+      - file upload support with HTML_AJAX and multiple backend
+        (PHP5 and APC, PHP5 and uploadprogress extension, PHP 4 patch)
+
 2007-02-02 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: second alpha version (alpha) 2.3.0a3 released.

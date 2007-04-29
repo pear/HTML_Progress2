@@ -1,5 +1,10 @@
 Changes since version 2.2.0 (2007-01-03)
 
+  | 2007-02-12 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * file upload support with HTML_AJAX and multiple backend
+  |      (PHP5 and APC, PHP5 and uploadprogress extension, PHP 4 patch)
+
   | 2007-01-31 Laurent Laville <pear@laurent-laville.org>
   |
   |     * Add file upload support for both PHP4 and PHP5 users
