@@ -67,29 +67,29 @@
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="id4793838" id="id4793838"></a>Reuse CSS
+          <a name="id4794306" id="id4794306"></a>Reuse CSS
         </h2>
       </div>
       <div class="toc">
         <dl>
           <dt>
-            <span class="sect2"><a href="ch12s03.html#id4793955">Step 1 :
+            <span class="sect2"><a href="ch12s03.html#id4794422">Step 1 :
             Extract Javascript code</a></span>
           </dt>
           <dt>
-            <span class="sect2"><a href="ch12s03.html#id4794965">Step 2 :
+            <span class="sect2"><a href="ch12s03.html#id4795433">Step 2 :
             Extract CSS code</a></span>
           </dt>
           <dt>
-            <span class="sect2"><a href="ch12s03.html#id4795170">Step 3 :
+            <span class="sect2"><a href="ch12s03.html#id4795637">Step 3 :
             Remove HTML_Progress2 css properties</a></span>
           </dt>
           <dt>
-            <span class="sect2"><a href="ch12s03.html#id4794837">Step 4 :
+            <span class="sect2"><a href="ch12s03.html#id4795304">Step 4 :
             Adjust CSS class selector</a></span>
           </dt>
           <dt>
-            <span class="sect2"><a href="ch12s03.html#id4795611">Step 5 : play
+            <span class="sect2"><a href="ch12s03.html#id4796078">Step 5 : play
             with new pattern</a></span>
           </dt>
         </dl>
@@ -109,7 +109,7 @@
       <div class="sect2" lang="en" xml:lang="en">
         <div class="titlepage">
           <h3 class="title">
-            <a name="id4793955" id="id4793955"></a>Step 1 : Extract Javascript
+            <a name="id4794422" id="id4794422"></a>Step 1 : Extract Javascript
             code
           </h3>
         </div>
@@ -122,7 +122,7 @@
           Here are the original source code (without header).
         </p>
         <div class="example">
-          <a name="id4793816" id="id4793816"></a>
+          <a name="id4794284" id="id4794284"></a>
           <p class="title c2">
             Example&nbsp;12.1.&nbsp;script: <code class=
             "filename">examples/horizontal/ancestor.php</code>
@@ -405,7 +405,7 @@
                 What content is :
               </p>
               <div class="example">
-                <a name="id4794942" id="id4794942"></a>
+                <a name="id4795410" id="id4795410"></a>
                 <p class="title c2">
                   Example&nbsp;12.2.&nbsp;script: <code class=
                   "filename">progress2BasicHandler.js</code>
@@ -841,7 +841,7 @@
       <div class="sect2" lang="en" xml:lang="en">
         <div class="titlepage">
           <h3 class="title">
-            <a name="id4794965" id="id4794965"></a>Step 2 : Extract CSS code
+            <a name="id4795433" id="id4795433"></a>Step 2 : Extract CSS code
           </h3>
         </div>
         <p>
@@ -1016,7 +1016,7 @@
                 What content is :
               </p>
               <div class="example">
-                <a name="id4795103" id="id4795103"></a>
+                <a name="id4795570" id="id4795570"></a>
                 <p class="title c2">
                   Example&nbsp;12.3.&nbsp;<code class=
                   "filename">ancestor.css</code>
@@ -1025,18 +1025,20 @@
                   <ol>
                     <li class="li1">
                       <div class="de1">
-                        .cellPB1I, <span class="re1">.cellPB1A</span>
-                        <span class="br0">{</span>
+                        <span class="re1">.cellPB1I</span>, <span class=
+                        "re1">.cellPB1A</span> <span class="br0">{</span>
                       </div>
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">width</span>: 15px;
+                        &nbsp; <span class="kw1">width</span>: <span class=
+                        "re3">15px</span>;
                       </div>
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">height</span>: 20px;
+                        &nbsp; <span class="kw1">height</span>: <span class=
+                        "re3">20px</span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1047,7 +1049,8 @@
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">font-size</span>: 8px;
+                        &nbsp; <span class="kw1">font-size</span>: <span class=
+                        "re3">8px</span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1074,18 +1077,20 @@
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">width</span>: 172px;
+                        &nbsp; <span class="kw1">width</span>: <span class=
+                        "re3">172px</span>;
                       </div>
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">height</span>: 24px;
+                        &nbsp; <span class="kw1">height</span>: <span class=
+                        "re3">24px</span>;
                       </div>
                     </li>
                     <li class="li1">
                       <div class="de1">
                         &nbsp; <span class="kw1">background-color</span>:
-                        #FFFFFF;
+                        <span class="re0">#FFFFFF</span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1106,12 +1111,14 @@
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">width</span>: 60px;
+                        &nbsp; <span class="kw1">width</span>: <span class=
+                        "re3">60px</span>;
                       </div>
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">height</span>: 24px;
+                        &nbsp; <span class="kw1">height</span>: <span class=
+                        "re3">24px</span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1123,12 +1130,13 @@
                     <li class="li1">
                       <div class="de1">
                         &nbsp; <span class="kw1">background-color</span>:
-                        #FFFFFF;
+                        <span class="re0">#FFFFFF</span>;
                       </div>
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">font-size</span>: 14px;
+                        &nbsp; <span class="kw1">font-size</span>: <span class=
+                        "re3">14px</span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1145,8 +1153,8 @@
                     </li>
                     <li class="li1">
                       <div class="de1">
-                        &nbsp; <span class="kw1">color</span>: #<span class=
-                        "nu0">000000</span>;
+                        &nbsp; <span class="kw1">color</span>: <span class=
+                        "re0">#<span class="nu0">000000</span></span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1168,7 +1176,7 @@
                     <li class="li1">
                       <div class="de1">
                         &nbsp; <span class="kw1">background-color</span>:
-                        #CCCCCC;
+                        <span class="re0">#CCCCCC</span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1190,7 +1198,8 @@
                     <li class="li1">
                       <div class="de1">
                         &nbsp; <span class="kw1">background-color</span>:
-                        #<span class="nu0">006600</span>;
+                        <span class="re0">#<span class=
+                        "nu0">006600</span></span>;
                       </div>
                     </li>
                     <li class="li1">
@@ -1290,7 +1299,7 @@
       <div class="sect2" lang="en" xml:lang="en">
         <div class="titlepage">
           <h3 class="title">
-            <a name="id4795170" id="id4795170"></a>Step 3 : Remove
+            <a name="id4795637" id="id4795637"></a>Step 3 : Remove
             HTML_Progress2 css properties
           </h3>
         </div>
@@ -1611,7 +1620,7 @@
       <div class="sect2" lang="en" xml:lang="en">
         <div class="titlepage">
           <h3 class="title">
-            <a name="id4794837" id="id4794837"></a>Step 4 : Adjust CSS class
+            <a name="id4795304" id="id4795304"></a>Step 4 : Adjust CSS class
             selector
           </h3>
         </div>
@@ -1948,7 +1957,7 @@
       <div class="sect2" lang="en" xml:lang="en">
         <div class="titlepage">
           <h3 class="title">
-            <a name="id4795611" id="id4795611"></a>Step 5 : play with new
+            <a name="id4796078" id="id4796078"></a>Step 5 : play with new
             pattern
           </h3>
         </div>
@@ -1958,7 +1967,7 @@
           step.
         </p>
         <div class="example">
-          <a name="id4795627" id="id4795627"></a>
+          <a name="id4796094" id="id4796094"></a>
           <p class="title c2">
             Example&nbsp;12.4.&nbsp;New content of <code class=
             "filename">ancestor.css</code>
@@ -1967,18 +1976,21 @@
             <ol>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB1 .cellI, #pbarPB1 <span class="re1">.cellA</span>
-                  <span class="br0">{</span>
+                  <span class="re0">#pbarPB1</span> <span class=
+                  "re1">.cellI</span>, <span class="re0">#pbarPB1</span>
+                  <span class="re1">.cellA</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 15px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">15px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">height</span>: 20px;
+                  &nbsp; <span class="kw1">height</span>: <span class=
+                  "re3">20px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -1989,7 +2001,8 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">font-size</span>: 8px;
+                  &nbsp; <span class="kw1">font-size</span>: <span class=
+                  "re3">8px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2010,23 +2023,26 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbrdPB1<span class="re1">.progressBorder</span> <span class=
-                  "br0">{</span>
+                  <span class="re0">#pbrdPB1</span><span class=
+                  "re1">.progressBorder</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 172px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">172px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">height</span>: 24px;
+                  &nbsp; <span class="kw1">height</span>: <span class=
+                  "re3">24px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #FFFFFF;
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#FFFFFF</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2041,18 +2057,20 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #plblpct1PB1<span class="re1">.progressPercentLabel</span>
-                  <span class="br0">{</span>
+                  <span class="re0">#plblpct1PB1</span><span class=
+                  "re1">.progressPercentLabel</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 60px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">60px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">height</span>: 24px;
+                  &nbsp; <span class="kw1">height</span>: <span class=
+                  "re3">24px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2063,12 +2081,14 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #FFFFFF;
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#FFFFFF</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">font-size</span>: 14px;
+                  &nbsp; <span class="kw1">font-size</span>: <span class=
+                  "re3">14px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2085,8 +2105,8 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">color</span>: #<span class=
-                  "nu0">000000</span>;
+                  &nbsp; <span class="kw1">color</span>: <span class=
+                  "re0">#<span class="nu0">000000</span></span>;
                 </div>
               </li>
               <li class="li1">
@@ -2101,35 +2121,36 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB1 <span class="re1">.cellI</span> <span class=
-                  "br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #CCCCCC;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  #pbarPB1 <span class="re1">.cellA</span> <span class=
-                  "br0">{</span>
+                  <span class="re0">#pbarPB1</span> <span class=
+                  "re1">.cellI</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
                   &nbsp; <span class="kw1">background-color</span>:
-                  #<span class="nu0">006600</span>;
+                  <span class="re0">#CCCCCC</span>;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re0">#pbarPB1</span> <span class=
+                  "re1">.cellA</span> <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#<span class="nu0">006600</span></span>;
                 </div>
               </li>
               <li class="li1">
@@ -2269,7 +2290,7 @@
           </table>
         </div>
         <div class="example">
-          <a name="id4795814" id="id4795814"></a>
+          <a name="id4796282" id="id4796282"></a>
           <p class="title c2">
             Example&nbsp;12.5.&nbsp;<code class="filename">ancestor.css</code>
             with two skins
@@ -2278,18 +2299,24 @@
             <ol>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB1 .cellI, #pbarPB1 .cellA, #pbarPB2 .cellI, #pbarPB2
-                  <span class="re1">.cellA</span> <span class="br0">{</span>
+                  <span class="re0">#pbarPB1</span> <span class=
+                  "re1">.cellI</span>, <span class="re0">#pbarPB1</span>
+                  <span class="re1">.cellA</span>, <span class=
+                  "re0">#pbarPB2</span> <span class="re1">.cellI</span>,
+                  <span class="re0">#pbarPB2</span> <span class=
+                  "re1">.cellA</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 15px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">15px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">height</span>: 20px;
+                  &nbsp; <span class="kw1">height</span>: <span class=
+                  "re3">20px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2300,7 +2327,8 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">font-size</span>: 8px;
+                  &nbsp; <span class="kw1">font-size</span>: <span class=
+                  "re3">8px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2316,13 +2344,15 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB2 .cellI, #pbarPB2 <span class="re1">.cellA</span>
-                  <span class="br0">{</span>
+                  <span class="re0">#pbarPB2</span> <span class=
+                  "re1">.cellI</span>, <span class="re0">#pbarPB2</span>
+                  <span class="re1">.cellA</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 10px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">10px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2337,23 +2367,28 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbrdPB1.progressBorder, #pbrdPB2<span class=
-                  "re1">.progressBorder</span> <span class="br0">{</span>
+                  <span class="re0">#pbrdPB1</span><span class=
+                  "re1">.progressBorder</span>, <span class=
+                  "re0">#pbrdPB2</span><span class="re1">.progressBorder</span>
+                  <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 172px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">172px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">height</span>: 24px;
+                  &nbsp; <span class="kw1">height</span>: <span class=
+                  "re3">24px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #FFFFFF;
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#FFFFFF</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2363,18 +2398,20 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbrdPB2<span class="re1">.progressBorder</span> <span class=
-                  "br0">{</span>
+                  <span class="re0">#pbrdPB2</span><span class=
+                  "re1">.progressBorder</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 122px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">122px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">border-width</span>: 1px;
+                  &nbsp; <span class="kw1">border-width</span>: <span class=
+                  "re3">1px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2401,18 +2438,20 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #plblpct1PB1<span class="re1">.progressPercentLabel</span>
-                  <span class="br0">{</span>
+                  <span class="re0">#plblpct1PB1</span><span class=
+                  "re1">.progressPercentLabel</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 60px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">60px</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">height</span>: 24px;
+                  &nbsp; <span class="kw1">height</span>: <span class=
+                  "re3">24px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2423,12 +2462,14 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #FFFFFF;
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#FFFFFF</span>;
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">font-size</span>: 14px;
+                  &nbsp; <span class="kw1">font-size</span>: <span class=
+                  "re3">14px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2445,8 +2486,8 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">color</span>: #<span class=
-                  "nu0">000000</span>;
+                  &nbsp; <span class="kw1">color</span>: <span class=
+                  "re0">#<span class="nu0">000000</span></span>;
                 </div>
               </li>
               <li class="li1">
@@ -2456,13 +2497,14 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #plblpct1PB2<span class="re1">.progressPercentLabel</span>
-                  <span class="br0">{</span>
+                  <span class="re0">#plblpct1PB2</span><span class=
+                  "re1">.progressPercentLabel</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">width</span>: 60px;
+                  &nbsp; <span class="kw1">width</span>: <span class=
+                  "re3">60px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2479,7 +2521,8 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">font-size</span>: 14px;
+                  &nbsp; <span class="kw1">font-size</span>: <span class=
+                  "re3">14px</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2512,13 +2555,14 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB1 <span class="re1">.cellI</span> <span class=
-                  "br0">{</span>
+                  <span class="re0">#pbarPB1</span> <span class=
+                  "re1">.cellI</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #CCCCCC;
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#CCCCCC</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2528,14 +2572,14 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB1 <span class="re1">.cellA</span> <span class=
-                  "br0">{</span>
+                  <span class="re0">#pbarPB1</span> <span class=
+                  "re1">.cellA</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
                   &nbsp; <span class="kw1">background-color</span>:
-                  #<span class="nu0">006600</span>;
+                  <span class="re0">#<span class="nu0">006600</span></span>;
                 </div>
               </li>
               <li class="li1">
@@ -2550,13 +2594,14 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB2 <span class="re1">.cellI</span> <span class=
-                  "br0">{</span>
+                  <span class="re0">#pbarPB2</span> <span class=
+                  "re1">.cellI</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #EEEECC;
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#EEEECC</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2566,13 +2611,14 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  #pbarPB2 <span class="re1">.cellA</span> <span class=
-                  "br0">{</span>
+                  <span class="re0">#pbarPB2</span> <span class=
+                  "re1">.cellA</span> <span class="br0">{</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; <span class="kw1">background-color</span>: #3874B4;
+                  &nbsp; <span class="kw1">background-color</span>:
+                  <span class="re0">#3874B4</span>;
                 </div>
               </li>
               <li class="li1">
@@ -2591,7 +2637,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.2.0 : January 2, 2007
+          v 2.3.0 : Juin 13, 2007
         </td>
       </tr>
     </table>
