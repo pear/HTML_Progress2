@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.5.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.6.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_Progress2</name>
  <channel>pear.php.net</channel>
  <extends>HTML_Progress</extends>
@@ -27,27 +27,23 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2007-02-12</date>
- <time>17:17:11</time>
+ <date>2007-06-12</date>
+ <time>12:28:14</time>
  <version>
-  <release>2.3.0RC1</release>
+  <release>2.3.0</release>
   <api>2.3.0</api>
  </version>
  <stability>
-  <release>beta</release>
-  <api>beta</api>
+  <release>stable</release>
+  <api>stable</api>
  </stability>
- <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
- <notes>* IMPORTANT
-Final stable release 2.3.0 is plan for February 23rd.
-Please test this version as much as possible on all platform and report to me (by mail,
-or PEAR bug tracker) all problem/bug found.
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+ <notes>* bugs
+- Fixed Doc Bug #10879 : Problem with HTML_Progress2::setCellCount()
 
-* Features list added since 2.3.0 alpha 2 version:
-- simple AJAX progress bar ; see Request #3985
-- file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
-- file upload support with HTML_AJAX and multiple backend
-(PHP5 and APC,  PHP5 and uploadprogress extension, PHP 4 patch)
+* changes
+- No code changes since previous release (RC1), but change license
+from PHP 3.01 to new BSD (give more freedom)
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -61,23 +57,6 @@ or PEAR bug tracker) all problem/bug found.
        <file name="tip.png" role="doc" />
        <file name="warning.png" role="doc" />
       </dir> <!-- /docs/TDG/img/admons -->
-      <dir name="callouts">
-       <file name="1.gif" role="doc" />
-       <file name="2.gif" role="doc" />
-       <file name="3.gif" role="doc" />
-       <file name="4.gif" role="doc" />
-       <file name="5.gif" role="doc" />
-       <file name="6.gif" role="doc" />
-       <file name="7.gif" role="doc" />
-       <file name="8.gif" role="doc" />
-       <file name="9.gif" role="doc" />
-       <file name="10.gif" role="doc" />
-       <file name="11.gif" role="doc" />
-       <file name="12.gif" role="doc" />
-       <file name="13.gif" role="doc" />
-       <file name="14.gif" role="doc" />
-       <file name="15.gif" role="doc" />
-      </dir> <!-- /docs/TDG/img/callouts -->
       <file name="basic1.png" role="doc" />
       <file name="border1.png" role="doc" />
       <file name="bullit.png" role="doc" />
@@ -106,6 +85,7 @@ or PEAR bug tracker) all problem/bug found.
      <file name="ch02.html" role="doc" />
      <file name="ch02s02.html" role="doc" />
      <file name="ch02s03.html" role="doc" />
+     <file name="ch02s04.html" role="doc" />
      <file name="ch03.html" role="doc" />
      <file name="ch04.html" role="doc" />
      <file name="ch05.html" role="doc" />
@@ -554,6 +534,25 @@ or PEAR bug tracker) all problem/bug found.
  <changelog>
   <release>
    <version>
+    <release>2.3.0</release>
+    <api>2.3.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-06-12</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>* bugs
+- Fixed Doc Bug #10879 : Problem with HTML_Progress2::setCellCount()
+
+* changes
+- No code changes since previous release (RC1), but change license
+from PHP 3.01 to new BSD (give more freedom)
+   </notes>
+  </release>
+  <release>
+   <version>
     <release>2.3.0RC1</release>
     <api>2.3.0</api>
    </version>
@@ -572,8 +571,7 @@ or PEAR bug tracker) all problem/bug found.
 - simple AJAX progress bar ; see Request #3985
 - file upload support for PHP4/5 with AFLAX (the AJAX for Adobe Flash Platform 8 or greater)
 - file upload support with HTML_AJAX and multiple backend
-(PHP5 and APC,  PHP5 and uploadprogress extension, PHP 4 patch)
-   </notes>
+(PHP5 and APC,  PHP5 and uploadprogress extension, PHP 4 patch)</notes>
   </release>
   <release>
    <version>
@@ -654,41 +652,6 @@ HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
     <api>alpha</api>
    </stability>
    <date>2007-01-17</date>
-   <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
-   <notes>IMPORTANT
-User Guide(s) (offline and online) will not be update until final stable release 2.3.0
-If you want some informations about Ajax progress bar, and how to do it, please
-read the mini guide HOWTO_AJAX.txt (available only for alpha releases of version 2.3.0).
-See also the two examples in directory examples/ajax.
-Contribution to improve part of guide and perharps drivers are welcome !
-
-HTML_Progress2 2.3.0 requires now minimum PHP version 4.3.0 to work.
-
-* news
-- request #3985: Ajax progress bar
-
-* changes
-- drop support of cell id mask identifier (begin private)
-- a progress bar widget (div) is now identified only by {see HTML_Progress2::getIdent()}
-  rather than &quot;tfrm&quot; + {HTML_Progress2::getIdent()}
-- Default progress bar identifier (without prefix &quot;tfrm&quot;) cannot be numeric (xhtml compliant)
-- Improve Javascript function setProgress() which does not need anymore the third parameter.
-- Improve Javascript function call to setElementStyle() and removed unecessary arguments
-- fix typo error (millisecond term) in phpdoc tags
-- add two new error code for ajax drivers: HTML_PROGRESS2_ERROR_INVALID_RESOURCE, HTML_PROGRESS2_ERROR_ABSTRACT
-- add new methods :  registerAjax(), and fileExists()
-- add new classes: HTML_Progress2_Ajax_Common, HTML_Progress2_Ajax_StdDOMxml</notes>
-  </release>
-  <release>
-   <version>
-    <release>2.3.0</release>
-    <api>2.3.0</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2007-01-16</date>
    <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
    <notes>IMPORTANT
 User Guide(s) (offline and online) will not be update until final stable release 2.3.0
