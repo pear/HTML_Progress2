@@ -243,16 +243,17 @@ class HTML_Progress2_Lite
      *
      * <code>
      * $frame = array(
-     *    'show' => false,      # frame show (true/false)
-     *    'left' => 200,        # frame position from left
-     *    'top' => 100,         # frame position from top
-     *    'width' => 320,       # frame width
-     *    'height' => 90,       # frame height
-     *    'color' => '#C0C0C0', # frame color
-     *    'border-width' => 2,                                   # frame border width
-     *    'border-style' => 'solid',                             # frame border style (solid,
-     *                                                           # dashed, dotted, inset ...)
-     *    'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'    # frame border color (3dfx)
+     *    'show' => false,             # frame show (true/false)
+     *    'left' => 200,               # frame position from left
+     *    'top' => 100,                # frame position from top
+     *    'width' => 320,              # frame width
+     *    'height' => 90,              # frame height
+     *    'color' => '#C0C0C0',        # frame color
+     *    'border-width' => 2,         # frame border width
+     *    'border-style' => 'solid',   # frame border style (solid,
+     *                                 # dashed, dotted, inset ...)
+     *    'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'
+     *                                 # frame border color (3dfx)
      * );
      * </code>
      *
@@ -296,6 +297,10 @@ class HTML_Progress2_Lite
     /**
      * Constructor (ZE1)
      *
+     * @param array  $options (optional) has of style parameters
+     *                                   for the progress bar
+     * @param string $id      (optional) progress bar unique identifier
+     *
      * @since      2.0.0
      * @access     public
      */
@@ -307,9 +312,9 @@ class HTML_Progress2_Lite
     /**
      * Constructor (ZE2) Summary.
      *
-     * @param      array     $options       (optional) has of style parameters
-     *                                                 for the progress bar
-     * @param      string    $id            (optional) progress bar unique identifier
+     * @param array  $options (optional) has of style parameters
+     *                                   for the progress bar
+     * @param string $id      (optional) progress bar unique identifier
      *
      * @return     object
      * @since      2.0.0
@@ -321,7 +326,7 @@ class HTML_Progress2_Lite
             $this->_ident = substr(md5(microtime()), 0, 6);
         } else {
             $this->_ident = $id;
-    }
+        }
 
         $default_options = array(
             'position' => 'absolute',
@@ -337,7 +342,7 @@ class HTML_Progress2_Lite
 
         $options = array_merge($default_options, $options);
 
-        foreach($options as $prop => $val) {
+        foreach ($options as $prop => $val) {
             if (in_array($prop, $allowed_options)) {
                 $this->{$prop} = $val;
             } else {
@@ -352,7 +357,7 @@ class HTML_Progress2_Lite
     /**
      * Moves the progress bar in all directions (left, right, up , down).
      *
-     * @param      string    $direction     fill way of the progress bar
+     * @param string $direction fill way of the progress bar
      *
      * @return     void
      * @since      2.0.0
@@ -363,7 +368,7 @@ class HTML_Progress2_Lite
         $this->direction = $direction;
 
         if ($this->_status != 'new') {
-            $bar = ob_get_clean();
+            $bar      = ob_get_clean();
             $position = $this->_computePosition();
 
             $cssText  = 'left:' . $position['left'] . 'px;';
@@ -381,9 +386,9 @@ class HTML_Progress2_Lite
     /**
      * Add a new label to the progress bar.
      *
-     * @param      string    $type          Label type (text,button,step,percent,crossbar)
-     * @param      string    $name          Label name
-     * @param      string    $value         (optional) default label value
+     * @param string $type  Label type (text,button,step,percent,crossbar)
+     * @param string $name  Label name
+     * @param string $value (optional) default label value
      *
      * @return     void
      * @since      2.0.0
@@ -486,7 +491,7 @@ class HTML_Progress2_Lite
     /**
      * Removes a label to the progress bar.
      *
-     * @param      string    $name          Label name
+     * @param string $name Label name
      *
      * @return     void
      * @since      2.0.0
@@ -503,10 +508,10 @@ class HTML_Progress2_Lite
     /**
      * Add a new button with the progress bar.
      *
-     * @param      string    $name          Button name
-     * @param      string    $value         Label value
-     * @param      string    $action        Action to do (see QUERY_STRING)
-     * @param      string    $target        (optional) Frame target (default is self)
+     * @param string $name   Button name
+     * @param string $value  Label value
+     * @param string $action Action to do (see QUERY_STRING)
+     * @param string $target (optional) Frame target (default is self)
      *
      * @return     void
      * @since      2.0.0
@@ -523,7 +528,7 @@ class HTML_Progress2_Lite
     /**
      * Removes a button to the progress bar.
      *
-     * @param      string    $name          Label name
+     * @param string $name Label name
      *
      * @return     void
      * @since      2.0.0
@@ -540,7 +545,7 @@ class HTML_Progress2_Lite
     /**
      * Build a frame around the progress bar.
      *
-     * @param      array     $attributes    (optional) hash of style parameters
+     * @param array $attributes (optional) hash of style parameters
      *
      * @return     void
      * @since      2.0.0
@@ -559,11 +564,12 @@ class HTML_Progress2_Lite
             'border-style' => 'solid',
             'border-color' => '#DFDFDF #404040 #404040 #DFDFDF'
         );
+
         $allowed_options = array_keys($default);
 
         $options = array_merge($default, $attributes);
 
-        foreach($options as $prop => $val) {
+        foreach ($options as $prop => $val) {
             if (in_array($prop, $allowed_options)) {
                 $this->frame[$prop] = $val;
             } else {
@@ -575,7 +581,7 @@ class HTML_Progress2_Lite
     /**
      * Defines main style of a progress bar.
      *
-     * @param      array     $attributes    (optional) hash of style parameters
+     * @param array $attributes (optional) hash of style parameters
      *
      * @return     void
      * @since      2.0.0
@@ -583,28 +589,35 @@ class HTML_Progress2_Lite
      */
     function setBarAttributes($attributes = array())
     {
-        $cssText = $cssText_border = '';
-        $bar  = ob_get_clean();
+        $cssText        = '';
+        $cssText_border = '';
+        $bar            = ob_get_clean();
 
         foreach ($attributes as $attrName => $attrVal) {
             if ($attrName == 'border-style') {
                 $this->border['style'] = $attrVal;
+
                 $cssText_border .= 'borderStyle:' . $this->border['style'] . ';';
 
             } elseif ($attrName == 'border-width') {
                 $this->border['width'] = $attrVal;
+
                 $cssText_border .= 'borderWidth:' . $this->border['width'] . 'px;';
 
             } elseif ($attrName == 'border-color') {
                 $this->border['color'] = $attrVal;
+
                 $cssText_border .= 'borderColor:' . $this->border['color'] . ';';
 
             } elseif ($attrName == 'background-color') {
                 $this->background_color = $attrVal;
-                $cssText_border .= 'backgroundColor:' . $this->background_color . ';';
+
+                $cssText_border .= 'backgroundColor:'
+                                . $this->background_color . ';';
 
             } elseif ($attrName == 'color') {
                 $this->foreground_color = $attrVal;
+
                 $cssText .= 'backgroundColor:' . $this->foreground_color . ';';
             }
         }
@@ -625,8 +638,8 @@ class HTML_Progress2_Lite
     /**
      * Defines style of a progress bar label.
      *
-     * @param      string    $name          Label identifier
-     * @param      array     $attributes    (optional) hash of style parameters
+     * @param string $name       Label identifier
+     * @param array  $attributes (optional) hash of style parameters
      *
      * @return     void
      * @since      2.0.0
@@ -644,14 +657,16 @@ class HTML_Progress2_Lite
                 $this->label[$name]['color'] = $attrVal;
                 if ($this->_status != 'new') {
                     $cssText = 'color:' . $this->label[$name]['color'] . ';';
+
                     $bar .= $this->_changeElementStyle('plbl', $name, $cssText);
                 }
 
             } elseif ($attrName == 'background-color') {
                 $this->label[$name]['background-color'] = $attrVal;
                 if ($this->_status != 'new') {
-                    $cssText = 'backgroundColor:' . $this->label[$name]['background-color'] . ';';
-                    $bar .= $this->_changeElementStyle('plbl', $name, $cssText);
+                    $cssText = 'backgroundColor:' .
+                                $this->label[$name]['background-color'] . ';';
+                    $bar    .= $this->_changeElementStyle('plbl', $name, $cssText);
                 }
 
             } elseif ($attrName == 'font-size') {
@@ -666,7 +681,8 @@ class HTML_Progress2_Lite
             } elseif ($attrName == 'value') {
                 $this->label[$name]['value'] = $attrVal;
                 if ($this->_status != 'new') {
-                    $bar .= $this->_changeLabelText($name, $this->label[$name]['value']);
+                    $bar .= $this->_changeLabelText($name,
+                                                    $this->label[$name]['value']);
                 }
 
             } elseif ($attrName == 'left') {
@@ -696,10 +712,10 @@ class HTML_Progress2_Lite
             $cssText = 'top:' . $this->label[$name]['top'] . 'px;'
                      . 'left:' . $this->label[$name]['left'] . 'px;';
 
-            if($this->label[$name]['width'] > 0) {
+            if ($this->label[$name]['width'] > 0) {
                 $cssText .= 'width:' . $this->label[$name]['width'] . 'px;';
             }
-            if($this->label[$name]['height'] > 0) {
+            if ($this->label[$name]['height'] > 0) {
                 $cssText .= 'height:' . $this->label[$name]['height'] . 'px;';
             }
             $cssText .= 'textAlign:' . $this->label[$name]['align'] .';';
@@ -714,7 +730,7 @@ class HTML_Progress2_Lite
     /**
      * Changes new step value of the progress bar.
      *
-     * @param      integer   $step          new step value
+     * @param integer $step new step value
      *
      * @return     void
      * @since      2.0.0
@@ -724,9 +740,8 @@ class HTML_Progress2_Lite
     {
         $this->_setStep($step);
         $position = $this->_computePosition();
-        $bar = ob_get_clean();
-
-        $cssText = '';
+        $bar      = ob_get_clean();
+        $cssText  = '';
         if ($this->direction == 'right' || $this->direction == 'left') {
             if ($this->direction == 'left') {
                 $cssText .= 'left:' . $position['left'] . 'px;';
@@ -741,13 +756,14 @@ class HTML_Progress2_Lite
         }
         $bar .= $this->_changeElementStyle('pbar', '', $cssText);
 
-        foreach($this->label as $name => $data) {
+        foreach ($this->label as $name => $data) {
             switch($data['type']) {
             case 'step':
                 $bar .= $this->_changeLabelText($name, $this->_step.'/'.$this->max);
                 break;
             case 'percent':
-                $bar .= $this->_changeLabelText($name, $this->_computePercent() . '%');
+                $bar .= $this->_changeLabelText($name,
+                                                $this->_computePercent() . '%');
                 break;
             case 'crossbar':
                 $bar .= $this->_changeCrossItem($name);
@@ -796,7 +812,7 @@ class HTML_Progress2_Lite
     function toHtml()
     {
         $html = '';
-        $js = '';
+        $js   = '';
 
         //$this->_setStep($this->_step);
         $position = $this->_computePosition();
@@ -830,9 +846,10 @@ class HTML_Progress2_Lite
                 $html = '<div id="tfrm' . $this->_ident . '"'
                       . ' style="position:relative;top:0;left:0;">'
                       . PHP_EOL;
-                $top = $left = 0;
+                $top  = 0;
+                $left = 0;
             } else {
-                $top = $this->frame['top'];
+                $top  = $this->frame['top'];
                 $left = $this->frame['left'];
             }
             $html .= '<div id="pfrm' . $this->_ident .'" style="'
@@ -852,8 +869,10 @@ class HTML_Progress2_Lite
             }
         }
 
-        $html .= '<div id="pbrd'.$this->_ident.'" style="'.$style_brd.'">'.PHP_EOL;
-        $html .= '<div id="pbar'.$this->_ident.'" style="'.$style_bar.'"></div></div>'.PHP_EOL;
+        $html .= '<div id="pbrd'.$this->_ident .
+                 '" style="'.$style_brd.'">'.PHP_EOL;
+        $html .= '<div id="pbar'.$this->_ident .
+                 '" style="'.$style_bar.'"></div></div>'.PHP_EOL;
 
         foreach ($this->label as $name => $data) {
             $style_lbl = 'position:absolute;'
@@ -907,15 +926,18 @@ class HTML_Progress2_Lite
                       .  '</div>'
                       .  PHP_EOL;
                 if ($data['type'] == 'crossbar') {
-                    $js .= 'function setRotaryCross'.$name.$this->_ident.'() {'.PHP_EOL;
-                    $js .= ' cross = document.getElementById("plbl'.$name.$this->_ident.'").firstChild.nodeValue;'.PHP_EOL;
+                    $js .= 'function setRotaryCross'; ;
+                    $js .= $name.$this->_ident.'() {' . PHP_EOL;
+                    $js .= ' cross = document.getElementById("plbl';
+                    $js .= $name.$this->_ident.'").firstChild.nodeValue;'.PHP_EOL;
                     $js .= ' switch(cross) {'.PHP_EOL;
                     $js .= '  case "--": cross = "\\\\"; break;'.PHP_EOL;
                     $js .= '  case "\\\\": cross = "|"; break;'.PHP_EOL;
                     $js .= '  case "|": cross = "/"; break;'.PHP_EOL;
                     $js .= '  default: cross = "--"; break;'.PHP_EOL;
                     $js .= ' }'.PHP_EOL;
-                    $js .= ' document.getElementById("plbl'.$name.$this->_ident.'").firstChild.nodeValue = cross;'.PHP_EOL;
+                    $js .= ' document.getElementById("plbl'.$name.$this->_ident;
+                    $js .= '").firstChild.nodeValue = cross;'.PHP_EOL;
                     $js .= '}'.PHP_EOL;
                 }
                 break;
@@ -925,18 +947,21 @@ class HTML_Progress2_Lite
         if (count($this->label) > 0) {
             $js .= 'function setLabelText'.$this->_ident.'(name,text) {'.PHP_EOL;
             $js .= ' name = "plbl" + name + "'.$this->_ident.'";'.PHP_EOL;
-            $js .= ' document.getElementById(name).firstChild.nodeValue=text;'.PHP_EOL;
+            $js .= ' document.getElementById(name).firstChild.nodeValue=text;';
+            $js .= PHP_EOL;
             $js .= '}'.PHP_EOL;
         }
 
-        $js .= 'function setElementStyle'.$this->_ident.'(prefix,name,styles) {'.PHP_EOL;
+        $js .= 'function setElementStyle'.$this->_ident.'(prefix,name,styles) {';
+        $js .= PHP_EOL;
         $js .= ' name = prefix + name + "'.$this->_ident.'";'.PHP_EOL;
         $js .= ' styles = styles.split(";");'.PHP_EOL;
         $js .= ' styles.pop();'.PHP_EOL;
         $js .= ' for(var i=0; i<styles.length; i++)'.PHP_EOL;
         $js .= ' {'.PHP_EOL;
         $js .= '   s = styles[i].split(":");'.PHP_EOL;
-        $js .= '   c = "document.getElementById(name).style."+s[0]+"=\""+s[1]+"\"";'.PHP_EOL;
+        $js .= '   c = "document.getElementById(name).style."+s[0]+"=\""+s[1]+"\"";';
+        $js .= PHP_EOL;
         $js .= '   eval(c);'.PHP_EOL;
         $js .= ' }'.PHP_EOL;
         $js .= '}'.PHP_EOL;
@@ -1012,16 +1037,15 @@ class HTML_Progress2_Lite
             $cssText = 'visibility:hidden;';
         } else {
             $cssText = 'visibility:visible;';
-    }
+        }
         $bar  = ob_get_clean();
-
         $bar .= $this->_changeElementStyle('pbrd', '', $cssText);
         $bar .= $this->_changeElementStyle('pbar', '', $cssText);
 
         if ($this->frame['show']) {
             $bar .= $this->_changeElementStyle('pfrm', '', $cssText);
         }
-        foreach($this->label as $name => $data) {
+        foreach ($this->label as $name => $data) {
             $bar .= $this->_changeElementStyle('plbl', $name, $cssText);
         }
 
@@ -1038,7 +1062,8 @@ class HTML_Progress2_Lite
      */
     function _computePercent()
     {
-        $percent = round(($this->_step - $this->min) / ($this->max - $this->min) * 100);
+        $percent = round(($this->_step - $this->min)
+                       / ($this->max - $this->min) * 100);
         if ($percent > 100) {
             $percent = 100;
         }
@@ -1064,8 +1089,8 @@ class HTML_Progress2_Lite
             $bar = $this->height;
             break;
         }
-        $pixel = round(  ($this->_step - $this->min) * ($bar - ($this->padding * 2))
-                       / ($this->max - $this->min) );
+        $pixel = round(($this->_step - $this->min) * ($bar - ($this->padding * 2))
+                     / ($this->max - $this->min));
         if ($this->_step <= $this->min) {
             $pixel = 0;
         }
@@ -1075,27 +1100,27 @@ class HTML_Progress2_Lite
 
         switch ($this->direction) {
         case 'right':
-            $position['left'] = $this->padding;
-            $position['top'] = $this->padding;
-            $position['width'] = $pixel;
+            $position['left']   = $this->padding;
+            $position['top']    = $this->padding;
+            $position['width']  = $pixel;
             $position['height'] = $this->height - ($this->padding * 2);
             break;
         case 'left':
-            $position['left'] = $this->width - $this->padding - $pixel;
-            $position['top'] = $this->padding;
-            $position['width'] = $pixel;
+            $position['left']   = $this->width - $this->padding - $pixel;
+            $position['top']    = $this->padding;
+            $position['width']  = $pixel;
             $position['height'] = $this->height - ($this->padding * 2);
             break;
         case 'down':
-            $position['left'] = $this->padding;
-            $position['top'] = $this->padding;
-            $position['width'] = $this->width - ($this->padding * 2);
+            $position['left']   = $this->padding;
+            $position['top']    = $this->padding;
+            $position['width']  = $this->width - ($this->padding * 2);
             $position['height'] = $pixel;
             break;
         case 'up':
-            $position['left'] = $this->padding;
-            $position['top'] = $this->height - $this->padding - $pixel;
-            $position['width'] = $this->width - ($this->padding * 2);
+            $position['left']   = $this->padding;
+            $position['top']    = $this->height - $this->padding - $pixel;
+            $position['width']  = $this->width - ($this->padding * 2);
             $position['height'] = $pixel;
             break;
         }
@@ -1105,7 +1130,7 @@ class HTML_Progress2_Lite
     /**
      * Sets the new step value of the progress bar.
      *
-     * @param      integer   $step          new step value
+     * @param integer $step new step value
      *
      * @return     void
      * @since      2.0.0
@@ -1113,10 +1138,10 @@ class HTML_Progress2_Lite
      */
     function _setStep($step)
     {
-        if($step > $this->max) {
+        if ($step > $this->max) {
             $step = $this->max;
         }
-        if($step < $this->min) {
+        if ($step < $this->min) {
             $step = $this->min;
         }
         $this->_step = $step;
@@ -1126,9 +1151,9 @@ class HTML_Progress2_Lite
      * Sends a DOM command (emulate cssText attribute) through a javascript function
      * to change styles of a progress bar's element.
      *
-     * @param      string    $prefix        prefix identifier of the element
-     * @param      string    $element       element name (label id.)
-     * @param      string    $styles        styles of a DOM element
+     * @param string $prefix  prefix identifier of the element
+     * @param string $element element name (label id.)
+     * @param string $styles  styles of a DOM element
      *
      * @return     string
      * @since      2.0.0
@@ -1145,11 +1170,12 @@ class HTML_Progress2_Lite
     }
 
     /**
-     * Sends a DOM command (emulate firstChild.nodeValue) through a javascript function
+     * Sends a DOM command (emulate firstChild.nodeValue)
+     * through a javascript function
      * to change label value of a progress bar's element.
      *
-     * @param      string    $element       element name (label id.)
-     * @param      string    $text          element value (label content)
+     * @param string $element element name (label id.)
+     * @param string $text    element value (label content)
      *
      * @return     string
      * @since      2.0.0
@@ -1169,7 +1195,7 @@ class HTML_Progress2_Lite
      * Sends a DOM command through a javascript function
      * to change the next frame animation of a cross bar's element.
      *
-     * @param      string    $element       element name (cross id.)
+     * @param string $element element name (cross id.)
      *
      * @return     string
      * @since      2.0.0
