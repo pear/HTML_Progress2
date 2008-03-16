@@ -2,16 +2,19 @@
 /**
  * HTML_Progress2 Package Script Generator
  *
- * Generate a new fresh version of package xml 2.0 built with PEAR_PackageFileManager 1.6.0+
+ * Generate a new fresh version of package xml 2.0
+ * built with PEAR_PackageFileManager 1.6.0+
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2006-2007 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.1.1
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2006-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.1.1
  * @ignore
  */
 
@@ -38,25 +41,25 @@ $p2 = &PEAR_PackageFileManager2::importOptions($packagefile, $options);
 $p2->setPackageType('php');
 $p2->addRelease();
 $p2->generateContents();
-$p2->setReleaseVersion('2.3.0');
-$p2->setAPIVersion('2.3.0');
+$p2->setReleaseVersion('2.4.0');
+$p2->setAPIVersion('2.4.0');
 $p2->setReleaseStability('stable');
 $p2->setAPIStability('stable');
-$p2->setNotes('* bugs
-- Fixed Doc Bug #10879 : Problem with HTML_Progress2::setCellCount()
+$p2->setNotes('* news
+- implement request #12532 : Add addional info to apc5 info
 
-* changes
-- No code changes since previous release (RC1), but change license
-from PHP 3.01 to new BSD (give more freedom)
+* QA
+- fix CS following recommandation of PHP_CodeSniffer 1.0.1
 ');
 
-$p2->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
+//$p2->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
 //$p2->addMaintainer('contributor', 'arpad', 'Arpad Ray', 'arpad@php.net');
 //$p2->addPackageDepWithChannel('optional', 'HTML_AJAX', 'pear.php.net', '0.5.0');
 //$p2->setExtends('HTML_Progress');
 //$p2->setPhpDep('4.3.0');
 
-if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
+if (isset($_GET['make'])
+    || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
     $p2->writePackageFile();
 } else {
     $p2->debugPackageFile();
