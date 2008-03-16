@@ -29,46 +29,18 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.0.0RC1
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.0.0RC1
  */
 
-if (!function_exists('ob_get_clean')) {
-    function ob_get_clean()
-    {
-        $contents = ob_get_contents();
-
-        if ($contents !== false) {
-            ob_end_clean();
-        }
-
-        return $contents;
-    }
-}
-
-if (!defined('PHP_EOL')) {
-    switch (strtoupper(substr(PHP_OS, 0, 3))) {
-        // Windows
-        case 'WIN':
-            define('PHP_EOL', "\r\n");
-            break;
-
-        // Mac
-        case 'DAR':
-            define('PHP_EOL', "\r");
-            break;
-
-        // Unix
-        default:
-            define('PHP_EOL', "\n");
-    }
-}
 
 /**
  * Standalone HTML loading bar with only PHP and JS interface.
@@ -105,20 +77,20 @@ if (!defined('PHP_EOL')) {
  * </html>
  * </code>
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @author     Mika Turin <turin@inbox.lv>
- * @author     Gerd Weitenberg <hahnebuechen@web.de>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    Release: @package_version@
- * @link       http://pear.php.net/package/HTML_Progress2
- * @link       http://www.phpclasses.org/browse/package/1222.html
- *             From an original idea of Mike Turin
- * @link       http://www.phpclasses.org/browse/package/1964.html
- *             Improve version of Gerd Weitenberg
- * @since      Class available since Release 2.0.0RC1
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @author    Mika Turin <turin@inbox.lv>
+ * @author    Gerd Weitenberg <hahnebuechen@web.de>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @link      http://www.phpclasses.org/browse/package/1222.html
+ *            From an original idea of Mike Turin
+ * @link      http://www.phpclasses.org/browse/package/1964.html
+ *            Improve version of Gerd Weitenberg
+ * @since     Class available since Release 2.0.0RC1
  */
 
 class HTML_Progress2_Lite
