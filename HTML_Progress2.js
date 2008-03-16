@@ -4,9 +4,9 @@
  * @category   HTML
  * @package    HTML_Progress2
  * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2007 Laurent Laville
+ * @copyright  2007-2008 Laurent Laville
  * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id: HTML_Progress2.js,v 1.3 2007-06-12 07:42:00 farell Exp $
+ * @version    CVS: $Id: HTML_Progress2.js,v 1.4 2008-03-16 09:30:58 farell Exp $
  * @since      File available since Release 2.3.0a2
  */
 
