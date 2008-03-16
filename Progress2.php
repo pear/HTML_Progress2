@@ -45,9 +45,7 @@ require_once 'Event/Dispatcher.php';
 
 if (version_compare(phpversion(), '5.0.0', '<')) {
     include_once 'PHP/Compat.php';
-    PHP_Compat::loadFunction('ob_get_clean');
     PHP_Compat::loadFunction('file_put_contents');
-    PHP_Compat::loadConstant('PHP_EOL');
 }
 
 /**#@+
