@@ -29,18 +29,27 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2006-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.1.0
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2006-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.1.0
  */
 
 require_once 'HTML/QuickForm/Action.php';
 
+/**
+ * Provides methods for dumping structured information about a variable
+ *
+ * @param mixed $var the variable to dump
+ *
+ * @return void
+ */
 function varDump($var)
 {
     $available = HTML_Progress2_Generator::isIncludeable('Var_Dump.php');
@@ -63,13 +72,14 @@ function varDump($var)
  * - all forms values, defaults and validation states
  * - the Warnings/Errors stack
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2006-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    Release: @package_version@
- * @since      Class available since Release 2.1.0
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2006-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     Class available since Release 2.1.0
  */
 
 class ActionDump extends HTML_QuickForm_Action
@@ -77,8 +87,11 @@ class ActionDump extends HTML_QuickForm_Action
     /**
      * Processes the request.
      *
-     * @param  object   HTML_QuickForm_Page  the current form-page
-     * @param  string   Current action name, as one Action object can serve multiple actions
+     * @param object &$page      the current form-page
+     * @param string $actionName Current action name,
+     *                           as one Action object can serve multiple actions
+     *
+     * @return void
      * @since  2.1.0
      * @access public
      */
@@ -91,25 +104,25 @@ class ActionDump extends HTML_QuickForm_Action
 
         $opt = $page->getSubmitValue('dumpOption');
         switch ($opt) {
-            case '1':   // Progress2 dump info
-                $arr = $page->controller->_progress->toArray();
-                varDump($arr);
-                break;
-            case '2':   // Forms values container
-                varDump($sess);
-                break;
-            case '3':   // Included files
-                $includes = get_included_files();
-                varDump($includes);
-                break;
-            case '4':   // declared classes
-                $classes = get_declared_classes();
-                varDump($classes);
-                break;
-            case '5':   // declared actions
-                $actions = $page->controller->_actions;
-                varDump($actions);
-                break;
+        case '1':   // Progress2 dump info
+            $arr = $page->controller->_progress->toArray();
+            varDump($arr);
+            break;
+        case '2':   // Forms values container
+            varDump($sess);
+            break;
+        case '3':   // Included files
+            $includes = get_included_files();
+            varDump($includes);
+            break;
+        case '4':   // declared classes
+            $classes = get_declared_classes();
+            varDump($classes);
+            break;
+        case '5':   // declared actions
+            $actions = $page->controller->_actions;
+            varDump($actions);
+            break;
         }
     }
 }

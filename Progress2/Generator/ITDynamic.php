@@ -29,14 +29,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.0.0RC1
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.0.0RC1
  */
 
 require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
@@ -46,14 +48,14 @@ require_once 'HTML/Template/Sigma.php';
  * The ActionDisplay class provides a ITDynamic form rendering
  * with template engine IT[x] family.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    Release: @package_version@
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      Class available since Release 2.0.0RC1
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     Class available since Release 2.0.0RC1
  */
 
 class ActionDisplay extends HTML_QuickForm_Action_Display
@@ -70,7 +72,8 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
     /**
      * class constructor
      *
-     * @param  string  $css  custom stylesheet to apply, or default if not set
+     * @param string $css custom stylesheet to apply, or default if not set
+     *
      * @access public
      * @since  2.1.0
      */
@@ -83,7 +86,9 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
     /**
      * Outputs the form.
      *
-     * @param  object HTML_QuickForm_Page  the page being processed
+     * @param object &$page the page being processed
+     *
+     * @return void
      * @access public
      * @since  2.0.0RC1
      */
@@ -120,7 +125,8 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
     /**
      * Returns the custom style sheet to use for layout
      *
-     * @param  bool  $content (optional) Either return css filename or string contents
+     * @param bool $content (optional) Either return css filename or string contents
+     *
      * @return string
      * @access public
      * @since  2.1.0
@@ -138,8 +144,9 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
     /**
      * Set the custom style sheet to use your own styles
      *
-     * @param  string  $css (optional) File to read user-defined styles from
-     * @return bool    true if custom styles, false if default styles applied
+     * @param string $css (optional) File to read user-defined styles from
+     *
+     * @return bool   true if custom styles, false if default styles applied
      * @access public
      * @since  2.1.0
      */

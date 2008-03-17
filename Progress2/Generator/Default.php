@@ -29,28 +29,30 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.0.0RC1
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.0.0RC1
  */
 
 
 /**
  * The ActionDisplay class provides the default form rendering.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    Release: @package_version@
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      Class available since Release 2.0.0RC1
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     Class available since Release 2.0.0RC1
  */
 
 class ActionDisplay extends HTML_QuickForm_Action_Display
@@ -67,7 +69,8 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
     /**
      * class constructor
      *
-     * @param  string  $css  custom stylesheet to apply, or default if not set
+     * @param string $css custom stylesheet to apply, or default if not set
+     *
      * @access public
      * @since  2.1.0
      */
@@ -80,7 +83,9 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
     /**
      * Outputs the form.
      *
-     * @param  object HTML_QuickForm_Page  the page being processed
+     * @param object &$page the page being processed
+     *
+     * @return void
      * @access public
      * @since  2.0.0RC1
      */
@@ -127,11 +132,12 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
         $renderer->setHeaderTemplate($headerTemplate);
         $renderer->setElementTemplate($elementTemplate);
 
-        $groups = array('progresssize',                                   // on page 1
-                        'cellvalue','cellsize', 'cellcolor', 'cellfont',  // on page 2
-                        'borderstyle',                                    // on page 3
-                        'stringsize','stringfont'                         // on page 4
-                       );
+        $groups
+            = array('progresssize',                                   // on page 1
+                    'cellvalue','cellsize', 'cellcolor', 'cellfont',  // on page 2
+                    'borderstyle',                                    // on page 3
+                    'stringsize','stringfont'                         // on page 4
+                    );
 
         foreach ($groups as $grp) {
             $renderer->setGroupTemplate($groupTemplate, $grp);
@@ -157,7 +163,9 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
         $body = $renderer->toHtml();
 
         $html = <<<HTML
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML
+    PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 <title>HTML_Progress2 Generator</title>
@@ -184,7 +192,8 @@ HTML;
     /**
      * Returns the custom style sheet to use for layout
      *
-     * @param  bool  $content (optional) Either return css filename or string contents
+     * @param bool $content (optional) Either return css filename or string contents
+     *
      * @return string
      * @access public
      * @since  2.1.0
@@ -202,7 +211,8 @@ HTML;
     /**
      * Set the custom style sheet to use your own styles
      *
-     * @param  string  $css (optional) File to read user-defined styles from
+     * @param string $css (optional) File to read user-defined styles from
+     *
      * @return bool    true if custom styles, false if default styles applied
      * @access public
      * @since  2.1.0

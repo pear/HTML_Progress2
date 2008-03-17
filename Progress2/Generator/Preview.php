@@ -29,14 +29,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.0.0RC1
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.0.0RC1
  */
 
 
@@ -44,26 +46,36 @@
  * The ActionPreview class provides a live demonstration
  * of the progress bar built by HTML_Progress2_Generator.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    Release: @package_version@
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      Class available since Release 2.0.0RC1
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     Class available since Release 2.0.0RC1
  */
 
 class ActionPreview extends HTML_QuickForm_Action
 {
+    /**
+     * Performs an action on a page of the controller (wizard)
+     *
+     * @param string &$page      current page displayed by the controller
+     * @param string $actionName page action asked
+     *
+     * @return     void
+     * @since      2.0.0
+     * @access     public
+     */
     function perform(&$page, $actionName)
     {
         // like in Action_Next
         $page->isFormBuilt() or $page->buildForm();
         $page->handle('display');
 
-        $stringid = $page->controller->exportValue('page4','stringid');
-        $bar = $page->controller->createProgressBar();
+        $stringid = $page->controller->exportValue('page4', 'stringid');
+        $bar      = $page->controller->createProgressBar();
 
         do {
             $percent = $bar->getPercentComplete();
