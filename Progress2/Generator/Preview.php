@@ -84,7 +84,7 @@ class ActionPreview extends HTML_QuickForm_Action
             }
             $bar->sleep();
             $bar->moveNext();
-        } while(1);
+        } while (1);
 
     }
 }
