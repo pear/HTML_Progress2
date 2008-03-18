@@ -416,10 +416,6 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      */
     function isIncludeable($file)
     {
-        if (!defined('PATH_SEPARATOR')) {
-            define('PATH_SEPARATOR',
-                   strtolower(substr(PHP_OS, 0, 3)) == 'win' ? ';' : ':');
-        }
         foreach (explode(PATH_SEPARATOR, ini_get('include_path')) as $path) {
             if (file_exists($path . DIRECTORY_SEPARATOR . $file)
                 && is_readable($path . DIRECTORY_SEPARATOR . $file)) {
