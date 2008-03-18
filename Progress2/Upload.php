@@ -29,27 +29,30 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2007-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.3.0RC1
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2007-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.3.0RC1
  */
 
 
 /**
  * Backend for AJAX uploading bar.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    Release: @package_version@
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      Class available since Release 2.3.0RC1
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2007-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     Class available since Release 2.3.0RC1
  */
 
 class HTML_Progress2_Upload
@@ -86,8 +89,9 @@ class HTML_Progress2_Upload
     /**
      * Constructor (ZE2) Summary
      *
-     * @param      string    $format   (optional) conversion specifications
-     *                                 for all progress bar labels
+     * @param string $format (optional) conversion specifications
+     *                                  for all progress bar labels
+     *
      * @since      2.3.0RC1
      * @access     protected
      * @link       http://pdoru.from.ro/upload-progress-meter/  Patch for PHP 4
@@ -116,9 +120,9 @@ class HTML_Progress2_Upload
      * Return hash of data with current file upload information, depending of
      * backend used.
      *
-     * @param      string    $Id       upload identifier
+     * @param string $Id upload identifier
      *
-     * @return     bool|array          false if info unavailable, hash of data otherwise
+     * @return     bool|array   false if info unavailable, hash of data otherwise
      * @since      2.3.0RC1
      * @access     public
      */
@@ -133,34 +137,34 @@ class HTML_Progress2_Upload
             );
 
         switch ($this->backend) {
-            case 'upm4':
-                $tmp = upload_progress_meter_get_info($Id);
-                if (is_array($tmp)) {
-                    $info = array_merge($info, $tmp);
-                } else {
-                    $info = false;
-                }
-                break;
-            case 'upm5':
-                $tmp = uploadprogress_get_info($Id);
-                if (is_array($tmp)) {
-                    $info = array_merge($info, $tmp);
-                } else {
-                    $info = false;
-                }
-                break;
-            case 'apc5':
-                $tmp = apc_fetch('upload_' . $Id);
-                if (is_array($tmp)) {
-                    $info['bytes_uploaded'] = $tmp['current'];
-                    $info['bytes_total'] = $tmp['total'];
-                    $info['files_uploaded'] = $tmp['done'];
-                    $info['cancel_upload'] = $tmp['cancel_upload'];
-                } else {
-                    $info = false;
-                }
-                break;
-            default:
+        case 'upm4':
+            $tmp = upload_progress_meter_get_info($Id);
+            if (is_array($tmp)) {
+                $info = array_merge($info, $tmp);
+            } else {
+                $info = false;
+            }
+            break;
+        case 'upm5':
+            $tmp = uploadprogress_get_info($Id);
+            if (is_array($tmp)) {
+                $info = array_merge($info, $tmp);
+            } else {
+                $info = false;
+            }
+            break;
+        case 'apc5':
+            $tmp = apc_fetch('upload_' . $Id);
+            if (is_array($tmp)) {
+                $info['bytes_uploaded'] = $tmp['current'];
+                $info['bytes_total']    = $tmp['total'];
+                $info['files_uploaded'] = $tmp['done'];
+                $info['cancel_upload']  = $tmp['cancel_upload'];
+            } else {
+                $info = false;
+            }
+            break;
+        default:
         }
 
         return $info;
@@ -175,9 +179,10 @@ class HTML_Progress2_Upload
      *  C - for display current file size uploaded
      *  P - for display percentage of file size uploaded
      *
-     * @param      string    $format   conversion specification
-     * @param      array     $info     current upload information
-     * @return     bool|string         false on error, formatted string with current info
+     * @param string $format conversion specification
+     * @param array  $info   current upload information
+     *
+     * @return     bool|string   false on error, formatted string with current info
      * @since      2.3.0RC1
      * @access     public
      */
@@ -189,18 +194,21 @@ class HTML_Progress2_Upload
 
         $pos = strpos($format, '%T');
         if ($pos !== false) {
-            $format = str_replace('%T', $this->formatBytes($info['bytes_total']), $format);
+            $format = str_replace('%T', $this->formatBytes($info['bytes_total']),
+                                  $format);
         }
         $pos = strpos($format, '%C');
         if ($pos !== false) {
-            $format = str_replace('%C', $this->formatBytes($info['bytes_uploaded']), $format);
+            $format = str_replace('%C', $this->formatBytes($info['bytes_uploaded']),
+                                  $format);
         }
         $pos = strpos($format, '%P');
         if ($pos !== false) {
             if ($info['bytes_total'] < 1) {
                 $percent = 100;
             } else {
-                $percent = round($info['bytes_uploaded'] / $info['bytes_total'] * 100);
+                $percent = round($info['bytes_uploaded'] /
+                                 $info['bytes_total'] * 100);
             }
             $format = str_replace('%P', $percent, $format);
         }
@@ -210,7 +218,8 @@ class HTML_Progress2_Upload
     /**
      * Get the status of an upload passed in
      *
-     * @param      string    $uplId    upload identifier
+     * @param string $uplId (optional) upload identifier
+     *
      * @return     array
      * @since      2.3.0RC1
      * @access     public
@@ -227,7 +236,7 @@ class HTML_Progress2_Upload
         }
 
         $percent = $this->sprintf('%P', $tmp);
-        $labels = array();
+        $labels  = array();
         foreach ($this->format as $lbl => $fmt) {
             $labels[$lbl] = $this->sprintf($fmt, $tmp);
         }
@@ -242,7 +251,8 @@ class HTML_Progress2_Upload
     /**
      * Function to convert bytes to something larger
      *
-     * @param      int       $x        file size in bytes
+     * @param int $x file size in bytes
+     *
      * @return     string
      * @since      2.3.0RC1
      * @access     public
