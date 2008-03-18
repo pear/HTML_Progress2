@@ -105,13 +105,11 @@ class HTML_Progress2_Error extends PEAR_Error
         if ($mode === null) {
             $mode = PEAR_ERROR_RETURN;
         }
-        $this->message  = $message;
-        $this->code     = $code;
-        $this->mode     = $mode;
-        $this->userinfo = $userinfo;
-        if (function_exists('debug_backtrace')) {
-            $this->backtrace = debug_backtrace();
-        }
+        $this->message   = $message;
+        $this->code      = $code;
+        $this->mode      = $mode;
+        $this->userinfo  = $userinfo;
+        $this->backtrace = debug_backtrace();
 
         if ($mode & PEAR_ERROR_CALLBACK) {
             $this->level    = E_USER_NOTICE;
