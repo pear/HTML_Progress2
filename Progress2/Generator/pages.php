@@ -29,14 +29,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @since      File available since Release 2.0.0RC1
+ * PHP versions 4 and 5
+ *
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @since     File available since Release 2.0.0RC1
  */
 
 
@@ -46,15 +48,15 @@
  * Creates all tabs and buttons as common layout for the interactive tools:
  * HTML Progress2 Generator.
  *
- * @category   HTML
- * @package    HTML_Progress2
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @copyright  2005-2008 Laurent Laville
- * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id$
- * @link       http://pear.php.net/package/HTML_Progress2
- * @access     private
- * @since      Class available since Release 2.1.0
+ * @category  HTML
+ * @package   HTML_Progress2
+ * @author    Laurent Laville <pear@laurent-laville.org>
+ * @copyright 2005-2008 Laurent Laville
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_Progress2
+ * @access    private
+ * @since     Class available since Release 2.1.0
  */
 
 class TabbedPage extends HTML_QuickForm_Page
@@ -76,17 +78,20 @@ class TabbedPage extends HTML_QuickForm_Page
         while (null !== ($current = $this->controller->getPrevName($current))) {
             $pages[] = $current;
         }
-        $pages = array_reverse($pages);
+        $pages   = array_reverse($pages);
         $pages[] = $current = $myName;
         while (null !== ($current = $this->controller->getNextName($current))) {
             $pages[] = $current;
         }
         // Here we display buttons for all pages, the current one's is disabled
         foreach ($pages as $pageName) {
-            $tabs[] = $this->createElement(
-                        'submit', $this->getButtonName($pageName), ucfirst($pageName),
-                        array('class' => 'flat') + ($pageName == $myName? array('disabled' => 'disabled'): array())
-                      );
+            $disabled = ($pageName == $myName ? array('disabled' => 'disabled')
+                                              : array());
+
+            $tabs[] = $this->createElement('submit',
+                                           $this->getButtonName($pageName),
+                                           ucfirst($pageName),
+                                           array('class' => 'flat') + $disabled);
         }
         $this->addGroup($tabs, 'tabs', null, '&nbsp;', false);
     }
@@ -94,13 +99,17 @@ class TabbedPage extends HTML_QuickForm_Page
     /**
      * Builds command buttons of the Wizard.
      *
+     * @param mixed $disable  (optional) array of button identifier to disable
+     * @param array $commands (optional) additional commands list
+     *
      * @return void
      * @since  2.1.0
      * @access public
      */
     function buildButtons($disable = null, $commands = null)
     {
-        $buttons = array('back', 'next', 'cancel', 'reset', 'dump', 'apply', 'process');
+        $buttons = array('back', 'next', 'cancel', 'reset',
+                         'dump', 'apply', 'process');
         if (isset($commands)) {
             $buttons = array_merge($buttons, $commands);
         }
@@ -111,25 +120,25 @@ class TabbedPage extends HTML_QuickForm_Page
             $disable = array($disable);
         }
 
-        $confirm = $attributes = array('class' => 'cmdButton');
-        $confirm['onclick'] = "return(confirm('Are you sure ?'));";
-
-        $prevnext = array();
+        $attributes = array('class' => 'cmdButton');
+        $confirm    = array('class' => 'cmdButton',
+                            'onclick' => "return(confirm('Are you sure ?'));");
+        $prevnext   = array();
 
         foreach ($buttons as $event) {
             switch ($event) {
-                case 'cancel':
-                    $type = 'submit';
-                    $attrs = $confirm;
-                    break;
-                case 'reset':
-                    $type = 'reset';
-                    $attrs = $confirm;
-                    break;
-                default :
-                    $type = 'submit';
-                    $attrs = $attributes;
-                    break;
+            case 'cancel':
+                $type  = 'submit';
+                $attrs = $confirm;
+                break;
+            case 'reset':
+                $type  = 'reset';
+                $attrs = $confirm;
+                break;
+            default :
+                $type  = 'submit';
+                $attrs = $attributes;
+                break;
             }
             if (in_array($event, $disable)) {
                 $attrs['disabled'] = 'true';
@@ -139,33 +148,49 @@ class TabbedPage extends HTML_QuickForm_Page
                 if ($dump === false) {
                     continue;
                 }
-                $opts = array(
-                    '1' => 'Progress2 dump info',
-                    '2' => 'Forms values container',
-                    '3' => 'Included Files',
-                    '4' => 'Declared Classes',
-                    '5' => 'Declared Actions'
-                    );
-                $prevnext[] =&HTML_QuickForm::createElement('select', 'dumpOption', '', $opts);
+                $opts = array('1' => 'Progress2 dump info',
+                              '2' => 'Forms values container',
+                              '3' => 'Included Files',
+                              '4' => 'Declared Classes',
+                              '5' => 'Declared Actions');
+
+                $prevnext[] =&HTML_QuickForm::createElement('select',
+                                                            'dumpOption',
+                                                            '', $opts);
             }
-            $prevnext[] =&HTML_QuickForm::createElement($type, $this->getButtonName($event), ucfirst($event), HTML_Common::_getAttrString($attrs));
+            $prevnext[] =&HTML_QuickForm::createElement($type,
+                                              $this->getButtonName($event),
+                                              ucfirst($event),
+                                              HTML_Common::_getAttrString($attrs));
         }
         $this->addGroup($prevnext, 'buttons', '', '&nbsp;', false);
     }
 }
 
 /**
- *  Class for first Tab:
- *  Progress main properties
- *  @ignore
+ * Class for first Tab:
+ * Progress main properties
+ *
+ * @category HTML
+ * @package  HTML_Progress2
+ * @author   Laurent Laville <pear@laurent-laville.org>
+ * @license  http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @link     http://pear.php.net/package/HTML_Progress2
+ * @ignore
  */
 class Property1 extends TabbedPage
 {
+    /**
+     * Builds the form that define the main properties of your progress bar
+     *
+     * @return void
+     */
     function buildForm()
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null, 'Progress2 Generator - Control Panel: main properties');
+        $this->addElement('header', null,
+                          'Progress2 Generator - Control Panel: main properties');
 
         $shape[] =& $this->createElement('radio', null, null, 'Horizontal', '1');
         $shape[] =& $this->createElement('radio', null, null, 'Vertical', '2');
@@ -179,16 +204,33 @@ class Property1 extends TabbedPage
         $autosize[] =& $this->createElement('radio', null, null, 'No', false);
         $this->addGroup($autosize, 'autosize', 'Best size:');
 
-        $progresssize['width']   =& $this->createElement('text', 'width', 'width', array('size' => 4));
-        $progresssize['height']  =& $this->createElement('text', 'height', 'height', array('size' => 4));
-        $progresssize['left']    =& $this->createElement('text', 'left', 'left', array('size' => 4));
-        $progresssize['top']     =& $this->createElement('text', 'top', 'top', array('size' => 4));
-        $progresssize['position']=& $this->createElement('text', 'position', 'position', array('disabled' => 'true'));
-        $progresssize['bgcolor'] =& $this->createElement('text', 'bgcolor', 'bgcolor', array('size' => 7));
-        $this->addGroup($progresssize, 'progresssize', 'Size, position and color:', ' ');
+        $psize['width']    =& $this->createElement('text',
+                                                   'width', 'width',
+                                                   array('size' => 4));
+        $psize['height']   =& $this->createElement('text',
+                                                   'height', 'height',
+                                                   array('size' => 4));
+        $psize['left']     =& $this->createElement('text',
+                                                   'left', 'left',
+                                                   array('size' => 4));
+        $psize['top']      =& $this->createElement('text',
+                                                   'top', 'top',
+                                                   array('size' => 4));
+        $psize['position'] =& $this->createElement('text',
+                                                   'position', 'position',
+                                                   array('disabled' => 'true'));
+        $psize['bgcolor']  =& $this->createElement('text',
+                                                   'bgcolor', 'bgcolor',
+                                                   array('size' => 7));
+        $this->addGroup($psize, 'progresssize',
+                                'Size, position and color:', ' ');
 
-        $this->addElement('text', 'rAnimSpeed', array('Animation speed :', '(0-1000 ; 0:fast, 1000:slow)'));
-        $this->addRule('rAnimSpeed', 'Should be between 0 and 1000', 'rangelength', array(0,1000), 'client');
+        $this->addElement('text', 'rAnimSpeed',
+                          array('Animation speed :',
+                                '(0-1000 ; 0:fast, 1000:slow)'));
+        $this->addRule('rAnimSpeed',
+                       'Should be between 0 and 1000',
+                       'rangelength', array(0,1000), 'client');
 
         // Buttons of the wizard to do the job
         $this->buildButtons(array('back','apply','process'));
@@ -196,40 +238,78 @@ class Property1 extends TabbedPage
 }
 
 /**
- *  Class for second Tab:
- *  Cell properties
- *  @ignore
+ * Class for second Tab:
+ * Cell properties
+ *
+ * @category HTML
+ * @package  HTML_Progress2
+ * @author   Laurent Laville <pear@laurent-laville.org>
+ * @license  http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @link     http://pear.php.net/package/HTML_Progress2
+ * @ignore
  */
 class Property2 extends TabbedPage
 {
+    /**
+     * Builds the form that define cell properties of your progress bar
+     *
+     * @return void
+     */
     function buildForm()
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null, 'Progress2 Generator - Control Panel: cell properties');
+        $this->addElement('header', null,
+                          'Progress2 Generator - Control Panel: cell properties');
 
         $this->addElement('text', 'cellid', 'Id mask:', array('size' => 32));
         $this->addElement('text', 'cellclass', 'CSS class:', array('size' => 32));
 
-        $cellvalue['min'] =& $this->createElement('text', 'min', 'minimum', array('size' => 4));
-        $cellvalue['max'] =& $this->createElement('text', 'max', 'maximum', array('size' => 4));
-        $cellvalue['inc'] =& $this->createElement('text', 'inc', 'increment', array('size' => 4));
+        $cellvalue['min'] =& $this->createElement('text',
+                                                  'min', 'minimum',
+                                                  array('size' => 4));
+        $cellvalue['max'] =& $this->createElement('text',
+                                                  'max', 'maximum',
+                                                  array('size' => 4));
+        $cellvalue['inc'] =& $this->createElement('text',
+                                                  'inc', 'increment',
+                                                  array('size' => 4));
         $this->addGroup($cellvalue, 'cellvalue', 'Value:', ' ');
 
-        $cellsize['width']   =& $this->createElement('text', 'width', 'width', array('size' => 4));
-        $cellsize['height']  =& $this->createElement('text', 'height', 'height', array('size' => 4));
-        $cellsize['spacing'] =& $this->createElement('text', 'spacing', 'spacing', array('size' => 2));
-        $cellsize['count']   =& $this->createElement('text', 'count', 'count', array('size' => 2));
+        $cellsize['width']   =& $this->createElement('text',
+                                                     'width', 'width',
+                                                     array('size' => 4));
+        $cellsize['height']  =& $this->createElement('text',
+                                                     'height', 'height',
+                                                     array('size' => 4));
+        $cellsize['spacing'] =& $this->createElement('text',
+                                                     'spacing', 'spacing',
+                                                     array('size' => 2));
+        $cellsize['count']   =& $this->createElement('text',
+                                                     'count', 'count',
+                                                     array('size' => 2));
         $this->addGroup($cellsize, 'cellsize', 'Size:', ' ');
 
-        $cellcolor['active']   =& $this->createElement('text', 'active', 'active', array('size' => 7));
-        $cellcolor['inactive'] =& $this->createElement('text', 'inactive', 'inactive', array('size' => 7));
-        $cellcolor['bgcolor']  =& $this->createElement('text', 'bgcolor', 'background', array('size' => 7));
+        $cellcolor['active']   =& $this->createElement('text',
+                                                       'active', 'active',
+                                                       array('size' => 7));
+        $cellcolor['inactive'] =& $this->createElement('text',
+                                                       'inactive', 'inactive',
+                                                       array('size' => 7));
+        $cellcolor['bgcolor']  =& $this->createElement('text',
+                                                       'bgcolor', 'background',
+                                                       array('size' => 7));
         $this->addGroup($cellcolor, 'cellcolor', 'Color:', ' ');
 
-        $cellfont['family'] =& $this->createElement('text', 'family', 'family', array('size' => 32));
-        $cellfont['size']   =& $this->createElement('text', 'size', 'size', array('size' => 2));
-        $cellfont['color']  =& $this->createElement('text', 'color', 'color', array('size' => 7));
+        $cellfont['family'] =& $this->createElement('text',
+                                                    'family', 'family',
+                                                    array('size' => 32));
+        $cellfont['size']   =& $this->createElement('text',
+                                                    'size', 'size',
+                                                    array('size' => 2));
+        $cellfont['color']  =& $this->createElement('text',
+                                                    'color', 'color',
+                                                    array('size' => 7));
         $this->addGroup($cellfont, 'cellfont', 'Font:', ' ');
 
         // Buttons of the wizard to do the job
@@ -238,17 +318,29 @@ class Property2 extends TabbedPage
 }
 
 /**
- *  Class for third Tab:
- *  Progress border properties
- *  @ignore
+ * Class for third Tab:
+ * Progress border properties
+ *
+ * @category HTML
+ * @package  HTML_Progress2
+ * @author   Laurent Laville <pear@laurent-laville.org>
+ * @license  http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @link     http://pear.php.net/package/HTML_Progress2
+ * @ignore
  */
 class Property3 extends TabbedPage
 {
+    /**
+     * Builds the form that define border properties of your progress bar
+     *
+     * @return void
+     */
     function buildForm()
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null, 'Progress2 Generator - Control Panel: border properties');
+        $this->addElement('header', null,
+                          'Progress2 Generator - Control Panel: border properties');
 
         $borderpainted[] =& $this->createElement('radio', null, null, 'Yes', true);
         $borderpainted[] =& $this->createElement('radio', null, null, 'No', false);
@@ -256,9 +348,19 @@ class Property3 extends TabbedPage
 
         $this->addElement('text', 'borderclass', 'CSS class:', array('size' => 32));
 
-        $borderstyle['style'] =& $this->createElement('select', 'style', 'style', array('solid'=>'Solid', 'dashed'=>'Dashed', 'dotted'=>'Dotted', 'inset'=>'Inset', 'outset'=>'Outset'));
-        $borderstyle['width'] =& $this->createElement('text', 'width', 'width', array('size' => 2));
-        $borderstyle['color'] =& $this->createElement('text', 'color', 'color', array('size' => 7));
+        $borderstyle['style'] =& $this->createElement('select',
+                                                      'style', 'style',
+                                                      array('solid' => 'Solid',
+                                                            'dashed' => 'Dashed',
+                                                            'dotted' => 'Dotted',
+                                                            'inset' => 'Inset',
+                                                            'outset' => 'Outset'));
+        $borderstyle['width'] =& $this->createElement('text',
+                                                      'width', 'width',
+                                                      array('size' => 2));
+        $borderstyle['color'] =& $this->createElement('text',
+                                                      'color', 'color',
+                                                      array('size' => 7));
         $this->addGroup($borderstyle, 'borderstyle', null, ' ');
 
         // Buttons of the wizard to do the job
@@ -267,17 +369,29 @@ class Property3 extends TabbedPage
 }
 
 /**
- *  Class for fourth Tab:
- *  Label properties
- *  @ignore
+ * Class for fourth Tab:
+ * Label properties
+ *
+ * @category HTML
+ * @package  HTML_Progress2
+ * @author   Laurent Laville <pear@laurent-laville.org>
+ * @license  http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @link     http://pear.php.net/package/HTML_Progress2
+ * @ignore
  */
 class Property4 extends TabbedPage
 {
+    /**
+     * Builds the form that define label properties of your progress bar
+     *
+     * @return void
+     */
     function buildForm()
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null, 'Progress2 Generator - Control Panel: string properties');
+        $this->addElement('header', null,
+                          'Progress2 Generator - Control Panel: string properties');
 
         $stringpainted[] =& $this->createElement('radio', null, null, 'Yes', true);
         $stringpainted[] =& $this->createElement('radio', null, null, 'No', false);
@@ -287,31 +401,56 @@ class Property4 extends TabbedPage
         $this->addElement('text', 'stringclass', 'CSS class:', array('size' => 32));
         $this->addElement('text', 'stringvalue', 'Content:', array('size' => 32));
 
-        $stringsize['width']   =& $this->createElement('text', 'width', 'width', array('size' => 4));
-        $stringsize['height']  =& $this->createElement('text', 'height', 'height', array('size' => 4));
-        $stringsize['left']    =& $this->createElement('text', 'left', 'left', array('size' => 4));
-        $stringsize['top']     =& $this->createElement('text', 'top', 'top', array('size' => 4));
-        $stringsize['bgcolor'] =& $this->createElement('text', 'bgcolor', 'bgcolor', array('size' => 7));
+        $stringsize['width']   =& $this->createElement('text',
+                                                       'width', 'width',
+                                                       array('size' => 4));
+        $stringsize['height']  =& $this->createElement('text',
+                                                       'height', 'height',
+                                                       array('size' => 4));
+        $stringsize['left']    =& $this->createElement('text',
+                                                       'left', 'left',
+                                                       array('size' => 4));
+        $stringsize['top']     =& $this->createElement('text',
+                                                       'top', 'top',
+                                                       array('size' => 4));
+        $stringsize['bgcolor'] =& $this->createElement('text',
+                                                       'bgcolor', 'bgcolor',
+                                                       array('size' => 7));
         $this->addGroup($stringsize, 'stringsize', 'Size, position and color:', ' ');
 
-        $stringvalign[] =& $this->createElement('radio', null, null, 'Left', 'left');
-        $stringvalign[] =& $this->createElement('radio', null, null, 'Right', 'right');
-        $stringvalign[] =& $this->createElement('radio', null, null, 'Top', 'top');
-        $stringvalign[] =& $this->createElement('radio', null, null, 'Bottom', 'bottom');
+        $stringvalign[] =& $this->createElement('radio', null, null,
+                                                'Left', 'left');
+        $stringvalign[] =& $this->createElement('radio', null, null,
+                                                'Right', 'right');
+        $stringvalign[] =& $this->createElement('radio', null, null,
+                                                'Top', 'top');
+        $stringvalign[] =& $this->createElement('radio', null, null,
+                                                'Bottom', 'bottom');
         $this->addGroup($stringvalign, 'stringvalign', 'Vertical alignment:');
 
-        $stringalign[] =& $this->createElement('radio', null, null, 'Left', 'left');
-        $stringalign[] =& $this->createElement('radio', null, null, 'Right', 'right');
-        $stringalign[] =& $this->createElement('radio', null, null, 'Center', 'center');
+        $stringalign[] =& $this->createElement('radio', null, null,
+                                               'Left', 'left');
+        $stringalign[] =& $this->createElement('radio', null, null,
+                                               'Right', 'right');
+        $stringalign[] =& $this->createElement('radio', null, null,
+                                               'Center', 'center');
         $this->addGroup($stringalign, 'stringalign', 'Horizontal alignment:');
 
-        $stringfont['family'] =& $this->createElement('text', 'family', 'family', array('size' => 40));
-        $stringfont['size']   =& $this->createElement('text', 'size', 'size', array('size' => 2));
-        $stringfont['color']  =& $this->createElement('text', 'color', 'color', array('size' => 7));
+        $stringfont['family'] =& $this->createElement('text',
+                                                      'family', 'family',
+                                                      array('size' => 40));
+        $stringfont['size']   =& $this->createElement('text',
+                                                      'size', 'size',
+                                                      array('size' => 2));
+        $stringfont['color']  =& $this->createElement('text',
+                                                      'color', 'color',
+                                                      array('size' => 7));
         $this->addGroup($stringfont, 'stringfont', 'Font:', ' ');
 
-        $stringweight[] =& $this->createElement('radio', null, null, 'normal', 'normal');
-        $stringweight[] =& $this->createElement('radio', null, null, 'Bold', 'bold');
+        $stringweight[] =& $this->createElement('radio', null, null,
+                                                'normal', 'normal');
+        $stringweight[] =& $this->createElement('radio', null, null,
+                                                'Bold', 'bold');
         $this->addGroup($stringweight, 'stringweight', 'Font weight:');
 
         // Buttons of the wizard to do the job
@@ -320,19 +459,32 @@ class Property4 extends TabbedPage
 }
 
 /**
- *  Class for fifth Tab:
- *  Show a preview of your progress bar design.
- *  @ignore
+ * Class for fifth Tab:
+ * Show a preview of your progress bar design.
+ *
+ * @category HTML
+ * @package  HTML_Progress2
+ * @author   Laurent Laville <pear@laurent-laville.org>
+ * @license  http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @link     http://pear.php.net/package/HTML_Progress2
+ * @ignore
  */
 class Preview extends TabbedPage
 {
+    /**
+     * Builds the form that show a preview of your progress bar design
+     *
+     * @return void
+     */
     function buildForm()
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null, 'Progress2 Generator - Control Panel: run demo');
+        $this->addElement('header', null,
+                          'Progress2 Generator - Control Panel: run demo');
 
-        $this->addElement('static', 'progressBar', 'Your progress meter looks like:');
+        $this->addElement('static', 'progressBar',
+                          'Your progress meter looks like:');
 
         // Buttons of the wizard to do the job
         $this->buildButtons(array('reset','process'));
@@ -340,17 +492,29 @@ class Preview extends TabbedPage
 }
 
 /**
- *  Class for sixth Tab:
- *  Save PHP and/or CSS code
- *  @ignore
+ * Class for sixth Tab:
+ * Save PHP and/or CSS code
+ *
+ * @category HTML
+ * @package  HTML_Progress2
+ * @author   Laurent Laville <pear@laurent-laville.org>
+ * @license  http://www.opensource.org/licenses/bsd-license.php  New BSD License
+ * @link     http://pear.php.net/package/HTML_Progress2
+ * @ignore
  */
 class Save extends TabbedPage
 {
+    /**
+     * Builds the form that allow to save your PHP/CSS code
+     *
+     * @return void
+     */
     function buildForm()
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null, 'Progress2 Generator - Control Panel: save PHP/CSS code');
+        $this->addElement('header', null,
+                          'Progress2 Generator - Control Panel: save PHP/CSS code');
 
         $code[] =& $this->createElement('checkbox', 'P', null, 'PHP');
         $code[] =& $this->createElement('checkbox', 'C', null, 'CSS');
