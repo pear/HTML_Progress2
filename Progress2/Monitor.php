@@ -168,7 +168,7 @@ class HTML_Progress2_Monitor
      * @param array  $errorPrefs (optional) Hash of parameters
      *                                      to configure error handler
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function HTML_Progress2_Monitor($formName = 'ProgressMonitor',
@@ -205,7 +205,7 @@ class HTML_Progress2_Monitor
      * @param array  $errorPrefs (optional) Hash of parameters
      *                                      to configure error handler
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     protected
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      */
@@ -293,7 +293,7 @@ class HTML_Progress2_Monitor
      * @param mixed $callback PHP callback that will act as listener
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        removeListener()
@@ -323,7 +323,7 @@ class HTML_Progress2_Monitor
      * @param mixed $callback PHP callback that act as listener
      *
      * @return     bool       True if observer was removed, false otherwise
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        addListener()
@@ -357,7 +357,7 @@ class HTML_Progress2_Monitor
      * FALSE otherwise.
      *
      * @return     bool
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function isStarted()
@@ -373,7 +373,7 @@ class HTML_Progress2_Monitor
      * FALSE otherwise.
      *
      * @return     bool
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function isCanceled()
@@ -392,7 +392,7 @@ class HTML_Progress2_Monitor
      * All observers are also notified of main changes (start, stop meter).
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function run()
@@ -423,7 +423,7 @@ class HTML_Progress2_Monitor
      * @param object &$bar a html_progress2 instance
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getProgressElement()
@@ -451,7 +451,7 @@ class HTML_Progress2_Monitor
      * used with the monitor. Its allow to change easily part or all basic options.
      *
      * @return     object
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setProgressElement()
      */
@@ -468,7 +468,7 @@ class HTML_Progress2_Monitor
      * @param boolean $raw (optional) html output with script tags or just raw data
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      */
@@ -495,7 +495,7 @@ class HTML_Progress2_Monitor
      * @param boolean $raw (optional) html output with script tags or just raw data
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @access     public
      */
@@ -519,7 +519,7 @@ class HTML_Progress2_Monitor
      * Get html code required to display the progress monitor in any html document.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function toHtml()
@@ -550,7 +550,7 @@ class HTML_Progress2_Monitor
      * (Smarty, ITDynamic, ...) read template engine renderer related documentation.
      *
      * @return     void
-     * @since      2.0.0RC2
+     * @since      version 2.0.0RC2 (2005-08-01)
      * @access     public
      */
     function display()
@@ -566,7 +566,7 @@ class HTML_Progress2_Monitor
      * @param object &$renderer An HTML_QuickForm_Renderer object
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function accept(&$renderer)
@@ -601,7 +601,7 @@ class HTML_Progress2_Monitor
      *                                   template var -> message text
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function setCaption($caption = '&nbsp;', $args = array())
@@ -640,7 +640,7 @@ class HTML_Progress2_Monitor
      * @param array  $info  (optional) Additional information about the notification
      *
      * @return     void
-     * @since      2.0.0RC2
+     * @since      version 2.0.0RC2 (2005-08-01)
      * @access     private
      */
     function _postNotification($event, $info = array())

@@ -301,7 +301,7 @@ class HTML_Progress2_Lite
      *                                   for the progress bar
      * @param string $id      (optional) progress bar unique identifier
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function HTML_Progress2_Lite($options = array(), $id = null)
@@ -317,7 +317,7 @@ class HTML_Progress2_Lite
      * @param string $id      (optional) progress bar unique identifier
      *
      * @return     object
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     protected
      */
     function __construct($options = array(), $id = null)
@@ -360,7 +360,7 @@ class HTML_Progress2_Lite
      * @param string $direction fill way of the progress bar
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function setDirection($direction)
@@ -391,7 +391,7 @@ class HTML_Progress2_Lite
      * @param string $value (optional) default label value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setLabelAttributes(), removeLabel()
      */
@@ -494,7 +494,7 @@ class HTML_Progress2_Lite
      * @param string $name Label name
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        addLabel()
      */
@@ -514,7 +514,7 @@ class HTML_Progress2_Lite
      * @param string $target (optional) Frame target (default is self)
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        removeButton(), addLabel()
      */
@@ -531,7 +531,7 @@ class HTML_Progress2_Lite
      * @param string $name Label name
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        addButton()
      */
@@ -548,7 +548,7 @@ class HTML_Progress2_Lite
      * @param array $attributes (optional) hash of style parameters
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function setFrameAttributes($attributes = array())
@@ -584,7 +584,7 @@ class HTML_Progress2_Lite
      * @param array $attributes (optional) hash of style parameters
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function setBarAttributes($attributes = array())
@@ -642,7 +642,7 @@ class HTML_Progress2_Lite
      * @param array  $attributes (optional) hash of style parameters
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        addLabel()
      */
@@ -733,7 +733,7 @@ class HTML_Progress2_Lite
      * @param integer $step new step value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function moveStep($step)
@@ -779,7 +779,7 @@ class HTML_Progress2_Lite
      * Changes value of the progress bar to the next step.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        moveStep()
      */
@@ -792,7 +792,7 @@ class HTML_Progress2_Lite
      * Changes value of the progress bar to the minimum step.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        moveStep()
      */
@@ -805,7 +805,7 @@ class HTML_Progress2_Lite
      * Returns the progress bar structure as HTML.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        display()
      */
@@ -984,7 +984,7 @@ class HTML_Progress2_Lite
      * Show the renders of the progress bar.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        toHtml()
      */
@@ -998,7 +998,7 @@ class HTML_Progress2_Lite
      * Hides the progress bar.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function hide()
@@ -1013,7 +1013,7 @@ class HTML_Progress2_Lite
      * Shows a progress bar hidden.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function show()
@@ -1028,7 +1028,7 @@ class HTML_Progress2_Lite
      * Show or Hide a progress bar depending of its current status.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _hide()
@@ -1057,7 +1057,7 @@ class HTML_Progress2_Lite
      * Calculate the current percent of progress.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _computePercent()
@@ -1074,7 +1074,7 @@ class HTML_Progress2_Lite
      * Calculate the new position in pixel of the progress bar value.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _computePosition()
@@ -1133,7 +1133,7 @@ class HTML_Progress2_Lite
      * @param integer $step new step value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _setStep($step)
@@ -1156,7 +1156,7 @@ class HTML_Progress2_Lite
      * @param string $styles  styles of a DOM element
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _changeElementStyle($prefix, $element, $styles)
@@ -1178,7 +1178,7 @@ class HTML_Progress2_Lite
      * @param string $text    element value (label content)
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _changeLabelText($element, $text)
@@ -1198,7 +1198,7 @@ class HTML_Progress2_Lite
      * @param string $element element name (cross id.)
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _changeCrossItem($element)

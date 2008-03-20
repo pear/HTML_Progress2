@@ -92,7 +92,7 @@ class ActionDump extends HTML_QuickForm_Action
      *                           as one Action object can serve multiple actions
      *
      * @return void
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      * @access public
      */
     function perform(&$page, $actionName)

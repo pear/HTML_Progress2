@@ -92,7 +92,7 @@ class HTML_Progress2_Upload
      * @param string $format (optional) conversion specifications
      *                                  for all progress bar labels
      *
-     * @since      2.3.0RC1
+     * @since      version 2.3.0RC1 (2007-02-12)
      * @access     protected
      * @link       http://pdoru.from.ro/upload-progress-meter/  Patch for PHP 4
      */
@@ -123,7 +123,7 @@ class HTML_Progress2_Upload
      * @param string $Id upload identifier
      *
      * @return     bool|array   false if info unavailable, hash of data otherwise
-     * @since      2.3.0RC1
+     * @since      version 2.3.0RC1 (2007-02-12)
      * @access     public
      */
     function getInfo($Id)
@@ -183,7 +183,7 @@ class HTML_Progress2_Upload
      * @param array  $info   current upload information
      *
      * @return     bool|string   false on error, formatted string with current info
-     * @since      2.3.0RC1
+     * @since      version 2.3.0RC1 (2007-02-12)
      * @access     public
      */
     function sprintf($format, $info)
@@ -221,7 +221,7 @@ class HTML_Progress2_Upload
      * @param string $uplId (optional) upload identifier
      *
      * @return     array
-     * @since      2.3.0RC1
+     * @since      version 2.3.0RC1 (2007-02-12)
      * @access     public
      */
     function getStatus($uplId = null)
@@ -254,7 +254,7 @@ class HTML_Progress2_Upload
      * @param int $x file size in bytes
      *
      * @return     string
-     * @since      2.3.0RC1
+     * @since      version 2.3.0RC1 (2007-02-12)
      * @access     public
      */
     function formatBytes($x)

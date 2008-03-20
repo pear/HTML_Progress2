@@ -65,7 +65,7 @@ class TabbedPage extends HTML_QuickForm_Page
      * Builds tabs of the Wizard.
      *
      * @return void
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      * @access public
      */
     function buildTabs()
@@ -103,7 +103,7 @@ class TabbedPage extends HTML_QuickForm_Page
      * @param array $commands (optional) additional commands list
      *
      * @return void
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      * @access public
      */
     function buildButtons($disable = null, $commands = null)

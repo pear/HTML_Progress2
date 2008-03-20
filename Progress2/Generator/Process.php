@@ -65,7 +65,7 @@ class ActionProcess extends HTML_QuickForm_Action
      * @param string $actionName page action asked
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function perform(&$page, $actionName)
@@ -106,7 +106,7 @@ class ActionProcess extends HTML_QuickForm_Action
      * @param boolean $raw   (optional) decides whether to put html tags or not
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function sprintCSS(&$pBar, $raw = false)
@@ -122,7 +122,7 @@ class ActionProcess extends HTML_QuickForm_Action
      * @param boolean $raw     (optional) decides whether to put php tags or not
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function sprintPHP(&$pBar, $cssCode, $raw = false)
@@ -238,7 +238,7 @@ class ActionProcess extends HTML_QuickForm_Action
      * @param string $charset (optional) charset to use
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function exportOutput($str, $mime = 'text/plain', $charset = 'iso-8859-1')
@@ -260,7 +260,7 @@ class ActionProcess extends HTML_QuickForm_Action
      * @param array  $attributes function arguments list of values
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _attributesArray($str, $attributes)

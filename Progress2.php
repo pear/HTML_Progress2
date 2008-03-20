@@ -613,7 +613,7 @@ class HTML_Progress2 extends HTML_Common
      * @param int   $max          (optional) Maximum value of progress bar
      * @param mixed $percentLabel (optional) Progress bar percent label id.
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function HTML_Progress2($errorPrefs = array(),
@@ -638,7 +638,7 @@ class HTML_Progress2 extends HTML_Common
      * @param int   $max          (optional) Maximum value of progress bar
      * @param mixed $percentLabel (optional) Progress bar percent label id.
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     protected
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setIndeterminate(), setIdent(), setAnimSpeed(),
@@ -760,7 +760,7 @@ class HTML_Progress2 extends HTML_Common
      *
      * @link       http://www.php.net/manual/en/function.version-compare.php
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function apiVersion()
@@ -782,7 +782,7 @@ class HTML_Progress2 extends HTML_Common
      * such a sliding box.
      *
      * @return     boolean
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setIndeterminate()
      */
@@ -800,7 +800,7 @@ class HTML_Progress2 extends HTML_Common
      * @param boolean $continuous whether countinuously displays animation
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        isIndeterminate()
@@ -826,7 +826,7 @@ class HTML_Progress2 extends HTML_Common
      * (return TRUE), or not (return FALSE).
      *
      * @return     boolean
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setBorderPainted()
      */
@@ -844,7 +844,7 @@ class HTML_Progress2 extends HTML_Common
      * @param boolean $paint whether the progress bar should paint its border
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        isBorderPainted()
@@ -870,7 +870,7 @@ class HTML_Progress2 extends HTML_Common
      * The default value is zero and can't be negative.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setMinimum()
      */
@@ -890,7 +890,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $min progress meter's minimal value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getMinimum()
@@ -943,7 +943,7 @@ class HTML_Progress2 extends HTML_Common
      * The default value is 100 and can't be less than minimum.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setMaximum()
      */
@@ -963,7 +963,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $max progress meter's maximal value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getMaximum()
@@ -1016,7 +1016,7 @@ class HTML_Progress2 extends HTML_Common
      * The default value is +1.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setIncrement()
      */
@@ -1034,7 +1034,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $inc progress meter's increment value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getIncrement()
@@ -1068,7 +1068,7 @@ class HTML_Progress2 extends HTML_Common
      * The default value is equal to minimum.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setValue(), incValue()
      */
@@ -1087,7 +1087,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $val progress meter's current value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getValue(), incValue()
@@ -1136,7 +1136,7 @@ class HTML_Progress2 extends HTML_Common
      * See also moveNext() method if you want a refresh display too.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        getValue(), setValue(), moveNext()
      */
@@ -1163,7 +1163,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $step new step value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        moveNext()
@@ -1215,7 +1215,7 @@ class HTML_Progress2 extends HTML_Common
      * then all listeners are notified.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        moveStep()
      */
@@ -1242,7 +1242,7 @@ class HTML_Progress2 extends HTML_Common
      * @param boolean $float (optional) float or integer format
      *
      * @return     float
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getValue(), getMaximum()
@@ -1282,7 +1282,7 @@ class HTML_Progress2 extends HTML_Common
      * The default orientation is horizontal.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setOrientation()
      */
@@ -1304,7 +1304,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $orient Orientation (horizontal or vertical)
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getOrientation()
@@ -1360,7 +1360,7 @@ class HTML_Progress2 extends HTML_Common
      * The default fill way is 'natural'.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setFillWay()
      */
@@ -1378,7 +1378,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $way fill direction (natural or reverse)
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getFillWay()
@@ -1412,7 +1412,7 @@ class HTML_Progress2 extends HTML_Common
      * The default value is 10.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setCellCount()
      */
@@ -1430,7 +1430,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $cells Cell count on progress meter
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getCellCount()
@@ -1467,7 +1467,7 @@ class HTML_Progress2 extends HTML_Common
      * @param bool $asString (optional) whether to return the attributes as string
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setCellAttributes()
@@ -1528,7 +1528,7 @@ class HTML_Progress2 extends HTML_Common
      * @param int   $cell       (optional) Cell index
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getCellAttributes()
@@ -1590,7 +1590,7 @@ class HTML_Progress2 extends HTML_Common
      * (0,2) for bottom left corner.
      *
      * @return     array
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setCellCoordinates()
      */
@@ -1610,7 +1610,7 @@ class HTML_Progress2 extends HTML_Common
      * @param array   $coord (optional) Coordinates (x,y) in the grid, of each cell
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getCellCoordinates()
@@ -1708,7 +1708,7 @@ class HTML_Progress2 extends HTML_Common
      * @param bool $asString (optional) whether to return the attributes as string
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setBorderAttributes()
@@ -1750,7 +1750,7 @@ class HTML_Progress2 extends HTML_Common
      * @param mixed $attributes Associative array or string of HTML tag attributes
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        getBorderAttributes()
      */
@@ -1771,7 +1771,7 @@ class HTML_Progress2 extends HTML_Common
      * @param bool $asString (optional) whether to return the attributes as string
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setFrameAttributes()
@@ -1817,7 +1817,7 @@ class HTML_Progress2 extends HTML_Common
      * @param null|array $attributes (optional) hash of style parameters
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_OPTION
@@ -1872,7 +1872,7 @@ class HTML_Progress2 extends HTML_Common
      * @param bool   $asString (optional) whether to return the attributes as string
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setLabelAttributes()
@@ -1930,7 +1930,7 @@ class HTML_Progress2 extends HTML_Common
      * @param mixed  $attributes Associative array or string of HTML tag attributes
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getLabelAttributes(), addLabel()
@@ -1978,7 +1978,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $value (optional) default label value
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setLabelAttributes(), removeLabel()
@@ -2127,7 +2127,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $name Label name
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        addLabel()
@@ -2164,7 +2164,7 @@ class HTML_Progress2 extends HTML_Common
      * @param bool $asString (optional) whether to return the attributes as string
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setProgressAttributes()
@@ -2213,7 +2213,7 @@ class HTML_Progress2 extends HTML_Common
      * @param mixed $attributes Associative array or string of HTML tag attributes
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        getProgressAttributes()
      */
@@ -2234,7 +2234,7 @@ class HTML_Progress2 extends HTML_Common
      *                                 where to get HTML_Progress2.js file
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
@@ -2321,7 +2321,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $url URL to the linked Progress JavaScript
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getScript()
@@ -2365,7 +2365,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $fileMask (optional) sprintf format for pictures filename
      *
      * @return     array
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        setCellAttributes()
@@ -2448,7 +2448,7 @@ class HTML_Progress2 extends HTML_Common
      * The default value is zero (no delay).
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setAnimSpeed()
      */
@@ -2467,7 +2467,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $delay Delay in millisecond.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getAnimSpeed()
@@ -2509,7 +2509,7 @@ class HTML_Progress2 extends HTML_Common
      * @param boolean $raw (optional) html output with script tags or just raw data
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      */
@@ -2630,7 +2630,7 @@ class HTML_Progress2 extends HTML_Common
      * @param mixed $styles CSS elements reference to import
      *
      * @return     void|PEAR_Error
-     * @since      2.2.0
+     * @since      version 2.2.0 (2007-01-03)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      */
@@ -2763,7 +2763,7 @@ class HTML_Progress2 extends HTML_Common
      * This structure is read-only, a dump-like information.
      *
      * @return     array
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function toArray()
@@ -2799,7 +2799,7 @@ class HTML_Progress2 extends HTML_Common
      * Get html code required to display the progress meter in any html document.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function toHtml()
@@ -3055,7 +3055,7 @@ class HTML_Progress2 extends HTML_Common
      * moveStep() or moveNext() methods.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function display()
@@ -3071,7 +3071,7 @@ class HTML_Progress2 extends HTML_Common
      * to remove/hide the progress meter of the browser screen.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function hide()
@@ -3094,7 +3094,7 @@ class HTML_Progress2 extends HTML_Common
      *       did not work on Windows systems until PHP 5.0.0
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        getAnimSpeed(), setAnimSpeed(), process()
      */
@@ -3124,7 +3124,7 @@ class HTML_Progress2 extends HTML_Common
      * @param mixed $handler Name of function or a class-method.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK
      * @see        process()
@@ -3150,7 +3150,7 @@ class HTML_Progress2 extends HTML_Common
      * the HTML_Progress2::sleep() method.
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        sleep(), setProgressHandler()
      */
@@ -3175,7 +3175,7 @@ class HTML_Progress2 extends HTML_Common
      * All observers are also notified of main changes (start, stop meter).
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        process(), setProgressHandler()
      */
@@ -3211,7 +3211,7 @@ class HTML_Progress2 extends HTML_Common
      * only once meter at same time on same page.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        setIdent()
      */
@@ -3231,7 +3231,7 @@ class HTML_Progress2 extends HTML_Common
      * @param mixed $ident (optional) the new identification string.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        getIdent()
      */
@@ -3254,7 +3254,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $nName    Expected notification name, serves as a filter
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
      *             HTML_PROGRESS2_ERROR_INVALID_INPUT
@@ -3294,7 +3294,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $nName    Expected notification name, serves as a filter
      *
      * @return     bool           True if observer was removed, false otherwise
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
      *             HTML_PROGRESS2_ERROR_INVALID_INPUT
@@ -3342,7 +3342,7 @@ class HTML_Progress2 extends HTML_Common
      * @param array  $client    (optional) list of client libraries to use
      *
      * @return     void
-     * @since      2.3.0a1
+     * @since      version 2.3.0a1 (2007-01-17)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
@@ -3402,7 +3402,7 @@ class HTML_Progress2 extends HTML_Common
      *                                      for serializing/unserializing data
      *
      * @return     string
-     * @since      2.3.0a2
+     * @since      version 2.3.0a2 (2007-01-23)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        registerAJAX()
@@ -3476,7 +3476,7 @@ class HTML_Progress2 extends HTML_Common
      *                                           for browse file dialog box
      *
      * @return     void
-     * @since      2.3.0a3
+     * @since      version 2.3.0a3 (2007-02-02)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
@@ -3550,7 +3550,7 @@ class HTML_Progress2 extends HTML_Common
      *                                 and ajax.js files
      *
      * @return     string
-     * @since      2.3.0a3
+     * @since      version 2.3.0a3 (2007-02-02)
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT,
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
@@ -3692,7 +3692,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $fileName file name
      *
      * @return     bool
-     * @since      2.3.0a1
+     * @since      version 2.3.0a1 (2007-01-17)
      * @access     protected
      * @static
      */
@@ -3713,7 +3713,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $value new value of the progress meter
      *
      * @return     void
-     * @since      2.0.0RC2
+     * @since      version 2.0.0RC2 (2005-08-01)
      * @access     private
      * @see        moveStep(), moveNext()
      */
@@ -3794,7 +3794,7 @@ class HTML_Progress2 extends HTML_Common
      * Returns a horizontal progress bar structure as HTML.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _getProgressHbarToHtml()
@@ -3846,7 +3846,7 @@ class HTML_Progress2 extends HTML_Common
      * Returns a vertical progress bar structure as HTML.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _getProgressVbarToHtml()
@@ -3898,7 +3898,7 @@ class HTML_Progress2 extends HTML_Common
      * Returns a polygonal progress structure as HTML.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _getProgressPolygonalToHtml()
@@ -3951,7 +3951,7 @@ class HTML_Progress2 extends HTML_Common
      * Returns a circle progress structure as HTML.
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _getProgressCircleToHtml()
@@ -3996,7 +3996,7 @@ class HTML_Progress2 extends HTML_Common
      * @param integer $h Polygon height
      *
      * @return     array
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      * @see        setCellCoordinates()
      */
@@ -4032,7 +4032,7 @@ class HTML_Progress2 extends HTML_Common
      * and border width.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      * @see        setOrientation(), setCellCount(), setCellAttributes(),
      *             setBorderAttributes()
@@ -4077,7 +4077,7 @@ class HTML_Progress2 extends HTML_Common
      * Calculate the new position in pixel of the progress bar value.
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _computePosition()
@@ -4159,7 +4159,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $text    element value (label content)
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _changeLabelText($element, $text)
@@ -4179,7 +4179,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $element element name (cross id.)
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _changeCrossItem($element)
@@ -4199,7 +4199,7 @@ class HTML_Progress2 extends HTML_Common
      * @param string $styles styles of a DOM element
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _changeElementStyle($styles)
@@ -4221,7 +4221,7 @@ class HTML_Progress2 extends HTML_Common
      * @param array  $info  (optional) Additional information about the notification
      *
      * @return     void
-     * @since      2.0.0RC2
+     * @since      version 2.0.0RC2 (2005-08-01)
      * @access     private
      */
     function _postNotification($event, $info = array())
@@ -4254,7 +4254,7 @@ class HTML_Progress2 extends HTML_Common
      * @param array $prefs hash of params to configure error handler
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _initErrorHandler($prefs = array())
@@ -4309,7 +4309,7 @@ class HTML_Progress2 extends HTML_Common
      * @param array   $params Associative array of error parameters
      *
      * @return     PEAR_Error
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _errorHandler($code, $level, $params)
@@ -4344,7 +4344,7 @@ class HTML_Progress2 extends HTML_Common
      * at class construction (by first argument).
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        _errorHandler()
      */
@@ -4367,7 +4367,7 @@ class HTML_Progress2 extends HTML_Common
      * in user scripts.
      *
      * @return     integer
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        getError(), raiseError()
      */
@@ -4383,7 +4383,7 @@ class HTML_Progress2 extends HTML_Common
      * from an object (PEAR_Error, ...) or a simple php array.
      *
      * @return     false|array|PEAR_Error
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        hasErrors(), raiseError()
      */

@@ -136,7 +136,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      * @param array  $errorPrefs     (optional) Hash of parameters
      *                                          to configure error handler
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function HTML_Progress2_Generator($controllerName = 'ProgressGenerator',
@@ -177,7 +177,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      * @param array  $errorPrefs     (optional) Hash of parameters
      *                                          to configure error handler
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     protected
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      */
@@ -269,7 +269,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      *                                          to configure error handler
      *
      * @return     object    HTML_Progress2_Generator
-     * @since      2.1.0
+     * @since      version 2.1.0 (2006-08-12)
      * @access     public
      */
     function &singleton($controllerName = 'ProgressGenerator',
@@ -294,7 +294,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      *
      * @return void
      * @access public
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      */
     function addPages($pages = null)
     {
@@ -315,7 +315,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      *
      * @return void
      * @access public
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      */
     function addPage($page)
     {
@@ -344,7 +344,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      *
      * @return void
      * @access public
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      */
     function addActions($actions = null)
     {
@@ -396,7 +396,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      *
      * @return     void
      * @access     public
-     * @since      2.1.0
+     * @since      version 2.1.0 (2006-08-12)
      */
     function addAction($actionName, &$action)
     {
@@ -411,7 +411,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      *
      * @access     public
      * @return     boolean   true if the file is in the include path.
-     * @since      2.1.0
+     * @since      version 2.1.0 (2006-08-12)
      * @static
      */
     function isIncludeable($file)
@@ -429,7 +429,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      * Creates a progress bar with options choosen on all wizard tabs.
      *
      * @return     object
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function createProgressBar()
@@ -467,7 +467,7 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      * with options choosen on all wizard tabs.
      *
      * @return     array
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      * @see        HTML_Progress2::toArray()
      */

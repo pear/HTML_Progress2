@@ -71,7 +71,7 @@ class HTML_Progress2_Error extends PEAR_Error
      *                         PEAR_ERROR_CALLBACK, the callback function
      * @param string $userinfo (optional) additional user/debug info
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function HTML_Progress2_Error($message = null,
@@ -94,7 +94,7 @@ class HTML_Progress2_Error extends PEAR_Error
      *                         PEAR_ERROR_CALLBACK, the callback function
      * @param string $userinfo (optional) additional user/debug info
      *
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function __construct($message = null,
@@ -154,7 +154,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * Get error level from an error object
      *
      * @return     int                      error level
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function getLevel()
@@ -166,7 +166,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * Default callback function/method from an error object
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function log()
@@ -191,7 +191,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * @param string $format the context of execution format
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function sprintContextExec($format)
@@ -229,7 +229,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * @param array $userinfo hash of parameters
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _display($userinfo)
@@ -257,7 +257,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * @param array $userinfo hash of parameters
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _log($userinfo)
@@ -323,7 +323,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * @param string $level error level ('exception', 'error', 'warning', ...)
      *
      * @return     mixed
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _handleError($code, $level)
@@ -344,7 +344,7 @@ class HTML_Progress2_Error extends PEAR_Error
      *                        for dynamic messages
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _msgCallback($code, $userinfo)
@@ -381,7 +381,7 @@ class HTML_Progress2_Error extends PEAR_Error
      * Error Message Template array
      *
      * @return     string
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     private
      */
     function _getErrorMessage()

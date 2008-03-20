@@ -73,7 +73,7 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
      * @param string $css custom stylesheet to apply, or default if not set
      *
      * @access public
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      */
     function ActionDisplay($css = null)
     {
@@ -88,7 +88,7 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
      *
      * @return void
      * @access public
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      */
     function _renderForm(&$page)
     {
@@ -146,7 +146,7 @@ HTML;
      *
      * @return string
      * @access public
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      */
     function getStyleSheet($content = true)
     {
@@ -165,7 +165,7 @@ HTML;
      *
      * @return bool    true if custom styles, false if default styles applied
      * @access public
-     * @since  2.1.0
+     * @since  version 2.1.0 (2006-08-12)
      */
     function setStyleSheet($css = null)
     {

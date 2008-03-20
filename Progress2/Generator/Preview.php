@@ -65,7 +65,7 @@ class ActionPreview extends HTML_QuickForm_Action
      * @param string $actionName page action asked
      *
      * @return     void
-     * @since      2.0.0
+     * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
     function perform(&$page, $actionName)
