@@ -3181,6 +3181,7 @@ class HTML_Progress2 extends HTML_Common
      */
     function run()
     {
+        $this->_status = 'run';
         $this->_postNotification('onSubmit',
                                  array('handler' => __FUNCTION__,
                                        'value' => $this->getValue()));
