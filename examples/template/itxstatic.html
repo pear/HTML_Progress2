@@ -30,8 +30,16 @@ h2 {
     font-weight: normal;
 }
 
+h2 img {
+    float: right;
+}
+
 img {
     border: 0;
+}
+
+fieldset {
+    margin-top: 1.5em;
 }
 
 #MainWindow {
@@ -99,14 +107,12 @@ img {
  -->
 </style>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 {javascript_html}
-//-->
+//]]>
 </script>
 </head>
 <body>
-
-<br /><br />
 
 <div id="MainWindow">
 
@@ -114,14 +120,14 @@ img {
 
 <div id="WizardCaption">
 <h2>
-<img src="cross.png" align="right" />
+<img src="cross.png" alt="cross" />
 {setup_title_label}
 </h2>
 </div>
 
 <div id="WizardBody">
 <div id="WizardImage">
-<img src="wizard.png" /><br />
+<img src="wizard.png" alt="wizard pic." /><br />
 </div>
 <div id="WizardForm">
 {progress_bar_html}
@@ -145,5 +151,4 @@ img {
 {app_copyright_label}
 </div>
 
-</body>
-</html>
+

@@ -56,6 +56,7 @@ $vars = array (
 $tpl->setVariable($vars);
 
 $form = new HTML_QuickForm('form');
+$form->removeAttribute('name');        // XHTML compliance
 $form->addElement('submit', 'launch', 'Launch', 'style="width:100px;"');
 
 $styles = array(
@@ -118,3 +119,5 @@ if ($form->validate()) {
     $pb->run();
 }
 ?>
+</body>
+</html>
