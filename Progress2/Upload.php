@@ -159,7 +159,10 @@ class HTML_Progress2_Upload
                 $info['bytes_uploaded'] = $tmp['current'];
                 $info['bytes_total']    = $tmp['total'];
                 $info['files_uploaded'] = $tmp['done'];
-                $info['cancel_upload']  = $tmp['cancel_upload'];
+                $info['current_file']   = $tmp['filename'];
+                if (isset($tmp['cancel_upload'])) {
+                    $info['cancel_upload'] = $tmp['cancel_upload'];
+                }
             } else {
                 $info = false;
             }
@@ -178,6 +181,7 @@ class HTML_Progress2_Upload
      *  T - for display total file size
      *  C - for display current file size uploaded
      *  P - for display percentage of file size uploaded
+     *  F - for display file name to upload
      *
      * @param string $format conversion specification
      * @param array  $info   current upload information
@@ -211,6 +215,10 @@ class HTML_Progress2_Upload
                                  $info['bytes_total'] * 100);
             }
             $format = str_replace('%P', $percent, $format);
+        }
+        $pos = strpos($format, '%F');
+        if ($pos !== false) {
+            $format = str_replace('%F', $info['current_file'], $format);
         }
         return $format;
     }
