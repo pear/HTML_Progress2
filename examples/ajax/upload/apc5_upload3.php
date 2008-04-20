@@ -55,7 +55,9 @@ $pb->registerAJAX('auto_server.php', array('Request1APC5Status'));
 // upload progress identifier : must be unique to avoid collision
 $progress_key = md5(uniqid(rand(), true));
 ?>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>APC PHP5 AJAX Upload Progress Meter custom example </title>
 <script type="text/javascript" src="HTML_Progress2.js"></script>
@@ -88,9 +90,9 @@ body {background-color: #EEEEEE; }
 <body>
 
 <form enctype="multipart/form-data" target="tfrm" action="http_upload.php" method="post" onsubmit="beginUpload();">
-  <input type="hidden" name="APC_UPLOAD_PROGRESS" id="progress_key" value="<?php echo $progress_key; ?>">
-  <input type="file" id="userfile"  name="userfile">
-  <input type="submit" value="Upload!">
+  <input type="hidden" name="APC_UPLOAD_PROGRESS" id="progress_key" value="<?php echo $progress_key; ?>" />
+  <input type="file" id="userfile"  name="userfile" />
+  <input type="submit" value="Upload!" />
 </form>
 <iframe id="tfrm" name="tfrm" style="width:1px;height:1px;border:0"></iframe>
 
