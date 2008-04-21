@@ -61,7 +61,6 @@ class HTML_Progress2_Upload
      * Backend identifier are either :
      * 'none' - if nothing else below match
      * 'apc5' - APC php extension with PHP5.2.0 or greater
-     * 'upm4' - upload progress meter php extension with PHP4
      * 'upm5' - upload progress meter php extension with PHP5.2.0 or greater
      *
      * @var        string
@@ -78,6 +77,9 @@ class HTML_Progress2_Upload
      *  T - for display total file size
      *  C - for display current file size uploaded
      *  P - for display percentage of file size uploaded
+     *  F - for display file name to upload
+     *  E - for estimate time left
+     *  S - for speed limit
      *
      * @var        string
      * @since      2.3.0RC1
@@ -100,9 +102,7 @@ class HTML_Progress2_Upload
     {
         $php5 = (version_compare(phpversion(), '5.2.0', 'ge') < 0) ? false : true;
 
-        if (extension_loaded('upload_progress_meter')) {
-            $this->backend = 'upm4';
-        } elseif (extension_loaded('uploadprogress') && $php5) {
+        if (extension_loaded('uploadprogress') && $php5) {
             $this->backend = 'upm5';
         } elseif (extension_loaded('apc') && $php5) {
             $this->backend = 'apc5';
@@ -137,18 +137,11 @@ class HTML_Progress2_Upload
             );
 
         switch ($this->backend) {
-        case 'upm4':
-            $tmp = upload_progress_meter_get_info($Id);
-            if (is_array($tmp)) {
-                $info = array_merge($info, $tmp);
-            } else {
-                $info = false;
-            }
-            break;
         case 'upm5':
             $tmp = uploadprogress_get_info($Id);
             if (is_array($tmp)) {
-                $info = array_merge($info, $tmp);
+                $info                 = array_merge($info, $tmp);
+                $info['current_file'] = $tmp['filename'];
             } else {
                 $info = false;
             }
@@ -182,6 +175,8 @@ class HTML_Progress2_Upload
      *  C - for display current file size uploaded
      *  P - for display percentage of file size uploaded
      *  F - for display file name to upload
+     *  E - for estimate time left
+     *  S - for speed limit
      *
      * @param string $format conversion specification
      * @param array  $info   current upload information
@@ -219,6 +214,19 @@ class HTML_Progress2_Upload
         $pos = strpos($format, '%F');
         if ($pos !== false) {
             $format = str_replace('%F', $info['current_file'], $format);
+        }
+        $pos = strpos($format, '%E');
+        if ($pos !== false
+            && $info['est_sec'] > 0) {
+            $eta    = sprintf("%02d:%02d",
+                              $info['est_sec'] / 60, $info['est_sec'] % 60);
+            $format = str_replace('%E', $eta, $format);
+        }
+
+        $pos = strpos($format, '%S');
+        if ($pos !== false) {
+            $speed  = $this->formatBytes($info['speed_average']);
+            $format = str_replace('%S', $speed, $format);
         }
         return $format;
     }
