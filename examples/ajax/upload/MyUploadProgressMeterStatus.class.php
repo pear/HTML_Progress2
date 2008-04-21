@@ -33,6 +33,7 @@ class MyUploadProgressMeterStatus extends HTML_Progress2_Upload
         $ret = parent::getStatus($uplId);
         if (is_array($ret) && $ret['percentage'] == 100) {
             $ret['labels']['percentStatus'] = 'Upload done !';
+            $ret['labels']['fileName']      = '';
         }
         return $ret;
     }
