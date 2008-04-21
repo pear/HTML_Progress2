@@ -40,6 +40,16 @@ class AutoServer extends HTML_AJAX_Server
         $status = new MyUploadProgressMeterStatus($format);
         $this->registerClass($status, 'Request1APC5Status', array('getStatus'));
     }
+
+    function initRequestUPM5Status()
+    {
+        require_once 'MyUploadProgressMeterStatus.class.php';
+        $format = array('pct1' => '%P%',
+                        'percentStatus' => '%E left (at %S/sec)  %C/%T(%P%)',
+                        'fileName' => 'Current file: %F');
+        $status = new MyUploadProgressMeterStatus($format);
+        $this->registerClass($status, 'RequestUPM5Status', array('getStatus'));
+    }
 }
 
 $server = new AutoServer();
