@@ -15,20 +15,20 @@
     <link rel="prev" href="ch09.html" title=
     "Chapter&nbsp;9.&nbsp;Quick Start with HTML_Progress2_Generator" />
     <link rel="next" href="ch09s03.html" title="Template integration" />
-<style type="text/css">
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
- div.c2 {font-family: monospace;}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
+    div.c2 {font-family: monospace;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -59,8 +59,7 @@
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
@@ -96,7 +95,8 @@
           <li class="li1">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/Progress2/Generator.php'</span>;
+              "st0">'HTML/Progress2/Generator.php'</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -107,7 +107,8 @@
           <li class="li1 ln-xtra">
             <div class="de1">
               <span class="kw3">session_start</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -117,16 +118,18 @@
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$tabbed</span> = <span class="kw2">new</span>
-              HTML_Progress2_Generator<span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$tabbed</span> <span class="sy0">=</span>
+              <span class="kw2">new</span> HTML_Progress2_Generator<span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$tabbed</span>-&gt;<span class=
-              "me1">run</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$tabbed</span><span class=
+              "sy0">-&gt;</span><span class="me1">run</span><span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -236,10 +239,13 @@
                         </li>
                         <li class="li1">
                           <div class="de1">
-                            <span class="re0">$tabbed</span> =&amp;
-                            HTML_Progress2_Generator::<span class=
+                            <span class="re1">$tabbed</span> <span class=
+                            "sy0">=&amp;</span>
+                            HTML_Progress2_Generator<span class=
+                            "sy0">::</span><span class=
                             "me2">singleton</span><span class=
-                            "br0">(</span><span class="br0">)</span>;
+                            "br0">(</span><span class=
+                            "br0">)</span><span class="sy0">;</span>
                           </div>
                         </li>
                         <li class="li1">
@@ -280,7 +286,8 @@
           <li class="li1">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/Progress2/Generator.php'</span>;
+              "st0">'HTML/Progress2/Generator.php'</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -291,7 +298,8 @@
           <li class="li1">
             <div class="de1">
               <span class="kw3">session_start</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -301,10 +309,10 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$tabbed</span> =&amp;
-              HTML_Progress2_Generator::<span class=
+              <span class="re1">$tabbed</span> <span class="sy0">=&amp;</span>
+              HTML_Progress2_Generator<span class="sy0">::</span><span class=
               "me2">singleton</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -314,12 +322,13 @@
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$tabbed</span>-&gt;<span class=
-              "me1">addActions</span><span class="br0">(</span><span class=
-              "kw3">array</span><span class="br0">(</span><span class=
-              "st0">'dump'</span> =&gt; <span class=
+              <span class="re1">$tabbed</span><span class=
+              "sy0">-&gt;</span><span class="me1">addActions</span><span class=
+              "br0">(</span><span class="kw3">array</span><span class=
+              "br0">(</span><span class="st0">'dump'</span> <span class=
+              "sy0">=&gt;</span> <span class=
               "st0">'ActionDump'</span><span class="br0">)</span><span class=
-              "br0">)</span>;
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -329,20 +338,23 @@
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$css</span> = <span class=
-              "kw3">dirname</span><span class="br0">(</span><span class=
-              "kw2">__FILE__</span><span class="br0">)</span> .
-              DIRECTORY_SEPARATOR . <span class="st0">'generator.css'</span>;
+              <span class="re1">$css</span> <span class="sy0">=</span>
+              <span class="kw3">dirname</span><span class=
+              "br0">(</span><span class="kw2">__FILE__</span><span class=
+              "br0">)</span> <span class="sy0">.</span> DIRECTORY_SEPARATOR
+              <span class="sy0">.</span> <span class=
+              "st0">'generator.css'</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$tabbed</span>-&gt;<span class=
-              "me1">addAction</span><span class="br0">(</span><span class=
-              "st0">'display'</span>, <span class="kw2">new</span>
+              <span class="re1">$tabbed</span><span class=
+              "sy0">-&gt;</span><span class="me1">addAction</span><span class=
+              "br0">(</span><span class="st0">'display'</span><span class=
+              "sy0">,</span> <span class="kw2">new</span>
               ActionDisplay<span class="br0">(</span><span class=
-              "re0">$css</span><span class="br0">)</span><span class=
-              "br0">)</span>;
+              "re1">$css</span><span class="br0">)</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -352,9 +364,10 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$tabbed</span>-&gt;<span class=
-              "me1">run</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$tabbed</span><span class=
+              "sy0">-&gt;</span><span class="me1">run</span><span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -459,13 +472,14 @@
                 <li class="li1">
                   <div class="de1">
                     <span class="kw1">require_once</span> <span class=
-                    "st0">'HTML/Progress2/Generator.php'</span>;
+                    "st0">'HTML/Progress2/Generator.php'</span><span class=
+                    "sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
                   <div class="de1">
                     <span class="kw1">require_once</span> <span class=
-                    "st0">'HTML/Progress2/Generator/Default.php'</span>;
+                    "st0">'HTML/Progress2/Generator/Default.php'</span><span class="sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
@@ -476,7 +490,8 @@
                 <li class="li1">
                   <div class="de1">
                     <span class="kw3">session_start</span><span class=
-                    "br0">(</span><span class="br0">)</span>;
+                    "br0">(</span><span class="br0">)</span><span class=
+                    "sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
@@ -486,11 +501,12 @@
                 </li>
                 <li class="li1">
                   <div class="de1">
-                    <span class="re0">$css</span> = <span class=
-                    "kw3">dirname</span><span class="br0">(</span><span class=
-                    "kw2">__FILE__</span><span class="br0">)</span> .
-                    DIRECTORY_SEPARATOR . <span class=
-                    "st0">'generator.css'</span>;
+                    <span class="re1">$css</span> <span class="sy0">=</span>
+                    <span class="kw3">dirname</span><span class=
+                    "br0">(</span><span class="kw2">__FILE__</span><span class=
+                    "br0">)</span> <span class="sy0">.</span>
+                    DIRECTORY_SEPARATOR <span class="sy0">.</span> <span class=
+                    "st0">'generator.css'</span><span class="sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
@@ -500,17 +516,19 @@
                 </li>
                 <li class="li1">
                   <div class="de1">
-                    <span class="re0">$display</span> = <span class=
-                    "kw2">new</span> ActionDisplay<span class=
-                    "br0">(</span><span class="br0">)</span>;
+                    <span class="re1">$display</span> <span class=
+                    "sy0">=</span> <span class="kw2">new</span>
+                    ActionDisplay<span class="br0">(</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
                   <div class="de1">
-                    <span class="re0">$display</span>-&gt;<span class=
+                    <span class="re1">$display</span><span class=
+                    "sy0">-&gt;</span><span class=
                     "me1">setStyleSheet</span><span class=
-                    "br0">(</span><span class="re0">$css</span><span class=
-                    "br0">)</span>;
+                    "br0">(</span><span class="re1">$css</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
@@ -537,26 +555,30 @@
                 </li>
                 <li class="li1">
                   <div class="de1">
-                    <span class="re0">$tabbed</span> =&amp;
-                    HTML_Progress2_Generator::<span class=
+                    <span class="re1">$tabbed</span> <span class=
+                    "sy0">=&amp;</span> HTML_Progress2_Generator<span class=
+                    "sy0">::</span><span class=
                     "me2">singleton</span><span class=
-                    "br0">(</span><span class="br0">)</span>;
+                    "br0">(</span><span class="br0">)</span><span class=
+                    "sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
                   <div class="de1">
-                    <span class="re0">$tabbed</span>-&gt;<span class=
+                    <span class="re1">$tabbed</span><span class=
+                    "sy0">-&gt;</span><span class=
                     "me1">addAction</span><span class=
-                    "br0">(</span><span class="st0">'display'</span>,
-                    <span class="re0">$display</span><span class=
-                    "br0">)</span>;
+                    "br0">(</span><span class="st0">'display'</span><span class="sy0">,</span>
+                    <span class="re1">$display</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
                   <div class="de1">
-                    <span class="re0">$tabbed</span>-&gt;<span class=
-                    "me1">run</span><span class="br0">(</span><span class=
-                    "br0">)</span>;
+                    <span class="re1">$tabbed</span><span class=
+                    "sy0">-&gt;</span><span class="me1">run</span><span class=
+                    "br0">(</span><span class="br0">)</span><span class=
+                    "sy0">;</span>
                   </div>
                 </li>
                 <li class="li1">
@@ -576,7 +598,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>

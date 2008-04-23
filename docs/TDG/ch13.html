@@ -5,28 +5,30 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Chapter&nbsp;13.&nbsp;Introduction
+      Chapter&nbsp;13.&nbsp;How to adjust your code
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
-    <link rel="up" href="pt04.html" title=
-    "Part&nbsp;IV.&nbsp;Reference Guide" />
-    <link rel="prev" href="pt04.html" title=
-    "Part&nbsp;IV.&nbsp;Reference Guide" />
-    <link rel="next" href="ch14.html" title=
-    "Chapter&nbsp;14.&nbsp;Error Handler" />
-<style type="text/css">
+    <link rel="up" href="pt03.html" title=
+    "Part&nbsp;III.&nbsp;Migrating Guide" />
+    <link rel="prev" href="ch12s03.html" title="What was removed ?" />
+    <link rel="next" href="ch13s02.html" title="User Interface related" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c4 {font-family: monospace;}
+    div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
+    h2.c2 {clear: both}
+    p.c1 {font-weight: bold}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -41,39 +43,269 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Chapter&nbsp;13.&nbsp;Introduction
+                  Chapter&nbsp;13.&nbsp;How to adjust your code
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="pt04.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="ch12s03.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Part&nbsp;IV.&nbsp;Reference Guide
+                  Part&nbsp;III.&nbsp;Migrating Guide
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="ch14.html">Next</a>
+                  &nbsp;<a accesskey="n" href="ch13s02.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="chapter" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title">
-          <a name="reference.intro" id=
-          "reference.intro"></a>Chapter&nbsp;13.&nbsp;Introduction
+          <a name="migrating.ajustcode" id=
+          "migrating.ajustcode"></a>Chapter&nbsp;13.&nbsp;How to adjust your
+          code
         </h2>
       </div>
-      <p>
-        This reference describes every API in the HTML_Progress2 class, but
-        also the new plug-in error system, the observer pattern implementation
-        with PEAR::Event_Dispatcher, and the quick-cards reference for
-        HTML_Progress2_Lite.
-      </p>
+      <div class="toc">
+        <p class="c1">
+          Table of Contents
+        </p>
+        <dl>
+          <dt>
+            <span class="sect1"><a href="ch13.html#id4796619">core class
+            related</a></span>
+          </dt>
+          <dt>
+            <span class="sect1"><a href="ch13s02.html">User Interface
+            related</a></span>
+          </dt>
+          <dt>
+            <span class="sect1"><a href="ch13s03.html">Data Management
+            related</a></span>
+          </dt>
+        </dl>
+      </div>
+      <div class="sect1" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h2 class="title c2">
+            <a name="id4796619" id="id4796619"></a>core class related
+          </h2>
+        </div>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">class constructor</span>
+            </dt>
+            <dd>
+              <p>
+                HTML_Progress 1.x allows multiple signatures (5) while
+                HTML_Progress2 allow one unique signature even if all
+                parameters are optional.
+              </p>
+              <p>
+                Resume of HTML_Progress 1.x signatures :
+              </p>
+              <div class="orderedlist">
+                <ol type="1">
+                  <li>$bar = new HTML_Progress();
+                  </li>
+                  <li>$bar = new HTML_Progress($orient);
+                  </li>
+                  <li>$bar = new HTML_Progress($min, $max);
+                  </li>
+                  <li>$bar = new HTML_Progress($orient, $min, $max);
+                  </li>
+                  <li>$bar = new HTML_Progress($model);
+                  </li>
+                </ol>
+              </div>
+              <div class="caution c3">
+                <table border="0" summary="Caution">
+                  <tr>
+                    <td rowspan="2" align="center" valign="top" width="48">
+                      <img alt="[Caution]" src="img/admons/caution.png" />
+                    </td>
+                    <th align="left">
+                      Caution
+                    </th>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top">
+                      Signature #5 is no more allowed because feature was
+                      removed.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <p>
+                HTML_Progress2 signature :
+              </p>
+              <div class="php c4">
+                <ol>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="kw2">&lt;?php</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="re1">$bar</span> <span class="sy0">=</span>
+                      <span class="kw2">new</span> HTML_Progress2<span class=
+                      "br0">(</span><span class=
+                      "re1">$errorPrefs</span><span class="sy0">,</span>
+                      <span class="re1">$orient</span><span class=
+                      "sy0">,</span> <span class="re1">$min</span><span class=
+                      "sy0">,</span> <span class="re1">$max</span><span class=
+                      "sy0">,</span> <span class=
+                      "re1">$percentLabel</span><span class=
+                      "br0">)</span><span class="sy0">;</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">/*</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">&nbsp; &nbsp; &nbsp;
+                      &nbsp;$errorPrefs &nbsp; :hash of options to configure
+                      the API error handling system</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default is
+                      empty array (use PEAR_Error object)</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;$orient
+                      &nbsp; &nbsp; &nbsp; :orientation of the progress bar
+                      (see constants)</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;$min
+                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:minimum value of the
+                      progress bar (default is zero)</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;$max
+                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:maximum value of the
+                      progress bar (default is 100)</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">&nbsp; &nbsp; &nbsp;
+                      &nbsp;$percentLabel :progress bar percent label
+                      identifier (default is 'pct1')</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="coMULTI">&nbsp;*/</span>
+                    </div>
+                  </li>
+                  <li class="li1">
+                    <div class="de1">
+                      <span class="kw2">?&gt;</span>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </dd>
+          </dl>
+        </div>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">apiVersion()</span>
+            </dt>
+            <dd>
+              <p>
+                Returns the current API version compatible with the PHP
+                function : <a class="external" href=
+                "http://www.php.net/manual-lookup.php?pattern=version_compare"
+                title=
+                "http://www.php.net/manual-lookup.php?pattern=version_compare">version_compare()</a>
+              </p>
+              <p>
+                This method return now a string rather than a float, and allow
+                a largest version naming (such as x.y.zRCn)
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">getPercentComplete()</span>
+            </dt>
+            <dd>
+              <p>
+                Returns the percent complete for the progress meter
+              </p>
+              <p>
+                This method has now an optional parameter that allows to return
+                either
+              </p>
+              <div class="itemizedlist">
+                <ul type="disc">
+                  <li>a float by default (range 0.00 to 1.00)
+                  </li>
+                  <li>an integer (range 0 to 100)
+                  </li>
+                </ul>
+              </div>
+            </dd>
+          </dl>
+        </div>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">display()</span>
+            </dt>
+            <dd>
+              <p>
+                Rendering of the progress meter.
+              </p>
+              <div class="important c3">
+                <table border="0" summary="Important">
+                  <tr>
+                    <td rowspan="2" align="center" valign="top" width="48">
+                      <img alt="[Important]" src="img/admons/important.png" />
+                    </td>
+                    <th align="left">
+                      Important
+                    </th>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top">
+                      This method has a new behavior. It will now send only
+                      <code class="methodname">toHtml()</code> output to
+                      browser, while in previous version this method managed
+                      browser refresh. Refresh are now made by the <code class=
+                      "methodname">moveNext()</code> or <code class=
+                      "methodname">moveStep()</code> method.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
     </div>
     <table class="progress2Footer">
       <tr>
@@ -81,7 +313,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -90,24 +322,24 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="pt04.html">Prev</a>&nbsp;
+            <a accesskey="p" href="ch12s03.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
-            <a accesskey="u" href="pt04.html">Up</a>
+            <a accesskey="u" href="pt03.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="ch14.html">Next</a>
+            &nbsp;<a accesskey="n" href="ch13s02.html">Next</a>
           </td>
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Part&nbsp;IV.&nbsp;Reference Guide&nbsp;
+            What was removed ?&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Chapter&nbsp;14.&nbsp;Error Handler
+            &nbsp;User Interface related
           </td>
         </tr>
       </table>

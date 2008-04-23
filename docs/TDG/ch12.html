@@ -5,30 +5,29 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Chapter&nbsp;12.&nbsp;New Features in HTML_Progress2
+      Chapter&nbsp;12.&nbsp;Introduction
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="pt03.html" title=
     "Part&nbsp;III.&nbsp;Migrating Guide" />
-    <link rel="prev" href="ch11s03.html" title="Data Management related" />
-    <link rel="next" href="ch12s02.html" title="Error Handling" />
-<style type="text/css">
+    <link rel="prev" href="pt03.html" title=
+    "Part&nbsp;III.&nbsp;Migrating Guide" />
+    <link rel="next" href="ch12s02.html" title="Why these changes ?" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c4 {margin-left: 0.5in; margin-right: 0.5in;}
- div.c3 {font-family: monospace;}
- h2.c2 {clear: both}
- p.c1 {font-weight: bold}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    h2.c2 {clear: both}
+    p.c1 {font-weight: bold}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -43,12 +42,12 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Chapter&nbsp;12.&nbsp;New Features in HTML_Progress2
+                  Chapter&nbsp;12.&nbsp;Introduction
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="ch11s03.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="pt03.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
                   Part&nbsp;III.&nbsp;Migrating Guide
@@ -58,17 +57,15 @@
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="chapter" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title">
-          <a name="migrating.newfeatures" id=
-          "migrating.newfeatures"></a>Chapter&nbsp;12.&nbsp;New Features in
-          HTML_Progress2
+          <a name="migrating.intro" id=
+          "migrating.intro"></a>Chapter&nbsp;12.&nbsp;Introduction
         </h2>
       </div>
       <div class="toc">
@@ -77,492 +74,30 @@
         </p>
         <dl>
           <dt>
-            <span class="sect1"><a href="ch12.html#id4792402">Multiple Label
-            System</a></span>
-          </dt>
-          <dd>
-            <dl>
-              <dt>
-                <span class="sect2"><a href="ch12.html#id4794521">Add a new
-                label</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href="ch12.html#id4794719">Remove
-                existing label</a></span>
-              </dt>
-            </dl>
-          </dd>
-          <dt>
-            <span class="sect1"><a href="ch12s02.html">Error
-            Handling</a></span>
+            <span class="sect1"><a href="ch12.html#id4794748">Intended
+            audience</a></span>
           </dt>
           <dt>
-            <span class="sect1"><a href="ch12s03.html">Reuse CSS</a></span>
+            <span class="sect1"><a href="ch12s02.html">Why these changes
+            ?</a></span>
           </dt>
-          <dd>
-            <dl>
-              <dt>
-                <span class="sect2"><a href="ch12s03.html#id4794422">Step 1 :
-                Extract Javascript code</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href="ch12s03.html#id4795433">Step 2 :
-                Extract CSS code</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href="ch12s03.html#id4795637">Step 3 :
-                Remove HTML_Progress2 css properties</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href="ch12s03.html#id4795304">Step 4 :
-                Adjust CSS class selector</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href="ch12s03.html#id4796078">Step 5 :
-                play with new pattern</a></span>
-              </dt>
-            </dl>
-          </dd>
+          <dt>
+            <span class="sect1"><a href="ch12s03.html">What was removed
+            ?</a></span>
+          </dt>
         </dl>
       </div>
-      <p>
-        This chapter documents all of the differences between HTML_Progress 1.x
-        and the new features introduced in HTML_Progress2.
-      </p>
-      <p>
-        The most significant change in HTML_Progress2 is the addition of the
-        Multiple Label System.
-      </p>
       <div class="sect1" lang="en" xml:lang="en">
         <div class="titlepage">
           <h2 class="title c2">
-            <a name="id4792402" id="id4792402"></a>Multiple Label System
+            <a name="id4794748" id="id4794748"></a>Intended audience
           </h2>
         </div>
-        <div class="toc">
-          <dl>
-            <dt>
-              <span class="sect2"><a href="ch12.html#id4794521">Add a new
-              label</a></span>
-            </dt>
-            <dt>
-              <span class="sect2"><a href="ch12.html#id4794719">Remove existing
-              label</a></span>
-            </dt>
-          </dl>
-        </div>
         <p>
-          While with HTML_Progress 1.x you have no choice, or so few, to
-          display informations with text zone also called "<span class=
-          "quote">string</span>"; In the new API of HTML_Progress2 you may have
-          as much labels as you want all around the progres meter.
+          If you have not already used HTML_Progress 1.x, this guide is not for
+          you. It was written to help users to migrate easily all their scripts
+          from version 1.x to the major 2.0.0.
         </p>
-        <p>
-          No need anymore to do a choice between the percent text info and
-          captions while the progress meter reach particular values. You can
-          have both at same time, and even more.
-        </p>
-        <p>
-          As in previous version, HTML_Progress 1.x, you can have text zone as
-          label, but also now four more types. Here are the list :
-        </p>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">(text) <code class=
-              "constant">HTML_PROGRESS2_LABEL_TEXT</code></span>
-            </dt>
-            <dd>
-              <p>
-                A simple text zone
-              </p>
-            </dd>
-          </dl>
-        </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">(button) <code class=
-              "constant">HTML_PROGRESS2_LABEL_BUTTON</code></span>
-            </dt>
-            <dd>
-              <p>
-                A simple button
-              </p>
-            </dd>
-          </dl>
-        </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">(step) <code class=
-              "constant">HTML_PROGRESS2_LABEL_STEP</code></span>
-            </dt>
-            <dd>
-              <p>
-                A step zone information to display value of current
-                <code class="methodname">moveStep()</code>
-              </p>
-            </dd>
-          </dl>
-        </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">(percent) <code class=
-              "constant">HTML_PROGRESS2_LABEL_PERCENT</code></span>
-            </dt>
-            <dd>
-              <p>
-                The basic percent text information formatted as "<span class=
-                "quote">67 %</span>".
-              </p>
-            </dd>
-          </dl>
-        </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">(crossbar) <code class=
-              "constant">HTML_PROGRESS2_LABEL_CROSSBAR</code></span>
-            </dt>
-            <dd>
-              <p>
-                A little javascript cross rotate animation
-              </p>
-            </dd>
-          </dl>
-        </div>
-        <div class="sect2" lang="en" xml:lang="en">
-          <div class="titlepage">
-            <h3 class="title">
-              <a name="id4794521" id="id4794521"></a>Add a new label
-            </h3>
-          </div>
-          <p>
-            The only label you don't have to set, in most cases, with
-            <code class="methodname">addLabel()</code> method is the percent
-            text info, identified by <span class=
-            "emphasis"><em>pct1</em></span> by default.
-          </p>
-          <div class="note c4">
-            <table border="0" summary="Note">
-              <tr>
-                <td rowspan="2" align="center" valign="top" width="48">
-                  <img alt="[Note]" src="img/admons/note.png" />
-                </td>
-                <th align="left">
-                  Note
-                </th>
-              </tr>
-              <tr>
-                <td align="left" valign="top">
-                  You can remove the percent text info at build time with the
-                  HTML_Progress2 class construtor and the fifth parameter set
-                  to <code class="constant">FALSE</code>.
-                  <div class="php c3">
-                    <ol>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="kw2">&lt;?php</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="re0">$bar</span> = <span class=
-                          "kw2">new</span> HTML_Progress2<span class=
-                          "br0">(</span><span class="re0">$errorPrefs</span>,
-                          <span class="re0">$orient</span>, <span class=
-                          "re0">$min</span>, <span class="re0">$max</span>,
-                          <span class="re0">$percentLabel</span><span class=
-                          "br0">)</span>;
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">/*</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                          &nbsp;$errorPrefs&nbsp; &nbsp;:hash of options to
-                          configure the API error handling system</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          default is empty array (use PEAR_Error object)</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                          &nbsp;$orient&nbsp; &nbsp; &nbsp; &nbsp;:orientation
-                          of the progress bar (see constants)</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                          &nbsp;$min&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :minimum
-                          value of the progress bar (default is zero)</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                          &nbsp;$max&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :maximum
-                          value of the progress bar (default is 100)</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                          &nbsp;$percentLabel :progress bar percent label
-                          identifier (default is 'pct1')</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="coMULTI">*/</span>
-                        </div>
-                      </li>
-                      <li class="li1">
-                        <div class="de1">
-                          <span class="kw2">?&gt;</span>
-                        </div>
-                      </li>
-                    </ol>
-                  </div>In such condition, if you need after a while to display
-                  the percent text again, you shall use the <code class=
-                  "methodname">addLabel()</code> method with any free
-                  identifier (can be <span class=
-                  "emphasis"><em>pct1</em></span> as any other else).
-                </td>
-              </tr>
-            </table>
-          </div>
-          <p>
-            Goal of this mini tutorial is to build a horizontal progress bar
-            with percent text info on right side, with four other kind of label
-            (text, crossbar, step, button). Something like that :
-          </p>
-          <div class="screenshot">
-            <img src="img/mixed2.png" alt="" />
-          </div>
-          <p>
-            For a full source code, have a look <a href=
-            "ch19s03.html#examples.label.1" title="">here</a>.
-          </p>
-          <p>
-            No special difficulty. We will used four times the couple :
-          </p>
-          <div class="php c3">
-            <ol>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$bar</span>-&gt;<span class=
-                  "me1">addLabel</span><span class="br0">(</span><span class=
-                  "re0">$type</span>, <span class="re0">$name</span>,
-                  <span class="re0">$value</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">/*</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;$type&nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp;:label type / a constant
-                  HTML_PROGRESS2_LABEL_* value</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;$name&nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp;:label name (identifier)</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;$value&nbsp;
-                  &nbsp; &nbsp; &nbsp; :initial label value</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">*/</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$bar</span>-&gt;<span class=
-                  "me1">setLabelAttributes</span><span class=
-                  "br0">(</span><span class="re0">$name</span>, <span class=
-                  "re0">$attributes</span><span class="br0">)</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">/*</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp;$name&nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp;:label name (identifier)</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                  &nbsp;$attributes&nbsp; &nbsp;:associative array or string of
-                  HTML tag attributes</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="coMULTI">*/</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-            </ol>
-          </div>
-          <p>
-            With $bar an instance of <code class=
-            "classname">HTML_Progress2</code> object.
-          </p>
-          <div class="php c3">
-            <ol>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$bar</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-            </ol>
-          </div>
-          <p>
-            For a full attributes list depending of each label kind, see the
-            Reference Guide, <a href="re35.html" title=
-            "HTML_Progress2::setLabelAttributes">setLabelAttributes()</a>
-            related.
-          </p>
-          <p>
-            Remains of the script is as usal:
-          </p>
-          <div class="itemizedlist">
-            <ul type="disc">
-              <li>complete build of the progress meter (css, js, html parts) :
-              <code class="methodname">getStyle()</code>, <code class=
-              "methodname">getScript()</code>, <code class=
-              "methodname">display()</code>
-              </li>
-              <li>see the progress meter in action : <code class="methodname">
-                run()</code>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="sect2" lang="en" xml:lang="en">
-          <div class="titlepage">
-            <h3 class="title">
-              <a name="id4794719" id="id4794719"></a>Remove existing label
-            </h3>
-          </div>
-          <p>
-            This feature is available at build-time, and may be usefull to
-            extend some progress meter from a common source, and remove the
-            unnecessary labels.
-          </p>
-          <p>
-            For example, if you consider the previous script, as your
-            common/core script, written in two parts/templates (<code class=
-            "filename">build-meter.php</code>, <code class=
-            "filename">run-meter.php</code>) splitted at the DTD frontier.
-          </p>
-          <p>
-            So, if you want to build a new progress meter without the button.
-            You have just to re-used your previous code and complete with :
-          </p>
-          <div class="php c3">
-            <ol>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw1">include_once</span> <span class=
-                  "st0">'build-meter.php'</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">removeLabel</span><span class=
-                  "br0">(</span><span class="st0">'btn1'</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw1">include_once</span> <span class=
-                  "st0">'run-meter.php'</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-            </ol>
-          </div>
-          <p>
-            Pretty easy.
-          </p>
-        </div>
       </div>
     </div>
     <table class="progress2Footer">
@@ -571,7 +106,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -580,7 +115,7 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="ch11s03.html">Prev</a>&nbsp;
+            <a accesskey="p" href="pt03.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="u" href="pt03.html">Up</a>
@@ -591,13 +126,13 @@
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Data Management related&nbsp;
+            Part&nbsp;III.&nbsp;Migrating Guide&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Error Handling
+            &nbsp;Why these changes ?
           </td>
         </tr>
       </table>

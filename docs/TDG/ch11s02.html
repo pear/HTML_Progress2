@@ -5,30 +5,29 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      User Interface related
+      HTML side
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="ch11.html" title=
-    "Chapter&nbsp;11.&nbsp;How to adjust your code" />
+    "Chapter&nbsp;11.&nbsp; How to to implement an AJAX Upload with Progress Bar solution " />
     <link rel="prev" href="ch11.html" title=
-    "Chapter&nbsp;11.&nbsp;How to adjust your code" />
-    <link rel="next" href="ch11s03.html" title="Data Management related" />
-<style type="text/css">
+    "Chapter&nbsp;11.&nbsp; How to to implement an AJAX Upload with Progress Bar solution " />
+    <link rel="next" href="ch11s03.html" title="Server side" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c3 {font-family: monospace;}
- div.c2 {margin-left: 0.5in; margin-right: 0.5in;}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c2 {margin-left: 0.5in; margin-right: 0.5in;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -43,7 +42,7 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  User Interface related
+                  HTML side
                 </th>
               </tr>
               <tr>
@@ -51,270 +50,110 @@
                   <a accesskey="p" href="ch11.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;11.&nbsp;How to adjust your code
+                  Chapter&nbsp;11.&nbsp; How to to implement an AJAX Upload
+                  with Progress Bar solution
                 </th>
                 <td width="20%" align="right">
                   &nbsp;<a accesskey="n" href="ch11s03.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="id4793030" id="id4793030"></a>User Interface related
+          <a name="upload.html_side" id="upload.html_side"></a>HTML side
         </h2>
       </div>
-      <div class="variablelist">
-        <dl>
-          <dt>
-            <span class="term">setCellCount()</span>
-          </dt>
-          <dd>
-            <p>
-              Sets the number of cell in the progress bar
-            </p>
-            <p>
-              This method accept now zero as minimum value for smooth progress
-              meter. That means that a progress bar with zero cell, will render
-              a full bar as HTML_Progress2_Lite do.
-            </p>
-          </dd>
-        </dl>
+      <p>
+        You have to identify what server script will manage the temporary file
+        uploaded when operation is over, with <span class="emphasis"><em>form
+        action</em></span> attribute. Here in our example it's the same script
+        (<code class="filename">apc5_upload1.php</code>) that design the
+        progress bar and form.
+      </p>
+      <p>
+        You have to tell what action will start upload and progress bar
+        (HTML_Progress2.start). Here in our example it's the <span class=
+        "emphasis"><em>form onsubmit</em></span> handler what begin to iterate
+        the polling loop each 0.5 second (500 ms).
+      </p>
+      <p>
+        The html code is similar to a classic upload, however, add a field
+        hidden inside form where name attribute depend of backend used (APC or
+        uploadprogress PHP extension).
+      </p>
+      <div class="important c2">
+        <table border="0" summary="Important">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="48">
+              <img alt="[Important]" src="img/admons/important.png" />
+            </td>
+            <th align="left">
+              Important
+            </th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>
+                With APC, the hidden input indentifier should be named
+                APC_UPLOAD_PROGRESS, and UPLOAD_IDENTIFIER with the
+                uploadprogress PHP extension.
+              </p>
+            </td>
+          </tr>
+        </table>
       </div>
-      <div class="variablelist">
-        <dl>
-          <dt>
-            <span class="term">setLabelAttributes(), addLabel()</span>
-          </dt>
-          <dd>
-            <p>
-              With HTML_Progress 1.x you might only defines one custom text
-              label. Now with new multiple label system you can do it at
-              infinite. There is no label number limit (except memory).
-            </p>
-            <div class="important c2">
-              <table border="0" summary="Important">
-                <tr>
-                  <td rowspan="2" align="center" valign="top" width="48">
-                    <img alt="[Important]" src="img/admons/important.png" />
-                  </td>
-                  <th align="left">
-                    Important
-                  </th>
-                </tr>
-                <tr>
-                  <td align="left" valign="top">
-                    You have to define first each label you will put around the
-                    progress meter by the <code class=
-                    "methodname">addLabel()</code> method, before to set its
-                    attributes.
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <p>
-              While with HTML_Progress 1.x, you could have a script like this:
-            </p>
-            <div class="php c3">
-              <ol>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="kw2">&lt;?php</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="kw1">require_once</span> <span class=
-                    "st0">'HTML/Progress.php'</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    &nbsp;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span> = <span class=
-                    "kw2">new</span> HTML_Progress<span class=
-                    "br0">(</span><span class="br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">setAnimSpeed</span><span class=
-                    "br0">(</span><span class="nu0">100</span><span class=
-                    "br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">setIncrement</span><span class=
-                    "br0">(</span><span class="nu0">5</span><span class=
-                    "br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">setStringPainted</span><span class=
-                    "br0">(</span><span class="kw2">true</span><span class=
-                    "br0">)</span>;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <span class="co1">// get space for the string</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">setString</span><span class=
-                    "br0">(</span><span class="st0">''</span><span class=
-                    "br0">)</span>;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; &nbsp; &nbsp;<span class="co1">// but don't
-                    paint it</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    &nbsp;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$ui</span> =&amp; <span class=
-                    "re0">$bar</span>-&gt;<span class=
-                    "me1">getUI</span><span class="br0">(</span><span class=
-                    "br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$ui</span>-&gt;<span class=
-                    "me1">setStringAttributes</span><span class=
-                    "br0">(</span><span class="st0">'width=350
-                    align=left'</span><span class="br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="co1">// ...</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="kw2">?&gt;</span>
-                  </div>
-                </li>
-              </ol>
-            </div>
-            <p>
-              which prepare to render a custom string on right side of the
-              progress bar.
-            </p>
-            <p>
-              Now with HTML_Progress2, you will have a modified script like:
-            </p>
-            <div class="php c3">
-              <ol>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="kw2">&lt;?php</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="kw1">require_once</span> <span class=
-                    "st0">'HTML/Progress2.php'</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    &nbsp;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span> = <span class=
-                    "kw2">new</span> HTML_Progress2<span class=
-                    "br0">(</span><span class="br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">setAnimSpeed</span><span class=
-                    "br0">(</span><span class="nu0">100</span><span class=
-                    "br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">setIncrement</span><span class=
-                    "br0">(</span><span class="nu0">5</span><span class=
-                    "br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">addLabel</span><span class=
-                    "br0">(</span>HTML_PROGRESS2_LABEL_TEXT, <span class=
-                    "st0">'txt1'</span>, <span class="st0">'Simple static
-                    text'</span><span class="br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="re0">$bar</span>-&gt;<span class=
-                    "me1">setLabelAttributes</span><span class=
-                    "br0">(</span><span class="st0">'txt1'</span>, <span class=
-                    "kw3">array</span><span class="br0">(</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    &nbsp; &nbsp; <span class="st0">'valign'</span> =&gt;
-                    <span class="st0">'top'</span>,
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    &nbsp; &nbsp; <span class="st0">'left'</span> =&gt;
-                    <span class="nu0">0</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="br0">)</span><span class="br0">)</span>;
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="co1">// ...</span>
-                  </div>
-                </li>
-                <li class="li1">
-                  <div class="de1">
-                    <span class="kw2">?&gt;</span>
-                  </div>
-                </li>
-              </ol>
-            </div>
-            <p>
-              The percent info will be render alone at right side of the
-              progress bar (default) and we have added a static text label on
-              top side of the same progress bar.
-            </p>
-          </dd>
-        </dl>
+      <p>
+        This field is used to store a key that will recognize the form to
+        observe on server-side.
+      </p>
+      <div class="note c2">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="48">
+              <img alt="[Note]" src="img/admons/note.png" />
+            </td>
+            <th align="left">
+              Note
+            </th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>
+                Several input file can be placed in the same form, in this case
+                the progression is based on the total weight of all files.
+              </p>
+            </td>
+          </tr>
+        </table>
       </div>
+      <p>
+        The asynchronous mode is achieved through the use of a hidden iframe
+        which is connected to form through the ownership target of the tag form
+        that takes value for the property name of the iframe.
+      </p>
+      <p>
+        Here is a form design part example (you can find on <code class=
+        "filename">examples/ajax/upload/apc5_upload1.php</code>) of the package
+        distribution.
+      </p>
+      <pre class="html4strict">
+    
+&lt;form enctype="multipart/form-data"
+      target="tfrm" action="apc5_upload1.php" method="post"
+      onsubmit="HTML_Progress2.start('&lt;?php echo $pb-&gt;getIdent(); ?&gt;', 500);"&gt;
+  &lt;input type="hidden" name="APC_UPLOAD_PROGRESS" id="progress_key" value="&lt;?php echo $progress_key; ?&gt;" /&gt;
+  &lt;input type="file" id="userfile"  name="userfile" /&gt;
+  &lt;input type="submit" value="Upload!" /&gt;
+&lt;/form&gt;
+&lt;iframe id="tfrm" name="tfrm" style="width:1px;height:1px;border:0"&gt;&lt;/iframe&gt;
+    
+   
+</pre>
     </div>
     <table class="progress2Footer">
       <tr>
@@ -322,7 +161,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -342,13 +181,14 @@
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Chapter&nbsp;11.&nbsp;How to adjust your code&nbsp;
+            Chapter&nbsp;11.&nbsp; How to to implement an AJAX Upload with
+            Progress Bar solution &nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Data Management related
+            &nbsp;Server side
           </td>
         </tr>
       </table>

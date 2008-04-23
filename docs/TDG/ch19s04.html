@@ -5,29 +5,28 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Observer usage
+      Graphical Handler
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
-    <link rel="up" href="ch19.html" title="Chapter&nbsp;19.&nbsp;Examples" />
-    <link rel="prev" href="ch19s03.html" title="Multiple Labels usage " />
-    <link rel="next" href="ch19s05.html" title="Monitoring usage " />
-<style type="text/css">
+    <link rel="up" href="ch19.html" title=
+    "Chapter&nbsp;19.&nbsp;API - Application Programming Interface" />
+    <link rel="prev" href="re17.html" title=
+    "HTML_Progress2::getPercentComplete" />
+    <link rel="next" href="re18.html" title="HTML_Progress2::getOrientation" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c4 {font-family: monospace;}
- div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
- p.c2 {font-weight: bold}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -42,668 +41,388 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Observer usage
+                  Graphical Handler
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="ch19s03.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="re17.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;19.&nbsp;Examples
+                  Chapter&nbsp;19.&nbsp;API - Application Programming Interface
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="ch19s05.html">Next</a>
+                  &nbsp;<a accesskey="n" href="re18.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="examples.observer" id="examples.observer"></a>Observer usage
+          <a name="reference.api.graph" id="reference.api.graph"></a>Graphical
+          Handler
         </h2>
       </div>
       <div class="toc">
         <dl>
           <dt>
             <span class="sect2"><a href=
-            "ch19s04.html#examples.observer.1"></a></span>
+            "ch19s04.html#reference.api.graph.orientation">Orientation</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.fill">Fill option</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.cell">Cells</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.border">Border</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.frame">Frame</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.label">Labels</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.bg">Background color and
+            size</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.js">JavaScript handler</a></span>
+          </dt>
+          <dt>
+            <span class="sect2"><a href=
+            "ch19s04.html#reference.api.graph.circle">Circle/Ellipse</a></span>
           </dt>
         </dl>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
-        <div class="titlepage"></div>
-        <div class="figure">
-          <a name="id4845883" id="id4845883"></a>
-          <p class="title c2">
-            Figure&nbsp;19.4.&nbsp;Progress as a listener to Event_Dispatcher
-          </p>
-          <div class="screenshot">
-            <img src="img/observer3.png" alt=
-            "Progress as a listener to Event_Dispatcher" />
-          </div>
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.orientation" id=
+            "reference.api.graph.orientation"></a>Orientation
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re18.html"><code class=
+              "function">HTML_Progress2::getOrientation</code></a></span>
+              <span class="refpurpose">- Returns orientation of the progress
+              bar</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re19.html"><code class=
+              "function">HTML_Progress2::setOrientation</code></a></span>
+              <span class="refpurpose">- Sets orientation of the progress
+              bar</span>
+            </dt>
+          </dl>
         </div>
         <p>
-          This example show how to implement the ProgressMeter Event_Dispatcher
-          to listen user-process (simulation of mail send) that decide to
-          refresh itself the progress bar.
+          <code class="methodname">getOrientation()</code> and <code class=
+          "methodname">setOrientation()</code> methods provides reading and
+          setting of the progress meter's orientation property.
         </p>
-        <div class="warning c3">
-          <table border="0" summary="Warning">
-            <tr>
-              <td rowspan="2" align="center" valign="top" width="48">
-                <img alt="[Warning]" src="img/admons/warning.png" />
-              </td>
-              <th align="left">
-                Warning
-              </th>
-            </tr>
-            <tr>
-              <td align="left" valign="top">
-                This example requires at least the version 2.1.0 of
-                HTML_Progress2
-              </td>
-            </tr>
-          </table>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.fill" id=
+            "reference.api.graph.fill"></a>Fill option
+          </h3>
         </div>
-        <div class="example">
-          <a name="id4845854" id="id4845854"></a>
-          <p class="title c2">
-            Example&nbsp;19.4.&nbsp;Progress bar listen to user process
-          </p>
-          <div class="php c4">
-            <ol>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">class</span> myClass
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="kw2">function</span>
-                  doSomething<span class="br0">(</span><span class=
-                  "br0">)</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="re0">$usecs</span> =
-                  <span class="nu0">1000</span> * <span class=
-                  "nu0">1000</span>;&nbsp; <span class="co1">// wait 1
-                  seconde</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="re0">$dispatch</span>
-                  =&amp; Event_Dispatcher::<span class=
-                  "me2">getInstance</span><span class=
-                  "br0">(</span><span class="st0">'ProgressMeter'</span><span class="br0">
-                  )</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="co1">// A long task
-                  to do ... for example sending 10 mails</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="kw1">for</span>
-                  <span class="br0">(</span><span class="re0">$i</span> =
-                  <span class="nu0">0</span>; <span class="re0">$i</span> &lt;
-                  <span class="nu0">10</span>; ++<span class=
-                  "re0">$i</span><span class="br0">)</span> <span class=
-                  "br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="co1">//
-                  simulate by a sleep 1 sec function</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
-                  "kw1">if</span> <span class="br0">(</span><span class=
-                  "br0">(</span><span class="kw3">substr</span><span class=
-                  "br0">(</span><span class="kw2">PHP_OS</span>, <span class=
-                  "nu0">0</span>, <span class="nu0">3</span><span class=
-                  "br0">)</span> == <span class="st0">'WIN'</span><span class=
-                  "br0">)</span> &amp;&amp; <span class=
-                  "br0">(</span><span class="kw3">substr</span><span class=
-                  "br0">(</span><span class=
-                  "kw2">PHP_VERSION</span>,<span class=
-                  "nu0">0</span>,<span class="nu0">1</span><span class=
-                  "br0">)</span> &lt; <span class="st0">'5'</span><span class=
-                  "br0">)</span> <span class="br0">)</span><span class=
-                  "br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp;<span class="kw1">for</span> <span class=
-                  "br0">(</span><span class="re0">$w</span> = <span class=
-                  "nu0">0</span>; <span class="re0">$w</span> &lt; <span class=
-                  "re0">$usecs</span>; <span class=
-                  "re0">$w</span>++<span class="br0">)</span> <span class=
-                  "br0">{</span> <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
-                  "br0">}</span> <span class="kw1">else</span> <span class=
-                  "br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp;<span class="kw3">usleep</span><span class=
-                  "br0">(</span><span class="re0">$usecs</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
-                  "br0">}</span> <span class="co1">//</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
-                  "re0">$dispatch</span>-&gt;<span class=
-                  "me1">post</span><span class="br0">(</span><span class=
-                  "re0">$this</span>, <span class="st0">'onTick'</span>,
-                  <span class="kw3">array</span><span class=
-                  "br0">(</span><span class="re0">$i</span><span class=
-                  "br0">)</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">class</span> myBar <span class=
-                  "kw2">extends</span> HTML_Progress2
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="kw2">function</span>
-                  myBar<span class="br0">(</span><span class="br0">)</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; parent::<span class=
-                  "me2">HTML_Progress2</span><span class=
-                  "br0">(</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$this</span>-&gt;<span class=
-                  "me1">setIncrement</span><span class=
-                  "br0">(</span><span class="nu0">10</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$this</span>-&gt;<span class=
-                  "me1">addLabel</span><span class=
-                  "br0">(</span>HTML_PROGRESS2_LABEL_TEXT, <span class=
-                  "st0">'txt1'</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$this</span>-&gt;<span class=
-                  "me1">setLabelAttributes</span><span class=
-                  "br0">(</span><span class="st0">'txt1'</span>, <span class=
-                  "kw3">array</span><span class="br0">(</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "st0">'valign'</span> =&gt; <span class="st0">'top'</span>,
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "st0">'left'</span> =&gt; <span class="nu0">0</span>,
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "br0">)</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="kw2">function</span>
-                  notify<span class="br0">(</span>&amp;<span class=
-                  "re0">$notification</span><span class="br0">)</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$notifyName</span> = <span class=
-                  "re0">$notification</span>-&gt;<span class=
-                  "me1">getNotificationName</span><span class=
-                  "br0">(</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span>
-                  <span class="br0">(</span><span class=
-                  "kw3">strcasecmp</span><span class="br0">(</span><span class=
-                  "re0">$notifyName</span>, <span class=
-                  "st0">'onTick'</span><span class="br0">)</span> ==
-                  <span class="nu0">0</span><span class="br0">)</span>
-                  <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$notifyInfo</span> = <span class=
-                  "re0">$notification</span>-&gt;<span class=
-                  "me1">getNotificationInfo</span><span class=
-                  "br0">(</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "kw1">if</span> <span class="br0">(</span><span class=
-                  "re0">$notifyInfo</span><span class=
-                  "br0">[</span><span class="nu0">0</span><span class=
-                  "br0">]</span> == <span class="nu0">0</span><span class=
-                  "br0">)</span> <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <span class="re0">$this</span>-&gt;<span class=
-                  "me1">setLabelAttributes</span><span class=
-                  "br0">(</span><span class="st0">'txt1'</span>, <span class=
-                  "kw3">array</span><span class="br0">(</span><span class=
-                  "st0">'value'</span> =&gt; <span class="st0">'Sending mail
-                  ...'</span><span class="br0">)</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "br0">}</span> <span class="kw1">elseif</span> <span class=
-                  "br0">(</span><span class=
-                  "re0">$notifyInfo</span><span class="br0">[</span><span class="nu0">
-                  0</span><span class="br0">]</span> == <span class=
-                  "nu0">9</span><span class="br0">)</span> <span class=
-                  "br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <span class="re0">$this</span>-&gt;<span class=
-                  "me1">setLabelAttributes</span><span class=
-                  "br0">(</span><span class="st0">'txt1'</span>, <span class=
-                  "kw3">array</span><span class="br0">(</span><span class=
-                  "st0">'value'</span> =&gt; <span class="st0">'Mail sent with
-                  success.'</span><span class="br0">)</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$this</span>-&gt;<span class=
-                  "me1">moveNext</span><span class="br0">(</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$bar</span> = <span class="kw2">new</span>
-                  myBar<span class="br0">(</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$bar</span>-&gt;<span class=
-                  "me1">addListener</span><span class=
-                  "br0">(</span><span class="kw3">array</span><span class=
-                  "br0">(</span>&amp;<span class="re0">$bar</span>,
-                  <span class="st0">'notify'</span><span class="br0">)</span>,
-                  <span class="st0">'onTick'</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;!DOCTYPE html <span class="kw2">PUBLIC</span>
-                  <span class="st0">"-//W3C//DTD XHTML 1.0 Strict//EN"</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class=
-                  "st0">"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"</span>&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;html xmlns=<span class=
-                  "st0">"http://www.w3.org/1999/xhtml"</span>
-                  xml:lang=<span class="st0">"en"</span>&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;head&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;title&gt;doSomething&lt;/title&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;style type=<span class="st0">"text/css"</span>&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;!--
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span> <span class=
-                  "kw3">echo</span> <span class=
-                  "re0">$bar</span>-&gt;<span class=
-                  "me1">getStyle</span><span class="br0">(</span><span class=
-                  "br0">)</span>; <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  body <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; background-color: <span class=
-                  "co2">#FFFFFF;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;--&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/style&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span> <span class=
-                  "kw3">echo</span> <span class=
-                  "re0">$bar</span>-&gt;<span class=
-                  "me1">getScript</span><span class="br0">(</span><span class=
-                  "kw2">false</span><span class="br0">)</span>; <span class=
-                  "kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/head&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;body&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$bar</span>-&gt;<span class=
-                  "me1">display</span><span class="br0">(</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$process</span> = <span class=
-                  "kw2">new</span> myClass<span class=
-                  "br0">(</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$process</span>-&gt;<span class=
-                  "me1">doSomething</span><span class=
-                  "br0">(</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/body&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/html&gt;
-                </div>
-              </li>
-            </ol>
-          </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re20.html"><code class=
+              "function">HTML_Progress2::getFillWay</code></a></span>
+              <span class="refpurpose">- Returns fill option of the progress
+              meter</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re21.html"><code class=
+              "function">HTML_Progress2::setFillWay</code></a></span>
+              <span class="refpurpose">- Sets fill option of the progress
+              meter</span>
+            </dt>
+          </dl>
         </div>
+        <p>
+          <code class="methodname">getFillWay()</code> and <code class=
+          "methodname">setFillWay()</code> methods provides reading and setting
+          of the progress meter's fill property.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.cell" id=
+            "reference.api.graph.cell"></a>Cells
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re22.html"><code class=
+              "function">HTML_Progress2::getCellCount</code></a></span>
+              <span class="refpurpose">- Returns count of cell in the progress
+              meter</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re23.html"><code class=
+              "function">HTML_Progress2::setCellCount</code></a></span>
+              <span class="refpurpose">- count of cell in the progress
+              meter</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re24.html"><code class=
+              "function">HTML_Progress2::getCellAttributes</code></a></span>
+              <span class="refpurpose">- Returns cell attributes values</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re25.html"><code class=
+              "function">HTML_Progress2::setCellAttributes</code></a></span>
+              <span class="refpurpose">- Sets cell attributes values</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re26.html"><code class=
+              "function">HTML_Progress2::getCellCoordinates</code></a></span>
+              <span class="refpurpose">- Returns coordinates of each cell for a
+              polygonal progress meter</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re27.html"><code class=
+              "function">HTML_Progress2::setCellCoordinates</code></a></span>
+              <span class="refpurpose">- Sets coordinates of each cell for a
+              polygonal progress meter</span>
+            </dt>
+          </dl>
+        </div>
+        <p>
+          <code class="methodname">getCellCount()</code> and <code class=
+          "methodname">setCellCount()</code> methods provides reading and
+          setting of the progress meter's cell count property.
+        </p>
+        <p>
+          <code class="methodname">getCellAttributes()</code> and <code class=
+          "methodname">setCellAttributes()</code> methods provides reading and
+          setting of the progress meter's cells properties.
+        </p>
+        <p>
+          <code class="methodname">getCellCoordinates()</code> and <code class=
+          "methodname">setCellCoordinates()</code> methods provides reading and
+          setting of the progress meter's cells coordinates properties, that
+          defined a polygonal progress meter (square, rectangle, ...).
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.border" id=
+            "reference.api.graph.border"></a>Border
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re28.html"><code class=
+              "function">HTML_Progress2::getBorderAttributes</code></a></span>
+              <span class="refpurpose">- Returns progress bar's border
+              attributes values</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re29.html"><code class=
+              "function">HTML_Progress2::setBorderAttributes</code></a></span>
+              <span class="refpurpose">- Sets the progress bar's border
+              attributes</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re30.html"><code class=
+              "function">HTML_Progress2::isBorderPainted</code></a></span>
+              <span class="refpurpose">- Determines whether the progress bar
+              border is painted or not</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re31.html"><code class=
+              "function">HTML_Progress2::setBorderPainted</code></a></span>
+              <span class="refpurpose">- Decides to paint or not a border to
+              the progress bar.</span>
+            </dt>
+          </dl>
+        </div>
+        <p>
+          <code class="methodname">getBorderAttributes()</code> and
+          <code class="methodname">setBorderAttributes()</code> methods
+          provides reading and setting of the progress meter's border property.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.frame" id=
+            "reference.api.graph.frame"></a>Frame
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re32.html"><code class=
+              "function">HTML_Progress2::getFrameAttributes</code></a></span>
+              <span class="refpurpose">- Returns frame attributes values</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re33.html"><code class=
+              "function">HTML_Progress2::setFrameAttributes</code></a></span>
+              <span class="refpurpose">- Build a frame around the progress
+              bar</span>
+            </dt>
+          </dl>
+        </div>
+        <p>
+          <code class="methodname">getFrameAttributes()</code> and <code class=
+          "methodname">setFrameAttributes()</code> methods provides reading and
+          setting of the progress meter's frame properties.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.label" id=
+            "reference.api.graph.label"></a>Labels
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re34.html"><code class=
+              "function">HTML_Progress2::getLabelAttributes</code></a></span>
+              <span class="refpurpose">- Returns attributes values of an
+              existing label</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re35.html"><code class=
+              "function">HTML_Progress2::setLabelAttributes</code></a></span>
+              <span class="refpurpose">- Sets label attributes.</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re36.html"><code class=
+              "function">HTML_Progress2::addLabel</code></a></span>
+              <span class="refpurpose">- Add a new label to the progress
+              meter</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re37.html"><code class=
+              "function">HTML_Progress2::removeLabel</code></a></span>
+              <span class="refpurpose">- Removes a label to the progress
+              meter</span>
+            </dt>
+          </dl>
+        </div>
+        <p>
+          <code class="methodname">getLabelAttributes()</code> and <code class=
+          "methodname">setLabelAttributes()</code> methods provides reading and
+          setting of the progress meter's label(s) items.
+        </p>
+        <p>
+          <code class="methodname">addLabel()</code> and <code class=
+          "methodname">removeLabel()</code> methods provides ability to add and
+          remove unlimited progress meter's label(s) items.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.bg" id=
+            "reference.api.graph.bg"></a>Background color and size
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re38.html"><code class=
+              "function">HTML_Progress2::getProgressAttributes</code></a></span>
+              <span class="refpurpose">- Returns the progress background
+              attributes values</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re39.html"><code class=
+              "function">HTML_Progress2::setProgressAttributes</code></a></span>
+              <span class="refpurpose">- Sets the progress background
+              attributes values</span>
+            </dt>
+          </dl>
+        </div>
+        <p>
+          <code class="methodname">getProgressAttributes()</code> and
+          <code class="methodname">setProgressAttributes()</code> methods
+          provides reading and setting of progress meter's background color and
+          size properties.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.js" id=
+            "reference.api.graph.js"></a>JavaScript handler
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re40.html"><code class=
+              "function">HTML_Progress2::getScript</code></a></span>
+              <span class="refpurpose">- Returns javascript progress meter
+              handler</span>
+            </dt>
+            <dt>
+              <span class="refentrytitle"><a href="re41.html"><code class=
+              "function">HTML_Progress2::setScript</code></a></span>
+              <span class="refpurpose">- Sets the javascript progress meter
+              handler</span>
+            </dt>
+          </dl>
+        </div>
+        <p>
+          <code class="methodname">getScript()</code> and <code class=
+          "methodname">setScript()</code> methods provides reading and setting
+          of the progress meter's javascript source code, that will handle
+          display refresh.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage">
+          <h3 class="title">
+            <a name="reference.api.graph.circle" id=
+            "reference.api.graph.circle"></a>Circle/Ellipse
+          </h3>
+        </div>
+        <div class="toc">
+          <dl>
+            <dt>
+              <span class="refentrytitle"><a href="re42.html"><code class=
+              "function">HTML_Progress2::drawCircleSegments</code></a></span>
+              <span class="refpurpose">- Draw all circle segment
+              pictures</span>
+            </dt>
+          </dl>
+        </div>
+        <p>
+          <code class="methodname">drawCircleSegments()</code> method provides
+          building of all circle/ellipse segment PNG pictures.
+        </p>
       </div>
     </div>
     <table class="progress2Footer">
@@ -712,7 +431,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -721,24 +440,25 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="ch19s03.html">Prev</a>&nbsp;
+            <a accesskey="p" href="re17.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="u" href="ch19.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="ch19s05.html">Next</a>
+            &nbsp;<a accesskey="n" href="re18.html">Next</a>
           </td>
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Multiple Labels usage &nbsp;
+            <code class=
+            "function">HTML_Progress2::getPercentComplete</code>&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Monitoring usage
+            &nbsp;<code class="function">HTML_Progress2::getOrientation</code>
           </td>
         </tr>
       </table>

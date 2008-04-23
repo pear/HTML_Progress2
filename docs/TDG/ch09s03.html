@@ -13,22 +13,22 @@
     <link rel="up" href="ch09.html" title=
     "Chapter&nbsp;9.&nbsp;Quick Start with HTML_Progress2_Generator" />
     <link rel="prev" href="ch09s02.html" title="Default render and css skin" />
-    <link rel="next" href="pt03.html" title=
-    "Part&nbsp;III.&nbsp;Migrating Guide" />
-<style type="text/css">
+    <link rel="next" href="ch10.html" title=
+    "Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress Bar" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
- div.c2 {font-family: monospace;}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
+    div.c2 {font-family: monospace;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -55,12 +55,11 @@
                   HTML_Progress2_Generator
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="pt03.html">Next</a>
+                  &nbsp;<a accesskey="n" href="ch10.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
@@ -119,13 +118,15 @@
           <li class="li1">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/Progress2/Generator.php'</span>;
+              "st0">'HTML/Progress2/Generator.php'</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/Progress2/Generator/ITDynamic.php'</span>;
+              "st0">'HTML/Progress2/Generator/ITDynamic.php'</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -136,7 +137,8 @@
           <li class="li1">
             <div class="de1">
               <span class="kw3">session_start</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -146,17 +148,18 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$tabbed</span> =&amp;
-              HTML_Progress2_Generator::<span class=
+              <span class="re1">$tabbed</span> <span class="sy0">=&amp;</span>
+              HTML_Progress2_Generator<span class="sy0">::</span><span class=
               "me2">singleton</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$tabbed</span>-&gt;<span class=
-              "me1">run</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$tabbed</span><span class=
+              "sy0">-&gt;</span><span class="me1">run</span><span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -205,20 +208,23 @@
                         </li>
                         <li class="li1">
                           <div class="de1">
-                            <span class="re0">$tpl</span> =&amp; <span class=
-                            "kw2">new</span> HTML_Template_Sigma<span class=
-                            "br0">(</span><span class="st0">'.'</span>,
+                            <span class="re1">$tpl</span> <span class=
+                            "sy0">=&amp;</span> <span class="kw2">new</span>
+                            HTML_Template_Sigma<span class=
+                            "br0">(</span><span class=
+                            "st0">'.'</span><span class="sy0">,</span>
                             <span class="st0">'cache/'</span><span class=
-                            "br0">)</span>;
+                            "br0">)</span><span class="sy0">;</span>
                           </div>
                         </li>
                         <li class="li1">
                           <div class="de1">
-                            <span class="re0">$tpl</span>-&gt;<span class=
+                            <span class="re1">$tpl</span><span class=
+                            "sy0">-&gt;</span><span class=
                             "me1">loadTemplateFile</span><span class=
                             "br0">(</span><span class=
                             "st0">'itdynamic.html'</span><span class=
-                            "br0">)</span>;
+                            "br0">)</span><span class="sy0">;</span>
                           </div>
                         </li>
                         <li class="li1">
@@ -242,7 +248,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -257,7 +263,7 @@
             <a accesskey="u" href="ch09.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="pt03.html">Next</a>
+            &nbsp;<a accesskey="n" href="ch10.html">Next</a>
           </td>
         </tr>
         <tr>
@@ -268,7 +274,8 @@
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Part&nbsp;III.&nbsp;Migrating Guide
+            &nbsp;Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress
+            Bar
           </td>
         </tr>
       </table>

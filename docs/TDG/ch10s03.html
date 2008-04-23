@@ -5,28 +5,29 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      What was removed ?
+      Progress bar HTML design
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="ch10.html" title=
-    "Chapter&nbsp;10.&nbsp;Introduction" />
-    <link rel="prev" href="ch10s02.html" title="Why these changes ?" />
-    <link rel="next" href="ch11.html" title=
-    "Chapter&nbsp;11.&nbsp;How to adjust your code" />
-<style type="text/css">
+    "Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress Bar" />
+    <link rel="prev" href="ch10s02.html" title="Design details" />
+    <link rel="next" href="ch10s04.html" title="Handle polling loop" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c3 {font-family: monospace;}
+    div.c2 {margin-left: 0.5in; margin-right: 0.5in;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -41,7 +42,7 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  What was removed ?
+                  Progress bar HTML design
                 </th>
               </tr>
               <tr>
@@ -49,70 +50,243 @@
                   <a accesskey="p" href="ch10s02.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;10.&nbsp;Introduction
+                  Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress
+                  Bar
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="ch11.html">Next</a>
+                  &nbsp;<a accesskey="n" href="ch10s04.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="id4792558" id="id4792558"></a>What was removed ?
+          <a name="ajax.design.html" id="ajax.design.html"></a>Progress bar
+          HTML design
         </h2>
       </div>
-      <p>
-        Very few features was removed during this merges :
-      </p>
-      <div class="itemizedlist">
-        <ul type="disc">
-          <li>
-            <code class="methodname">setModel()</code> method.
-          </li>
-          <li>ability to extends UI class to make custom user interface.
-          </li>
-          <li>ability to extends DM class to make custom data management
-          interface.
-          </li>
-        </ul>
+      <div class="note c2">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="48">
+              <img alt="[Note]" src="img/admons/note.png" />
+            </td>
+            <th align="left">
+              Note
+            </th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>
+                You can continue to use your old design built with versions
+                2.0.0 to 2.2.0, details are unchanged.
+              </p>
+            </td>
+          </tr>
+        </table>
       </div>
       <p>
-        And some replacements was made with removes of :
+        Since version 2.3.0 alpha 2, HTML_Progress2 support now the
+        multiple-labels system introduced with version 2.0.0
       </p>
-      <div class="itemizedlist">
-        <ul type="disc">
-          <li>
-            <code class="methodname">isStringPainted()</code> method (due to
-            new multiple label system).
+      <p>
+        See (on package distribution) <code class=
+        "filename">examples/ajax/RequestStatus.class.php</code> file, method
+        getFullStatus() for a basic implementation example.
+      </p>
+      <p>
+        You have just to return a key-value pair for each label identified at
+        design level with a "labels" key array.
+      </p>
+      <div class="php c3">
+        <ol>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">&lt;?php</span>
+            </div>
           </li>
-          <li>
-            <code class="methodname">setStringPainted()</code> method (due to
-            new multiple label system).
+          <li class="li1">
+            <div class="de1">
+              <span class="kw1">require_once</span> <span class=
+              "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
+            </div>
           </li>
-          <li>
-            <code class="methodname">setStringAttributes()</code> method,
-            replaced by <code class="methodname">setLabelAttributes()</code>.
+          <li class="li1">
+            <div class="de1">
+              &nbsp;
+            </div>
           </li>
-          <li>
-            <code class="methodname">getString()</code> method (due to new
-            multiple label system).
+          <li class="li1">
+            <div class="de1">
+              <span class="re1">$pb</span> <span class="sy0">=</span>
+              <span class="kw2">new</span> HTML_Progress2<span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
+            </div>
           </li>
-          <li>
-            <code class="methodname">setString()</code> method (due to new
-            multiple label system).
+          <li class="li1">
+            <div class="de1">
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class="me1">addLabel</span><span class=
+              "br0">(</span>HTML_PROGRESS2_LABEL_TEXT<span class="sy0">,</span>
+              <span class="st0">'txt2'</span><span class="sy0">,</span>
+              <span class="st0">'caption ...'</span><span class=
+              "br0">)</span><span class="sy0">;</span>
+            </div>
           </li>
-          <li>
-            <code class="constant">HTML_PROGRESS_ERRORSTACK_*</code> and
-            <code class="constant">HTML_PROGRESS_LOG_TYPE_*</code> constants
-            (due to new error management system).
+          <li class="li1">
+            <div class="de1">
+              <span class="co1">// label text identifier of "caption ..." is
+              here: txt2</span>
+            </div>
           </li>
-        </ul>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">?&gt;</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <p>
+        So if we want to change 'txt2' label value, at middle of progress
+        (50%), we have to return an array with something like that:
+      </p>
+      <div class="php c3">
+        <ol>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">&lt;?php</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="co1">// ...</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="re1">$status</span> <span class="sy0">=</span>
+              <span class="kw3">array</span><span class=
+              "br0">(</span><span class="st0">'percentage'</span> <span class=
+              "sy0">=&gt;</span> <span class="nu0">50</span><span class=
+              "sy0">,</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <span class="st0">'labels'</span> <span class="sy0">=&gt;</span>
+              <span class="kw3">array</span><span class=
+              "br0">(</span><span class="st0">'txt2'</span> <span class=
+              "sy0">=&gt;</span> <span class="st0">'half task
+              done'</span><span class="br0">)</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp;<span class="br0">)</span><span class="sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw1">return</span> <span class=
+              "re1">$status</span><span class="sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="co1">// ...</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">?&gt;</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="important c2">
+        <table border="0" summary="Important">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="48">
+              <img alt="[Important]" src="img/admons/important.png" />
+            </td>
+            <th align="left">
+              Important
+            </th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>
+                An (HTML_)AJAX server may return label values that are unkown
+                at design level. No error/warning will be raise !
+              </p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        See RequestStatus.class.php file, getFullStatus() method, with this
+        line
+      </p>
+      <div class="php c3">
+        <ol>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">&lt;?php</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="re1">$this</span><span class=
+              "sy0">-&gt;</span><span class="me1">status</span><span class=
+              "br0">[</span><span class="st0">'labels'</span><span class=
+              "br0">]</span><span class="br0">[</span><span class=
+              "st0">'txt4'</span><span class="br0">]</span> <span class=
+              "sy0">=</span> <span class="st0">'Q4'</span><span class=
+              "sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">?&gt;</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <p>
+        'txt4' label is undefined on all examples. But if in future we want to
+        add a new text label, we just have to add it in design progress bar
+        level, like this:
+      </p>
+      <div class="php c3">
+        <ol>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">&lt;?php</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class="me1">addLabel</span><span class=
+              "br0">(</span>HTML_PROGRESS2_LABEL_TEXT<span class="sy0">,</span>
+              <span class="st0">'txt4'</span><span class="sy0">,</span>
+              <span class="st0">'Total tasks : '</span><span class=
+              "br0">)</span><span class="sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">?&gt;</span>
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
     <table class="progress2Footer">
@@ -121,7 +295,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -136,18 +310,18 @@
             <a accesskey="u" href="ch10.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="ch11.html">Next</a>
+            &nbsp;<a accesskey="n" href="ch10s04.html">Next</a>
           </td>
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Why these changes ?&nbsp;
+            Design details&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Chapter&nbsp;11.&nbsp;How to adjust your code
+            &nbsp;Handle polling loop
           </td>
         </tr>
       </table>

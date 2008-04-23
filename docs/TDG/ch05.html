@@ -15,21 +15,21 @@
     <link rel="prev" href="ch04.html" title=
     "Chapter&nbsp;4.&nbsp;Introduction" />
     <link rel="next" href="ch05s02.html" title="Processing " />
-<style type="text/css">
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c4 {margin-left: 0.5in; margin-right: 0.5in;}
- div.c3 {font-family: monospace;}
- h2.c2 {clear: both}
- p.c1 {font-weight: bold}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c4 {margin-left: 0.5in; margin-right: 0.5in;}
+    div.c3 {font-family: monospace;}
+    h2.c2 {clear: both}
+    p.c1 {font-weight: bold}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -59,8 +59,7 @@
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
@@ -79,28 +78,28 @@
         <dl>
           <dt>
             <span class="sect1"><a href=
-            "ch05.html#id4784126">Designing</a></span>
+            "ch05.html#id4785377">Designing</a></span>
           </dt>
           <dd>
             <dl>
               <dt>
                 <span class="sect2"><a href=
-                "ch05.html#id4784139">Shape</a></span>
+                "ch05.html#id4785195">Shape</a></span>
               </dt>
               <dt>
                 <span class="sect2"><a href=
-                "ch05.html#id4784286">Cells</a></span>
+                "ch05.html#id4787347">Cells</a></span>
               </dt>
               <dt>
                 <span class="sect2"><a href=
-                "ch05.html#id4784378">Border</a></span>
+                "ch05.html#id4787439">Border</a></span>
               </dt>
               <dt>
                 <span class="sect2"><a href=
-                "ch05.html#id4784449">Background</a></span>
+                "ch05.html#id4787500">Background</a></span>
               </dt>
               <dt>
-                <span class="sect2"><a href="ch05.html#id4784520">Fill
+                <span class="sect2"><a href="ch05.html#id4787579">Fill
                 direction</a></span>
               </dt>
             </dl>
@@ -111,11 +110,11 @@
           <dd>
             <dl>
               <dt>
-                <span class="sect2"><a href="ch05s02.html#id4784042">With a
+                <span class="sect2"><a href="ch05s02.html#id4784653">With a
                 user callback</a></span>
               </dt>
               <dt>
-                <span class="sect2"><a href="ch05s02.html#id4785147">Without
+                <span class="sect2"><a href="ch05s02.html#id4788206">Without
                 user callback</a></span>
               </dt>
             </dl>
@@ -127,11 +126,11 @@
           <dd>
             <dl>
               <dt>
-                <span class="sect2"><a href="ch05s03.html#id4784786">Strategy
+                <span class="sect2"><a href="ch05s03.html#id4787845">Strategy
                 1: moveNext</a></span>
               </dt>
               <dt>
-                <span class="sect2"><a href="ch05s03.html#id4783489">Strategy
+                <span class="sect2"><a href="ch05s03.html#id4785293">Strategy
                 2: moveStep</a></span>
               </dt>
             </dl>
@@ -160,29 +159,29 @@
       <div class="sect1" lang="en" xml:lang="en">
         <div class="titlepage">
           <h2 class="title c2">
-            <a name="id4784126" id="id4784126"></a>Designing
+            <a name="id4785377" id="id4785377"></a>Designing
           </h2>
         </div>
         <div class="toc">
           <dl>
             <dt>
               <span class="sect2"><a href=
-              "ch05.html#id4784139">Shape</a></span>
+              "ch05.html#id4785195">Shape</a></span>
             </dt>
             <dt>
               <span class="sect2"><a href=
-              "ch05.html#id4784286">Cells</a></span>
+              "ch05.html#id4787347">Cells</a></span>
             </dt>
             <dt>
               <span class="sect2"><a href=
-              "ch05.html#id4784378">Border</a></span>
+              "ch05.html#id4787439">Border</a></span>
             </dt>
             <dt>
               <span class="sect2"><a href=
-              "ch05.html#id4784449">Background</a></span>
+              "ch05.html#id4787500">Background</a></span>
             </dt>
             <dt>
-              <span class="sect2"><a href="ch05.html#id4784520">Fill
+              <span class="sect2"><a href="ch05.html#id4787579">Fill
               direction</a></span>
             </dt>
           </dl>
@@ -194,7 +193,7 @@
         <div class="sect2" lang="en" xml:lang="en">
           <div class="titlepage">
             <h3 class="title">
-              <a name="id4784139" id="id4784139"></a>Shape
+              <a name="id4785195" id="id4785195"></a>Shape
             </h3>
           </div>
           <p>
@@ -212,7 +211,7 @@
               <li class="li1">
                 <div class="de1">
                   <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -222,9 +221,10 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
+                  <span class="re1">$pb</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> HTML_Progress2<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -260,7 +260,7 @@
               <li class="li1">
                 <div class="de1">
                   <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -270,17 +270,19 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
+                  <span class="re1">$pb</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> HTML_Progress2<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setOrientation</span><span class=
                   "br0">(</span>HTML_PROGRESS2_BAR_VERTICAL<span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -323,7 +325,7 @@
               <li class="li1">
                 <div class="de1">
                   <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -333,17 +335,19 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
+                  <span class="re1">$pb</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> HTML_Progress2<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setCellAttributes</span><span class=
                   "br0">(</span><span class=
-                  "st0">'spacing=0'</span><span class="br0">)</span>;
+                  "st0">'spacing=0'</span><span class="br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -375,7 +379,7 @@
         <div class="sect2" lang="en" xml:lang="en">
           <div class="titlepage">
             <h3 class="title">
-              <a name="id4784286" id="id4784286"></a>Cells
+              <a name="id4787347" id="id4787347"></a>Cells
             </h3>
           </div>
           <p>
@@ -407,7 +411,7 @@
               <li class="li1">
                 <div class="de1">
                   <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -417,22 +421,25 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
+                  <span class="re1">$pb</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> HTML_Progress2<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setCellCount</span><span class=
                   "br0">(</span><span class="nu0">12</span><span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setCellAttributes</span><span class=
                   "br0">(</span><span class="kw3">array</span><span class=
                   "br0">(</span>
@@ -440,37 +447,42 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'active-color'</span> =&gt;
-                  <span class="st0">'#FF0000'</span>,
+                  &nbsp; &nbsp; <span class="st0">'active-color'</span>
+                  <span class="sy0">=&gt;</span> <span class=
+                  "st0">'#FF0000'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'inactive-color'</span> =&gt;
-                  <span class="st0">'#FF9900'</span>,
+                  &nbsp; &nbsp; <span class="st0">'inactive-color'</span>
+                  <span class="sy0">=&gt;</span> <span class=
+                  "st0">'#FF9900'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'width'</span> =&gt;
-                  <span class="nu0">20</span>,
+                  &nbsp; &nbsp; <span class="st0">'width'</span> <span class=
+                  "sy0">=&gt;</span> <span class="nu0">20</span><span class=
+                  "sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'height'</span> =&gt;
-                  <span class="nu0">20</span>,
+                  &nbsp; &nbsp; <span class="st0">'height'</span> <span class=
+                  "sy0">=&gt;</span> <span class="nu0">20</span><span class=
+                  "sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'spacing'</span> =&gt;
-                  <span class="nu0">4</span>
+                  &nbsp; &nbsp; <span class="st0">'spacing'</span> <span class=
+                  "sy0">=&gt;</span> <span class="nu0">4</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="br0">)</span><span class="br0">)</span>;
+                  <span class="br0">)</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -503,11 +515,13 @@
                       </li>
                       <li class="li1">
                         <div class="de1">
-                          <span class="re0">$pb</span>-&gt;<span class=
+                          <span class="re1">$pb</span><span class=
+                          "sy0">-&gt;</span><span class=
                           "me1">setCellAttributes</span><span class=
                           "br0">(</span><span class="st0">'active-color=#FF0000
                           inactive-color=#FF9900 width=20 height=20
-                          spacing=4'</span><span class="br0">)</span>;
+                          spacing=4'</span><span class=
+                          "br0">)</span><span class="sy0">;</span>
                         </div>
                       </li>
                       <li class="li1">
@@ -525,7 +539,7 @@
         <div class="sect2" lang="en" xml:lang="en">
           <div class="titlepage">
             <h3 class="title">
-              <a name="id4784378" id="id4784378"></a>Border
+              <a name="id4787439" id="id4787439"></a>Border
             </h3>
           </div>
           <p>
@@ -542,7 +556,7 @@
               <li class="li1">
                 <div class="de1">
                   <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -552,22 +566,25 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
+                  <span class="re1">$pb</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> HTML_Progress2<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setBorderPainted</span><span class=
                   "br0">(</span><span class="kw2">true</span><span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setBorderAttributes</span><span class=
                   "br0">(</span><span class="kw3">array</span><span class=
                   "br0">(</span>
@@ -575,25 +592,28 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'width'</span> =&gt;
-                  <span class="nu0">2</span>,
+                  &nbsp; &nbsp; <span class="st0">'width'</span> <span class=
+                  "sy0">=&gt;</span> <span class="nu0">2</span><span class=
+                  "sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'style'</span> =&gt;
-                  <span class="st0">'solid'</span>,
+                  &nbsp; &nbsp; <span class="st0">'style'</span> <span class=
+                  "sy0">=&gt;</span> <span class=
+                  "st0">'solid'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'color'</span> =&gt;
-                  <span class="st0">'red'</span>
+                  &nbsp; &nbsp; <span class="st0">'color'</span> <span class=
+                  "sy0">=&gt;</span> <span class="st0">'red'</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="br0">)</span><span class="br0">)</span>;
+                  <span class="br0">)</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -635,7 +655,7 @@
         <div class="sect2" lang="en" xml:lang="en">
           <div class="titlepage">
             <h3 class="title">
-              <a name="id4784449" id="id4784449"></a>Background
+              <a name="id4787500" id="id4787500"></a>Background
             </h3>
           </div>
           <p>
@@ -656,7 +676,7 @@
               <li class="li1">
                 <div class="de1">
                   <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -666,14 +686,16 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
+                  <span class="re1">$pb</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> HTML_Progress2<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setProgressAttributes</span><span class=
                   "br0">(</span><span class="kw3">array</span><span class=
                   "br0">(</span>
@@ -682,33 +704,38 @@
               <li class="li1">
                 <div class="de1">
                   &nbsp; &nbsp; <span class="st0">'background-color'</span>
-                  =&gt; <span class="st0">'#339900'</span>,
+                  <span class="sy0">=&gt;</span> <span class=
+                  "st0">'#339900'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
                   &nbsp; &nbsp; <span class="st0">'background-image'</span>
-                  =&gt; <span class="st0">'degrade.jpg'</span>,
+                  <span class="sy0">=&gt;</span> <span class=
+                  "st0">'degrade.jpg'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
                   &nbsp; &nbsp; <span class="st0">'background-repeat'</span>
-                  =&gt; <span class="st0">'repeat-y'</span>
+                  <span class="sy0">=&gt;</span> <span class=
+                  "st0">'repeat-y'</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="br0">)</span><span class="br0">)</span>;
+                  <span class="br0">)</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setCellAttributes</span><span class=
                   "br0">(</span><span class=
                   "st0">'inactive-color=transparent'</span><span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -746,7 +773,7 @@
         <div class="sect2" lang="en" xml:lang="en">
           <div class="titlepage">
             <h3 class="title">
-              <a name="id4784520" id="id4784520"></a>Fill direction
+              <a name="id4787579" id="id4787579"></a>Fill direction
             </h3>
           </div>
           <p>
@@ -781,7 +808,7 @@
               <li class="li1">
                 <div class="de1">
                   <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -791,108 +818,125 @@
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
+                  <span class="re1">$pb</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> HTML_Progress2<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setOrientation</span><span class=
                   "br0">(</span>HTML_PROGRESS2_BAR_VERTICAL<span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setFillWay</span><span class="br0">(</span><span class=
-                  "st0">'reverse'</span><span class="br0">)</span>;
+                  "st0">'reverse'</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setAnimSpeed</span><span class=
                   "br0">(</span><span class="nu0">50</span><span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setCellCount</span><span class=
                   "br0">(</span><span class="nu0">15</span><span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setCellAttributes</span><span class=
                   "br0">(</span><span class="st0">'active-color=#970038
                   inactive-color=#FFDDAA width=50 height=13'</span><span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setBorderPainted</span><span class=
                   "br0">(</span><span class="kw2">true</span><span class=
-                  "br0">)</span>;
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setBorderAttributes</span><span class=
                   "br0">(</span><span class="st0">'width=1
-                  color=#000000'</span><span class="br0">)</span>;
+                  color=#000000'</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
+                  <span class="re1">$pb</span><span class=
+                  "sy0">-&gt;</span><span class=
                   "me1">setLabelAttributes</span><span class=
-                  "br0">(</span><span class="st0">'pct1'</span>, <span class=
-                  "kw3">array</span><span class="br0">(</span>
+                  "br0">(</span><span class="st0">'pct1'</span><span class=
+                  "sy0">,</span> <span class="kw3">array</span><span class=
+                  "br0">(</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'font-size'</span> =&gt;
-                  <span class="nu0">8</span>,
+                  &nbsp; &nbsp; <span class="st0">'font-size'</span>
+                  <span class="sy0">=&gt;</span> <span class=
+                  "nu0">8</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'color'</span> =&gt;
-                  <span class="st0">'#FF0000'</span>,
+                  &nbsp; &nbsp; <span class="st0">'color'</span> <span class=
+                  "sy0">=&gt;</span> <span class=
+                  "st0">'#FF0000'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
                   &nbsp; &nbsp; <span class="st0">'background-color'</span>
-                  =&gt; <span class="st0">'#C3C6C3'</span>,
+                  <span class="sy0">=&gt;</span> <span class=
+                  "st0">'#C3C6C3'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'align'</span> =&gt;
-                  <span class="st0">'center'</span>,
+                  &nbsp; &nbsp; <span class="st0">'align'</span> <span class=
+                  "sy0">=&gt;</span> <span class=
+                  "st0">'center'</span><span class="sy0">,</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  &nbsp; &nbsp; <span class="st0">'valign'</span> =&gt;
-                  <span class="st0">'bottom'</span>
+                  &nbsp; &nbsp; <span class="st0">'valign'</span> <span class=
+                  "sy0">=&gt;</span> <span class="st0">'bottom'</span>
                 </div>
               </li>
               <li class="li1">
                 <div class="de1">
-                  <span class="br0">)</span><span class="br0">)</span>;
+                  <span class="br0">)</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
                 </div>
               </li>
               <li class="li1">
@@ -918,7 +962,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>

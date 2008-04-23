@@ -15,19 +15,19 @@
     <link rel="prev" href="ch08s03.html" title="Default improved render" />
     <link rel="next" href="ch09.html" title=
     "Chapter&nbsp;9.&nbsp;Quick Start with HTML_Progress2_Generator" />
-<style type="text/css">
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c2 {font-family: monospace;}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c2 {font-family: monospace;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -57,8 +57,7 @@
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
@@ -91,19 +90,21 @@
           <li class="li1">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/Progress2/Monitor.php'</span>;
+              "st0">'HTML/Progress2/Monitor.php'</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/QuickForm/Renderer/ITDynamic.php'</span>;
+              "st0">'HTML/QuickForm/Renderer/ITDynamic.php'</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/Template/Sigma.php'</span>;
+              "st0">'HTML/Template/Sigma.php'</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -114,7 +115,7 @@
           <li class="li1">
             <div class="de1">
               <span class="kw2">function</span> getmicrotime<span class=
-              "br0">(</span><span class="re0">$time</span><span class=
+              "br0">(</span><span class="re1">$time</span><span class=
               "br0">)</span>
             </div>
           </li>
@@ -126,20 +127,23 @@
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class="kw3">list</span><span class=
-              "br0">(</span><span class="re0">$usec</span>, <span class=
-              "re0">$sec</span><span class="br0">)</span> = <span class=
+              "br0">(</span><span class="re1">$usec</span><span class=
+              "sy0">,</span> <span class="re1">$sec</span><span class=
+              "br0">)</span> <span class="sy0">=</span> <span class=
               "kw3">explode</span><span class="br0">(</span><span class="st0">'
-              '</span>, <span class="re0">$time</span><span class=
-              "br0">)</span>;
+              '</span><span class="sy0">,</span> <span class=
+              "re1">$time</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class="kw1">return</span> <span class=
               "br0">(</span><span class="br0">(</span>float<span class=
-              "br0">)</span><span class="re0">$usec</span> + <span class=
-              "br0">(</span>float<span class="br0">)</span><span class=
-              "re0">$sec</span><span class="br0">)</span>;
+              "br0">)</span><span class="re1">$usec</span> <span class=
+              "sy0">+</span> <span class="br0">(</span>float<span class=
+              "br0">)</span><span class="re1">$sec</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -170,8 +174,9 @@
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class="kw2">function</span>
-              myObserver<span class="br0">(</span>&amp;<span class=
-              "re0">$notification</span><span class="br0">)</span>
+              myObserver<span class="br0">(</span><span class=
+              "sy0">&amp;</span><span class=
+              "re1">$notification</span><span class="br0">)</span>
             </div>
           </li>
           <li class="li1">
@@ -182,13 +187,13 @@
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">static</span>
-              <span class="re0">$time_start</span>;
+              <span class="re1">$time_start</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">global</span>
-              <span class="re0">$pm</span>;
+              <span class="re1">$pm</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -198,27 +203,35 @@
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; &nbsp; &nbsp; &nbsp; <span class="re0">$notifyName</span>
-              = <span class="re0">$notification</span>-&gt;<span class=
+              &nbsp; &nbsp; &nbsp; &nbsp; <span class="re1">$notifyName</span>
+              <span class="sy0">=</span> <span class=
+              "re1">$notification</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">getNotificationName</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; &nbsp; &nbsp; &nbsp; <span class="re0">$notifyInfo</span>
-              = <span class="re0">$notification</span>-&gt;<span class=
+              &nbsp; &nbsp; &nbsp; &nbsp; <span class="re1">$notifyInfo</span>
+              <span class="sy0">=</span> <span class=
+              "re1">$notification</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">getNotificationInfo</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "re0">$notifyObj</span>&nbsp; =&amp;<span class=
-              "re0">$notification</span>-&gt;<span class=
+              &nbsp; &nbsp; &nbsp; &nbsp; <span class="re1">$notifyObj</span>
+              &nbsp;<span class="sy0">=&amp;</span><span class=
+              "re1">$notification</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">getNotificationObject</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -230,122 +243,131 @@
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">switch</span>
               <span class="br0">(</span><span class=
-              "re0">$notifyName</span><span class="br0">)</span> <span class=
+              "re1">$notifyName</span><span class="br0">)</span> <span class=
               "br0">{</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "kw1">case</span> <span class="st0">'onSubmit'</span>:
+              "kw1">case</span> <span class="st0">'onSubmit'</span><span class=
+              "sy0">:</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="re0">$time_start</span> = getmicrotime<span class=
-              "br0">(</span><span class="re0">$notifyInfo</span><span class=
-              "br0">[</span><span class="st0">'time'</span><span class=
-              "br0">]</span><span class="br0">)</span>;
+              <span class="re1">$time_start</span> <span class="sy0">=</span>
+              getmicrotime<span class="br0">(</span><span class=
+              "re1">$notifyInfo</span><span class="br0">[</span><span class=
+              "st0">'time'</span><span class="br0">]</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="kw1">break</span>;
+              <span class="kw1">break</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "kw1">case</span> <span class="st0">'onLoad'</span>:
+              "kw1">case</span> <span class="st0">'onLoad'</span><span class=
+              "sy0">:</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="re0">$time_elapse</span> = getmicrotime<span class=
-              "br0">(</span><span class="re0">$notifyInfo</span><span class=
-              "br0">[</span><span class="st0">'time'</span><span class=
-              "br0">]</span><span class="br0">)</span> - <span class=
-              "re0">$time_start</span>;
+              <span class="re1">$time_elapse</span> <span class="sy0">=</span>
+              getmicrotime<span class="br0">(</span><span class=
+              "re1">$notifyInfo</span><span class="br0">[</span><span class=
+              "st0">'time'</span><span class="br0">]</span><span class=
+              "br0">)</span> <span class="sy0">-</span> <span class=
+              "re1">$time_start</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="re0">$pm</span>-&gt;<span class=
-              "me1">setCaption</span><span class="br0">(</span><span class=
-              "st0">"upload done (elapse time = $time_elapse&nbsp;
-              sec.)"</span><span class="br0">)</span>;
+              <span class="re1">$pm</span><span class=
+              "sy0">-&gt;</span><span class="me1">setCaption</span><span class=
+              "br0">(</span><span class="st0">"upload done (elapse time =
+              $time_elapse &nbsp;sec.)"</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="kw1">break</span>;
+              <span class="kw1">break</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "kw1">case</span> <span class="st0">'onChange'</span>:
+              "kw1">case</span> <span class="st0">'onChange'</span><span class=
+              "sy0">:</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="re0">$pValue</span> = <span class=
-              "re0">$notifyInfo</span><span class="br0">[</span><span class=
-              "st0">'value'</span><span class="br0">]</span>;
+              <span class="re1">$pValue</span> <span class="sy0">=</span>
+              <span class="re1">$notifyInfo</span><span class=
+              "br0">[</span><span class="st0">'value'</span><span class=
+              "br0">]</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               <span class="kw1">if</span> <span class=
-              "br0">(</span><span class="re0">$pValue</span> == <span class=
-              "nu0">10</span><span class="br0">)</span> <span class=
+              "br0">(</span><span class="re1">$pValue</span> <span class=
+              "sy0">==</span> <span class="nu0">10</span><span class=
+              "br0">)</span> <span class="br0">{</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; <span class="re1">$pic</span> <span class="sy0">=</span>
+              <span class="st0">'picture1.jpg'</span><span class="sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <span class="br0">}</span> <span class="kw1">elseif</span>
+              <span class="br0">(</span><span class="re1">$pValue</span>
+              <span class="sy0">==</span> <span class=
+              "nu0">45</span><span class="br0">)</span> <span class=
               "br0">{</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; <span class="re0">$pic</span> = <span class=
-              "st0">'picture1.jpg'</span>;
+              &nbsp; <span class="re1">$pic</span> <span class="sy0">=</span>
+              <span class="st0">'picture2.jpg'</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               <span class="br0">}</span> <span class="kw1">elseif</span>
-              <span class="br0">(</span><span class="re0">$pValue</span> ==
-              <span class="nu0">45</span><span class="br0">)</span>
-              <span class="br0">{</span>
+              <span class="br0">(</span><span class="re1">$pValue</span>
+              <span class="sy0">==</span> <span class=
+              "nu0">70</span><span class="br0">)</span> <span class=
+              "br0">{</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; <span class="re0">$pic</span> = <span class=
-              "st0">'picture2.jpg'</span>;
-            </div>
-          </li>
-          <li class="li1">
-            <div class="de1">
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="br0">}</span> <span class="kw1">elseif</span>
-              <span class="br0">(</span><span class="re0">$pValue</span> ==
-              <span class="nu0">70</span><span class="br0">)</span>
-              <span class="br0">{</span>
-            </div>
-          </li>
-          <li class="li1">
-            <div class="de1">
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; <span class="re0">$pic</span> = <span class=
-              "st0">'picture3.jpg'</span>;
+              &nbsp; <span class="re1">$pic</span> <span class="sy0">=</span>
+              <span class="st0">'picture3.jpg'</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -358,8 +380,8 @@
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; <span class="re0">$pic</span> = <span class=
-              "kw2">false</span>;
+              &nbsp; <span class="re1">$pic</span> <span class="sy0">=</span>
+              <span class="kw2">false</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -372,24 +394,26 @@
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               <span class="kw1">if</span> <span class=
-              "br0">(</span><span class="re0">$pic</span><span class=
+              "br0">(</span><span class="re1">$pic</span><span class=
               "br0">)</span> <span class="br0">{</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; <span class="re0">$pm</span>-&gt;<span class=
-              "me1">setCaption</span><span class="br0">(</span><span class=
-              "st0">"upload $pic in progress ... "</span>
+              &nbsp; <span class="re1">$pm</span><span class=
+              "sy0">-&gt;</span><span class="me1">setCaption</span><span class=
+              "br0">(</span><span class="st0">"upload $pic in progress ...
+              "</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .
-              <span class="st0">"Start at $pValue%"</span><span class=
-              "br0">)</span>;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <span class="sy0">.</span> <span class="st0">"Start at
+              $pValue%"</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -406,9 +430,9 @@
           <li class="li1 ln-xtra">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "re0">$notifyObj</span>-&gt;<span class=
+              "re1">$notifyObj</span><span class="sy0">-&gt;</span><span class=
               "me1">sleep</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -428,41 +452,47 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pm</span> = <span class="kw2">new</span>
-              HTML_Progress2_Monitor<span class="br0">(</span><span class=
-              "st0">'uploadMonitor'</span>, <span class=
-              "kw3">array</span><span class="br0">(</span>
+              <span class="re1">$pm</span> <span class="sy0">=</span>
+              <span class="kw2">new</span> HTML_Progress2_Monitor<span class=
+              "br0">(</span><span class=
+              "st0">'uploadMonitor'</span><span class="sy0">,</span>
+              <span class="kw3">array</span><span class="br0">(</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; &nbsp; <span class="st0">'title'</span>&nbsp; =&gt;
-              <span class="st0">'Upload your pictures'</span>,
+              &nbsp; &nbsp; <span class="st0">'title'</span> &nbsp;<span class=
+              "sy0">=&gt;</span> <span class="st0">'Upload your
+              pictures'</span><span class="sy0">,</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; &nbsp; <span class="st0">'start'</span>&nbsp; =&gt;
-              <span class="st0">'Upload'</span>,
+              &nbsp; &nbsp; <span class="st0">'start'</span> &nbsp;<span class=
+              "sy0">=&gt;</span> <span class="st0">'Upload'</span><span class=
+              "sy0">,</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; &nbsp; <span class="st0">'cancel'</span> =&gt;
-              <span class="st0">'Stop'</span>,
+              &nbsp; &nbsp; <span class="st0">'cancel'</span> <span class=
+              "sy0">=&gt;</span> <span class="st0">'Stop'</span><span class=
+              "sy0">,</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; &nbsp; <span class="st0">'button'</span> =&gt;
-              <span class="kw3">array</span><span class=
-              "br0">(</span><span class="st0">'style'</span> =&gt; <span class=
+              &nbsp; &nbsp; <span class="st0">'button'</span> <span class=
+              "sy0">=&gt;</span> <span class="kw3">array</span><span class=
+              "br0">(</span><span class="st0">'style'</span> <span class=
+              "sy0">=&gt;</span> <span class=
               "st0">'width:80px;'</span><span class="br0">)</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="br0">)</span><span class="br0">)</span>;
+              <span class="br0">)</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -472,67 +502,83 @@
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$pb</span> =&amp; <span class=
-              "re0">$pm</span>-&gt;<span class=
+              <span class="re1">$pb</span> <span class="sy0">=&amp;</span>
+              <span class="re1">$pm</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">getProgressElement</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setAnimSpeed</span><span class="br0">(</span><span class=
-              "nu0">50</span><span class="br0">)</span>;
+              "nu0">50</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setCellCount</span><span class="br0">(</span><span class=
-              "nu0">20</span><span class="br0">)</span>;
+              "nu0">20</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setProgressAttributes</span><span class=
               "br0">(</span><span class=
-              "st0">'background-color=#EEE'</span><span class="br0">)</span>;
+              "st0">'background-color=#EEE'</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setCellAttributes</span><span class=
               "br0">(</span><span class="st0">'inactive-color=#FFF
-              active-color=#444'</span><span class="br0">)</span>;
+              active-color=#444'</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setLabelAttributes</span><span class=
-              "br0">(</span><span class="st0">'pct1'</span>, <span class=
-              "st0">'color=navy'</span><span class="br0">)</span>;
+              "br0">(</span><span class="st0">'pct1'</span><span class=
+              "sy0">,</span> <span class="st0">'color=navy'</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setLabelAttributes</span><span class=
-              "br0">(</span><span class="st0">'monitorStatus'</span>,
+              "br0">(</span><span class=
+              "st0">'monitorStatus'</span><span class="sy0">,</span>
               <span class="st0">'color=navy font-size=10'</span><span class=
-              "br0">)</span>;
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">addListener</span><span class="br0">(</span><span class=
               "kw3">array</span><span class="br0">(</span><span class=
-              "st0">'myObservatory'</span>,<span class=
-              "st0">'myObserver'</span><span class="br0">)</span><span class=
-              "br0">)</span>;
+              "st0">'myObservatory'</span><span class=
+              "sy0">,</span><span class="st0">'myObserver'</span><span class=
+              "br0">)</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -542,10 +588,11 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pm</span>-&gt;<span class=
+              <span class="re1">$pm</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setProgressElement</span><span class=
-              "br0">(</span><span class="re0">$pb</span><span class=
-              "br0">)</span>;
+              "br0">(</span><span class="re1">$pb</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -555,17 +602,20 @@
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$tpl</span> =&amp; <span class="kw2">new</span>
-              HTML_Template_Sigma<span class="br0">(</span><span class=
-              "st0">'.'</span><span class="br0">)</span>;
+              <span class="re1">$tpl</span> <span class="sy0">=&amp;</span>
+              <span class="kw2">new</span> HTML_Template_Sigma<span class=
+              "br0">(</span><span class="st0">'.'</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$tpl</span>-&gt;<span class=
+              <span class="re1">$tpl</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">loadTemplateFile</span><span class=
               "br0">(</span><span class=
-              "st0">'itdynamic.html'</span><span class="br0">)</span>;
+              "st0">'itdynamic.html'</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -575,30 +625,34 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$tpl</span>-&gt;<span class=
+              <span class="re1">$tpl</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setVariable</span><span class="br0">(</span><span class=
               "kw3">array</span><span class="br0">(</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              &nbsp; &nbsp; <span class="st0">'qf_style'</span>&nbsp; =&gt;
-              <span class="re0">$pm</span>-&gt;<span class=
+              &nbsp; &nbsp; <span class="st0">'qf_style'</span>
+              &nbsp;<span class="sy0">=&gt;</span> <span class=
+              "re1">$pm</span><span class="sy0">-&gt;</span><span class=
               "me1">getStyle</span><span class="br0">(</span><span class=
-              "br0">)</span>,
+              "br0">)</span><span class="sy0">,</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              &nbsp; &nbsp; <span class="st0">'qf_script'</span> =&gt;
-              <span class="re0">$pm</span>-&gt;<span class=
-              "me1">getScript</span><span class="br0">(</span><span class=
-              "kw2">false</span><span class="br0">)</span>
+              &nbsp; &nbsp; <span class="st0">'qf_script'</span> <span class=
+              "sy0">=&gt;</span> <span class="re1">$pm</span><span class=
+              "sy0">-&gt;</span><span class="me1">getScript</span><span class=
+              "br0">(</span><span class="kw2">false</span><span class=
+              "br0">)</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="br0">)</span><span class="br0">)</span>;
+              <span class="br0">)</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -608,20 +662,23 @@
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$renderer</span> =&amp; <span class=
-              "kw2">new</span> HTML_QuickForm_Renderer_ITDynamic<span class=
-              "br0">(</span><span class="re0">$tpl</span><span class=
-              "br0">)</span>;
+              <span class="re1">$renderer</span> <span class=
+              "sy0">=&amp;</span> <span class="kw2">new</span>
+              HTML_QuickForm_Renderer_ITDynamic<span class=
+              "br0">(</span><span class="re1">$tpl</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$renderer</span>-&gt;<span class=
+              <span class="re1">$renderer</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setElementBlock</span><span class=
               "br0">(</span><span class="kw3">array</span><span class=
-              "br0">(</span><span class="st0">'buttons'</span> =&gt;
-              <span class="st0">'qf_buttons'</span><span class=
-              "br0">)</span><span class="br0">)</span>;
+              "br0">(</span><span class="st0">'buttons'</span> <span class=
+              "sy0">=&gt;</span> <span class=
+              "st0">'qf_buttons'</span><span class="br0">)</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -631,9 +688,10 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pm</span>-&gt;<span class=
-              "me1">accept</span><span class="br0">(</span><span class=
-              "re0">$renderer</span><span class="br0">)</span>;
+              <span class="re1">$pm</span><span class=
+              "sy0">-&gt;</span><span class="me1">accept</span><span class=
+              "br0">(</span><span class="re1">$renderer</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -643,16 +701,18 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$tpl</span>-&gt;<span class=
-              "me1">show</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$tpl</span><span class=
+              "sy0">-&gt;</span><span class="me1">show</span><span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pm</span>-&gt;<span class=
-              "me1">run</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$pm</span><span class=
+              "sy0">-&gt;</span><span class="me1">run</span><span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -662,12 +722,12 @@
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;/body&gt;
+              <span class="sy0">&lt;/</span>body<span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;/html&gt;
+              <span class="sy0">&lt;/</span>html<span class="sy0">&gt;</span>
             </div>
           </li>
         </ol>
@@ -732,41 +792,40 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc0">&nbsp; &nbsp;
-              "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
+              <span class="sc0">&nbsp;
+              &nbsp;"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               <span class="sc2"><span class="kw2">&lt;html</span>
-              xmlns=<span class="st0">"http://www.w3.org/1999/xhtml"</span>
-              xml:<span class="kw3">lang</span>=<span class=
+              xmlns<span class="sy0">=</span><span class=
+              "st0">"http://www.w3.org/1999/xhtml"</span> xml:<span class=
+              "kw3">lang</span><span class="sy0">=</span><span class=
               "st0">"en"</span><span class="kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;head&gt;</span></span>
+              <span class="sc2 kw2">&lt;head&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class=
-              "kw2">&lt;title&gt;</span></span>Progress2 Monitor - ITDynamic
-              renderer <span class="sc2"><span class=
-              "kw2">&lt;/title&gt;</span></span>
+              <span class="sc2 kw2">&lt;title&gt;</span>Progress2 Monitor -
+              ITDynamic renderer <span class="sc2 kw2">&lt;/title&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               <span class="sc2"><span class="kw2">&lt;style</span> <span class=
-              "kw3">type</span>=<span class="st0">"text/css"</span><span class=
-              "kw2">&gt;</span></span>
+              "kw3">type</span><span class="sy0">=</span><span class=
+              "st0">"text/css"</span><span class="kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!--</span></span>
+              <span class="sc2 coMULTI">&lt;!--</span>
             </div>
           </li>
           <li class="li1">
@@ -846,12 +905,12 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="coMULTI">--&gt;</span>
+              <span class="coMULTI">&nbsp;--&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/style&gt;</span></span>
+              <span class="sc2 kw2">&lt;/style&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -861,12 +920,12 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/head&gt;</span></span>
+              <span class="sc2 kw2">&lt;/head&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;body&gt;</span></span>
+              <span class="sc2 kw2">&lt;body&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -876,23 +935,22 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class=
-              "kw2">&lt;h1&gt;</span></span>ITDynamic QF renderer<span class=
-              "sc2"><span class="kw2">&lt;/h1&gt;</span></span>
+              <span class="sc2 kw2">&lt;h1&gt;</span>ITDynamic QF
+              renderer<span class="sc2 kw2">&lt;/h1&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;p&gt;</span></span>This
-              example simulate a pictures uploads.<span class=
-              "sc2"><span class="kw2">&lt;br</span>/<span class=
+              <span class="sc2 kw2">&lt;p&gt;</span>This example simulate a
+              pictures uploads.<span class="sc2"><span class=
+              "kw2">&lt;br</span><span class="sy0">/</span><span class=
               "kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               First image upload at 10%, second at 45%, and third at
-              70%.<span class="sc2"><span class="kw2">&lt;/p&gt;</span></span>
+              70%.<span class="sc2 kw2">&lt;/p&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -909,34 +967,33 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_hidden_block --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- BEGIN qf_hidden_block
+              --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               <span class="sc2"><span class="kw2">&lt;div</span> <span class=
-              "kw3">style</span>=<span class="st0">"display:
-              none;"</span><span class="kw2">&gt;</span></span>
+              "kw3">style</span><span class="sy0">=</span><span class=
+              "st0">"display: none;"</span><span class="kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_hidden_loop --&gt;</span></span>{qf_hidden}<span class=
-              "sc2"><span class="coMULTI">&lt;!-- END qf_hidden_loop
-              --&gt;</span></span>
+              &nbsp; <span class="sc2 coMULTI">&lt;!-- BEGIN qf_hidden_loop
+              --&gt;</span>{qf_hidden}<span class="sc2 coMULTI">&lt;!-- END
+              qf_hidden_loop --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/div&gt;</span></span>
+              <span class="sc2 kw2">&lt;/div&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- END
-              qf_hidden_block --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- END qf_hidden_block
+              --&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -947,83 +1004,80 @@
           <li class="li1">
             <div class="de1">
               <span class="sc2"><span class="kw2">&lt;table</span> <span class=
-              "kw3">class</span>=<span class="st0">"maintable"</span>
-              <span class="kw3">width</span>=<span class="st0">"600"</span>
-              <span class="kw3">align</span>=<span class=
-              "st0">"center"</span><span class="kw2">&gt;</span></span>
+              "kw3">class</span><span class="sy0">=</span><span class=
+              "st0">"maintable"</span> <span class=
+              "kw3">width</span><span class="sy0">=</span><span class=
+              "st0">"600"</span> <span class="kw3">align</span><span class=
+              "sy0">=</span><span class="st0">"center"</span><span class=
+              "kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_main_loop --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- BEGIN qf_main_loop
+              --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class=
-              "kw2">&lt;tr&gt;</span></span><span class="sc2"><span class=
-              "kw2">&lt;td</span> <span class="kw3">valign</span>=<span class=
+              <span class="sc2 kw2">&lt;tr&gt;</span><span class=
+              "sc2"><span class="kw2">&lt;td</span> <span class=
+              "kw3">valign</span><span class="sy0">=</span><span class=
               "st0">"top"</span><span class="kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; <span class="sc2"><span class="kw2">&lt;table</span>
-              <span class="kw3">width</span>=<span class="st0">"100%"</span>
-              <span class="kw3">cellpadding</span>=<span class=
+              <span class="kw3">width</span><span class=
+              "sy0">=</span><span class="st0">"100%"</span> <span class=
+              "kw3">cellpadding</span><span class="sy0">=</span><span class=
               "st0">"4"</span><span class="kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_header --&gt;</span></span><span class="sc2"><span class=
-              "kw2">&lt;tr&gt;</span></span><span class="sc2"><span class=
-              "kw2">&lt;th&gt;</span></span>{qf_header}<span class=
-              "sc2"><span class="kw2">&lt;/th&gt;</span></span><span class=
-              "sc2"><span class="kw2">&lt;/tr&gt;</span></span><span class=
-              "sc2"><span class="coMULTI">&lt;!-- END qf_header
-              --&gt;</span></span>
+              &nbsp; <span class="sc2 coMULTI">&lt;!-- BEGIN qf_header
+              --&gt;</span><span class="sc2 kw2">&lt;tr&gt;</span><span class=
+              "sc2 kw2">&lt;th&gt;</span>{qf_header}<span class=
+              "sc2 kw2">&lt;/th&gt;</span><span class=
+              "sc2 kw2">&lt;/tr&gt;</span><span class="sc2 coMULTI">&lt;!-- END
+              qf_header --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_element --&gt;</span></span><span class="sc2"><span class=
-              "kw2">&lt;tr&gt;</span></span><span class="sc2"><span class=
-              "kw2">&lt;td&gt;</span></span>{qf_element}<span class=
-              "sc2"><span class="kw2">&lt;/td&gt;</span></span><span class=
-              "sc2"><span class="kw2">&lt;/tr&gt;</span></span><span class=
-              "sc2"><span class="coMULTI">&lt;!-- END qf_element
-              --&gt;</span></span>
+              &nbsp; <span class="sc2 coMULTI">&lt;!-- BEGIN qf_element
+              --&gt;</span><span class="sc2 kw2">&lt;tr&gt;</span><span class=
+              "sc2 kw2">&lt;td&gt;</span>{qf_element}<span class=
+              "sc2 kw2">&lt;/td&gt;</span><span class=
+              "sc2 kw2">&lt;/tr&gt;</span><span class="sc2 coMULTI">&lt;!-- END
+              qf_element --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; <span class="sc2"><span class=
-              "kw2">&lt;/table&gt;</span></span>
+              &nbsp; <span class="sc2 kw2">&lt;/table&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/td&gt;</span></span>
+              <span class="sc2 kw2">&lt;/td&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/tr&gt;</span></span>
+              <span class="sc2 kw2">&lt;/tr&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- END qf_main_loop
-              --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- END qf_main_loop --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/table&gt;</span></span>
+              <span class="sc2 kw2">&lt;/table&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -1033,81 +1087,68 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN qf_buttons
-              --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- BEGIN qf_buttons --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               <span class="sc2"><span class="kw2">&lt;table</span> <span class=
-              "kw3">width</span>=<span class="st0">"600"</span> <span class=
-              "kw3">align</span>=<span class="st0">"center"</span><span class=
+              "kw3">width</span><span class="sy0">=</span><span class=
+              "st0">"600"</span> <span class="kw3">align</span><span class=
+              "sy0">=</span><span class="st0">"center"</span><span class=
               "kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;tr&gt;</span></span>
+              <span class="sc2 kw2">&lt;tr&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; <span class="sc2"><span class="kw2">&lt;td</span>
-              <span class="kw3">align</span>=<span class=
-              "st0">"right"</span><span class="kw2">&gt;</span></span>
+              <span class="kw3">align</span><span class=
+              "sy0">=</span><span class="st0">"right"</span><span class=
+              "kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_buttons_loop --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- BEGIN qf_buttons_loop
+              --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_buttons_element
-              --&gt;</span></span>{qf_separator}{qf_element}<span class=
-              "sc2"><span class="coMULTI">&lt;!-- END qf_buttons_element
-              --&gt;</span></span>
+              &nbsp; <span class="sc2 coMULTI">&lt;!-- BEGIN qf_buttons_element
+              --&gt;</span>{qf_separator}{qf_element}<span class=
+              "sc2 coMULTI">&lt;!-- END qf_buttons_element --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- END
-              qf_buttons_loop --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- END qf_buttons_loop
+              --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &nbsp; <span class="sc2"><span class=
-              "kw2">&lt;/td&gt;</span></span>
+              &nbsp; <span class="sc2 kw2">&lt;/td&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/tr&gt;</span></span>
+              <span class="sc2 kw2">&lt;/tr&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/table&gt;</span></span>
+              <span class="sc2 kw2">&lt;/table&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- END qf_buttons
-              --&gt;</span></span>
-            </div>
-          </li>
-          <li class="li1">
-            <div class="de1">
-              &nbsp;
-            </div>
-          </li>
-          <li class="li1">
-            <div class="de1">
-              <span class="sc2"><span class="kw2">&lt;/form&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- END qf_buttons --&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -1117,32 +1158,39 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN qf_errors
-              --&gt;</span></span>
+              <span class="sc2 kw2">&lt;/form&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- BEGIN
-              qf_error_loop --&gt;</span></span>
+              &nbsp;
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="sc2 coMULTI">&lt;!-- BEGIN qf_errors --&gt;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="sc2 coMULTI">&lt;!-- BEGIN qf_error_loop
+              --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               {qf_error}<span class="sc2"><span class="kw2">&lt;br</span>
-              /<span class="kw2">&gt;</span></span>
+              <span class="sy0">/</span><span class="kw2">&gt;</span></span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- END qf_error_loop
-              --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- END qf_error_loop --&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="sc2"><span class="coMULTI">&lt;!-- END qf_errors
-              --&gt;</span></span>
+              <span class="sc2 coMULTI">&lt;!-- END qf_errors --&gt;</span>
             </div>
           </li>
         </ol>
@@ -1154,7 +1202,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>

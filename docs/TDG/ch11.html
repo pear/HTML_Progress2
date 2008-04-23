@@ -5,30 +5,30 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Chapter&nbsp;11.&nbsp;How to adjust your code
+      Chapter&nbsp;11.&nbsp; How to to implement an AJAX Upload with Progress
+      Bar solution
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
-    <link rel="up" href="pt03.html" title=
-    "Part&nbsp;III.&nbsp;Migrating Guide" />
-    <link rel="prev" href="ch10s03.html" title="What was removed ?" />
-    <link rel="next" href="ch11s02.html" title="User Interface related" />
-<style type="text/css">
+    <link rel="up" href="pt02.html" title=
+    "Part&nbsp;II.&nbsp;Getting Started" />
+    <link rel="prev" href="ch10s06.html" title="Examples (full source code)" />
+    <link rel="next" href="ch11s02.html" title="HTML side" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c4 {font-family: monospace;}
- div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
- h2.c2 {clear: both}
- p.c1 {font-weight: bold}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
+    h2.c2 {clear: both}
+    p.c1 {font-weight: bold}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -43,32 +43,32 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Chapter&nbsp;11.&nbsp;How to adjust your code
+                  Chapter&nbsp;11.&nbsp; How to to implement an AJAX Upload
+                  with Progress Bar solution
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="ch10s03.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="ch10s06.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Part&nbsp;III.&nbsp;Migrating Guide
+                  Part&nbsp;II.&nbsp;Getting Started
                 </th>
                 <td width="20%" align="right">
                   &nbsp;<a accesskey="n" href="ch11s02.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="chapter" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title">
-          <a name="migrating.ajustcode" id=
-          "migrating.ajustcode"></a>Chapter&nbsp;11.&nbsp;How to adjust your
-          code
+          <a name="developers.upload" id=
+          "developers.upload"></a>Chapter&nbsp;11.&nbsp; How to to implement an
+          AJAX Upload with Progress Bar solution
         </h2>
       </div>
       <div class="toc">
@@ -77,231 +77,106 @@
         </p>
         <dl>
           <dt>
-            <span class="sect1"><a href="ch11.html#id4792450">core class
-            related</a></span>
+            <span class="sect1"><a href="ch11.html#upload.html_ajax">AJAX with
+            PEAR package HTML_AJAX</a></span>
           </dt>
           <dt>
-            <span class="sect1"><a href="ch11s02.html">User Interface
-            related</a></span>
+            <span class="sect1"><a href="ch11s02.html">HTML side</a></span>
           </dt>
           <dt>
-            <span class="sect1"><a href="ch11s03.html">Data Management
-            related</a></span>
+            <span class="sect1"><a href="ch11s03.html">Server side</a></span>
+          </dt>
+          <dt>
+            <span class="sect1"><a href="ch11s04.html">Examples (full source
+            code)</a></span>
           </dt>
         </dl>
       </div>
       <div class="sect1" lang="en" xml:lang="en">
         <div class="titlepage">
           <h2 class="title c2">
-            <a name="id4792450" id="id4792450"></a>core class related
+            <a name="upload.html_ajax" id="upload.html_ajax"></a>AJAX with PEAR
+            package HTML_AJAX
           </h2>
         </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">class constructor</span>
-            </dt>
-            <dd>
-              <p>
-                HTML_Progress 1.x allows multiple signatures (5) while
-                HTML_Progress2 allow one unique signature even if all
-                parameters are optional.
-              </p>
-              <p>
-                Resume of HTML_Progress 1.x signatures :
-              </p>
-              <div class="orderedlist">
-                <ol type="1">
-                  <li>$bar = new HTML_Progress();
-                  </li>
-                  <li>$bar = new HTML_Progress($orient);
-                  </li>
-                  <li>$bar = new HTML_Progress($min, $max);
-                  </li>
-                  <li>$bar = new HTML_Progress($orient, $min, $max);
-                  </li>
-                  <li>$bar = new HTML_Progress($model);
-                  </li>
-                </ol>
-              </div>
-              <div class="caution c3">
-                <table border="0" summary="Caution">
-                  <tr>
-                    <td rowspan="2" align="center" valign="top" width="48">
-                      <img alt="[Caution]" src="img/admons/caution.png" />
-                    </td>
-                    <th align="left">
-                      Caution
-                    </th>
-                  </tr>
-                  <tr>
-                    <td align="left" valign="top">
-                      Signature #5 is no more allowed because feature was
-                      removed.
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <p>
-                HTML_Progress2 signature :
-              </p>
-              <div class="php c4">
-                <ol>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="kw2">&lt;?php</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="re0">$bar</span> = <span class=
-                      "kw2">new</span> HTML_Progress2<span class=
-                      "br0">(</span><span class="re0">$errorPrefs</span>,
-                      <span class="re0">$orient</span>, <span class=
-                      "re0">$min</span>, <span class="re0">$max</span>,
-                      <span class="re0">$percentLabel</span><span class=
-                      "br0">)</span>;
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">/*</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                      &nbsp;$errorPrefs&nbsp; &nbsp;:hash of options to
-                      configure the API error handling system</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default is
-                      empty array (use PEAR_Error object)</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                      &nbsp;$orient&nbsp; &nbsp; &nbsp; &nbsp;:orientation of
-                      the progress bar (see constants)</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                      &nbsp;$min&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :minimum
-                      value of the progress bar (default is zero)</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                      &nbsp;$max&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :maximum
-                      value of the progress bar (default is 100)</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">&nbsp; &nbsp; &nbsp;
-                      &nbsp;$percentLabel :progress bar percent label
-                      identifier (default is 'pct1')</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="coMULTI">*/</span>
-                    </div>
-                  </li>
-                  <li class="li1">
-                    <div class="de1">
-                      <span class="kw2">?&gt;</span>
-                    </div>
-                  </li>
-                </ol>
-              </div>
-            </dd>
-          </dl>
+        <div class="caution c3">
+          <table border="0" summary="Caution">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="48">
+                <img alt="[Caution]" src="img/admons/caution.png" />
+              </td>
+              <th align="left">
+                Caution
+              </th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>
+                  First of all, you need to learn, if its not yet done, the
+                  PEAR package <a class="external" href=
+                  "http://pear.php.net/package/HTML_AJAX" title=
+                  "http://pear.php.net/package/HTML_AJAX">HTML_AJAX</a>
+                  features before to continue reading.
+                </p>
+              </td>
+            </tr>
+          </table>
         </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">apiVersion()</span>
-            </dt>
-            <dd>
+        <p>
+          HTML_Progress2 use help of PEAR::HTML_AJAX to make asynchronous
+          connection with your server. That means, you need to define :
+        </p>
+        <div class="itemizedlist">
+          <ul type="disc">
+            <li>
               <p>
-                Returns the current API version compatible with the PHP
-                function : <a class="external" href=
-                "http://www.php.net/manual-lookup.php?pattern=version_compare"
-                title=
-                "http://www.php.net/manual-lookup.php?pattern=version_compare">version_compare()</a>
+                A script that will handle all polling loop requests by your
+                browser. I've decided (but you are free to make it different)
+                to build an <span class="emphasis"><em>auto server</em></span>
+                (<code class="filename">auto_server.php</code>) rather than
+                built a single file for each ajax progress bar.
               </p>
+            </li>
+            <li>
               <p>
-                This method return now a string rather than a float, and allow
-                a largest version naming (such as x.y.zRCn)
+                Identify what ressources (proxy (server, auto server), client
+                librairies) to use with <code class=
+                "methodname">HTML_Progress2::registerAjax()</code> at
+                design-time of your progress bar.
               </p>
-            </dd>
-          </dl>
-        </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">getPercentComplete()</span>
-            </dt>
-            <dd>
+            </li>
+            <li>
               <p>
-                Returns the percent complete for the progress meter
+                Identify the proxy used, invoked on polling loop by JavaScript
+                variables : <span class=
+                "bold"><strong>HTML_Progress2.serverClassName</strong></span>,
+                <span class=
+                "bold"><strong>HTML_Progress2.serverMethodName</strong></span>
+                or <span class=
+                "bold"><strong>HTML_Progress2.serverCallback</strong></span>
+                (if it's a simple php function, and not method-class).
               </p>
+            </li>
+            <li>
               <p>
-                This method has now an optional parameter that allows to return
-                either
+                Don't forget to give identifier to track down the file upload,
+                on JS variable <span class=
+                "bold"><strong>HTML_Progress2.requestArgs</strong></span>. It's
+                a key-value pair with always <span class=
+                "emphasis"><em>upload_identifier</em></span> as key. Value is
+                free.
               </p>
-              <div class="itemizedlist">
-                <ul type="disc">
-                  <li>a float by default (range 0.00 to 1.00)
-                  </li>
-                  <li>an integer (range 0 to 100)
-                  </li>
-                </ul>
-              </div>
-            </dd>
-          </dl>
-        </div>
-        <div class="variablelist">
-          <dl>
-            <dt>
-              <span class="term">display()</span>
-            </dt>
-            <dd>
+            </li>
+            <li>
               <p>
-                Rendering of the progress meter.
+                When upload is over, HTML_Progress2 need to know with JS
+                variable <span class=
+                "bold"><strong>HTML_Progress2.onComplete</strong></span> what
+                to do. Default behavior is to reload the same page with query
+                string "reload=true".
               </p>
-              <div class="important c3">
-                <table border="0" summary="Important">
-                  <tr>
-                    <td rowspan="2" align="center" valign="top" width="48">
-                      <img alt="[Important]" src="img/admons/important.png" />
-                    </td>
-                    <th align="left">
-                      Important
-                    </th>
-                  </tr>
-                  <tr>
-                    <td align="left" valign="top">
-                      This method has a new behavior. It will now send only
-                      <code class="methodname">toHtml()</code> output to
-                      browser, while in previous version this method managed
-                      browser refresh. Refresh are now made by the <code class=
-                      "methodname">moveNext()</code> or <code class=
-                      "methodname">moveStep()</code> method.
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </dd>
-          </dl>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -311,7 +186,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -320,10 +195,10 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="ch10s03.html">Prev</a>&nbsp;
+            <a accesskey="p" href="ch10s06.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
-            <a accesskey="u" href="pt03.html">Up</a>
+            <a accesskey="u" href="pt02.html">Up</a>
           </td>
           <td width="40%" align="right">
             &nbsp;<a accesskey="n" href="ch11s02.html">Next</a>
@@ -331,13 +206,13 @@
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            What was removed ?&nbsp;
+            Examples (full source code)&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;User Interface related
+            &nbsp;HTML side
           </td>
         </tr>
       </table>

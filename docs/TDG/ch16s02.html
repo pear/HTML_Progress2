@@ -5,31 +5,31 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Quick-Cards Atttributes Reference
+      Configuring a Handler
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="ch16.html" title=
-    "Chapter&nbsp;16.&nbsp;HTML_Progress2_Lite" />
+    "Chapter&nbsp;16.&nbsp;Error Handler" />
     <link rel="prev" href="ch16.html" title=
-    "Chapter&nbsp;16.&nbsp;HTML_Progress2_Lite" />
-    <link rel="next" href="ch17.html" title=
-    "Chapter&nbsp;17.&nbsp;API - Application Programming Interface" />
-<style type="text/css">
+    "Chapter&nbsp;16.&nbsp;Error Handler" />
+    <link rel="next" href="ch16s03.html" title=
+    "Controlling error generation " />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- p.c3 {font-weight: bold}
- div.c2 {margin-left: 0.5in; margin-right: 0.5in;}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    p.c3 {font-weight: bold}
+    div.c2 {font-family: monospace;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -44,7 +44,7 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Quick-Cards Atttributes Reference
+                  Configuring a Handler
                 </th>
               </tr>
               <tr>
@@ -52,194 +52,95 @@
                   <a accesskey="p" href="ch16.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;16.&nbsp;HTML_Progress2_Lite
+                  Chapter&nbsp;16.&nbsp;Error Handler
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="ch17.html">Next</a>
+                  &nbsp;<a accesskey="n" href="ch16s03.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="id4801505" id="id4801505"></a>Quick-Cards Atttributes
-          Reference
+          <a name="id4798313" id="id4798313"></a>Configuring a Handler
         </h2>
       </div>
-      <div class="note c2">
-        <table border="0" summary="Note">
-          <tr>
-            <td rowspan="2" align="center" valign="top" width="48">
-              <img alt="[Note]" src="img/admons/note.png" />
-            </td>
-            <th align="left">
-              Note
-            </th>
-          </tr>
-          <tr>
-            <td align="left" valign="top">
-              <p>
-                Position/size are relative to progress bar itself (left),
-                (top), (width), (height). That means the default text label is
-                on top side of the progress bar.
-              </p>
-              <p>
-                Width or height sets to zero means there is no size restriction
-                (== auto-size).
-              </p>
-            </td>
-          </tr>
-        </table>
+      <p>
+        A error handler's configuration is determined by the arguments used in
+        its construction. Here's an overview of these parameters.
+      </p>
+      <div class="php c2">
+        <ol>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">&lt;?php</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw1">require_once</span> <span class=
+              "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp;
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="re1">$errorConf</span> <span class="sy0">=</span>
+              <span class="kw3">array</span><span class=
+              "br0">(</span><span class="st0">'error_handler'</span>
+              <span class="sy0">=&gt;</span> <span class=
+              "st0">'myErrorHandler'</span><span class="sy0">,</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp;<span class="st0">'push_callback'</span> <span class=
+              "sy0">=&gt;</span> <span class="st0">'myError'</span><span class=
+              "sy0">,</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp;<span class="co1">// ... more options</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <span class="br0">)</span><span class="sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="re1">$meter</span> <span class="sy0">=</span>
+              <span class="kw2">new</span> HTML_Progress2<span class=
+              "br0">(</span><span class="re1">$errorConf</span><span class=
+              "br0">)</span><span class="sy0">;</span>
+            </div>
+          </li>
+          <li class="li1">
+            <div class="de1">
+              <span class="kw2">?&gt;</span>
+            </div>
+          </li>
+        </ol>
       </div>
       <div class="table">
-        <a name="id4801535" id="id4801535"></a>
+        <a name="id4798356" id="id4798356"></a>
         <p class="title c3">
-          Table&nbsp;16.1.&nbsp;HTML_Progress2_Lite : position and size
-          attributes
+          Table&nbsp;16.1.&nbsp;Error Handler configuration parameters
         </p>
-        <table summary="HTML_Progress2_Lite : position and size attributes"
-        border="1">
-          <colgroup>
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Values
-              </th>
-              <th>
-                Initial value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                position
-              </td>
-              <td>
-                absolute | relative
-              </td>
-              <td>
-                absolute
-              </td>
-            </tr>
-            <tr>
-              <td>
-                left
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                10
-              </td>
-            </tr>
-            <tr>
-              <td>
-                top
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                25
-              </td>
-            </tr>
-            <tr>
-              <td>
-                width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                300
-              </td>
-            </tr>
-            <tr>
-              <td>
-                height
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                25
-              </td>
-            </tr>
-            <tr>
-              <td>
-                padding
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-padding-width"
-                title=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-padding-width">&lt;padding-width&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                min
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                max
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                100
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table">
-        <a name="id4801723" id="id4801723"></a>
-        <p class="title c3">
-          Table&nbsp;16.2.&nbsp;HTML_Progress2_Lite : color attributes
-        </p>
-        <table summary="HTML_Progress2_Lite : color attributes" border="1">
+        <table summary="Error Handler configuration parameters" border="1">
           <colgroup>
             <col />
             <col />
@@ -248,1168 +149,79 @@
           <thead>
             <tr>
               <th>
-                Name
+                Option
               </th>
               <th>
-                Values
+                Type
               </th>
               <th>
-                Initial value
+                Description
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                border-style
+                error_handler
               </td>
               <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-style"
-                title=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-style">&lt;border-style&gt;</a>
+                callback
               </td>
               <td>
-                solid
+                A valid callback (function) to manage errors raised by the
+                <code class="methodname">HTML_Progress2::raiseError()</code>
+                method. Default is: <code class=
+                "methodname">HTML_Progress2::_errorHandler</code>
               </td>
             </tr>
             <tr>
               <td>
-                border-width
+                push_callback
               </td>
               <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-width"
-                title=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-width">&lt;border-width&gt;</a>
+                callback
               </td>
               <td>
-                1
+                A valid callback (function) that decides to following action.
+                Default return: <code class="constant">PEAR_ERROR_DIE</code> if
+                exception, <code class="constant">NULL</code> otherwise.
               </td>
             </tr>
             <tr>
               <td>
-                border-color
+                message_callback
               </td>
               <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
+                callback
               </td>
               <td>
-                #000000
+                A valid callback (function) to control message generation.
+                Default is: <code class=
+                "methodname">HTML_Progress2_Error::_msgCallback</code>
               </td>
             </tr>
             <tr>
               <td>
-                background-color
+                context_callback
               </td>
               <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
+                callback
               </td>
               <td>
-                #C0C0C0
+                A valid callback (function) to control error context
+                generation. Default is: <code class=
+                "methodname">HTML_Progress2_Error::getBacktrace</code>
               </td>
             </tr>
             <tr>
               <td>
-                color
+                handler
               </td>
               <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
+                mixed
               </td>
               <td>
-                #0033FF
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table">
-        <a name="id4801858" id="id4801858"></a>
-        <p class="title c3">
-          Table&nbsp;16.3.&nbsp;HTML_Progress2_Lite : frame attributes
-        </p>
-        <table summary="HTML_Progress2_Lite : frame attributes" border="1">
-          <colgroup>
-            <col />
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Values
-              </th>
-              <th>
-                Initial value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                show
-              </td>
-              <td>
-                true | false
-              </td>
-              <td>
-                true
-              </td>
-            </tr>
-            <tr>
-              <td>
-                left
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                200
-              </td>
-            </tr>
-            <tr>
-              <td>
-                top
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                100
-              </td>
-            </tr>
-            <tr>
-              <td>
-                width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                320
-              </td>
-            </tr>
-            <tr>
-              <td>
-                height
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                90
-              </td>
-            </tr>
-            <tr>
-              <td>
-                color
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                #C0C0C0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                border-width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-width"
-                title=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-width">&lt;border-width&gt;</a>
-              </td>
-              <td>
-                2
-              </td>
-            </tr>
-            <tr>
-              <td>
-                border-style
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-style"
-                title=
-                "http://www.w3.org/TR/CSS2/box.html#value-def-border-style">&lt;border-style&gt;</a>
-              </td>
-              <td>
-                solid
-              </td>
-            </tr>
-            <tr>
-              <td>
-                border-color
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;{1,4}</a>
-              </td>
-              <td>
-                #DFDFDF #404040 #404040 #DFDFDF
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table">
-        <a name="id4802067" id="id4802067"></a>
-        <p class="title c3">
-          Table&nbsp;16.4.&nbsp;HTML_Progress2_Lite : TEXT label attributes
-        </p>
-        <table summary="HTML_Progress2_Lite : TEXT label attributes" border=
-        "1">
-          <colgroup>
-            <col />
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Values
-              </th>
-              <th>
-                Initial value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                left
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (left)
-              </td>
-            </tr>
-            <tr>
-              <td>
-                top
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (top) - 16
-              </td>
-            </tr>
-            <tr>
-              <td>
-                width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                height
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                align
-              </td>
-              <td>
-                left | center | right
-              </td>
-              <td>
-                left
-              </td>
-            </tr>
-            <tr>
-              <td>
-                background-color
-              </td>
-              <td>
-                transparent | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                transparent
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-size
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size">&lt;absolute-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size">&lt;relative-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a> | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage">&lt;percentage&gt;</a>
-              </td>
-              <td>
-                11
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-family
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name">&lt;family-name&gt;</a>
-              </td>
-              <td>
-                Verdana, Tahoma, Arial
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-weight
-              </td>
-              <td>
-                normal | bold
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-style
-              </td>
-              <td>
-                normal | italic | oblique
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                color
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                #000000
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table">
-        <a name="id4802327" id="id4802327"></a>
-        <p class="title c3">
-          Table&nbsp;16.5.&nbsp;HTML_Progress2_Lite : BUTTON label attributes
-        </p>
-        <table summary="HTML_Progress2_Lite : BUTTON label attributes" border=
-        "1">
-          <colgroup>
-            <col />
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Values
-              </th>
-              <th>
-                Initial value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                action
-              </td>
-              <td>
-                none | ???
-              </td>
-              <td>
-                none
-              </td>
-            </tr>
-            <tr>
-              <td>
-                target
-              </td>
-              <td>
-                self | ???
-              </td>
-              <td>
-                self
-              </td>
-            </tr>
-            <tr>
-              <td>
-                left
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (left)
-              </td>
-            </tr>
-            <tr>
-              <td>
-                top
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (top) + (height) + 10
-              </td>
-            </tr>
-            <tr>
-              <td>
-                width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                height
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                align
-              </td>
-              <td>
-                left | center | right
-              </td>
-              <td>
-                center
-              </td>
-            </tr>
-            <tr>
-              <td>
-                background-color
-              </td>
-              <td>
-                transparent | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                transparent
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-size
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size">&lt;absolute-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size">&lt;relative-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a> | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage">&lt;percentage&gt;</a>
-              </td>
-              <td>
-                11
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-family
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name">&lt;family-name&gt;</a>
-              </td>
-              <td>
-                Verdana, Tahoma, Arial
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-weight
-              </td>
-              <td>
-                normal | bold
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-style
-              </td>
-              <td>
-                normal | italic | oblique
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                color
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                #000000
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table">
-        <a name="id4802614" id="id4802614"></a>
-        <p class="title c3">
-          Table&nbsp;16.6.&nbsp;HTML_Progress2_Lite : STEP label attributes
-        </p>
-        <table summary="HTML_Progress2_Lite : STEP label attributes" border=
-        "1">
-          <colgroup>
-            <col />
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Values
-              </th>
-              <th>
-                Initial value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                left
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (left) + 5
-              </td>
-            </tr>
-            <tr>
-              <td>
-                top
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (top) + 5
-              </td>
-            </tr>
-            <tr>
-              <td>
-                width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                10
-              </td>
-            </tr>
-            <tr>
-              <td>
-                height
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                align
-              </td>
-              <td>
-                left | center | right
-              </td>
-              <td>
-                right
-              </td>
-            </tr>
-            <tr>
-              <td>
-                background-color
-              </td>
-              <td>
-                transparent | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                transparent
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-size
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size">&lt;absolute-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size">&lt;relative-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a> | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage">&lt;percentage&gt;</a>
-              </td>
-              <td>
-                11
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-family
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name">&lt;family-name&gt;</a>
-              </td>
-              <td>
-                Verdana, Tahoma, Arial
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-weight
-              </td>
-              <td>
-                normal | bold
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-style
-              </td>
-              <td>
-                normal | italic | oblique
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                color
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                #000000
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table">
-        <a name="id4802874" id="id4802874"></a>
-        <p class="title c3">
-          Table&nbsp;16.7.&nbsp;HTML_Progress2_Lite : PERCENT label attributes
-        </p>
-        <table summary="HTML_Progress2_Lite : PERCENT label attributes" border=
-        "1">
-          <colgroup>
-            <col />
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Values
-              </th>
-              <th>
-                Initial value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                left
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (left) + width - 50
-              </td>
-            </tr>
-            <tr>
-              <td>
-                top
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (top) - 16
-              </td>
-            </tr>
-            <tr>
-              <td>
-                width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                50
-              </td>
-            </tr>
-            <tr>
-              <td>
-                height
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                align
-              </td>
-              <td>
-                left | center | right
-              </td>
-              <td>
-                right
-              </td>
-            </tr>
-            <tr>
-              <td>
-                background-color
-              </td>
-              <td>
-                transparent | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                transparent
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-size
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size">&lt;absolute-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size">&lt;relative-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a> | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage">&lt;percentage&gt;</a>
-              </td>
-              <td>
-                11
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-family
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name">&lt;family-name&gt;</a>
-              </td>
-              <td>
-                Verdana, Tahoma, Arial
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-weight
-              </td>
-              <td>
-                normal | bold
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-style
-              </td>
-              <td>
-                normal | italic | oblique
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                color
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                #000000
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table">
-        <a name="id4803135" id="id4803135"></a>
-        <p class="title c3">
-          Table&nbsp;16.8.&nbsp;HTML_Progress2_Lite : CROSSBAR label attributes
-        </p>
-        <table summary="HTML_Progress2_Lite : CROSSBAR label attributes"
-        border="1">
-          <colgroup>
-            <col />
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Values
-              </th>
-              <th>
-                Initial value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                left
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (left) + (width)/2
-              </td>
-            </tr>
-            <tr>
-              <td>
-                top
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-integer">&lt;integer&gt;</a>
-              </td>
-              <td>
-                (top) - 16
-              </td>
-            </tr>
-            <tr>
-              <td>
-                width
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                10
-              </td>
-            </tr>
-            <tr>
-              <td>
-                height
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a>
-              </td>
-              <td>
-                0
-              </td>
-            </tr>
-            <tr>
-              <td>
-                align
-              </td>
-              <td>
-                left | center | right
-              </td>
-              <td>
-                center
-              </td>
-            </tr>
-            <tr>
-              <td>
-                background-color
-              </td>
-              <td>
-                transparent | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                transparent
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-size
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-absolute-size">&lt;absolute-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-relative-size">&lt;relative-size&gt;</a>
-                | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-length"
-                title="http://www.w3.org/TR/CSS2/syndata.html#value-def-length">
-                &lt;length&gt;</a> | <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage"
-                title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-percentage">&lt;percentage&gt;</a>
-              </td>
-              <td>
-                11
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-family
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name"
-                title=
-                "http://www.w3.org/TR/CSS2/fonts.html#value-def-family-name">&lt;family-name&gt;</a>
-              </td>
-              <td>
-                Verdana, Tahoma, Arial
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-weight
-              </td>
-              <td>
-                normal | bold
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                font-style
-              </td>
-              <td>
-                normal | italic | oblique
-              </td>
-              <td>
-                normal
-              </td>
-            </tr>
-            <tr>
-              <td>
-                color
-              </td>
-              <td>
-                <a class="external" href=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color" title=
-                "http://www.w3.org/TR/CSS2/syndata.html#value-def-color">&lt;color&gt;</a>
-              </td>
-              <td>
-                #000000
+                any handler-specific settings
               </td>
             </tr>
           </tbody>
@@ -1422,7 +234,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -1437,18 +249,18 @@
             <a accesskey="u" href="ch16.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="ch17.html">Next</a>
+            &nbsp;<a accesskey="n" href="ch16s03.html">Next</a>
           </td>
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Chapter&nbsp;16.&nbsp;HTML_Progress2_Lite&nbsp;
+            Chapter&nbsp;16.&nbsp;Error Handler&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Chapter&nbsp;17.&nbsp;API - Application Programming Interface
+            &nbsp;Controlling error generation
           </td>
         </tr>
       </table>

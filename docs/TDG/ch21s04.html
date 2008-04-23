@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>
+      Observer usage
+    </title>
+    <link rel="stylesheet" href="book.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
+    <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
+    <link rel="up" href="ch21.html" title="Chapter&nbsp;21.&nbsp;Examples" />
+    <link rel="prev" href="ch21s03.html" title="Multiple Labels usage " />
+    <link rel="next" href="ch21s05.html" title="Monitoring usage " />
+    <style type="text/css">
+/*<![CDATA[*/
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c4 {font-family: monospace;}
+    div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
+    p.c2 {font-weight: bold}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
+  </head>
+  <body>
+    <table class="progress2Header">
+      <tr>
+        <td>
+          <img src="img/pear_progress2.gif" align="left" alt=
+          "PEAR Progress2 logo" />
+          <h1>
+            HTML_Progress2 : The Definitive Guide
+          </h1>
+          <div class="navheader">
+            <table width="100%" summary="Navigation header">
+              <tr>
+                <th colspan="3" align="center">
+                  Observer usage
+                </th>
+              </tr>
+              <tr>
+                <td width="20%" align="left">
+                  <a accesskey="p" href="ch21s03.html">Prev</a>&nbsp;
+                </td>
+                <th width="60%" align="center">
+                  Chapter&nbsp;21.&nbsp;Examples
+                </th>
+                <td width="20%" align="right">
+                  &nbsp;<a accesskey="n" href="ch21s05.html">Next</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="sect1" lang="en" xml:lang="en">
+      <div class="titlepage">
+        <h2 class="title c1">
+          <a name="examples.observer" id="examples.observer"></a>Observer usage
+        </h2>
+      </div>
+      <div class="toc">
+        <dl>
+          <dt>
+            <span class="sect2"><a href=
+            "ch21s04.html#examples.observer.1"></a></span>
+          </dt>
+        </dl>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <div class="titlepage"></div>
+        <div class="figure">
+          <a name="id4848776" id="id4848776"></a>
+          <p class="title c2">
+            Figure&nbsp;21.4.&nbsp;Progress as a listener to Event_Dispatcher
+          </p>
+          <div class="screenshot">
+            <img src="img/observer3.png" alt=
+            "Progress as a listener to Event_Dispatcher" />
+          </div>
+        </div>
+        <p>
+          This example show how to implement the ProgressMeter Event_Dispatcher
+          to listen user-process (simulation of mail send) that decide to
+          refresh itself the progress bar.
+        </p>
+        <div class="warning c3">
+          <table border="0" summary="Warning">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="48">
+                <img alt="[Warning]" src="img/admons/warning.png" />
+              </td>
+              <th align="left">
+                Warning
+              </th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                This example requires at least the version 2.1.0 of
+                HTML_Progress2
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="example">
+          <a name="id4848816" id="id4848816"></a>
+          <p class="title c2">
+            Example&nbsp;21.4.&nbsp;Progress bar listen to user process
+          </p>
+          <div class="php c4">
+            <ol>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">&lt;?php</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw1">require_once</span> <span class=
+                  "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">class</span> myClass
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="kw2">function</span>
+                  doSomething<span class="br0">(</span><span class=
+                  "br0">)</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="re1">$usecs</span>
+                  <span class="sy0">=</span> <span class="nu0">1000</span>
+                  <span class="sy0">*</span> <span class=
+                  "nu0">1000</span><span class="sy0">;</span>
+                  &nbsp;<span class="co1">// wait 1 seconde</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="re1">$dispatch</span>
+                  <span class="sy0">=&amp;</span> Event_Dispatcher<span class=
+                  "sy0">::</span><span class=
+                  "me2">getInstance</span><span class=
+                  "br0">(</span><span class="st0">'ProgressMeter'</span><span class="br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="co1">// A long task
+                  to do ... for example sending 10 mails</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="kw1">for</span>
+                  <span class="br0">(</span><span class="re1">$i</span>
+                  <span class="sy0">=</span> <span class=
+                  "nu0">0</span><span class="sy0">;</span> <span class=
+                  "re1">$i</span> <span class="sy0">&lt;</span> <span class=
+                  "nu0">10</span><span class="sy0">;</span> <span class=
+                  "sy0">++</span><span class="re1">$i</span><span class=
+                  "br0">)</span> <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="co1">//
+                  simulate by a sleep 1 sec function</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
+                  "kw1">if</span> <span class="br0">(</span><span class=
+                  "br0">(</span><span class="kw3">substr</span><span class=
+                  "br0">(</span><span class="kw2">PHP_OS</span><span class=
+                  "sy0">,</span> <span class="nu0">0</span><span class=
+                  "sy0">,</span> <span class="nu0">3</span><span class=
+                  "br0">)</span> <span class="sy0">==</span> <span class=
+                  "st0">'WIN'</span><span class="br0">)</span> <span class=
+                  "sy0">&amp;&amp;</span> <span class=
+                  "br0">(</span><span class="kw3">substr</span><span class=
+                  "br0">(</span><span class=
+                  "kw2">PHP_VERSION</span><span class="sy0">,</span><span class="nu0">0</span><span class="sy0">,</span><span class="nu0">1</span><span class="br0">)</span>
+                  <span class="sy0">&lt;</span> <span class=
+                  "st0">'5'</span><span class="br0">)</span> <span class=
+                  "br0">)</span><span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  &nbsp;<span class="kw1">for</span> <span class=
+                  "br0">(</span><span class="re1">$w</span> <span class=
+                  "sy0">=</span> <span class="nu0">0</span><span class=
+                  "sy0">;</span> <span class="re1">$w</span> <span class=
+                  "sy0">&lt;</span> <span class="re1">$usecs</span><span class=
+                  "sy0">;</span> <span class="re1">$w</span><span class=
+                  "sy0">++</span><span class="br0">)</span> <span class=
+                  "br0">{</span> <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
+                  "br0">}</span> <span class="kw1">else</span> <span class=
+                  "br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  &nbsp;<span class="kw3">usleep</span><span class=
+                  "br0">(</span><span class="re1">$usecs</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
+                  "br0">}</span> <span class="co1">//</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=
+                  "re1">$dispatch</span><span class=
+                  "sy0">-&gt;</span><span class="me1">post</span><span class=
+                  "br0">(</span><span class="re1">$this</span><span class=
+                  "sy0">,</span> <span class="st0">'onTick'</span><span class=
+                  "sy0">,</span> <span class="kw3">array</span><span class=
+                  "br0">(</span><span class="re1">$i</span><span class=
+                  "br0">)</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp;<span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">class</span> myBar <span class=
+                  "kw2">extends</span> HTML_Progress2
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="kw2">function</span>
+                  myBar<span class="br0">(</span><span class="br0">)</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; parent<span class=
+                  "sy0">::</span><span class=
+                  "me2">HTML_Progress2</span><span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re1">$this</span><span class="sy0">-&gt;</span><span class=
+                  "me1">setIncrement</span><span class=
+                  "br0">(</span><span class="nu0">10</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re1">$this</span><span class="sy0">-&gt;</span><span class=
+                  "me1">addLabel</span><span class=
+                  "br0">(</span>HTML_PROGRESS2_LABEL_TEXT<span class=
+                  "sy0">,</span> <span class="st0">'txt1'</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re1">$this</span><span class="sy0">-&gt;</span><span class=
+                  "me1">setLabelAttributes</span><span class=
+                  "br0">(</span><span class="st0">'txt1'</span><span class=
+                  "sy0">,</span> <span class="kw3">array</span><span class=
+                  "br0">(</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "st0">'valign'</span> <span class="sy0">=&gt;</span>
+                  <span class="st0">'top'</span><span class="sy0">,</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "st0">'left'</span> <span class="sy0">=&gt;</span>
+                  <span class="nu0">0</span><span class="sy0">,</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "br0">)</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="kw2">function</span>
+                  notify<span class="br0">(</span><span class=
+                  "sy0">&amp;</span><span class=
+                  "re1">$notification</span><span class="br0">)</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re1">$notifyName</span> <span class="sy0">=</span>
+                  <span class="re1">$notification</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">getNotificationName</span><span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span>
+                  <span class="br0">(</span><span class=
+                  "kw3">strcasecmp</span><span class="br0">(</span><span class=
+                  "re1">$notifyName</span><span class="sy0">,</span>
+                  <span class="st0">'onTick'</span><span class="br0">)</span>
+                  <span class="sy0">==</span> <span class=
+                  "nu0">0</span><span class="br0">)</span> <span class=
+                  "br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re1">$notifyInfo</span> <span class="sy0">=</span>
+                  <span class="re1">$notification</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">getNotificationInfo</span><span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "kw1">if</span> <span class="br0">(</span><span class=
+                  "re1">$notifyInfo</span><span class=
+                  "br0">[</span><span class="nu0">0</span><span class=
+                  "br0">]</span> <span class="sy0">==</span> <span class=
+                  "nu0">0</span><span class="br0">)</span> <span class=
+                  "br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <span class="re1">$this</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">setLabelAttributes</span><span class=
+                  "br0">(</span><span class="st0">'txt1'</span><span class=
+                  "sy0">,</span> <span class="kw3">array</span><span class=
+                  "br0">(</span><span class="st0">'value'</span> <span class=
+                  "sy0">=&gt;</span> <span class="st0">'Sending mail
+                  ...'</span><span class="br0">)</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "br0">}</span> <span class="kw1">elseif</span> <span class=
+                  "br0">(</span><span class=
+                  "re1">$notifyInfo</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span>
+                  <span class="sy0">==</span> <span class=
+                  "nu0">9</span><span class="br0">)</span> <span class=
+                  "br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <span class="re1">$this</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">setLabelAttributes</span><span class=
+                  "br0">(</span><span class="st0">'txt1'</span><span class=
+                  "sy0">,</span> <span class="kw3">array</span><span class=
+                  "br0">(</span><span class="st0">'value'</span> <span class=
+                  "sy0">=&gt;</span> <span class="st0">'Mail sent with
+                  success.'</span><span class="br0">)</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
+                  "re1">$this</span><span class="sy0">-&gt;</span><span class=
+                  "me1">moveNext</span><span class="br0">(</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re1">$bar</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> myBar<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re1">$bar</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">addListener</span><span class=
+                  "br0">(</span><span class="kw3">array</span><span class=
+                  "br0">(</span><span class="sy0">&amp;</span><span class=
+                  "re1">$bar</span><span class="sy0">,</span> <span class=
+                  "st0">'notify'</span><span class="br0">)</span><span class=
+                  "sy0">,</span> <span class="st0">'onTick'</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">?&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;!</span>DOCTYPE html <span class=
+                  "kw2">PUBLIC</span> <span class="st0">"-//W3C//DTD XHTML 1.0
+                  Strict//EN"</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; <span class=
+                  "st0">"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"</span><span class="sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;</span>html xmlns<span class=
+                  "sy0">=</span><span class=
+                  "st0">"http://www.w3.org/1999/xhtml"</span> xml<span class=
+                  "sy0">:</span>lang<span class="sy0">=</span><span class=
+                  "st0">"en"</span><span class="sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;</span>head<span class=
+                  "sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;</span>title<span class=
+                  "sy0">&gt;</span>doSomething<span class=
+                  "sy0">&lt;/</span>title<span class="sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;</span>style type<span class=
+                  "sy0">=</span><span class="st0">"text/css"</span><span class=
+                  "sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;!--</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">&lt;?php</span> <span class=
+                  "kw3">echo</span> <span class="re1">$bar</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">getStyle</span><span class="br0">(</span><span class=
+                  "br0">)</span><span class="sy0">;</span> <span class=
+                  "kw2">?&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  body <span class="br0">{</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp; &nbsp; background<span class=
+                  "sy0">-</span>color<span class="sy0">:</span> <span class=
+                  "co2">#FFFFFF;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="br0">}</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;<span class="sy0">--&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;/</span>style<span class=
+                  "sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">&lt;?php</span> <span class=
+                  "kw3">echo</span> <span class="re1">$bar</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">getScript</span><span class="br0">(</span><span class=
+                  "kw2">false</span><span class="br0">)</span><span class=
+                  "sy0">;</span> <span class="kw2">?&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;/</span>head<span class=
+                  "sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;</span>body<span class=
+                  "sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">&lt;?php</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re1">$bar</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">display</span><span class="br0">(</span><span class=
+                  "br0">)</span><span class="sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re1">$process</span> <span class="sy0">=</span>
+                  <span class="kw2">new</span> myClass<span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="re1">$process</span><span class=
+                  "sy0">-&gt;</span><span class=
+                  "me1">doSomething</span><span class=
+                  "br0">(</span><span class="br0">)</span><span class=
+                  "sy0">;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="kw2">?&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  &nbsp;
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;/</span>body<span class=
+                  "sy0">&gt;</span>
+                </div>
+              </li>
+              <li class="li1">
+                <div class="de1">
+                  <span class="sy0">&lt;/</span>html<span class=
+                  "sy0">&gt;</span>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="progress2Footer">
+      <tr>
+        <td align="left">
+          HTML_Progress2 : The Definitive Guide
+        </td>
+        <td align="right">
+          v 2.4.0 : April 20, 2007
+        </td>
+      </tr>
+    </table>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left">
+            <a accesskey="p" href="ch21s03.html">Prev</a>&nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ch21.html">Up</a>
+          </td>
+          <td width="40%" align="right">
+            &nbsp;<a accesskey="n" href="ch21s05.html">Next</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">
+            Multiple Labels usage &nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top">
+            &nbsp;Monitoring usage
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

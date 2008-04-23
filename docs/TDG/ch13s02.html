@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>
+      User Interface related
+    </title>
+    <link rel="stylesheet" href="book.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
+    <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
+    <link rel="up" href="ch13.html" title=
+    "Chapter&nbsp;13.&nbsp;How to adjust your code" />
+    <link rel="prev" href="ch13.html" title=
+    "Chapter&nbsp;13.&nbsp;How to adjust your code" />
+    <link rel="next" href="ch13s03.html" title="Data Management related" />
+    <style type="text/css">
+/*<![CDATA[*/
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c3 {font-family: monospace;}
+    div.c2 {margin-left: 0.5in; margin-right: 0.5in;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
+  </head>
+  <body>
+    <table class="progress2Header">
+      <tr>
+        <td>
+          <img src="img/pear_progress2.gif" align="left" alt=
+          "PEAR Progress2 logo" />
+          <h1>
+            HTML_Progress2 : The Definitive Guide
+          </h1>
+          <div class="navheader">
+            <table width="100%" summary="Navigation header">
+              <tr>
+                <th colspan="3" align="center">
+                  User Interface related
+                </th>
+              </tr>
+              <tr>
+                <td width="20%" align="left">
+                  <a accesskey="p" href="ch13.html">Prev</a>&nbsp;
+                </td>
+                <th width="60%" align="center">
+                  Chapter&nbsp;13.&nbsp;How to adjust your code
+                </th>
+                <td width="20%" align="right">
+                  &nbsp;<a accesskey="n" href="ch13s03.html">Next</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="sect1" lang="en" xml:lang="en">
+      <div class="titlepage">
+        <h2 class="title c1">
+          <a name="id4796804" id="id4796804"></a>User Interface related
+        </h2>
+      </div>
+      <div class="variablelist">
+        <dl>
+          <dt>
+            <span class="term">setCellCount()</span>
+          </dt>
+          <dd>
+            <p>
+              Sets the number of cell in the progress bar
+            </p>
+            <p>
+              This method accept now zero as minimum value for smooth progress
+              meter. That means that a progress bar with zero cell, will render
+              a full bar as HTML_Progress2_Lite do.
+            </p>
+          </dd>
+        </dl>
+      </div>
+      <div class="variablelist">
+        <dl>
+          <dt>
+            <span class="term">setLabelAttributes(), addLabel()</span>
+          </dt>
+          <dd>
+            <p>
+              With HTML_Progress 1.x you might only defines one custom text
+              label. Now with new multiple label system you can do it at
+              infinite. There is no label number limit (except memory).
+            </p>
+            <div class="important c2">
+              <table border="0" summary="Important">
+                <tr>
+                  <td rowspan="2" align="center" valign="top" width="48">
+                    <img alt="[Important]" src="img/admons/important.png" />
+                  </td>
+                  <th align="left">
+                    Important
+                  </th>
+                </tr>
+                <tr>
+                  <td align="left" valign="top">
+                    You have to define first each label you will put around the
+                    progress meter by the <code class=
+                    "methodname">addLabel()</code> method, before to set its
+                    attributes.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <p>
+              While with HTML_Progress 1.x, you could have a script like this:
+            </p>
+            <div class="php c3">
+              <ol>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="kw2">&lt;?php</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="kw1">require_once</span> <span class=
+                    "st0">'HTML/Progress.php'</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    &nbsp;
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span> <span class="sy0">=</span>
+                    <span class="kw2">new</span> HTML_Progress<span class=
+                    "br0">(</span><span class="br0">)</span><span class=
+                    "sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setAnimSpeed</span><span class=
+                    "br0">(</span><span class="nu0">100</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setIncrement</span><span class=
+                    "br0">(</span><span class="nu0">5</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setStringPainted</span><span class=
+                    "br0">(</span><span class="kw2">true</span><span class=
+                    "br0">)</span><span class="sy0">;</span> &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp;<span class="co1">// get space for the
+                    string</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setString</span><span class=
+                    "br0">(</span><span class="st0">''</span><span class=
+                    "br0">)</span><span class="sy0">;</span> &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <span class="co1">// but don't paint it</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    &nbsp;
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$ui</span> <span class=
+                    "sy0">=&amp;</span> <span class=
+                    "re1">$bar</span><span class="sy0">-&gt;</span><span class=
+                    "me1">getUI</span><span class="br0">(</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$ui</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setStringAttributes</span><span class=
+                    "br0">(</span><span class="st0">'width=350
+                    align=left'</span><span class="br0">)</span><span class=
+                    "sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="co1">// ...</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="kw2">?&gt;</span>
+                  </div>
+                </li>
+              </ol>
+            </div>
+            <p>
+              which prepare to render a custom string on right side of the
+              progress bar.
+            </p>
+            <p>
+              Now with HTML_Progress2, you will have a modified script like:
+            </p>
+            <div class="php c3">
+              <ol>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="kw2">&lt;?php</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="kw1">require_once</span> <span class=
+                    "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    &nbsp;
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span> <span class="sy0">=</span>
+                    <span class="kw2">new</span> HTML_Progress2<span class=
+                    "br0">(</span><span class="br0">)</span><span class=
+                    "sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setAnimSpeed</span><span class=
+                    "br0">(</span><span class="nu0">100</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setIncrement</span><span class=
+                    "br0">(</span><span class="nu0">5</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">addLabel</span><span class=
+                    "br0">(</span>HTML_PROGRESS2_LABEL_TEXT<span class=
+                    "sy0">,</span> <span class="st0">'txt1'</span><span class=
+                    "sy0">,</span> <span class="st0">'Simple static
+                    text'</span><span class="br0">)</span><span class=
+                    "sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="re1">$bar</span><span class=
+                    "sy0">-&gt;</span><span class=
+                    "me1">setLabelAttributes</span><span class=
+                    "br0">(</span><span class="st0">'txt1'</span><span class=
+                    "sy0">,</span> <span class="kw3">array</span><span class=
+                    "br0">(</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    &nbsp; &nbsp; <span class="st0">'valign'</span>
+                    <span class="sy0">=&gt;</span> <span class=
+                    "st0">'top'</span><span class="sy0">,</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    &nbsp; &nbsp; <span class="st0">'left'</span> <span class=
+                    "sy0">=&gt;</span> <span class="nu0">0</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="br0">)</span><span class=
+                    "br0">)</span><span class="sy0">;</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="co1">// ...</span>
+                  </div>
+                </li>
+                <li class="li1">
+                  <div class="de1">
+                    <span class="kw2">?&gt;</span>
+                  </div>
+                </li>
+              </ol>
+            </div>
+            <p>
+              The percent info will be render alone at right side of the
+              progress bar (default) and we have added a static text label on
+              top side of the same progress bar.
+            </p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <table class="progress2Footer">
+      <tr>
+        <td align="left">
+          HTML_Progress2 : The Definitive Guide
+        </td>
+        <td align="right">
+          v 2.4.0 : April 20, 2007
+        </td>
+      </tr>
+    </table>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left">
+            <a accesskey="p" href="ch13.html">Prev</a>&nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ch13.html">Up</a>
+          </td>
+          <td width="40%" align="right">
+            &nbsp;<a accesskey="n" href="ch13s03.html">Next</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">
+            Chapter&nbsp;13.&nbsp;How to adjust your code&nbsp;
+          </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top">
+            &nbsp;Data Management related
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

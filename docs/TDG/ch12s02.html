@@ -5,29 +5,28 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Error Handling
+      Why these changes ?
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="ch12.html" title=
-    "Chapter&nbsp;12.&nbsp;New Features in HTML_Progress2 " />
+    "Chapter&nbsp;12.&nbsp;Introduction" />
     <link rel="prev" href="ch12.html" title=
-    "Chapter&nbsp;12.&nbsp;New Features in HTML_Progress2 " />
-    <link rel="next" href="ch12s03.html" title="Reuse CSS" />
-<style type="text/css">
+    "Chapter&nbsp;12.&nbsp;Introduction" />
+    <link rel="next" href="ch12s03.html" title="What was removed ?" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- p.c2 {font-weight: bold}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -42,7 +41,7 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Error Handling
+                  Why these changes ?
                 </th>
               </tr>
               <tr>
@@ -50,83 +49,47 @@
                   <a accesskey="p" href="ch12.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;12.&nbsp;New Features in HTML_Progress2
+                  Chapter&nbsp;12.&nbsp;Introduction
                 </th>
                 <td width="20%" align="right">
                   &nbsp;<a accesskey="n" href="ch12s03.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="id4794188" id="id4794188"></a>Error Handling
+          <a name="id4794765" id="id4794765"></a>Why these changes ?
         </h2>
       </div>
       <p>
-        Its not really a new feature but rather an improvement of source code
-        rewrites. All details are behind the reference guide, <a href=
-        "ch14.html" title="Chapter&nbsp;14.&nbsp;Error Handler">Error
-        Handler</a> related part.
+        HTML_Progress2 has improved a lot since HTML_Progress 1.2.x. With merge
+        of secondary classes (UI and DM) to the main core class, i've removed
+        duplicated methods and unified API.
       </p>
       <p>
-        Here are the major changes to observe in a migration goal :
+        With the addition of a new plugin error management, it was the first
+        milestone to have a version a bit less dependent to PEAR. Lot of users
+        are afraid to install a such framework on their system, for many
+        reasons. So second milestone and goal, was to create a new class much
+        lighter and without any dependencies to a such audience:
+        HTML_Progress2_Lite was born.
       </p>
-      <div class="table">
-        <a name="id4794218" id="id4794218"></a>
-        <p class="title c2">
-          Table&nbsp;12.1.&nbsp;Error Handling major changes
-        </p>
-        <table summary="Error Handling major changes" border="1">
-          <colgroup>
-            <col />
-            <col />
-            <col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th></th>
-              <th>
-                HTML_Progress 1.x
-              </th>
-              <th>
-                HTML_Progress2
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                error protocol obey
-              </td>
-              <td>
-                error_reporting
-              </td>
-              <td>
-                display_errors, log_errors : <code class=
-                "filename">php.ini</code> directives
-              </td>
-            </tr>
-            <tr>
-              <td>
-                raiseError return values
-              </td>
-              <td>
-                <code class="classname">PEAR_Error</code> | <code class=
-                "constant">NULL</code> | <code class="constant">FALSE</code>
-              </td>
-              <td>
-                <code class="classname">HTML_Progress2_Error</code> | array()
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <p>
+        The HTML_Progress2_Lite class does not allow to do all that is possible
+        with HTML_Progress2 class. See the <a href="ch20.html" title=
+        "Chapter&nbsp;20.&nbsp;HTML_Progress2 and HTML_Progress2_Lite features comparative">
+        features comparative</a>.
+      </p>
+      <p>
+        And last but not least, a multiple labels system was introduced, that
+        give ability to have more than just one percent text information or one
+        custom text label.
+      </p>
     </div>
     <table class="progress2Footer">
       <tr>
@@ -134,7 +97,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -154,13 +117,13 @@
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Chapter&nbsp;12.&nbsp;New Features in HTML_Progress2 &nbsp;
+            Chapter&nbsp;12.&nbsp;Introduction&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Reuse CSS
+            &nbsp;What was removed ?
           </td>
         </tr>
       </table>

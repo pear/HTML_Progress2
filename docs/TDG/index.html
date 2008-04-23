@@ -11,18 +11,19 @@
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="next" href="pr01.html" title="Preface" />
-<style type="text/css">
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- p.c1 {font-weight: bold}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    p.c2 {font-weight: bold}
+    th.c1 {font-weight: bold}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -52,8 +53,7 @@
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
@@ -82,7 +82,7 @@
           </div>
           <div>
             <p class="copyright">
-              Copyright © 2005, 2006, 2007 Laurent Laville
+              Copyright © 2005, 2006, 2007, 2008 Laurent Laville
             </p>
           </div>
           <div class="legalnotice">
@@ -90,17 +90,39 @@
             <p>
               This work is licensed under the Creative Commons Attribution
               License. To view a copy of this license, visit <a class=
-              "external" href="http://creativecommons.org/licenses/by/3.0/"
-              title=
-              "http://creativecommons.org/licenses/by/3.0/">http://creativecommons.org/licenses/by/3.0/</a>.
+              "external" href="http://creativecommons.org/licenses/" title=
+              "http://creativecommons.org/licenses/">http://creativecommons.org/licenses/</a>.
             </p>
           </div>
           <div class="revhistory">
             <table border="1" width="100%" summary="Revision history">
               <tr>
-                <th align="left" valign="top" colspan="2">
-                  <b>Revision History</b>
+                <th class="c1" align="left" valign="top" colspan="2">
+                  Revision History
                 </th>
+              </tr>
+              <tr>
+                <td align="left">
+                  Revision 2.4.0
+                </td>
+                <td align="left">
+                  April 20, 2007
+                </td>
+              </tr>
+              <tr>
+                <td align="left" colspan="2">
+                  <div class="itemizedlist">
+                    <ul type="disc">
+                      <li>Finally after one more release, include as promised
+                      the <code class="filename">HOWTO_AJAX.txt</code> file
+                      content to this guide.
+                      </li>
+                      <li>Change FAQ Howto entries, especially on Upload and
+                      AJAX solutions
+                      </li>
+                    </ul>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td align="left">
@@ -256,7 +278,7 @@
         <hr />
       </div>
       <div class="toc">
-        <p class="c1">
+        <p class="c2">
           Table of Contents
         </p>
         <dl>
@@ -325,6 +347,14 @@
                 <span class="chapter"><a href="ch09.html">9. Quick Start with
                 HTML_Progress2_Generator</a></span>
               </dt>
+              <dt>
+                <span class="chapter"><a href="ch10.html">10. How to to
+                implement an AJAX Progress Bar</a></span>
+              </dt>
+              <dt>
+                <span class="chapter"><a href="ch11.html">11. How to to
+                implement an AJAX Upload with Progress Bar solution</a></span>
+              </dt>
             </dl>
           </dd>
           <dt>
@@ -334,15 +364,15 @@
           <dd>
             <dl>
               <dt>
-                <span class="chapter"><a href="ch10.html">10.
+                <span class="chapter"><a href="ch12.html">12.
                 Introduction</a></span>
               </dt>
               <dt>
-                <span class="chapter"><a href="ch11.html">11. How to adjust
+                <span class="chapter"><a href="ch13.html">13. How to adjust
                 your code</a></span>
               </dt>
               <dt>
-                <span class="chapter"><a href="ch12.html">12. New Features in
+                <span class="chapter"><a href="ch14.html">14. New Features in
                 HTML_Progress2</a></span>
               </dt>
             </dl>
@@ -354,23 +384,23 @@
           <dd>
             <dl>
               <dt>
-                <span class="chapter"><a href="ch13.html">13.
+                <span class="chapter"><a href="ch15.html">15.
                 Introduction</a></span>
               </dt>
               <dt>
-                <span class="chapter"><a href="ch14.html">14. Error
+                <span class="chapter"><a href="ch16.html">16. Error
                 Handler</a></span>
               </dt>
               <dt>
-                <span class="chapter"><a href="ch15.html">15. Events to
+                <span class="chapter"><a href="ch17.html">17. Events to
                 observe</a></span>
               </dt>
               <dt>
-                <span class="chapter"><a href="ch16.html">16.
+                <span class="chapter"><a href="ch18.html">18.
                 HTML_Progress2_Lite</a></span>
               </dt>
               <dt>
-                <span class="chapter"><a href="ch17.html">17. API - Application
+                <span class="chapter"><a href="ch19.html">19. API - Application
                 Programming Interface</a></span>
               </dt>
             </dl>
@@ -381,11 +411,11 @@
           <dd>
             <dl>
               <dt>
-                <span class="chapter"><a href="ch18.html">18. HTML_Progress2
+                <span class="chapter"><a href="ch20.html">20. HTML_Progress2
                 and HTML_Progress2_Lite features comparative</a></span>
               </dt>
               <dt>
-                <span class="chapter"><a href="ch19.html">19.
+                <span class="chapter"><a href="ch21.html">21.
                 Examples</a></span>
               </dt>
             </dl>
@@ -393,138 +423,138 @@
         </dl>
       </div>
       <div class="list-of-figures">
-        <p class="c1">
+        <p class="c2">
           List of Figures
         </p>
         <dl>
           <dt>
-            19.1. <a href="ch19.html#id4845518">Basic usage with default
+            21.1. <a href="ch21.html#id4849034">Basic usage with default
             skin</a>
           </dt>
           <dt>
-            19.2. <a href="ch19s02.html#id4845471">Indeterminate Mode usage</a>
+            21.2. <a href="ch21s02.html#id4849018">Indeterminate Mode usage</a>
           </dt>
           <dt>
-            19.3. <a href="ch19s03.html#id4845468">Multi Labels usage</a>
+            21.3. <a href="ch21s03.html#id4848861">Multi Labels usage</a>
           </dt>
           <dt>
-            19.4. <a href="ch19s04.html#id4845883">Progress as a listener to
+            21.4. <a href="ch21s04.html#id4848776">Progress as a listener to
             Event_Dispatcher</a>
           </dt>
           <dt>
-            19.5. <a href="ch19s05.html#id4846108">Monitoring usage</a>
+            21.5. <a href="ch21s05.html#id4852087">Monitoring usage</a>
           </dt>
           <dt>
-            19.6. <a href="ch19s06.html#id4846400">Progress Generator wizard
+            21.6. <a href="ch21s06.html#id4852308">Progress Generator wizard
             usage</a>
           </dt>
         </dl>
       </div>
       <div class="list-of-tables">
-        <p class="c1">
+        <p class="c2">
           List of Tables
         </p>
         <dl>
           <dt>
-            12.1. <a href="ch12s02.html#id4794218">Error Handling major
+            14.1. <a href="ch14s02.html#id4799222">Error Handling major
             changes</a>
           </dt>
           <dt>
-            14.1. <a href="ch14s02.html#id4798019">Error Handler configuration
+            16.1. <a href="ch16s02.html#id4798356">Error Handler configuration
             parameters</a>
           </dt>
           <dt>
-            14.2. <a href="ch14s04.html#id4798668">Display driver configuration
+            16.2. <a href="ch16s04.html#id4803623">Display driver configuration
             parameters</a>
           </dt>
           <dt>
-            14.3. <a href="ch14s04.html#id4798859">Log driver configuration
+            16.3. <a href="ch16s04.html#id4803814">Log driver configuration
             parameters</a>
           </dt>
           <dt>
-            16.1. <a href="ch16s02.html#id4801535">HTML_Progress2_Lite :
+            18.1. <a href="ch18s02.html#id4805256">HTML_Progress2_Lite :
             position and size attributes</a>
           </dt>
           <dt>
-            16.2. <a href="ch16s02.html#id4801723">HTML_Progress2_Lite : color
+            18.2. <a href="ch18s02.html#id4805445">HTML_Progress2_Lite : color
             attributes</a>
           </dt>
           <dt>
-            16.3. <a href="ch16s02.html#id4801858">HTML_Progress2_Lite : frame
+            18.3. <a href="ch18s02.html#id4805581">HTML_Progress2_Lite : frame
             attributes</a>
           </dt>
           <dt>
-            16.4. <a href="ch16s02.html#id4802067">HTML_Progress2_Lite : TEXT
+            18.4. <a href="ch18s02.html#id4807020">HTML_Progress2_Lite : TEXT
             label attributes</a>
           </dt>
           <dt>
-            16.5. <a href="ch16s02.html#id4802327">HTML_Progress2_Lite : BUTTON
+            18.5. <a href="ch18s02.html#id4807279">HTML_Progress2_Lite : BUTTON
             label attributes</a>
           </dt>
           <dt>
-            16.6. <a href="ch16s02.html#id4802614">HTML_Progress2_Lite : STEP
+            18.6. <a href="ch18s02.html#id4807566">HTML_Progress2_Lite : STEP
             label attributes</a>
           </dt>
           <dt>
-            16.7. <a href="ch16s02.html#id4802874">HTML_Progress2_Lite :
+            18.7. <a href="ch18s02.html#id4807826">HTML_Progress2_Lite :
             PERCENT label attributes</a>
           </dt>
           <dt>
-            16.8. <a href="ch16s02.html#id4803135">HTML_Progress2_Lite :
+            18.8. <a href="ch18s02.html#id4808087">HTML_Progress2_Lite :
             CROSSBAR label attributes</a>
           </dt>
           <dt>
-            18.1. <a href="ch18.html#id4843785">HTML_Progress2_Lite features
+            20.1. <a href="ch20.html#id4847487">HTML_Progress2_Lite features
             comparative</a>
           </dt>
         </dl>
       </div>
       <div class="list-of-examples">
-        <p class="c1">
+        <p class="c2">
           List of Examples
         </p>
         <dl>
           <dt>
-            12.1. <a href="ch12s03.html#id4794284">script: <code class=
+            14.1. <a href="ch14s03.html#id4800003">script: <code class=
             "filename">examples/horizontal/ancestor.php</code></a>
           </dt>
           <dt>
-            12.2. <a href="ch12s03.html#id4795410">script: <code class=
+            14.2. <a href="ch14s03.html#id4800080">script: <code class=
             "filename">progress2BasicHandler.js</code></a>
           </dt>
           <dt>
-            12.3. <a href="ch12s03.html#id4795570"><code class=
+            14.3. <a href="ch14s03.html#id4800301"><code class=
             "filename">ancestor.css</code></a>
           </dt>
           <dt>
-            12.4. <a href="ch12s03.html#id4796094">New content of <code class=
+            14.4. <a href="ch14s03.html#id4799885">New content of <code class=
             "filename">ancestor.css</code></a>
           </dt>
           <dt>
-            12.5. <a href="ch12s03.html#id4796282"><code class=
+            14.5. <a href="ch14s03.html#id4802315"><code class=
             "filename">ancestor.css</code> with two skins</a>
           </dt>
           <dt>
-            19.1. <a href="ch19.html#id4844903">Without any customization</a>
+            21.1. <a href="ch21.html#id4849062">Without any customization</a>
           </dt>
           <dt>
-            19.2. <a href="ch19s02.html#id4844987">progress bar in
+            21.2. <a href="ch21s02.html#id4848417">progress bar in
             indeterminate mode</a>
           </dt>
           <dt>
-            19.3. <a href="ch19s03.html#id4845664">Four kind of progress
+            21.3. <a href="ch21s03.html#id4848903">Four kind of progress
             label</a>
           </dt>
           <dt>
-            19.4. <a href="ch19s04.html#id4845854">Progress bar listen to user
+            21.4. <a href="ch21s04.html#id4848816">Progress bar listen to user
             process</a>
           </dt>
           <dt>
-            19.5. <a href="ch19s05.html#id4846030">progress bar into a
+            21.5. <a href="ch21s05.html#id4852010">progress bar into a
             quickform window</a>
           </dt>
           <dt>
-            19.6. <a href="ch19s06.html#id4846315">Progress Generator build
+            21.6. <a href="ch21s06.html#id4852351">Progress Generator build
             with PEAR::HTML_Page2</a>
           </dt>
         </dl>
@@ -536,7 +566,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>

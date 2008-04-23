@@ -5,29 +5,30 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Chapter&nbsp;17.&nbsp;API - Application Programming Interface
+      Chapter&nbsp;17.&nbsp;Events to observe
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="pt04.html" title=
     "Part&nbsp;IV.&nbsp;Reference Guide" />
-    <link rel="prev" href="ch16s02.html" title=
-    "Quick-Cards Atttributes Reference " />
-    <link rel="next" href="re01.html" title="HTML_Progress2::raiseError" />
-<style type="text/css">
+    <link rel="prev" href="ch16s05.html" title=
+    "Custom Error Message Generation " />
+    <link rel="next" href="ch17s02.html" title=
+    "Additional Events informations " />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- h2.c2 {clear: both}
- p.c1 {font-weight: bold}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    h2.c2 {clear: both}
+    p.c1 {font-weight: bold}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -42,32 +43,30 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Chapter&nbsp;17.&nbsp;API - Application Programming Interface
+                  Chapter&nbsp;17.&nbsp;Events to observe
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="ch16s02.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="ch16s05.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
                   Part&nbsp;IV.&nbsp;Reference Guide
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="re01.html">Next</a>
+                  &nbsp;<a accesskey="n" href="ch17s02.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="chapter" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title">
-          <a name="reference.api" id=
-          "reference.api"></a>Chapter&nbsp;17.&nbsp;API - Application
-          Programming Interface
+          <a name="reference.observer" id=
+          "reference.observer"></a>Chapter&nbsp;17.&nbsp;Events to observe
         </h2>
       </div>
       <div class="toc">
@@ -76,155 +75,81 @@
         </p>
         <dl>
           <dt>
-            <span class="sect1"><a href=
-            "ch17.html#reference.api.errorhandler">Error Handler</a></span>
+            <span class="sect1"><a href="ch17.html#id4803430">Events
+            Reference</a></span>
           </dt>
           <dt>
-            <span class="sect1"><a href="ch17s02.html">Listener</a></span>
+            <span class="sect1"><a href="ch17s02.html">Additional Events
+            informations</a></span>
           </dt>
-          <dt>
-            <span class="sect1"><a href="ch17s03.html">Data Handler</a></span>
-          </dt>
-          <dd>
-            <dl>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s03.html#reference.api.math.increment">Increment</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s03.html#reference.api.math.min">Minimum</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s03.html#reference.api.math.max">Maximum</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s03.html#reference.api.math.current">Current
-                value</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s03.html#reference.api.math.step">Go to next
-                step</a></span>
-              </dt>
-            </dl>
-          </dd>
-          <dt>
-            <span class="sect1"><a href="ch17s04.html">Graphical
-            Handler</a></span>
-          </dt>
-          <dd>
-            <dl>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.orientation">Orientation</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.fill">Fill option</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.cell">Cells</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.border">Border</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.frame">Frame</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.label">Labels</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.bg">Background color and
-                size</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.js">JavaScript
-                handler</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s04.html#reference.api.graph.circle">Circle/Ellipse</a></span>
-              </dt>
-            </dl>
-          </dd>
-          <dt>
-            <span class="sect1"><a href="ch17s05.html">Common
-            functions</a></span>
-          </dt>
-          <dd>
-            <dl>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s05.html#reference.api.common.ident">Identification</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s05.html#reference.api.common.speed">Animation
-                speed</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s05.html#reference.api.common.css">Stylesheet</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s05.html#reference.api.common.display">Rendering</a></span>
-              </dt>
-              <dt>
-                <span class="sect2"><a href=
-                "ch17s05.html#reference.api.common.process">Process</a></span>
-              </dt>
-            </dl>
-          </dd>
         </dl>
       </div>
       <div class="sect1" lang="en" xml:lang="en">
         <div class="titlepage">
           <h2 class="title c2">
-            <a name="reference.api.errorhandler" id=
-            "reference.api.errorhandler"></a>Error Handler
+            <a name="id4803430" id="id4803430"></a>Events Reference
           </h2>
         </div>
-        <div class="toc">
+        <div class="variablelist">
           <dl>
             <dt>
-              <span class="refentrytitle"><a href="re01.html"><code class=
-              "function">HTML_Progress2::raiseError</code></a></span>
-              <span class="refpurpose">- A basic wrapper around the default
-              PEAR_Error object</span>
+              <span class="term">onSubmit</span>
             </dt>
-            <dt>
-              <span class="refentrytitle"><a href="re02.html"><code class=
-              "function">HTML_Progress2::hasErrors</code></a></span>
-              <span class="refpurpose">- Determine whether there are errors
-              into the HTML_Progress2 stack</span>
-            </dt>
-            <dt>
-              <span class="refentrytitle"><a href="re03.html"><code class=
-              "function">HTML_Progress2::getError</code></a></span>
-              <span class="refpurpose">- Pop an error off of the HTML_Progress2
-              stack</span>
-            </dt>
+            <dd>
+              <p>
+                This event is triggered by <code class=
+                "methodname">run()</code> method when progress meter start
+                process (0%)
+              </p>
+            </dd>
           </dl>
         </div>
-        <p>
-          Unless you want to create extends of HTML_Progress2 class and check
-          new function arguments with <code class=
-          "methodname">raiseError()</code> method, you should only use
-          <code class="methodname">hasErrors()</code> and <code class=
-          "methodname">getError()</code> methods to catch any API error (wrong
-          programming).
-        </p>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">onLoad</span>
+            </dt>
+            <dd>
+              <p>
+                This event is triggered by <code class=
+                "methodname">run()</code> method when progress meter end
+                process (100%)
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">onChange</span>
+            </dt>
+            <dd>
+              <p>
+                This event is triggered by <code class=
+                "methodname">setMinimum()</code>, <code class=
+                "methodname">setMaximum()</code>, <code class=
+                "methodname">setValue()</code>, <code class=
+                "methodname">incValue()</code>, <code class=
+                "methodname">moveStep()</code>, and <code class=
+                "methodname">moveNext()</code> methods each time the current
+                value change.
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <div class="variablelist">
+          <dl>
+            <dt>
+              <span class="term">onCancel</span>
+            </dt>
+            <dd>
+              <p>
+                This event is triggered only by a progress monitor, when user
+                decide (click on button) to stop process.
+              </p>
+            </dd>
+          </dl>
+        </div>
       </div>
     </div>
     <table class="progress2Footer">
@@ -233,7 +158,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -242,24 +167,24 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="ch16s02.html">Prev</a>&nbsp;
+            <a accesskey="p" href="ch16s05.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="u" href="pt04.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="re01.html">Next</a>
+            &nbsp;<a accesskey="n" href="ch17s02.html">Next</a>
           </td>
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Quick-Cards Atttributes Reference &nbsp;
+            Custom Error Message Generation &nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;<code class="function">HTML_Progress2::raiseError</code>
+            &nbsp;Additional Events informations
           </td>
         </tr>
       </table>

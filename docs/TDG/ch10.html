@@ -5,29 +5,28 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Chapter&nbsp;10.&nbsp;Introduction
+      Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress Bar
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
-    <link rel="up" href="pt03.html" title=
-    "Part&nbsp;III.&nbsp;Migrating Guide" />
-    <link rel="prev" href="pt03.html" title=
-    "Part&nbsp;III.&nbsp;Migrating Guide" />
-    <link rel="next" href="ch10s02.html" title="Why these changes ?" />
-<style type="text/css">
+    <link rel="up" href="pt02.html" title=
+    "Part&nbsp;II.&nbsp;Getting Started" />
+    <link rel="prev" href="ch09s03.html" title="Template integration" />
+    <link rel="next" href="ch10s02.html" title="Design details" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- h2.c2 {clear: both}
- p.c1 {font-weight: bold}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    h2.c2 {clear: both}
+    p.c1 {font-weight: bold}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -42,31 +41,32 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Chapter&nbsp;10.&nbsp;Introduction
+                  Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress
+                  Bar
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="pt03.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="ch09s03.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Part&nbsp;III.&nbsp;Migrating Guide
+                  Part&nbsp;II.&nbsp;Getting Started
                 </th>
                 <td width="20%" align="right">
                   &nbsp;<a accesskey="n" href="ch10s02.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="chapter" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title">
-          <a name="migrating.intro" id=
-          "migrating.intro"></a>Chapter&nbsp;10.&nbsp;Introduction
+          <a name="developers.ajax" id=
+          "developers.ajax"></a>Chapter&nbsp;10.&nbsp;How to to implement an
+          AJAX Progress Bar
         </h2>
       </div>
       <div class="toc">
@@ -75,29 +75,70 @@
         </p>
         <dl>
           <dt>
-            <span class="sect1"><a href="ch10.html#id4791904">Intended
-            audience</a></span>
+            <span class="sect1"><a href=
+            "ch10.html#ajax.history">History</a></span>
           </dt>
           <dt>
-            <span class="sect1"><a href="ch10s02.html">Why these changes
-            ?</a></span>
+            <span class="sect1"><a href="ch10s02.html">Design
+            details</a></span>
           </dt>
           <dt>
-            <span class="sect1"><a href="ch10s03.html">What was removed
-            ?</a></span>
+            <span class="sect1"><a href="ch10s03.html">Progress bar HTML
+            design</a></span>
+          </dt>
+          <dt>
+            <span class="sect1"><a href="ch10s04.html">Handle polling
+            loop</a></span>
+          </dt>
+          <dt>
+            <span class="sect1"><a href="ch10s05.html">Refresh progress
+            bar</a></span>
+          </dt>
+          <dt>
+            <span class="sect1"><a href="ch10s06.html">Examples (full source
+            code)</a></span>
           </dt>
         </dl>
       </div>
       <div class="sect1" lang="en" xml:lang="en">
         <div class="titlepage">
           <h2 class="title c2">
-            <a name="id4791904" id="id4791904"></a>Intended audience
+            <a name="ajax.history" id="ajax.history"></a>History
           </h2>
         </div>
         <p>
-          If you have not already used HTML_Progress 1.x, this guide is not for
-          you. It was written to help users to migrate easily all their scripts
-          from version 1.x to the major 2.0.0.
+          All begun with request <a class="external" href=
+          "http://pear.php.net/bugs/bug.php?id=3985" title=
+          "http://pear.php.net/bugs/bug.php?id=3985">#3985</a> posted on
+          2005-03-28.
+        </p>
+        <p>
+          In 2005, I don't know yet AJAX, that I've learned only recently (end
+          of year 2006). I've searched the most simple architecture that won't
+          break current API, and gave immediat benefits for both PHP4 and PHP5
+          users.
+        </p>
+        <p>
+          As there are many Ajax frameworks, I wouldn't imposed usage of one
+          between many, and let free choice opened. So 2.3.0 alpha 1 will begin
+          with a standard DOM XML Ajax driver. Later, others drivers (such as
+          YUI, Prototype, ...), will be available and allow to use specifics
+          features.
+        </p>
+        <p>
+          While I didn't know PEAR package <a class="external" href=
+          "http://pear.php.net/package/HTML_AJAX" title=
+          "http://pear.php.net/package/HTML_AJAX">HTML_AJAX</a>, I've took a
+          day to learn it, and I've begun to rewrite implementation of AJAX
+          progress meter. Why this choice ? Because it's more easy to use
+          either a simple asynchronous transfer with client and server, or have
+          a combo with JS librairies such as Scriptaculous, YUI, ... And this
+          with only one PEAR package (Special thanks to Joshua Eichorn, who
+          made it possible).
+        </p>
+        <p>
+          So alpha 2 and next versions (alpha, beta, stable) will come with
+          HTML_AJAX 0.5.0 or better.
         </p>
       </div>
     </div>
@@ -107,7 +148,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -116,10 +157,10 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="pt03.html">Prev</a>&nbsp;
+            <a accesskey="p" href="ch09s03.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
-            <a accesskey="u" href="pt03.html">Up</a>
+            <a accesskey="u" href="pt02.html">Up</a>
           </td>
           <td width="40%" align="right">
             &nbsp;<a accesskey="n" href="ch10s02.html">Next</a>
@@ -127,13 +168,13 @@
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Part&nbsp;III.&nbsp;Migrating Guide&nbsp;
+            Template integration&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Why these changes ?
+            &nbsp;Design details
           </td>
         </tr>
       </table>

@@ -5,28 +5,27 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Indeterminate Mode usage
+      Listener
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
-    <link rel="up" href="ch19.html" title="Chapter&nbsp;19.&nbsp;Examples" />
-    <link rel="prev" href="ch19.html" title="Chapter&nbsp;19.&nbsp;Examples" />
-    <link rel="next" href="ch19s03.html" title="Multiple Labels usage " />
-<style type="text/css">
+    <link rel="up" href="ch19.html" title=
+    "Chapter&nbsp;19.&nbsp;API - Application Programming Interface" />
+    <link rel="prev" href="re03.html" title="HTML_Progress2::getError" />
+    <link rel="next" href="re04.html" title="HTML_Progress2::addListener" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c3 {font-family: monospace;}
- p.c2 {font-weight: bold}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -41,492 +40,53 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Indeterminate Mode usage
+                  Listener
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="ch19.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="re03.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;19.&nbsp;Examples
+                  Chapter&nbsp;19.&nbsp;API - Application Programming Interface
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="ch19s03.html">Next</a>
+                  &nbsp;<a accesskey="n" href="re04.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="examples.indeterminate" id=
-          "examples.indeterminate"></a>Indeterminate Mode usage
+          <a name="reference.api.listener" id=
+          "reference.api.listener"></a>Listener
         </h2>
       </div>
       <div class="toc">
         <dl>
           <dt>
-            <span class="sect2"><a href=
-            "ch19s02.html#examples.indeterminate.1"></a></span>
+            <span class="refentrytitle"><a href="re04.html"><code class=
+            "function">HTML_Progress2::addListener</code></a></span>
+            <span class="refpurpose">- Attachs a new observer</span>
+          </dt>
+          <dt>
+            <span class="refentrytitle"><a href="re05.html"><code class=
+            "function">HTML_Progress2::removeListener</code></a></span>
+            <span class="refpurpose">- Removes a registered observer.</span>
           </dt>
         </dl>
       </div>
-      <div class="sect2" lang="en" xml:lang="en">
-        <div class="titlepage"></div>
-        <div class="figure">
-          <a name="id4845471" id="id4845471"></a>
-          <p class="title c2">
-            Figure&nbsp;19.2.&nbsp;Indeterminate Mode usage
-          </p>
-          <div class="screenshot">
-            <img src="img/indeterminate1.png" alt="Indeterminate Mode usage" />
-          </div>
-        </div>
-        <p>
-          Goal of this example is to show how to display a progress bar in
-          indeterminate mode then switch it to determinate mode after a while.
-          We will consider that after 12 seconds elapsed we got awaiting
-          (supposed) missing information.
-        </p>
-        <div class="example">
-          <a name="id4844987" id="id4844987"></a>
-          <p class="title c2">
-            Example&nbsp;19.2.&nbsp;progress bar in indeterminate mode
-          </p>
-          <div class="php c3">
-            <ol>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw1">require_once</span> <span class=
-                  "st0">'HTML/Progress2.php'</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">function</span>
-                  myProgressHandler<span class="br0">(</span><span class=
-                  "re0">$pValue</span>, &amp;<span class=
-                  "re0">$pBar</span><span class="br0">)</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="kw3">static</span> <span class=
-                  "re0">$c</span>, <span class="re0">$t</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="kw1">if</span> <span class=
-                  "br0">(</span>!<span class="kw3">isset</span><span class=
-                  "br0">(</span><span class="re0">$c</span><span class=
-                  "br0">)</span><span class="br0">)</span> <span class=
-                  "br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="re0">$c</span> =
-                  <span class="kw3">time</span><span class=
-                  "br0">(</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="re0">$t</span> =
-                  <span class="nu0">0</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="re0">$pBar</span>-&gt;<span class=
-                  "me1">sleep</span><span class="br0">(</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="kw1">if</span> <span class=
-                  "br0">(</span><span class="re0">$pBar</span>-&gt;<span class=
-                  "me1">isIndeterminate</span><span class=
-                  "br0">(</span><span class="br0">)</span><span class=
-                  "br0">)</span> <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="re0">$elapse</span>
-                  = <span class="kw3">time</span><span class=
-                  "br0">(</span><span class="br0">)</span> - <span class=
-                  "re0">$c</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span>
-                  <span class="br0">(</span><span class="re0">$elapse</span>
-                  &gt; <span class="re0">$t</span><span class="br0">)</span>
-                  <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "kw3">echo</span> <span class="st0">"myProgressHandler -&gt;
-                  elapse time = $elapse s.&lt;br /&gt;"</span>.PHP_EOL;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$t</span>++;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span>
-                  <span class="br0">(</span><span class="re0">$elapse</span>
-                  &gt;= <span class="nu0">12</span><span class="br0">)</span>
-                  <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$pBar</span>-&gt;<span class=
-                  "me1">setIndeterminate</span><span class=
-                  "br0">(</span><span class="kw2">false</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$pBar</span>-&gt;<span class=
-                  "me1">setValue</span><span class="br0">(</span><span class=
-                  "nu0">0</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-                  "re0">$pBar</span>-&gt;<span class=
-                  "me1">setIncrement</span><span class=
-                  "br0">(</span><span class="nu0">5</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span> = <span class="kw2">new</span>
-                  HTML_Progress2<span class="br0">(</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">setAnimSpeed</span><span class=
-                  "br0">(</span><span class="nu0">200</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">setIncrement</span><span class=
-                  "br0">(</span><span class="nu0">10</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">setProgressAttributes</span><span class=
-                  "br0">(</span><span class=
-                  "st0">'background-color=#E0E0E0'</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">setCellAttributes</span><span class=
-                  "br0">(</span><span class=
-                  "st0">'active-color=#996'</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">setLabelAttributes</span><span class=
-                  "br0">(</span><span class="st0">'pct1'</span>, <span class=
-                  "kw3">array</span><span class="br0">(</span><span class=
-                  "st0">'color'</span> =&gt; <span class=
-                  "st0">'#996'</span><span class="br0">)</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">setIndeterminate</span><span class=
-                  "br0">(</span><span class="kw2">true</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">setProgressHandler</span><span class=
-                  "br0">(</span><span class=
-                  "st0">'myProgressHandler'</span><span class="br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;!DOCTYPE html <span class="kw2">PUBLIC</span>
-                  <span class="st0">"-//W3C//DTD XHTML 1.0 Strict//EN"</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; <span class=
-                  "st0">"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"</span>&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;html xmlns=<span class=
-                  "st0">"http://www.w3.org/1999/xhtml"</span>
-                  xml:lang=<span class="st0">"en"</span>&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;head&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;title&gt;Half Indeterminate Progress2
-                  example&lt;/title&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;style type=<span class="st0">"text/css"</span>&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;!--
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  body <span class="br0">{</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; background-color: <span class=
-                  "co2">#CCCC99;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; color: <span class="co2">#996;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp; &nbsp; font-family: Verdana, Arial;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="br0">}</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span> <span class=
-                  "kw3">echo</span> <span class=
-                  "re0">$pb</span>-&gt;<span class=
-                  "me1">getStyle</span><span class="br0">(</span><span class=
-                  "br0">)</span>; <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;--&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/style&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span> <span class=
-                  "kw3">echo</span> <span class=
-                  "re0">$pb</span>-&gt;<span class=
-                  "me1">getScript</span><span class="br0">(</span><span class=
-                  "kw2">false</span><span class="br0">)</span>; <span class=
-                  "kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/head&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;body&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">&lt;?php</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">display</span><span class="br0">(</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw3">echo</span> <span class="st0">'&lt;br
-                  /&gt;&lt;br /&gt;'</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="re0">$pb</span>-&gt;<span class=
-                  "me1">run</span><span class="br0">(</span><span class=
-                  "br0">)</span>;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  <span class="kw2">?&gt;</span>
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;p&gt;&lt;b&gt;Process Ended !&lt;/b&gt;&lt;/p&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &nbsp;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/body&gt;
-                </div>
-              </li>
-              <li class="li1">
-                <div class="de1">
-                  &lt;/html&gt;
-                </div>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
+      <p>
+        <code class="methodname">addListener()</code> and <code class=
+        "methodname">removeListener()</code> methods provides an implementation
+        of the observer pattern. In the content of the HTML_Progress2 package,
+        it provides a mechanism by which you can examine special event as it is
+        happened. This allows the implementation of special behavior.
+      </p>
     </div>
     <table class="progress2Footer">
       <tr>
@@ -534,7 +94,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -543,24 +103,24 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="ch19.html">Prev</a>&nbsp;
+            <a accesskey="p" href="re03.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="u" href="ch19.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="ch19s03.html">Next</a>
+            &nbsp;<a accesskey="n" href="re04.html">Next</a>
           </td>
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Chapter&nbsp;19.&nbsp;Examples&nbsp;
+            <code class="function">HTML_Progress2::getError</code>&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;Multiple Labels usage
+            &nbsp;<code class="function">HTML_Progress2::addListener</code>
           </td>
         </tr>
       </table>

@@ -5,28 +5,28 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Why these changes ?
+      Design details
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="ch10.html" title=
-    "Chapter&nbsp;10.&nbsp;Introduction" />
+    "Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress Bar" />
     <link rel="prev" href="ch10.html" title=
-    "Chapter&nbsp;10.&nbsp;Introduction" />
-    <link rel="next" href="ch10s03.html" title="What was removed ?" />
-<style type="text/css">
+    "Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress Bar" />
+    <link rel="next" href="ch10s03.html" title="Progress bar HTML design" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -41,7 +41,7 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Why these changes ?
+                  Design details
                 </th>
               </tr>
               <tr>
@@ -49,47 +49,73 @@
                   <a accesskey="p" href="ch10.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;10.&nbsp;Introduction
+                  Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress
+                  Bar
                 </th>
                 <td width="20%" align="right">
                   &nbsp;<a accesskey="n" href="ch10s03.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="id4791921" id="id4791921"></a>Why these changes ?
+          <a name="ajax.design" id="ajax.design"></a>Design details
         </h2>
       </div>
       <p>
-        HTML_Progress2 has improved a lot since HTML_Progress 1.2.x. With merge
-        of secondary classes (UI and DM) to the main core class, i've removed
-        duplicated methods and unified API.
+        Tracking the progress of a server-side operation by a client requires
+        only one operation. A polling loop that will iterate one or more times
+        until server task is completed (100%). This is done by JS function
+        <span class="bold"><strong>HTML_Progress2.statusCheck</strong></span>
+        what will send periodically (update by interval; default is 2 seconds)
+        a request to server either with :
+      </p>
+      <div class="itemizedlist">
+        <ul type="disc">
+          <li>class/method :
+            <p>
+              <span class=
+              "bold"><strong>HTML_Progress2.serverClassName</strong></span>,
+              <span class=
+              "bold"><strong>HTML_Progress2.serverMethodName</strong></span>
+            </p>
+          </li>
+          <li>or simple php function :
+            <p>
+              <span class=
+              "bold"><strong>HTML_Progress2.serverCallback</strong></span>,
+            </p>
+          </li>
+        </ul>
+      </div>
+      <p>
+        as callback.
       </p>
       <p>
-        With the addition of a new plugin error management, it was the first
-        milestone to have a version a bit less dependent to PEAR. Lot of users
-        are afraid to install a such framework on their system, for many
-        reasons. So second milestone and goal, was to create a new class much
-        lighter and without any dependencies to a such audience:
-        HTML_Progress2_Lite was born.
+        When the user-task is over and server return progress bar reach 100%
+        (key: percentage, value: 100), client run function identified by
+        <span class="bold"><strong>HTML_Progress2.onComplete</strong></span>
+        (default behavior is to reload the same page with query string
+        "reload=true").
       </p>
       <p>
-        The HTML_Progress2_Lite class does not allow to do all that is possible
-        with HTML_Progress2 class. See the <a href="ch18.html" title=
-        "Chapter&nbsp;18.&nbsp;HTML_Progress2 and HTML_Progress2_Lite features comparative">
-        features comparative</a>.
+        If you want to change this behavior, you have just to change value of
+        public <span class=
+        "bold"><strong>HTML_Progress2.onComplete</strong></span> variable, and
+        identify another function. See scriptaculous1 and scriptaculous2
+        examples.
       </p>
       <p>
-        And last but not least, a multiple labels system was introduced, that
-        give ability to have more than just one percent text information or one
-        custom text label.
+        Launching polling loop through asynchronous communication, is done by
+        only one client action: run JS function <span class=
+        "bold"><strong>HTML_Progress2.start</strong></span> with identifier of
+        progress bar (given by HTML_Progress2::getIdent), and with an optional
+        latency (in millisecond) between two request calls.
       </p>
     </div>
     <table class="progress2Footer">
@@ -98,7 +124,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -118,13 +144,14 @@
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            Chapter&nbsp;10.&nbsp;Introduction&nbsp;
+            Chapter&nbsp;10.&nbsp;How to to implement an AJAX Progress
+            Bar&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;What was removed ?
+            &nbsp;Progress bar HTML design
           </td>
         </tr>
       </table>

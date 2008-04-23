@@ -5,27 +5,30 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>
-      Listener
+      Additional Events informations
     </title>
     <link rel="stylesheet" href="book.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.69.1" />
     <link rel="start" href="index.html" title="HTML_Progress2 Manual" />
     <link rel="up" href="ch17.html" title=
-    "Chapter&nbsp;17.&nbsp;API - Application Programming Interface" />
-    <link rel="prev" href="re03.html" title="HTML_Progress2::getError" />
-    <link rel="next" href="re04.html" title="HTML_Progress2::addListener" />
-<style type="text/css">
+    "Chapter&nbsp;17.&nbsp;Events to observe" />
+    <link rel="prev" href="ch17.html" title=
+    "Chapter&nbsp;17.&nbsp;Events to observe" />
+    <link rel="next" href="ch18.html" title=
+    "Chapter&nbsp;18.&nbsp;HTML_Progress2_Lite" />
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c2 {margin-left: 0.5in; margin-right: 0.5in;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -40,54 +43,132 @@
             <table width="100%" summary="Navigation header">
               <tr>
                 <th colspan="3" align="center">
-                  Listener
+                  Additional Events informations
                 </th>
               </tr>
               <tr>
                 <td width="20%" align="left">
-                  <a accesskey="p" href="re03.html">Prev</a>&nbsp;
+                  <a accesskey="p" href="ch17.html">Prev</a>&nbsp;
                 </td>
                 <th width="60%" align="center">
-                  Chapter&nbsp;17.&nbsp;API - Application Programming Interface
+                  Chapter&nbsp;17.&nbsp;Events to observe
                 </th>
                 <td width="20%" align="right">
-                  &nbsp;<a accesskey="n" href="re04.html">Next</a>
+                  &nbsp;<a accesskey="n" href="ch18.html">Next</a>
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
     <div class="sect1" lang="en" xml:lang="en">
       <div class="titlepage">
         <h2 class="title c1">
-          <a name="reference.api.listener" id=
-          "reference.api.listener"></a>Listener
+          <a name="id4805671" id="id4805671"></a>Additional Events informations
         </h2>
       </div>
-      <div class="toc">
+      <div class="variablelist">
         <dl>
           <dt>
-            <span class="refentrytitle"><a href="re04.html"><code class=
-            "function">HTML_Progress2::addListener</code></a></span>
-            <span class="refpurpose">- Attachs a new observer</span>
+            <span class="term">handler</span>
           </dt>
-          <dt>
-            <span class="refentrytitle"><a href="re05.html"><code class=
-            "function">HTML_Progress2::removeListener</code></a></span>
-            <span class="refpurpose">- Removes a registered observer.</span>
-          </dt>
+          <dd>
+            <p>
+              Function (method) that triggered event.
+            </p>
+            <div class="caution c2">
+              <table border="0" summary="Caution">
+                <tr>
+                  <td rowspan="2" align="center" valign="top" width="48">
+                    <img alt="[Caution]" src="img/admons/caution.png" />
+                  </td>
+                  <th align="left">
+                    Caution
+                  </th>
+                </tr>
+                <tr>
+                  <td align="left" valign="top">
+                    Function name is case sensitive: <code class=
+                    "function">setvalue</code> does not match <code class=
+                    "function">setValue</code>.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <p>
+              Function is one of them: <code class=
+              "function">setMinimum</code>, <code class=
+              "function">setMaximum</code>, <code class=
+              "function">setValue</code>, <code class=
+              "function">incValue</code>, <code class=
+              "function">moveStep</code>, <code class=
+              "function">moveNext</code>, <code class="function">run</code>.
+            </p>
+          </dd>
         </dl>
       </div>
-      <p>
-        <code class="methodname">addListener()</code> and <code class=
-        "methodname">removeListener()</code> methods provides an implementation
-        of the observer pattern. In the content of the HTML_Progress2 package,
-        it provides a mechanism by which you can examine special event as it is
-        happened. This allows the implementation of special behavior.
-      </p>
+      <div class="variablelist">
+        <dl>
+          <dt>
+            <span class="term">value</span>
+          </dt>
+          <dd>
+            <p>
+              Current value of progress meter. Between minimum and maximum
+              limits defined by <code class="methodname">setMinimum</code> and
+              <code class="methodname">setMaximum</code> methods.
+            </p>
+          </dd>
+        </dl>
+      </div>
+      <div class="variablelist">
+        <dl>
+          <dt>
+            <span class="term">sender</span>
+          </dt>
+          <dd>
+            <p>
+              Origin of call. In most cases it should be <span class=
+              "emphasis"><em>html_progress2</em></span> class.
+            </p>
+            <div class="note c2">
+              <table border="0" summary="Note">
+                <tr>
+                  <td rowspan="2" align="center" valign="top" width="48">
+                    <img alt="[Note]" src="img/admons/note.png" />
+                  </td>
+                  <th align="left">
+                    Note
+                  </th>
+                </tr>
+                <tr>
+                  <td align="left" valign="top">
+                    It could be different if you extends the main class. Or in
+                    special case of progress monitor and onCancel event.
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </dd>
+        </dl>
+      </div>
+      <div class="variablelist">
+        <dl>
+          <dt>
+            <span class="term">time</span>
+          </dt>
+          <dd>
+            <p>
+              Current Unix timestamp of event triggered. Given by PHP <a class=
+              "external" href=
+              "http://www.php.net/manual-lookup.php?pattern=microtime" title=
+              "http://www.php.net/manual-lookup.php?pattern=microtime">microtime</a>
+              function.
+            </p>
+          </dd>
+        </dl>
+      </div>
     </div>
     <table class="progress2Footer">
       <tr>
@@ -95,7 +176,7 @@
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
@@ -104,24 +185,24 @@
       <table width="100%" summary="Navigation footer">
         <tr>
           <td width="40%" align="left">
-            <a accesskey="p" href="re03.html">Prev</a>&nbsp;
+            <a accesskey="p" href="ch17.html">Prev</a>&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="u" href="ch17.html">Up</a>
           </td>
           <td width="40%" align="right">
-            &nbsp;<a accesskey="n" href="re04.html">Next</a>
+            &nbsp;<a accesskey="n" href="ch18.html">Next</a>
           </td>
         </tr>
         <tr>
           <td width="40%" align="left" valign="top">
-            <code class="function">HTML_Progress2::getError</code>&nbsp;
+            Chapter&nbsp;17.&nbsp;Events to observe&nbsp;
           </td>
           <td width="20%" align="center">
             <a accesskey="h" href="index.html">Home</a>
           </td>
           <td width="40%" align="right" valign="top">
-            &nbsp;<code class="function">HTML_Progress2::addListener</code>
+            &nbsp;Chapter&nbsp;18.&nbsp;HTML_Progress2_Lite
           </td>
         </tr>
       </table>

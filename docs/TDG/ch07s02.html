@@ -14,20 +14,20 @@
     <link rel="prev" href="ch07.html" title="Chapter&nbsp;7.&nbsp;Listener" />
     <link rel="next" href="ch08.html" title=
     "Chapter&nbsp;8.&nbsp;Quick Start with HTML_Progress2_Monitor" />
-<style type="text/css">
+    <style type="text/css">
 /*<![CDATA[*/
- body {
-  background-color: white;
-  color: black;
- }
- :link { color: #0000FF }
- :visited { color: #840084 }
- :active { color: #0000FF }
- div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
- div.c2 {font-family: monospace;}
- h2.c1 {clear: both}
-/*]]>*/
-</style>
+    body {
+    background-color: white;
+    color: black;
+    }
+    :link { color: #0000FF }
+    :visited { color: #840084 }
+    :active { color: #0000FF }
+    div.c3 {margin-left: 0.5in; margin-right: 0.5in;}
+    div.c2 {font-family: monospace;}
+    h2.c1 {clear: both}
+    /*]]>*/
+    </style>
   </head>
   <body>
     <table class="progress2Header">
@@ -57,8 +57,7 @@
                 </td>
               </tr>
             </table>
-          </div><br />
-          <br />
+          </div>
         </td>
       </tr>
     </table>
@@ -104,7 +103,7 @@
           <li class="li1">
             <div class="de1">
               <span class="kw1">require_once</span> <span class=
-              "st0">'HTML/Progress2.php'</span>;
+              "st0">'HTML/Progress2.php'</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -115,7 +114,7 @@
           <li class="li1">
             <div class="de1">
               <span class="kw2">function</span> getmicrotime<span class=
-              "br0">(</span><span class="re0">$time</span><span class=
+              "br0">(</span><span class="re1">$time</span><span class=
               "br0">)</span>
             </div>
           </li>
@@ -127,20 +126,23 @@
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class="kw3">list</span><span class=
-              "br0">(</span><span class="re0">$usec</span>, <span class=
-              "re0">$sec</span><span class="br0">)</span> = <span class=
+              "br0">(</span><span class="re1">$usec</span><span class=
+              "sy0">,</span> <span class="re1">$sec</span><span class=
+              "br0">)</span> <span class="sy0">=</span> <span class=
               "kw3">explode</span><span class="br0">(</span><span class="st0">'
-              '</span>, <span class="re0">$time</span><span class=
-              "br0">)</span>;
+              '</span><span class="sy0">,</span> <span class=
+              "re1">$time</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class="kw1">return</span> <span class=
               "br0">(</span><span class="br0">(</span>float<span class=
-              "br0">)</span><span class="re0">$usec</span> + <span class=
-              "br0">(</span>float<span class="br0">)</span><span class=
-              "re0">$sec</span><span class="br0">)</span>;
+              "br0">)</span><span class="re1">$usec</span> <span class=
+              "sy0">+</span> <span class="br0">(</span>float<span class=
+              "br0">)</span><span class="re1">$sec</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -161,8 +163,8 @@
           <li class="li1 ln-xtra">
             <div class="de1">
               <span class="kw2">function</span> myObserver<span class=
-              "br0">(</span>&amp;<span class=
-              "re0">$notification</span><span class="br0">)</span>
+              "br0">(</span><span class="sy0">&amp;</span><span class=
+              "re1">$notification</span><span class="br0">)</span>
             </div>
           </li>
           <li class="li1">
@@ -173,7 +175,7 @@
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class="kw3">static</span> <span class=
-              "re0">$time_start</span>;
+              "re1">$time_start</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -183,18 +185,22 @@
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              &nbsp; &nbsp; <span class="re0">$notifyName</span> = <span class=
-              "re0">$notification</span>-&gt;<span class=
+              &nbsp; &nbsp; <span class="re1">$notifyName</span> <span class=
+              "sy0">=</span> <span class="re1">$notification</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">getNotificationName</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              &nbsp; &nbsp; <span class="re0">$notifyInfo</span> = <span class=
-              "re0">$notification</span>-&gt;<span class=
+              &nbsp; &nbsp; <span class="re1">$notifyInfo</span> <span class=
+              "sy0">=</span> <span class="re1">$notification</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">getNotificationInfo</span><span class=
-              "br0">(</span><span class="br0">)</span>;
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -205,66 +211,72 @@
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class="kw1">switch</span> <span class=
-              "br0">(</span><span class="re0">$notifyName</span><span class=
+              "br0">(</span><span class="re1">$notifyName</span><span class=
               "br0">)</span> <span class="br0">{</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">case</span>
-              <span class="st0">'onSubmit'</span>:
+              <span class="st0">'onSubmit'</span><span class="sy0">:</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "re0">$time_start</span> = getmicrotime<span class=
-              "br0">(</span><span class="re0">$notifyInfo</span><span class=
-              "br0">[</span><span class="st0">'time'</span><span class=
-              "br0">]</span><span class="br0">)</span>;
+              "re1">$time_start</span> <span class="sy0">=</span>
+              getmicrotime<span class="br0">(</span><span class=
+              "re1">$notifyInfo</span><span class="br0">[</span><span class=
+              "st0">'time'</span><span class="br0">]</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "kw1">break</span>;
+              "kw1">break</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">case</span>
-              <span class="st0">'onLoad'</span>:
+              <span class="st0">'onLoad'</span><span class="sy0">:</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "re0">$time_elapse</span> = getmicrotime<span class=
-              "br0">(</span><span class="re0">$notifyInfo</span><span class=
-              "br0">[</span><span class="st0">'time'</span><span class=
-              "br0">]</span><span class="br0">)</span> - <span class=
-              "re0">$time_start</span>;
+              "re1">$time_elapse</span> <span class="sy0">=</span>
+              getmicrotime<span class="br0">(</span><span class=
+              "re1">$notifyInfo</span><span class="br0">[</span><span class=
+              "st0">'time'</span><span class="br0">]</span><span class=
+              "br0">)</span> <span class="sy0">-</span> <span class=
+              "re1">$time_start</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
               "kw3">error_log</span> <span class="br0">(</span><span class=
-              "st0">'process ID=5 is over (elapse time = '</span>. <span class=
-              "re0">$time_elapse</span> . <span class="st0">' sec.)'</span>,
+              "st0">'process ID=5 is over (elapse time = '</span><span class=
+              "sy0">.</span> <span class="re1">$time_elapse</span> <span class=
+              "sy0">.</span> <span class="st0">' sec.)'</span><span class=
+              "sy0">,</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp;<span class="nu0">3</span>, <span class=
-              "st0">'progress_observer.log'</span><span class="br0">)</span>;
+              &nbsp; &nbsp; &nbsp;<span class="nu0">3</span><span class=
+              "sy0">,</span> <span class=
+              "st0">'progress_observer.log'</span><span class=
+              "br0">)</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=
-              "kw1">break</span>;
+              "kw1">break</span><span class="sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -284,30 +296,37 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span> = <span class="kw2">new</span>
-              HTML_Progress2<span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$pb</span> <span class="sy0">=</span>
+              <span class="kw2">new</span> HTML_Progress2<span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setAnimSpeed</span><span class="br0">(</span><span class=
-              "nu0">200</span><span class="br0">)</span>;
+              "nu0">200</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">setIncrement</span><span class="br0">(</span><span class=
-              "nu0">10</span><span class="br0">)</span>;
+              "nu0">10</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1 ln-xtra">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class=
               "me1">addListener</span><span class="br0">(</span><span class=
-              "st0">'myObserver'</span><span class="br0">)</span>;
+              "st0">'myObserver'</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -317,31 +336,36 @@
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;!DOCTYPE html <span class="kw2">PUBLIC</span> <span class=
-              "st0">"-//W3C//DTD XHTML 1.0 Strict//EN"</span>
+              <span class="sy0">&lt;!</span>DOCTYPE html <span class=
+              "kw2">PUBLIC</span> <span class="st0">"-//W3C//DTD XHTML 1.0
+              Strict//EN"</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               &nbsp; &nbsp; <span class=
-              "st0">"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"</span>&gt;
+              "st0">"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"</span><span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;html xmlns=<span class=
-              "st0">"http://www.w3.org/1999/xhtml"</span> xml:lang=<span class=
-              "st0">"en"</span>&gt;
+              <span class="sy0">&lt;</span>html xmlns<span class=
+              "sy0">=</span><span class=
+              "st0">"http://www.w3.org/1999/xhtml"</span> xml<span class=
+              "sy0">:</span>lang<span class="sy0">=</span><span class=
+              "st0">"en"</span><span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;head&gt;
+              <span class="sy0">&lt;</span>head<span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;title&gt;Observer Pattern&lt;/title&gt;
+              <span class="sy0">&lt;</span>title<span class=
+              "sy0">&gt;</span>Observer Pattern<span class=
+              "sy0">&lt;/</span>title<span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -357,17 +381,19 @@
           <li class="li1">
             <div class="de1">
               <span class="kw3">echo</span> <span class=
-              "re0">$pb</span>-&gt;<span class=
+              "re1">$pb</span><span class="sy0">-&gt;</span><span class=
               "me1">getStyle</span><span class="br0">(</span><span class=
-              "kw2">false</span><span class="br0">)</span>;
+              "kw2">false</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
               <span class="kw3">echo</span> <span class=
-              "re0">$pb</span>-&gt;<span class=
+              "re1">$pb</span><span class="sy0">-&gt;</span><span class=
               "me1">getScript</span><span class="br0">(</span><span class=
-              "kw2">false</span><span class="br0">)</span>;
+              "kw2">false</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -377,12 +403,12 @@
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;/head&gt;
+              <span class="sy0">&lt;/</span>head<span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;body&gt;
+              <span class="sy0">&lt;</span>body<span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
@@ -392,16 +418,18 @@
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
-              "me1">display</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class="me1">display</span><span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              <span class="re0">$pb</span>-&gt;<span class=
-              "me1">run</span><span class="br0">(</span><span class=
-              "br0">)</span>;
+              <span class="re1">$pb</span><span class=
+              "sy0">-&gt;</span><span class="me1">run</span><span class=
+              "br0">(</span><span class="br0">)</span><span class=
+              "sy0">;</span>
             </div>
           </li>
           <li class="li1">
@@ -411,12 +439,12 @@
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;/body&gt;
+              <span class="sy0">&lt;/</span>body<span class="sy0">&gt;</span>
             </div>
           </li>
           <li class="li1">
             <div class="de1">
-              &lt;/html&gt;
+              <span class="sy0">&lt;/</span>html<span class="sy0">&gt;</span>
             </div>
           </li>
         </ol>
@@ -545,7 +573,7 @@ Array
           HTML_Progress2 : The Definitive Guide
         </td>
         <td align="right">
-          v 2.3.0 : Juin 13, 2007
+          v 2.4.0 : April 20, 2007
         </td>
       </tr>
     </table>
