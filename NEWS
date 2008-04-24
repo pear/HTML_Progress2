@@ -1,3 +1,14 @@
+Changes since version 2.3.0 (2007-06-12)
+
+  | 2008-04-21 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * implement request #12535 : Add addional info to apc5 "info"
+  |     * drop support of UPM4 backend (upload PHP 4 patch) in HTML_Progress2_Upload
+
+  | 2008-04-18 Laurent Laville <pear@laurent-laville.org>
+  |
+  |     * fixed bug #13664 : setLabelAttributes does not work
+
 Changes since version 2.2.0 (2007-01-03)
 
   | 2007-02-12 Laurent Laville <pear@laurent-laville.org>

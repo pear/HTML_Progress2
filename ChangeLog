@@ -1,3 +1,11 @@
+2008-04-24 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Final version (stable) 2.4.0 released.
+
+      - Drop support of PHP4 patch for HTML_Progress2_Upload
+      - add 3 more formats pattern to display upload information
+      - fix lot of CS recommanded by PHP_CodeSniffer 1.0.1
+
 2007-06-12 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: Final version (stable) 2.3.0 released.

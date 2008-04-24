@@ -48,8 +48,17 @@ $p2->setAPIStability('stable');
 $p2->setNotes('* news
 - implement request #12532 : Add addional info to apc5 info
 
+* changes
+- drop support of UPM4 backend in HTML_Progress2_Upload (PHP4 patch for upload)
+
+* bugs
+- #13664 : setLabelAttributes does not work
+
 * QA
-- fix CS following recommandation of PHP_CodeSniffer 1.0.1
+- fix lot of CS, following recommandation of PHP_CodeSniffer 1.0.1
+- fix PHP minimum requirement (4.3.10)
+- require now at least PEAR installer 1.5.4 rather than 1.3.4
+(security vulnerability fixes)
 ');
 
 //$p2->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
