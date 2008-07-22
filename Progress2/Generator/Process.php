@@ -206,7 +206,7 @@ class ActionProcess extends HTML_QuickForm_Action
         }
 
         $strPHP .= PHP_EOL;
-        $strPHP .= '// code below is only for run demo;'
+        $strPHP .= '// code below is only for run demo';
         $strPHP .= PHP_EOL;
         $strPHP .= '// its not nececessary to create progress bar';
         $strPHP .= PHP_EOL;
