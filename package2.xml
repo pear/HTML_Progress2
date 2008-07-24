@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.7.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_Progress2</name>
  <channel>pear.php.net</channel>
  <extends>HTML_Progress</extends>
@@ -27,10 +27,10 @@ Features:
   <email>pear@laurent-laville.org</email>
   <active>yes</active>
  </lead>
- <date>2008-04-24</date>
- <time>08:12:44</time>
+ <date>2008-07-24</date>
+ <time>22:10:04</time>
  <version>
-  <release>2.4.0</release>
+  <release>2.4.1</release>
   <api>2.4.0</api>
  </version>
  <stability>
@@ -38,20 +38,10 @@ Features:
   <api>stable</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
- <notes>* news
-- implement request #12532 : Add addional info to apc5 info
-
-* changes
-- drop support of UPM4 backend in HTML_Progress2_Upload (PHP4 patch for upload)
+ <notes>This release is really necessary if you use HTML_Progress2_Generator.
 
 * bugs
-- #13664 : setLabelAttributes does not work
-
-* QA
-- fix lot of CS, following recommandation of PHP_CodeSniffer 1.0.1
-- fix PHP minimum requirement (4.3.10)
-- require now at least PEAR installer 1.5.4 rather than 1.3.4
-(security vulnerability fixes)
+- fix parser error on Generator/Process.php file
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -449,7 +439,6 @@ Features:
    <file name="aflax.swf" role="data" />
    <file name="ChangeLog" role="doc" />
    <file name="default.css" role="data" />
-   <file name="HOWTO_AJAX.txt" role="doc" />
    <file name="htmlpage2.css" role="data" />
    <file name="HTML_Progress2.js" role="data" />
    <file name="HTML_Progress2_AFLAX.js" role="data" />
@@ -550,6 +539,23 @@ Features:
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>2.4.1</release>
+    <api>2.4.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-07-24</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>This release is really necessary if you use HTML_Progress2_Generator.
+
+* bugs
+- fix parser error on Generator/Process.php file
+   </notes>
+  </release>
   <release>
    <version>
     <release>2.4.0</release>

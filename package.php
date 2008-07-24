@@ -33,32 +33,21 @@ $options = array('filelistgenerator' => 'cvs',
     'ignore' => array('package.php', 'CVS/', 'Thumbs.db', 'callouts/'),
     'exceptions' => array(
         'ChangeLog' => 'doc',
-        'NEWS' => 'doc',
-        'HOWTO_AJAX.txt' => 'doc')
+        'NEWS' => 'doc')
     );
 
 $p2 = &PEAR_PackageFileManager2::importOptions($packagefile, $options);
 $p2->setPackageType('php');
 $p2->addRelease();
 $p2->generateContents();
-$p2->setReleaseVersion('2.4.0');
+$p2->setReleaseVersion('2.4.1');
 $p2->setAPIVersion('2.4.0');
 $p2->setReleaseStability('stable');
 $p2->setAPIStability('stable');
-$p2->setNotes('* news
-- implement request #12532 : Add addional info to apc5 info
-
-* changes
-- drop support of UPM4 backend in HTML_Progress2_Upload (PHP4 patch for upload)
+$p2->setNotes('This release is really necessary if you use HTML_Progress2_Generator.
 
 * bugs
-- #13664 : setLabelAttributes does not work
-
-* QA
-- fix lot of CS, following recommandation of PHP_CodeSniffer 1.0.1
-- fix PHP minimum requirement (4.3.10)
-- require now at least PEAR installer 1.5.4 rather than 1.3.4
-(security vulnerability fixes)
+- fix parser error on Generator/Process.php file
 ');
 
 //$p2->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
