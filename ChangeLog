@@ -1,3 +1,9 @@
+2008-07-24 Laurent Laville <pear@laurent-laville.org>
+
+    * VERSION: Final version (stable) 2.4.1 released.
+
+      - fix a minor bug fix (parser error) for HTML_Progress2_Generator users (if any)
+
 2008-04-24 Laurent Laville <pear@laurent-laville.org>
 
     * VERSION: Final version (stable) 2.4.0 released.
