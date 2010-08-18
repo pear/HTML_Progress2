@@ -26,7 +26,7 @@ $packagefile = 'c:/php/pear/HTML_Progress2/package2.xml';
 
 $options = array('filelistgenerator' => 'cvs',
     'packagefile' => 'package2.xml',
-    'baseinstalldir' => 'HTML',
+    'baseinstalldir' => '/',
     'simpleoutput' => true,
     'clearcontents' => false,
     'changelogoldtonew' => false,
@@ -40,7 +40,7 @@ $p2 = &PEAR_PackageFileManager2::importOptions($packagefile, $options);
 $p2->setPackageType('php');
 $p2->addRelease();
 $p2->generateContents();
-$p2->setReleaseVersion('2.4.1');
+$p2->setReleaseVersion('2.4.2');
 $p2->setAPIVersion('2.4.0');
 $p2->setReleaseStability('stable');
 $p2->setAPIStability('stable');
