@@ -8,7 +8,7 @@
  * @ignore
  */
 
-class HTML_Progress2_TestCase_setBorderPainted extends PHPUnit_TestCase
+class HTML_Progress2_TestCase_setBorderPainted extends PHPUnit_Framework_TestCase
 {
     /**
      * HTML_Progress2 instance
@@ -16,11 +16,6 @@ class HTML_Progress2_TestCase_setBorderPainted extends PHPUnit_TestCase
      * @var        object
      */
     var $progress;
-
-    function HTML_Progress2_TestCase_setBorderPainted($name)
-    {
-        $this->PHPUnit_TestCase($name);
-    }
 
     function setUp()
     {

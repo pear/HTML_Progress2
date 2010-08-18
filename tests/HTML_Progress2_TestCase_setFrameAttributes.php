@@ -8,7 +8,7 @@
  * @ignore
  */
 
-class HTML_Progress2_TestCase_setFrameAttributes extends PHPUnit_TestCase
+class HTML_Progress2_TestCase_setFrameAttributes extends PHPUnit_Framework_TestCase
 {
     /**
      * HTML_Progress2 instance
@@ -17,10 +17,6 @@ class HTML_Progress2_TestCase_setFrameAttributes extends PHPUnit_TestCase
      */
     var $progress;
 
-    function HTML_Progress2_TestCase_setFrameAttributes($name)
-    {
-        $this->PHPUnit_TestCase($name);
-    }
 
     function setUp()
     {
