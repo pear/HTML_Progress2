@@ -9,8 +9,6 @@
  * @ignore
  */
 
-error_reporting(E_ALL);
-
 function php_error_handler($errno, $errstr, $errfile, $errline)
 {
     die("<b>myhandler</b> $errstr in $errfile at line $errline");

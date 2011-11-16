@@ -20,8 +20,6 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
 
     function setUp()
     {
-        error_reporting(E_ALL & ~E_NOTICE);
-
         $prefs= array('push_callback' => array(&$this, '_handleError'));
 //        $this->progress = new HTML_Progress2($prefs, HTML_PROGRESS2_BAR_HORIZONTAL, 10, 100);
         $this->progress = new HTML_Progress2($prefs);
