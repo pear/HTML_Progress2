@@ -243,9 +243,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('addLabel')) {
             return;
         }
-        $result = $this->progress->addLabel(HTML_PROGRESS2_LABEL_BUTTON, 'btn1', 'OK');
-        $this->assertTrue($result instanceof HTML_Progress2_Error);
-        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
+        $this->progress->addLabel(HTML_PROGRESS2_LABEL_BUTTON, 'btn1', 'OK');
     }
 
     /**
