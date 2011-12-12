@@ -263,7 +263,6 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
 
     function test_addListener()
     {
-        $this->fail("This appears to cause a load average of 5 on my PHP 5.3 machine");
         if (!$this->_methodExists('addListener')) {
             return;
         }
@@ -435,7 +434,6 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
 
     function test_removeListener()
     {
-	$this->fail("This appears to cause massive performance problems");
         if (!$this->_methodExists('removeListener')) {
             return;
         }
@@ -1034,7 +1032,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setProgressHandler')) {
             return;
         }
-        $this->progress->setProgressHandler('lambda');
+        $this->progress->setProgressHandler('abs');
         $this->_getResult();
     }
 }
