@@ -44,7 +44,7 @@
 
 	<target name="phpunit">
 		<exec dir="${basedir}" executable="${phpunit.bin}" failonerror="true">
-			<arg line="."/>
+			<arg line="tests/AllTests.php"/>
 		</exec>
 	</target>
 
