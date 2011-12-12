@@ -13,8 +13,7 @@
 	</filter>
 	<testsuites>
 		<testsuite>
-			<directory>tests</directory>
-			<file>tests/*Test.php</file>
+			<file>./tests/*Test.php</file>
 		</testsuite>
 	</testsuites>
 	<php>
