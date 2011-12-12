@@ -33,10 +33,6 @@
 			<arg line="clone git://github.com/pear/Image_Color.git lib/Image_Color" />
 		</exec>
 
-		<exec executable="git">
-			<arg line="export git://github.com/pear/Image_Color.git lib/Image_Color" />
-		</exec>
-
 		<exec executable="svn">
 			<arg line="export http://svn.php.net/repository/pear/packages/Event_Dispatcher/trunk/ lib/Event_Dispatcher" />
 		</exec>
