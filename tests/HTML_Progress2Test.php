@@ -571,7 +571,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setScript')) {
             return;
         }
-        $this->progress->setScript('progress2.js');
+        $this->progress->setScript(dirname(__FILE__) . '/progress2.js');
         $this->_getResult();
     }
 
