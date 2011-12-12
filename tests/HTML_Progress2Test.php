@@ -79,6 +79,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setValue')) {
             return;
         }
+        $this->progress->setMinimum(2);
         $result = $this->progress->setValue(1);
         $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
@@ -89,6 +90,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setValue')) {
             return;
         }
+        $this->progress->setMaximum(100);
         $result = $this->progress->setValue(200);
         $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
@@ -132,6 +134,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setMaximum')) {
             return;
         }
+        $this->progress->setMinimum(2);
         $result = $this->progress->setMaximum(1);
         $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
@@ -165,6 +168,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('moveStep')) {
             return;
         }
+        $this->progress->setMinimum(1);
         $result = $this->progress->moveStep(-1);
         $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
@@ -175,6 +179,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('moveStep')) {
             return;
         }
+        $this->progress->setMaximum(2);
         $result = $this->progress->moveStep(200);
         $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
