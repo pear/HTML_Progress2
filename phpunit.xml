@@ -18,7 +18,7 @@
 	</testsuites>
 	<php>
 		<includePath>lib/HTML_CSS:lib/Image_Color</includePath>
-		<!-- E_ALL -->
-		<ini name="error_reporting" value="22715" />
+		<!-- E_ALL & ~(E_STRICT|E_DEPRECATED) -->
+		<ini name="error_reporting" value="22227" />
 	</php>
 </phpunit>
