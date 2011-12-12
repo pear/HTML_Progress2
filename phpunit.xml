@@ -14,7 +14,7 @@
 	<testsuites>
 		<testsuite>
 			<directory>tests</directory>
-			<file>*Test.php</file>
+			<file>tests/*Test.php</file>
 		</testsuite>
 	</testsuites>
 	<php>
