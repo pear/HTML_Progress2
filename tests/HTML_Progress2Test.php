@@ -191,7 +191,6 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
             return;
         }
         $this->progress->moveStep(15);
-        ob_end_clean();
     }
 
 
