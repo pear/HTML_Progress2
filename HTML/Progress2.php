@@ -1847,7 +1847,7 @@ class HTML_Progress2 extends HTML_Common
 
         $allowed_options = array_keys($default);
 
-        $options = array_merge($default, $attributes);
+        $options = array_merge($default, (array)$attributes);
 
         foreach ($options as $prop => $val) {
             if (in_array($prop, $allowed_options)) {
