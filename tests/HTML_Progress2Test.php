@@ -190,7 +190,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('moveStep')) {
             return;
         }
+        ob_start();
         $this->progress->moveStep(15);
+        ob_end_clean();
     }
 
 
@@ -266,9 +268,10 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
             return;
         }
 
-        $monitor = $this->progress->addListener(new log_progress());
+        $progress = new log_progress();
+        $this->progress->addListener(array($progress, 'log_progress'));
 
-        $this->assertTrue($monitor, $observer .' is not a valid listener ');
+        $this->_getResult();
     }
 
 
@@ -424,8 +427,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('removeListener')) {
             return;
         }
-        $observer = 'log_progress2';
-        $result = $this->progress->removeListener(new $observer);
+        $result = $this->progress->removeListener(array());
 
         $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, $result->getCode());
@@ -436,11 +438,11 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('removeListener')) {
             return;
         }
-        $observer = 'logit2';
-        $monitor = $this->progress->addListener(new $observer);
-        $monitor = $this->progress->removeListener(new $observer);
+        $observer = new logit2;
+        $this->progress->addListener(array($observer, 'logit2'));
+        $this->progress->removeListener(array($observer, 'logit2'));
 
-        $this->assertTrue($monitor, $observer .' is not a valid listener or is not yet attached ');
+        $this->_getResult();
     }
 
     /**
@@ -1036,7 +1038,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
     }
 }
 
-require_once ('HTML/Progress2/Observer.php');
+require_once 'HTML/Progress2/Observer.php';
 /**
  * @ignore
  */
@@ -1069,4 +1071,3 @@ class logit2 extends HTML_Progress2_Observer
 class log_progress2
 {
 }
-?>

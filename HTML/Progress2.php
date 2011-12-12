@@ -3280,7 +3280,7 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 2));
         }
 
-        $this->dispatcher =& Event_Dispatcher::getInstance('ProgressMeter');
+        $this->dispatcher = Event_Dispatcher::getInstance('ProgressMeter');
         $this->dispatcher->addObserver($callback, $nName);
         $this->_observerCount++;
 
