@@ -248,29 +248,6 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
-
-    /**
-     * TestCases for method setString().
-     */
-    function test_setString_fail_no_string()
-    {
-        if (!$this->_methodExists('setString')) {
-            return;
-        }
-        $result = $this->progress->setString(true);
-        $this->assertTrue($result instanceof HTML_Progress2_Error);
-        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
-    }
-
-    function test_setString()
-    {
-        if (!$this->_methodExists('setString')) {
-            return;
-        }
-        $this->progress->setString(null);
-    }
-
-
     /**
      * TestCases for method addListener().
      */
