@@ -13,12 +13,12 @@
 	</filter>
 	<testsuites>
 		<testsuite>
-			<file>./tests/*Test.php</file>
+			<file>*Test.php</file>
 		</testsuite>
 	</testsuites>
 	<php>
 		<includePath>lib/HTML_CSS:lib/Image_Color</includePath>
 		<!-- E_ALL -->
-		<ini name="error_reporting" value="30719" />
+		<ini name="error_reporting" value="22715" />
 	</php>
 </phpunit>
