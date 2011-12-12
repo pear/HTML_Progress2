@@ -17,7 +17,9 @@
 		</testsuite>
 	</testsuites>
 	<php>
-		<includePath>lib/HTML_CSS:lib/Image_Color:lib/Event_Dispatcher</includePath>
+		<includePath>lib/HTML_CSS</includePath>
+		<includePath>lib/Image_Color</includePath>
+		<includePath>lib/Event_Dispatcher</includePath>
 		<!-- E_ALL & ~(E_STRICT|E_DEPRECATED) -->
 		<ini name="error_reporting" value="22227" />
 	</php>
