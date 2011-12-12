@@ -260,7 +260,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         $result = $this->progress->addListener($observer);
 
         $this->assertTrue($result instanceof HTML_Progress2_Error);
-        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, $result->getCode());
     }
 
     function test_addListener()
@@ -432,7 +432,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         $result = $this->progress->removeListener(new $observer);
 
         $this->assertTrue($result instanceof HTML_Progress2_Error);
-        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, $result->getCode());
     }
 
     function test_removeListener()
