@@ -1853,7 +1853,7 @@ class HTML_Progress2 extends HTML_Common
             if (in_array($prop, $allowed_options)) {
                 $this->frame[$prop] = $val;
             } else {
-                $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_OPTION,
+                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_OPTION,
                     'warning',
                     array('element' => 'frame', 'prop' => $prop));
             }
