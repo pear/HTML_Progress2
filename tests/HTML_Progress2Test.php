@@ -69,8 +69,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setValue')) {
             return;
         }
-        $this->progress->setValue('25');
-        $this->_getResult();
+        $result = $this->progress->setValue('25');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setValue_fail_less_than_min()
@@ -78,8 +79,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setValue')) {
             return;
         }
-        $this->progress->setValue(1);
-        $this->_getResult();
+        $result = $this->progress->setValue(1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setValue_fail_greater_than_max()
@@ -87,8 +89,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setValue')) {
             return;
         }
-        $this->progress->setValue(200);
-        $this->_getResult();
+        $result = $this->progress->setValue(200);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setValue()
@@ -109,8 +112,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setMaximum')) {
             return;
         }
-        $this->progress->setMaximum('100');
-        $this->_getResult();
+        $result = $this->progress->setMaximum('100');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setMaximum_fail_no_positive()
@@ -118,8 +122,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setMaximum')) {
             return;
         }
-        $this->progress->setMaximum(-1);
-        $this->_getResult();
+        $result = $this->progress->setMaximum(-1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setMaximum_fail_less_min()
@@ -127,8 +132,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setMaximum')) {
             return;
         }
-        $this->progress->setMaximum(1);
-        $this->_getResult();
+        $result = $this->progress->setMaximum(1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setMaximum()
@@ -149,8 +155,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('moveStep')) {
             return;
         }
-        $this->progress->moveStep('25');
-        $this->_getResult();
+        $result = $this->progress->moveStep('25');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_moveStep_fail_less_than_min()
@@ -158,8 +165,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('moveStep')) {
             return;
         }
-        $this->progress->moveStep(-1);
-        $this->_getResult();
+        $result = $this->progress->moveStep(-1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_moveStep_fail_greater_than_max()
@@ -167,8 +175,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('moveStep')) {
             return;
         }
-        $this->progress->moveStep(200);
-        $this->_getResult();
+        $result = $this->progress->moveStep(200);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_moveStep()
@@ -177,7 +186,6 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
             return;
         }
         $this->progress->moveStep(15);
-        $this->_getResult();
         ob_end_clean();
     }
 
@@ -220,8 +228,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('addLabel')) {
             return;
         }
-        $this->progress->addLabel(HTML_PROGRESS2_LABEL_PERCENT, 'pct1');
-        $this->_getResult();
+        $result = $this->progress->addLabel(HTML_PROGRESS2_LABEL_PERCENT, 'pct1');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_addLabel()
@@ -229,8 +238,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('addLabel')) {
             return;
         }
-        $this->progress->addLabel(HTML_PROGRESS2_LABEL_BUTTON, 'btn1', 'OK');
-        $this->_getResult();
+        $result = $this->progress->addLabel(HTML_PROGRESS2_LABEL_BUTTON, 'btn1', 'OK');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
 
@@ -242,8 +252,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setString')) {
             return;
         }
-        $this->progress->setString(true);
-        $this->_getResult();
+        $result = $this->progress->setString(true);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setString()
@@ -252,7 +263,6 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
             return;
         }
         $this->progress->setString(null);
-        $this->_getResult();
     }
 
 
@@ -261,14 +271,14 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
      */
     function test_addListener_fail_no_class()
     {
-        $this->fail("This appears to cause a load average of 5 on my PHP 5.3 machine");
         if (!$this->_methodExists('addListener')) {
             return;
         }
         $observer = 'logit';
-        $monitor = $this->progress->addListener($observer);
+        $result = $this->progress->addListener($observer);
 
-        $this->assertTrue($monitor, $observer .' is not a valid listener ');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_addListener()
@@ -292,8 +302,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('drawCircleSegments')) {
             return;
         }
-        $this->progress->drawCircleSegments('./nodir');
-        $this->_getResult();
+        $result = $this->progress->drawCircleSegments('./nodir');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_drawCircleSegments()
@@ -314,8 +325,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('getBorderAttributes')) {
             return;
         }
-        $this->progress->getBorderAttributes('true');
-        $this->_getResult();
+        $result = $this->progress->getBorderAttributes('true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_getBorderAttributes()
@@ -336,8 +348,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('getCellAttributes')) {
             return;
         }
-        $this->progress->getCellAttributes('true');
-        $this->_getResult();
+        $result = $this->progress->getCellAttributes('true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_getCellAttributes()
@@ -357,8 +370,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('getPercentComplete')) {
             return;
         }
-        $this->progress->getPercentComplete('true');
-        $this->_getResult();
+        $result = $this->progress->getPercentComplete('true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_getPercentComplete()
@@ -378,8 +392,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('getLabelAttributes')) {
             return;
         }
-        $this->progress->getLabelAttributes('pct1', 'true');
-        $this->_getResult();
+        $result = $this->progress->getLabelAttributes('pct1', 'true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_getLabelAttributes_fail_invalid_label()
@@ -409,8 +424,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('getFrameAttributes')) {
             return;
         }
-        $this->progress->getFrameAttributes('true');
-        $this->_getResult();
+        $result = $this->progress->getFrameAttributes('true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_getFrameAttributes()
@@ -427,14 +443,14 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
      */
     function test_removeListener_fail_no_class()
     {
-	$this->fail("This appears to cause massive performance problems");
         if (!$this->_methodExists('removeListener')) {
             return;
         }
         $observer = 'log_progress2';
-        $monitor = $this->progress->removeListener(new $observer);
+        $result = $this->progress->removeListener(new $observer);
 
-        $this->assertTrue($monitor, $observer .' is not a valid listener or is not yet attached ');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_removeListener()
@@ -468,8 +484,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('removeLabel')) {
             return;
         }
-        $this->progress->removeLabel('txt1');
-        $this->_getResult();
+        $result = $this->progress->removeLabel('txt1');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_removeLabel()
@@ -490,8 +507,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setAnimSpeed')) {
             return;
         }
-        $this->progress->setAnimSpeed('200');
-        $this->_getResult();
+        $result = $this->progress->setAnimSpeed('200');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setAnimSpeed_fail_no_positive()
@@ -499,8 +517,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setAnimSpeed')) {
             return;
         }
-        $this->progress->setAnimSpeed(-1);
-        $this->_getResult();
+        $result = $this->progress->setAnimSpeed(-1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setAnimSpeed_fail_greater_max_allowed()
@@ -508,8 +527,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setAnimSpeed')) {
             return;
         }
-        $this->progress->setAnimSpeed(1500);
-        $this->_getResult();
+        $result = $this->progress->setAnimSpeed(1500);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setAnimSpeed()
@@ -817,8 +837,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setIncrement')) {
             return;
         }
-        $this->progress->setIncrement(0);
-        $this->_getResult();
+        $result = $this->progress->setIncrement(0);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setIncrement()
@@ -839,8 +860,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setIndeterminate')) {
             return;
         }
-        $this->progress->setIndeterminate('true');
-        $this->_getResult();
+        $result = $this->progress->setIndeterminate('true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setIndeterminate()
@@ -884,8 +906,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setMinimum')) {
             return;
         }
-        $this->progress->setMinimum('0');
-        $this->_getResult();
+        $result = $this->progress->setMinimum('0');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setMinimum_fail_no_positive()
@@ -893,8 +916,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setMinimum')) {
             return;
         }
-        $this->progress->setMinimum(-1);
-        $this->_getResult();
+        $result = $this->progress->setMinimum(-1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setMinimum_fail_greater_max()
@@ -902,8 +926,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setMinimum')) {
             return;
         }
-        $this->progress->setMinimum(500);
-        $this->_getResult();
+        $result = $this->progress->setMinimum(500);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setMinimum()
@@ -924,7 +949,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setOrientation')) {
             return;
         }
-        $this->progress->setOrientation('horizontal');
+        $result = $this->progress->setOrientation('horizontal');
         $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
@@ -1006,6 +1031,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
             return;
         }
         $result = $this->progress->setProgressHandler('mycallback');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
         $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, $result->getCode());
     }
 
