@@ -550,8 +550,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setBorderPainted')) {
             return;
         }
-        $this->progress->setBorderPainted('true');
-        $this->_getResult();
+        $result = $this->progress->setBorderPainted('true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setBorderPainted()
@@ -571,8 +572,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setScript')) {
             return;
         }
-        $this->progress->setScript(100);
-        $this->_getResult();
+        $result = $this->progress->setScript(100);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setScript_fail_no_file()
@@ -580,8 +582,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setScript')) {
             return;
         }
-        $this->progress->setScript('progress1.js');
-        $this->_getResult();
+        $result = $this->progress->setScript('progress1.js');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setScript()
@@ -602,8 +605,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellAttributes')) {
             return;
         }
-        $this->progress->setCellAttributes('','1');
-        $this->_getResult();
+        $result = $this->progress->setCellAttributes('','1');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellAttributes_fail_no_positive()
@@ -611,8 +615,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellAttributes')) {
             return;
         }
-        $this->progress->setCellAttributes('',-1);
-        $this->_getResult();
+        $result = $this->progress->setCellAttributes('',-1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellAttributes_fail_invalid_cellindex()
@@ -644,8 +649,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellCoordinates')) {
             return;
         }
-        $this->progress->setCellCoordinates('1',2);
-        $this->_getResult();
+        $result = $this->progress->setCellCoordinates('1',2);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellCoordinates_fail_no_positive()
@@ -653,8 +659,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellCoordinates')) {
             return;
         }
-        $this->progress->setCellCoordinates(-1,4);
-        $this->_getResult();
+        $result = $this->progress->setCellCoordinates(-1,4);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellCoordinates_fail_too_small()
@@ -662,8 +669,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellCoordinates')) {
             return;
         }
-        $this->progress->setCellCoordinates(1,2);
-        $this->_getResult();
+        $result = $this->progress->setCellCoordinates(1,2);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellCoordinates()
@@ -684,8 +692,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('getProgressAttributes')) {
             return;
         }
-        $this->progress->getProgressAttributes('true');
-        $this->_getResult();
+        $result = $this->progress->getProgressAttributes('true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_getProgressAttributes()
@@ -707,8 +716,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellCount')) {
             return;
         }
-        $this->progress->setCellCount('20');
-        $this->_getResult();
+        $result = $this->progress->setCellCount('20');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellCount_fail_less_0()
@@ -716,8 +726,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellCount')) {
             return;
         }
-        $this->progress->setCellCount(-1);
-        $this->_getResult();
+        $result = $this->progress->setCellCount(-1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellCount_horizontal_valid_width()
@@ -764,8 +775,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setFillWay')) {
             return;
         }
-        $this->progress->setFillWay(true);
-        $this->_getResult();
+        $result = $this->progress->setFillWay(true);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setFillWay_fail_invalid_value()
@@ -796,8 +808,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setFrameAttributes')) {
             return;
         }
-        $this->progress->setFrameAttributes('show=true');
-        $this->_getResult();
+        $result = $this->progress->setFrameAttributes('show=true');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setFrameAttributes_fail_invalid_option()
@@ -828,8 +841,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setIncrement')) {
             return;
         }
-        $this->progress->setIncrement('1');
-        $this->_getResult();
+        $result = $this->progress->setIncrement('1');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setIncrement_fail_zero()
