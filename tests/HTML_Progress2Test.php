@@ -742,7 +742,7 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         }
         $this->progress->setCellCount(16);
 
-        $this->assertFalse($this->errorThrown, 'error thrown');
+        $this->_getResult();
     }
 
 
