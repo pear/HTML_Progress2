@@ -190,8 +190,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('addLabel')) {
             return;
         }
-        $this->progress->addLabel('longtext', 'lng1');
-        $this->_getResult();
+        $result = $this->progress->addLabel('longtext', 'lng1');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_addLabel_fail_label_name_invalid()
@@ -199,8 +200,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('addLabel')) {
             return;
         }
-        $this->progress->addLabel('text', 1);
-        $this->_getResult();
+        $result = $this->progress->addLabel('text', 1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_addLabel_fail_label_value_invalid()
@@ -208,8 +210,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('addLabel')) {
             return;
         }
-        $this->progress->addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt1', null);
-        $this->_getResult();
+        $result = $this->progress->addLabel(HTML_PROGRESS2_LABEL_TEXT, 'txt1', null);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_addLabel_fail_label_exists()
@@ -384,8 +387,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('getLabelAttributes')) {
             return;
         }
-        $this->progress->getLabelAttributes('legend', true);
-        $this->_getResult();
+        $result = $this->progress->getLabelAttributes('legend', true);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_getLabelAttributes()
@@ -454,8 +458,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('removeLabel')) {
             return;
         }
-        $this->progress->removeLabel(1);
-        $this->_getResult();
+        $result = $this->progress->removeLabel(1);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_removeLabel_fail_label_not_exists()
@@ -595,8 +600,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setCellAttributes')) {
             return;
         }
-        $this->progress->setCellAttributes('',11);
-        $this->_getResult();
+        $result = $this->progress->setCellAttributes('',11);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setCellAttributes()
@@ -747,8 +753,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setFillWay')) {
             return;
         }
-        $this->progress->setFillWay('right');
-        $this->_getResult();
+        $result = $this->progress->setFillWay('right');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setFillWay_natural()
@@ -778,8 +785,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setFrameAttributes')) {
             return;
         }
-        $this->progress->setFrameAttributes(array('display' => true));
-        $this->_getResult();
+        $result = $this->progress->setFrameAttributes(array('display' => true));
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setFrameAttributes()
@@ -853,8 +861,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setLabelAttributes')) {
             return;
         }
-        $this->progress->setLabelAttributes('pct2', 'width=0');
-        $this->_getResult();
+        $result = $this->progress->setLabelAttributes('pct2', 'width=0');
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setLabelAttributes()
@@ -916,7 +925,8 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
             return;
         }
         $this->progress->setOrientation('horizontal');
-        $this->_getResult();
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setOrientation_fail_invalid_value()
@@ -924,8 +934,9 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setOrientation')) {
             return;
         }
-        $this->progress->setOrientation(0);
-        $this->_getResult();
+        $result = $this->progress->setOrientation(0);
+        $this->assertTrue($result instanceof HTML_Progress2_Error);
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_INPUT, $result->getCode());
     }
 
     function test_setOrientation_vertical_valid_width()
@@ -994,8 +1005,8 @@ class HTML_Progress2Test extends PHPUnit_Framework_TestCase
         if (!$this->_methodExists('setProgressHandler')) {
             return;
         }
-        $this->progress->setProgressHandler('mycallback');
-        $this->_getResult();
+        $result = $this->progress->setProgressHandler('mycallback');
+        $this->assertSame(HTML_PROGRESS2_ERROR_INVALID_CALLBACK, $result->getCode());
     }
 
     function test_setProgressHandler()
