@@ -412,20 +412,28 @@ class HTML_Progress2_Monitor
     function run()
     {
         if ($this->isCanceled()) {
-            $this->_postNotification('onCancel',
-                                     array('handler' => __FUNCTION__,
-                                           'value' => $this->_progress->getValue()));
+            $this->_postNotification(
+                'onCancel',
+                array('handler' => __FUNCTION__,
+                       'value' => $this->_progress->getValue())
+            );
         }
         if ($this->isStarted()) {
             $this->_progress->_status = 'show';
 
-            $this->_postNotification('onSubmit',
-                                     array('handler' => __FUNCTION__,
-                                           'value' => $this->_progress->getValue()));
+            $this->_postNotification(
+                'onSubmit',
+                array('handler' => __FUNCTION__,
+                       'value' => $this->_progress->getValue())
+            );
+
             $this->_progress->run();
-            $this->_postNotification('onLoad',
-                                     array('handler' => __FUNCTION__,
-                                           'value' => $this->_progress->getValue()));
+
+            $this->_postNotification(
+                'onLoad',
+                array('handler' => __FUNCTION__,
+                       'value' => $this->_progress->getValue())
+            );
         }
     }
 
@@ -445,12 +453,14 @@ class HTML_Progress2_Monitor
     function setProgressElement(&$bar)
     {
         if (!is_a($bar, 'HTML_Progress2')) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$bar',
                       'was' => gettype($bar),
                       'expected' => 'HTML_Progress2 object',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
         }
         $this->_progress = $bar;
 
@@ -489,12 +499,14 @@ class HTML_Progress2_Monitor
     function getStyle($raw = true)
     {
         if (!is_bool($raw)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$raw',
                       'was' => gettype($raw),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
         }
 
         return $this->_progress->getStyle($raw);
@@ -516,12 +528,14 @@ class HTML_Progress2_Monitor
     function getScript($raw = true)
     {
         if (!is_bool($raw)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$raw',
                       'was' => gettype($raw),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
         }
 
         return $this->_progress->getScript($raw);
@@ -586,12 +600,14 @@ class HTML_Progress2_Monitor
     function accept(&$renderer)
     {
         if (!is_a($renderer, 'HTML_QuickForm_Renderer')) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$renderer',
                       'was' => gettype($renderer),
                       'expected' => 'HTML_QuickForm_Renderer object',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
         }
         $this->_form->accept($renderer);
     }
@@ -621,27 +637,33 @@ class HTML_Progress2_Monitor
     function setCaption($caption = '&nbsp;', $args = array())
     {
         if (!is_string($caption)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$caption',
                       'was' => gettype($caption),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (!is_array($args)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$args',
                       'was' => gettype($args),
                       'expected' => 'array',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
         }
 
         foreach ($args as $name => $value) {
             $caption = str_replace("%$name%", $value, $caption);
         }
-        $this->_progress->setLabelAttributes($this->caption['id'],
-                                             array('value' => $caption));
+        $this->_progress->setLabelAttributes(
+            $this->caption['id'],
+            array('value' => $caption)
+        );
     }
 
     /**

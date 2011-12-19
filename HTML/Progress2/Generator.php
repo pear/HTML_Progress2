@@ -139,10 +139,11 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
-    function HTML_Progress2_Generator($controllerName = 'ProgressGenerator',
-                                      $attributes = array(),
-                                      $errorPrefs = array())
-    {
+    function HTML_Progress2_Generator(
+        $controllerName = 'ProgressGenerator',
+        $attributes = array(),
+        $errorPrefs = array()
+    ) {
         $this->__construct($controllerName, $attributes, $errorPrefs);
     }
 
@@ -181,29 +182,36 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      * @access     protected
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      */
-    function __construct($controllerName = 'ProgressGenerator',
-                         $attributes = array(),
-                         $errorPrefs = array())
-    {
-        $this->_progress = new HTML_Progress2($errorPrefs,
-                                              HTML_PROGRESS2_BAR_HORIZONTAL,
-                                              0, 100);
+    function __construct(
+        $controllerName = 'ProgressGenerator',
+        $attributes = array(),
+        $errorPrefs = array()
+    ) {
+        $this->_progress = new HTML_Progress2(
+            $errorPrefs,
+            HTML_PROGRESS2_BAR_HORIZONTAL,
+            0, 100
+        );
 
         if (!is_string($controllerName)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$controllerName',
                       'was' => gettype($controllerName),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (!is_array($attributes)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
         }
 
         // build a new modal controller
@@ -219,7 +227,8 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
         $sess =& $this->container();
 
         if (count($sess['defaults']) == 0) {
-            $this->setDefaults(array(
+            $this->setDefaults(
+                array(
                 'shape'         => HTML_PROGRESS2_BAR_HORIZONTAL,
                 'way'           => 'natural',
                 'autosize'      => true,
@@ -256,7 +265,8 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
                 'stringweight'  => 'normal',
 
                 'phpcss'        => array('P' => true)
-            ));
+                )
+            );
         }
     }
 
@@ -272,16 +282,19 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
      * @since      version 2.1.0 (2006-08-12)
      * @access     public
      */
-    function &singleton($controllerName = 'ProgressGenerator',
-                        $attributes = array(),
-                        $errorPrefs = array())
-    {
+    function &singleton(
+        $controllerName = 'ProgressGenerator',
+        $attributes = array(),
+        $errorPrefs = array()
+    ) {
         static $generator;
 
         if (!isset($generator)) {
-            $generator =& new HTML_Progress2_Generator($controllerName,
-                                                       $attributes,
-                                                       $errorPrefs);
+            $generator =& new HTML_Progress2_Generator(
+                $controllerName,
+                $attributes,
+                $errorPrefs
+            );
         }
 
         return $generator;
@@ -418,7 +431,8 @@ class HTML_Progress2_Generator extends HTML_QuickForm_Controller
     {
         foreach (explode(PATH_SEPARATOR, ini_get('include_path')) as $path) {
             if (file_exists($path . DIRECTORY_SEPARATOR . $file)
-                && is_readable($path . DIRECTORY_SEPARATOR . $file)) {
+                && is_readable($path . DIRECTORY_SEPARATOR . $file)
+            ) {
                 return true;
             }
         }
