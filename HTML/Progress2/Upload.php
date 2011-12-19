@@ -193,21 +193,27 @@ class HTML_Progress2_Upload
 
         $pos = strpos($format, '%T');
         if ($pos !== false) {
-            $format = str_replace('%T', $this->formatBytes($info['bytes_total']),
-                                  $format);
+            $format = str_replace(
+                '%T', $this->formatBytes($info['bytes_total']),
+                $format
+            );
         }
         $pos = strpos($format, '%C');
         if ($pos !== false) {
-            $format = str_replace('%C', $this->formatBytes($info['bytes_uploaded']),
-                                  $format);
+            $format = str_replace(
+                '%C', $this->formatBytes($info['bytes_uploaded']),
+                $format
+            );
         }
         $pos = strpos($format, '%P');
         if ($pos !== false) {
             if ($info['bytes_total'] < 1) {
                 $percent = 100;
             } else {
-                $percent = round($info['bytes_uploaded'] /
-                                 $info['bytes_total'] * 100);
+                $percent = round(
+                    $info['bytes_uploaded'] /
+                    $info['bytes_total'] * 100
+                );
             }
             $format = str_replace('%P', $percent, $format);
         }
@@ -216,10 +222,12 @@ class HTML_Progress2_Upload
             $format = str_replace('%F', $info['current_file'], $format);
         }
         $pos = strpos($format, '%E');
-        if ($pos !== false
-            && $info['est_sec'] > 0) {
-            $eta    = sprintf("%02d:%02d",
-                              $info['est_sec'] / 60, $info['est_sec'] % 60);
+        if ($pos !== false && $info['est_sec'] > 0) {
+            $eta = sprintf(
+                "%02d:%02d",
+                $info['est_sec'] / 60, $info['est_sec'] % 60
+            );
+
             $format = str_replace('%E', $eta, $format);
         }
 
