@@ -419,19 +419,28 @@ class Property3 extends TabbedPage
 
         $this->addElement('text', 'borderclass', 'CSS class:', array('size' => 32));
 
-        $borderstyle['style'] =& $this->createElement('select',
-                                                      'style', 'style',
-                                                      array('solid' => 'Solid',
-                                                            'dashed' => 'Dashed',
-                                                            'dotted' => 'Dotted',
-                                                            'inset' => 'Inset',
-                                                            'outset' => 'Outset'));
-        $borderstyle['width'] =& $this->createElement('text',
-                                                      'width', 'width',
-                                                      array('size' => 2));
-        $borderstyle['color'] =& $this->createElement('text',
-                                                      'color', 'color',
-                                                      array('size' => 7));
+        $borderstyle['style'] =& $this->createElement(
+            'select',
+            'style', 'style',
+            array('solid' => 'Solid',
+                'dashed' => 'Dashed',
+                'dotted' => 'Dotted',
+                'inset' => 'Inset',
+                'outset' => 'Outset')
+        );
+
+        $borderstyle['width'] =& $this->createElement(
+            'text',
+            'width', 'width',
+            array('size' => 2)
+        );
+
+        $borderstyle['color'] =& $this->createElement(
+            'text',
+            'color', 'color',
+            array('size' => 7)
+        );
+
         $this->addGroup($borderstyle, 'borderstyle', null, ' ');
 
         // Buttons of the wizard to do the job
