@@ -681,8 +681,10 @@ class HTML_Progress2_Lite
             } elseif ($attrName == 'value') {
                 $this->label[$name]['value'] = $attrVal;
                 if ($this->_status != 'new') {
-                    $bar .= $this->_changeLabelText($name,
-                                                    $this->label[$name]['value']);
+                    $bar .= $this->_changeLabelText(
+                        $name,
+                        $this->label[$name]['value']
+                    );
                 }
 
             } elseif ($attrName == 'left') {
@@ -762,8 +764,10 @@ class HTML_Progress2_Lite
                 $bar .= $this->_changeLabelText($name, $this->_step.'/'.$this->max);
                 break;
             case 'percent':
-                $bar .= $this->_changeLabelText($name,
-                                                $this->_computePercent() . '%');
+                $bar .= $this->_changeLabelText(
+                    $name,
+                    $this->_computePercent() . '%'
+                );
                 break;
             case 'crossbar':
                 $bar .= $this->_changeCrossItem($name);
@@ -1062,8 +1066,10 @@ class HTML_Progress2_Lite
      */
     function _computePercent()
     {
-        $percent = round(($this->_step - $this->min)
-                       / ($this->max - $this->min) * 100);
+        $percent = round(
+            ($this->_step - $this->min)
+            / ($this->max - $this->min) * 100
+        );
         if ($percent > 100) {
             $percent = 100;
         }
@@ -1089,8 +1095,10 @@ class HTML_Progress2_Lite
             $bar = $this->height;
             break;
         }
-        $pixel = round(($this->_step - $this->min) * ($bar - ($this->padding * 2))
-                     / ($this->max - $this->min));
+        $pixel = round(
+            ($this->_step - $this->min) * ($bar - ($this->padding * 2))
+            / ($this->max - $this->min)
+        );
         if ($this->_step <= $this->min) {
             $pixel = 0;
         }
