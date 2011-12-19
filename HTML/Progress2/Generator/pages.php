@@ -262,8 +262,8 @@ class Property1 extends TabbedPage
 
         $this->addRule(
             'rAnimSpeed',
-           'Should be between 0 and 1000',
-           'rangelength', array(0,1000), 'client'
+            'Should be between 0 and 1000',
+            'rangelength', array(0,1000), 'client'
         );
 
         // Buttons of the wizard to do the job
@@ -293,8 +293,10 @@ class Property2 extends TabbedPage
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null,
-                          'Progress2 Generator - Control Panel: cell properties');
+        $this->addElement(
+            'header', null,
+            'Progress2 Generator - Control Panel: cell properties'
+        );
 
         $this->addElement('text', 'cellid', 'Id mask:', array('size' => 32));
         $this->addElement('text', 'cellclass', 'CSS class:', array('size' => 32));
@@ -410,8 +412,10 @@ class Property3 extends TabbedPage
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null,
-                          'Progress2 Generator - Control Panel: border properties');
+        $this->addElement(
+            'header', null,
+            'Progress2 Generator - Control Panel: border properties'
+        );
 
         $borderpainted[] =& $this->createElement('radio', null, null, 'Yes', true);
         $borderpainted[] =& $this->createElement('radio', null, null, 'No', false);
@@ -470,8 +474,10 @@ class Property4 extends TabbedPage
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null,
-                          'Progress2 Generator - Control Panel: string properties');
+        $this->addElement(
+            'header', null,
+            'Progress2 Generator - Control Panel: string properties'
+        );
 
         $stringpainted[] =& $this->createElement('radio', null, null, 'Yes', true);
         $stringpainted[] =& $this->createElement('radio', null, null, 'No', false);
@@ -481,56 +487,107 @@ class Property4 extends TabbedPage
         $this->addElement('text', 'stringclass', 'CSS class:', array('size' => 32));
         $this->addElement('text', 'stringvalue', 'Content:', array('size' => 32));
 
-        $stringsize['width']   =& $this->createElement('text',
-                                                       'width', 'width',
-                                                       array('size' => 4));
-        $stringsize['height']  =& $this->createElement('text',
-                                                       'height', 'height',
-                                                       array('size' => 4));
-        $stringsize['left']    =& $this->createElement('text',
-                                                       'left', 'left',
-                                                       array('size' => 4));
-        $stringsize['top']     =& $this->createElement('text',
-                                                       'top', 'top',
-                                                       array('size' => 4));
-        $stringsize['bgcolor'] =& $this->createElement('text',
-                                                       'bgcolor', 'bgcolor',
-                                                       array('size' => 7));
+        $stringsize['width']   =& $this->createElement(
+            'text',
+            'width', 'width',
+            array('size' => 4)
+        );
+
+        $stringsize['height']  =& $this->createElement(
+            'text',
+            'height', 'height',
+            array('size' => 4)
+        );
+
+        $stringsize['left']    =& $this->createElement(
+            'text',
+            'left', 'left',
+            array('size' => 4)
+        );
+
+        $stringsize['top']     =& $this->createElement(
+            'text',
+            'top', 'top',
+            array('size' => 4)
+        );
+
+        $stringsize['bgcolor'] =& $this->createElement(
+            'text',
+            'bgcolor', 'bgcolor',
+            array('size' => 7)
+        );
+
         $this->addGroup($stringsize, 'stringsize', 'Size, position and color:', ' ');
 
-        $stringvalign[] =& $this->createElement('radio', null, null,
-                                                'Left', 'left');
-        $stringvalign[] =& $this->createElement('radio', null, null,
-                                                'Right', 'right');
-        $stringvalign[] =& $this->createElement('radio', null, null,
-                                                'Top', 'top');
-        $stringvalign[] =& $this->createElement('radio', null, null,
-                                                'Bottom', 'bottom');
+        $stringvalign[] =& $this->createElement(
+            'radio', null, null,
+            'Left', 'left'
+        );
+
+        $stringvalign[] =& $this->createElement(
+            'radio', null, null,
+            'Right', 'right'
+        );
+
+        $stringvalign[] =& $this->createElement(
+            'radio', null, null,
+            'Top', 'top'
+        );
+
+        $stringvalign[] =& $this->createElement(
+            'radio', null, null,
+            'Bottom', 'bottom'
+        );
+
         $this->addGroup($stringvalign, 'stringvalign', 'Vertical alignment:');
 
-        $stringalign[] =& $this->createElement('radio', null, null,
-                                               'Left', 'left');
-        $stringalign[] =& $this->createElement('radio', null, null,
-                                               'Right', 'right');
-        $stringalign[] =& $this->createElement('radio', null, null,
-                                               'Center', 'center');
+        $stringalign[] =& $this->createElement(
+            'radio', null, null,
+            'Left', 'left'
+        );
+
+        $stringalign[] =& $this->createElement(
+            'radio', null, null,
+            'Right', 'right'
+        );
+
+        $stringalign[] =& $this->createElement(
+            'radio', null, null,
+            'Center', 'center'
+        );
+
         $this->addGroup($stringalign, 'stringalign', 'Horizontal alignment:');
 
-        $stringfont['family'] =& $this->createElement('text',
-                                                      'family', 'family',
-                                                      array('size' => 40));
-        $stringfont['size']   =& $this->createElement('text',
-                                                      'size', 'size',
-                                                      array('size' => 2));
-        $stringfont['color']  =& $this->createElement('text',
-                                                      'color', 'color',
-                                                      array('size' => 7));
+        $stringfont['family'] =& $this->createElement(
+            'text',
+            'family', 'family',
+            array('size' => 40)
+        );
+
+        $stringfont['size']   =& $this->createElement(
+            'text',
+            'size', 'size',
+            array('size' => 2)
+        );
+
+        $stringfont['color']  =& $this->createElement(
+            'text',
+            'color', 'color',
+            array('size' => 7)
+        );
+
         $this->addGroup($stringfont, 'stringfont', 'Font:', ' ');
 
-        $stringweight[] =& $this->createElement('radio', null, null,
-                                                'normal', 'normal');
-        $stringweight[] =& $this->createElement('radio', null, null,
-                                                'Bold', 'bold');
+        $stringweight[] =& $this->createElement(
+            'radio', null, null,
+            'normal', 'normal'
+        );
+
+        $stringweight[] =& $this->createElement(
+            'radio', null, null,
+            'Bold', 'bold'
+        );
+
         $this->addGroup($stringweight, 'stringweight', 'Font weight:');
 
         // Buttons of the wizard to do the job
@@ -560,11 +617,15 @@ class Preview extends TabbedPage
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null,
-                          'Progress2 Generator - Control Panel: run demo');
+        $this->addElement(
+            'header', null,
+            'Progress2 Generator - Control Panel: run demo'
+        );
 
-        $this->addElement('static', 'progressBar',
-                          'Your progress meter looks like:');
+        $this->addElement(
+            'static', 'progressBar',
+            'Your progress meter looks like:'
+        );
 
         // Buttons of the wizard to do the job
         $this->buildButtons(array('reset','process'));
@@ -593,8 +654,10 @@ class Save extends TabbedPage
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null,
-                          'Progress2 Generator - Control Panel: save PHP/CSS code');
+        $this->addElement(
+            'header', null,
+            'Progress2 Generator - Control Panel: save PHP/CSS code'
+        );
 
         $code[] =& $this->createElement('checkbox', 'P', null, 'PHP');
         $code[] =& $this->createElement('checkbox', 'C', null, 'CSS');
@@ -604,4 +667,3 @@ class Save extends TabbedPage
         $this->buildButtons(array('next','apply'));
     }
 }
-?>

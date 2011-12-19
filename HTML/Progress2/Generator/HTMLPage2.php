@@ -94,13 +94,16 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
     {
         $tab = '  ';
 
-        $p = new HTML_Page2(array(
+        $p = new HTML_Page2(
+            array(
                  'lineend'  => PHP_EOL,
                  'tab'      => $tab,
                  'doctype'  => 'XHTML 1.0 Strict',
                  'language' => 'en',
                  'cache'    => 'false'
-        ));
+            )
+        );
+
         $p->disableXmlProlog();
         $p->setTitle('PEAR::HTML_Progress2 - Generator');
         $p->setMetaData('author', 'Laurent Laville');
