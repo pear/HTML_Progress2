@@ -700,7 +700,8 @@ class HTML_Progress2 extends HTML_Common
         $this->_updateProgressSize();   // updates the new size of progress bar
 
         if (!is_int($orient)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$orient',
                       'was' => gettype($orient),
@@ -708,7 +709,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 2));
 
         } elseif (!is_int($min)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$min',
                       'was' => gettype($min),
@@ -716,7 +718,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 3));
 
         } elseif (!is_int($max)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$max',
                       'was' => gettype($max),
@@ -724,7 +727,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 4));
 
         } elseif (!is_string($percentLabel) && !is_bool($percentLabel)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$percentLabel',
                       'was' => gettype($percentLabel),
@@ -808,7 +812,8 @@ class HTML_Progress2 extends HTML_Common
     function setIndeterminate($continuous)
     {
         if (!is_bool($continuous)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$continuous',
                       'was' => gettype($continuous),
@@ -852,7 +857,8 @@ class HTML_Progress2 extends HTML_Common
     function setBorderPainted($paint)
     {
         if (!is_bool($paint)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$paint',
                       'was' => gettype($paint),
@@ -898,7 +904,8 @@ class HTML_Progress2 extends HTML_Common
     function setMinimum($min)
     {
         if (!is_int($min)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$min',
                       'was' => gettype($min),
@@ -906,7 +913,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($min < 0) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$min',
                       'was' => $min,
@@ -914,7 +922,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($min > $this->maximum) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$min',
                       'was' => $min,
@@ -930,9 +939,11 @@ class HTML_Progress2 extends HTML_Common
         }
 
         if ($oldVal != $min) {
-            $this->_postNotification('onChange',
-                                     array('handler' => __FUNCTION__,
-                                           'value' => $min));
+            $this->_postNotification(
+                'onChange',
+                 array('handler' => __FUNCTION__,
+                           'value' => $min)
+            );
         }
     }
 
@@ -971,7 +982,8 @@ class HTML_Progress2 extends HTML_Common
     function setMaximum($max)
     {
         if (!is_int($max)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$max',
                       'was' => gettype($max),
@@ -979,7 +991,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($max < 0) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$max',
                       'was' => $max,
@@ -987,7 +1000,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($max < $this->minimum) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$max',
                       'was' => $max,
@@ -1042,7 +1056,8 @@ class HTML_Progress2 extends HTML_Common
     function setIncrement($inc)
     {
         if (!is_int($inc)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$inc',
                       'was' => gettype($inc),
@@ -1050,7 +1065,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($inc == 0) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$inc',
                       'was' => $inc,
@@ -1095,7 +1111,8 @@ class HTML_Progress2 extends HTML_Common
     function setValue($val)
     {
         if (!is_int($val)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$val',
                       'was' => gettype($val),
@@ -1103,7 +1120,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($val < $this->minimum) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$val',
                       'was' => $val,
@@ -1111,7 +1129,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($val > $this->maximum) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$val',
                       'was' => $val,
@@ -1171,7 +1190,8 @@ class HTML_Progress2 extends HTML_Common
     function moveStep($step)
     {
         if (!is_int($step)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$step',
                       'was' => gettype($step),
@@ -1179,7 +1199,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($step < 0) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$step',
                       'was' => $step,
@@ -1187,7 +1208,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($step > intval(ceil($this->maximum / $this->increment))) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$step',
                       'was' => $step,
@@ -1250,7 +1272,8 @@ class HTML_Progress2 extends HTML_Common
     function getPercentComplete($float = true)
     {
         if (!is_bool($float)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$float',
                       'was' => gettype($float),
@@ -1312,7 +1335,8 @@ class HTML_Progress2 extends HTML_Common
     function setOrientation($orient)
     {
         if (!is_int($orient)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$orient',
                       'was' => gettype($orient),
@@ -1323,7 +1347,8 @@ class HTML_Progress2 extends HTML_Common
                   ($orient != HTML_PROGRESS2_BAR_VERTICAL) &&
                   ($orient != HTML_PROGRESS2_POLYGONAL) &&
                   ($orient != HTML_PROGRESS2_CIRCLE)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$orient',
                       'was' => $orient,
@@ -1386,7 +1411,8 @@ class HTML_Progress2 extends HTML_Common
     function setFillWay($way)
     {
         if (!is_string($way)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$way',
                       'was' => gettype($way),
@@ -1394,7 +1420,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (($way != 'natural') && ($way != 'reverse')) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$way',
                       'was' => $way,
@@ -1438,7 +1465,8 @@ class HTML_Progress2 extends HTML_Common
     function setCellCount($cells)
     {
         if (!is_int($cells)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$cells',
                       'was' => gettype($cells),
@@ -1446,7 +1474,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($cells < 0) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$cells',
                       'was' => $cells,
@@ -1475,7 +1504,8 @@ class HTML_Progress2 extends HTML_Common
     function getCellAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
@@ -1537,7 +1567,8 @@ class HTML_Progress2 extends HTML_Common
     {
         if (!is_null($cell)) {
             if (!is_int($cell)) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'exception',
                     array('var' => '$cell',
                           'was' => gettype($cell),
@@ -1545,7 +1576,8 @@ class HTML_Progress2 extends HTML_Common
                           'paramnum' => 1));
 
             } elseif ($cell < 0) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'error',
                     array('var' => '$cell',
                           'was' => $cell,
@@ -1553,7 +1585,8 @@ class HTML_Progress2 extends HTML_Common
                           'paramnum' => 1));
 
             } elseif ($cell > $this->cellCount) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'error',
                     array('var' => '$cell',
                           'was' => $cell,
@@ -1618,7 +1651,8 @@ class HTML_Progress2 extends HTML_Common
     function setCellCoordinates($xgrid, $ygrid, $coord = array())
     {
         if (!is_int($xgrid)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$xgrid',
                       'was' => gettype($xgrid),
@@ -1626,7 +1660,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($xgrid < 3) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$xgrid',
                       'was' => $xgrid,
@@ -1634,7 +1669,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (!is_int($ygrid)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$ygrid',
                       'was' => gettype($ygrid),
@@ -1642,7 +1678,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 2));
 
         } elseif ($ygrid < 3) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$ygrid',
                       'was' => $ygrid,
@@ -1650,7 +1687,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 2));
 
         } elseif (!is_array($coord)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$coord',
                       'was' => gettype($coord),
@@ -1664,7 +1702,8 @@ class HTML_Progress2 extends HTML_Common
         } else {
             foreach ($coord as $id => $pos) {
                 if (!is_array($pos)) {
-                    return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                    return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                         'exception',
                         array('var' => '$coord[,$pos]',
                               'was' => gettype($pos),
@@ -1672,7 +1711,8 @@ class HTML_Progress2 extends HTML_Common
                               'paramnum' => 3));
                 }
                 if ($pos[0] >= $ygrid) {
-                    return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                    return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                         'error',
                         array('var' => '$pos[0]',
                               'was' => $pos[0],
@@ -1680,7 +1720,8 @@ class HTML_Progress2 extends HTML_Common
                               'paramnum' => 2));
                 }
                 if ($pos[1] >= $xgrid) {
-                    return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                    return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                         'error',
                         array('var' => '$pos[1]',
                               'was' => $pos[1],
@@ -1716,7 +1757,8 @@ class HTML_Progress2 extends HTML_Common
     function getBorderAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
@@ -1779,7 +1821,8 @@ class HTML_Progress2 extends HTML_Common
     function getFrameAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
@@ -1825,7 +1868,8 @@ class HTML_Progress2 extends HTML_Common
     function setFrameAttributes($attributes = array())
     {
         if (!is_null($attributes) && !is_array($attributes)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
@@ -1880,7 +1924,8 @@ class HTML_Progress2 extends HTML_Common
     function getLabelAttributes($name, $asString = false)
     {
         if (!isset($this->label[$name])) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$name',
                       'was' => 'undefined',
@@ -1888,7 +1933,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (!is_bool($asString)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
@@ -1938,7 +1984,8 @@ class HTML_Progress2 extends HTML_Common
     function setLabelAttributes($name, $attributes)
     {
         if (!isset($this->label[$name])) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$name',
                       'was' => "label '$name' undefined",
@@ -1990,7 +2037,8 @@ class HTML_Progress2 extends HTML_Common
             ($type != HTML_PROGRESS2_LABEL_STEP) &&
             ($type != HTML_PROGRESS2_LABEL_PERCENT) &&
             ($type != HTML_PROGRESS2_LABEL_CROSSBAR)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$type',
                       'was' => $type,
@@ -1998,7 +2046,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (!is_string($name)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$name',
                       'was' => gettype($name),
@@ -2006,7 +2055,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 2));
 
         } elseif (isset($this->label[$name])) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$name',
                       'was' => 'label already exists',
@@ -2014,7 +2064,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 2));
 
         } elseif (!is_string($value)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$value',
                       'was' => gettype($value),
@@ -2135,7 +2186,8 @@ class HTML_Progress2 extends HTML_Common
     function removeLabel($name)
     {
         if (!is_string($name)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$name',
                       'was' => gettype($name),
@@ -2143,7 +2195,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (!isset($this->label[$name])) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'notice',
                 array('var' => '$name',
                       'was' => 'label does not exists',
@@ -2172,7 +2225,8 @@ class HTML_Progress2 extends HTML_Common
     function getProgressAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
@@ -2245,7 +2299,8 @@ class HTML_Progress2 extends HTML_Common
         $ds = DIRECTORY_SEPARATOR;
 
         if (!is_bool($raw)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$raw',
                       'was' => gettype($raw),
@@ -2254,7 +2309,8 @@ class HTML_Progress2 extends HTML_Common
 
         } elseif (isset($path)) {
             if (!is_string($path)) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'exception',
                     array('var' => '$path',
                           'was' => gettype($path),
@@ -2330,7 +2386,8 @@ class HTML_Progress2 extends HTML_Common
     {
         if (!is_null($url)) {
             if (!is_string($url)) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'exception',
                     array('var' => '$url',
                           'was' => gettype($url),
@@ -2338,7 +2395,8 @@ class HTML_Progress2 extends HTML_Common
                           'paramnum' => 1));
 
             } elseif (!is_file($url) || $url == '.' || $url == '..') {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'error',
                     array('var' => '$url',
                           'was' => $url.' file does not exists',
@@ -2373,7 +2431,8 @@ class HTML_Progress2 extends HTML_Common
     function drawCircleSegments($dir = '.', $fileMask = 'c%s.png')
     {
         if (!is_dir($dir)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$dir',
                       'was' => $dir,
@@ -2475,7 +2534,8 @@ class HTML_Progress2 extends HTML_Common
     function setAnimSpeed($delay)
     {
         if (!is_int($delay)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$delay',
                       'was' => gettype($delay),
@@ -2483,7 +2543,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($delay < 0) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$delay',
                       'was' => $delay,
@@ -2491,7 +2552,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif ($delay > 1000) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$delay',
                       'was' => $delay,
@@ -2516,7 +2578,8 @@ class HTML_Progress2 extends HTML_Common
     function getStyle($raw = true)
     {
         if (!is_bool($raw)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$raw',
                       'was' => gettype($raw),
@@ -2641,7 +2704,8 @@ class HTML_Progress2 extends HTML_Common
         }
 
         if (!is_array($styles)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$styles',
                       'was' => gettype($styles),
@@ -2653,7 +2717,8 @@ class HTML_Progress2 extends HTML_Common
 
         $res = $css->parseData($styles);
         if ($css->isError()) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$styles',
                       'was' => 'unknown data source',
@@ -3272,7 +3337,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (!is_string($nName)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$nName',
                       'was' => gettype($nName),
@@ -3314,7 +3380,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (!is_string($nName)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$nName',
                       'was' => gettype($nName),
@@ -3354,7 +3421,8 @@ class HTML_Progress2 extends HTML_Common
     function registerAJAX($serverUrl, $stub = array(), $client = array('all'))
     {
         if (!is_string($serverUrl)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$serverUrl',
                       'was' => gettype($serverUrl),
@@ -3391,7 +3459,8 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 3)
             );
         } elseif (count($client) == 0) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
                 array('var' => '$client',
                       'was' => 'empty array',
@@ -3418,7 +3487,8 @@ class HTML_Progress2 extends HTML_Common
     function setupAJAX($serializer = null)
     {
         if (isset($serializer) && !is_string($serializer)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$serializer',
                       'was' => gettype($serializer),
@@ -3490,56 +3560,69 @@ class HTML_Progress2 extends HTML_Common
      *             HTML_PROGRESS2_ERROR_INVALID_RESOURCE
      * @see        setupAFLAX()
      */
-    function registerAFLAX($serverAflaxUrl, $serverUploadUri,
-                           $callback = array(), $extension = array())
-    {
+    function registerAFLAX(
+        $serverAflaxUrl, $serverUploadUri,
+        $callback = array(), $extension = array()
+    ) {
         if (!is_string($serverAflaxUrl)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$serverAflaxUrl',
                       'was' => gettype($serverAflaxUrl),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (!HTML_Progress2::fileExists($serverAflaxUrl)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
                 'error',
                 array('var' => '$serverAflaxUrl',
                       'resource' => $serverAflaxUrl,
                       'expected' => 'AFLAX server available',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (!is_string($serverUploadUri)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$serverUploadUri',
                       'was' => gettype($serverUploadUri),
                       'expected' => 'string',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
 
         } elseif (!HTML_Progress2::fileExists($serverUploadUri)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
                 'error',
                 array('var' => '$serverUploadUri',
                       'resource' => $serverUploadUri,
                       'expected' => 'Upload script handler available',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
 
         } elseif (!is_array($callback)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$callback',
                       'was' => gettype($callback),
                       'expected' => 'array',
-                      'paramnum' => 3));
+                      'paramnum' => 3)
+            );
 
         } elseif (!is_array($extension)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$extension',
                       'was' => gettype($extension),
                       'expected' => 'array',
-                      'paramnum' => 4));
+                      'paramnum' => 4)
+            );
         }
 
         $this->aflax = array('swf' => $serverAflaxUrl,
@@ -3569,37 +3652,45 @@ class HTML_Progress2 extends HTML_Common
         $ds = DIRECTORY_SEPARATOR;
 
         if (!is_bool($raw)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$raw',
                       'was' => gettype($raw),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (isset($path)) {
             if (!is_string($path)) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
-                   'exception',
+                return $this->raiseError(
+                    HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                    'exception',
                     array('var' => '$path',
                           'was' => gettype($path),
                           'expected' => 'string',
-                          'paramnum' => 2));
+                          'paramnum' => 2)
+                );
 
             } elseif (!is_dir($path)) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
-                   'error',
+                return $this->raiseError(
+                    HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
+                    'error',
                     array('var' => '$path',
                           'resource' => $path,
                           'expected' => 'directory',
-                          'paramnum' => 2));
+                          'paramnum' => 2)
+                );
 
             } elseif (!file_exists($js = $path . $ds . 'HTML_Progress2_AFLAX.js')) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
+                return $this->raiseError(
+                    HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
                     'error',
                     array('var' => '$path',
                           'resource' => $js,
                           'expected' => 'directory with valid JS AFLAX handler',
-                          'paramnum' => 2));
+                          'paramnum' => 2)
+                );
             }
         }
 
@@ -3707,8 +3798,9 @@ class HTML_Progress2 extends HTML_Common
     function fileExists($fileName)
     {
         foreach (explode(PATH_SEPARATOR, get_include_path()) as $path) {
-            if (file_exists($path . DIRECTORY_SEPARATOR . $fileName) &&
-                  is_readable($path . DIRECTORY_SEPARATOR . $fileName)) {
+            if (file_exists($path . DIRECTORY_SEPARATOR . $fileName) 
+                && is_readable($path . DIRECTORY_SEPARATOR . $fileName)
+            ) {
                 return true;
             }
         }
