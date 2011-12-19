@@ -171,10 +171,11 @@ class HTML_Progress2_Monitor
      * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
-    function HTML_Progress2_Monitor($formName = 'ProgressMonitor',
-                                    $attributes = array(),
-                                    $errorPrefs = array())
-    {
+    function HTML_Progress2_Monitor(
+        $formName = 'ProgressMonitor',
+        $attributes = array(),
+        $errorPrefs = array()
+    ) {
         $this->__construct($formName, $attributes, $errorPrefs);
     }
 
@@ -209,27 +210,32 @@ class HTML_Progress2_Monitor
      * @access     protected
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      */
-    function __construct($formName = 'ProgressMonitor',
-                         $attributes = array(),
-                         $errorPrefs = array())
-    {
+    function __construct(
+        $formName = 'ProgressMonitor',
+        $attributes = array(),
+        $errorPrefs = array()
+    ) {
         $this->_progress = new HTML_Progress2($errorPrefs);
 
         if (!is_string($formName)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$formName',
                       'was' => gettype($formName),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (!is_array($attributes)) {
-            return $this->_progress->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->_progress->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
 
         }
 
@@ -270,10 +276,14 @@ class HTML_Progress2_Monitor
             $style = null;
         }
 
-        $buttons[] =& $this->_form->createElement('submit', 'start',
-                                                  $this->buttonStart, $style);
-        $buttons[] =& $this->_form->createElement('submit', 'cancel',
-                                                  $this->buttonCancel);
+        $buttons[] =& $this->_form->createElement(
+            'submit', 'start',
+            $this->buttonStart, $style
+        );
+        $buttons[] =& $this->_form->createElement(
+            'submit', 'cancel',
+            $this->buttonCancel
+        );
 
         $buttons[0]->updateAttributes($buttonAttr);
         $buttons[1]->updateAttributes($buttonAttr);
@@ -301,12 +311,14 @@ class HTML_Progress2_Monitor
     function addListener($callback)
     {
         if (!is_callable($callback)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
                 'exception',
                 array('var' => '$callback',
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
         }
 
         $this->dispatcher =& Event_Dispatcher::getInstance();
@@ -331,12 +343,14 @@ class HTML_Progress2_Monitor
     function removeListener($callback)
     {
         if (!is_callable($callback)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
                 'exception',
                 array('var' => '$callback',
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
         }
 
         $result = $this->dispatcher->removeObserver($callback);

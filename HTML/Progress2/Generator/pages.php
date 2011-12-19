@@ -88,10 +88,12 @@ class TabbedPage extends HTML_QuickForm_Page
             $disabled = ($pageName == $myName ? array('disabled' => 'disabled')
                                               : array());
 
-            $tabs[] = $this->createElement('submit',
-                                           $this->getButtonName($pageName),
-                                           ucfirst($pageName),
-                                           array('class' => 'flat') + $disabled);
+            $tabs[] = $this->createElement(
+                'submit',
+                $this->getButtonName($pageName),
+                ucfirst($pageName),
+                array('class' => 'flat') + $disabled
+            );
         }
         $this->addGroup($tabs, 'tabs', null, '&nbsp;', false);
     }
@@ -154,14 +156,18 @@ class TabbedPage extends HTML_QuickForm_Page
                               '4' => 'Declared Classes',
                               '5' => 'Declared Actions');
 
-                $prevnext[] =&HTML_QuickForm::createElement('select',
-                                                            'dumpOption',
-                                                            '', $opts);
+                $prevnext[] =&HTML_QuickForm::createElement(
+                    'select',
+                    'dumpOption',
+                    '', $opts
+                );
             }
-            $prevnext[] =&HTML_QuickForm::createElement($type,
-                                              $this->getButtonName($event),
-                                              ucfirst($event),
-                                              HTML_Common::_getAttrString($attrs));
+            $prevnext[] =&HTML_QuickForm::createElement(
+                $type,
+                $this->getButtonName($event),
+                ucfirst($event),
+                HTML_Common::_getAttrString($attrs)
+            );
         }
         $this->addGroup($prevnext, 'buttons', '', '&nbsp;', false);
     }
