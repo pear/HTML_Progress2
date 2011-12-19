@@ -176,20 +176,27 @@ class ActionProcess extends HTML_QuickForm_Action
         }
 
         /* Page 1: Progress attributes ****************************************/
-        $strPHP .= $this->_attributesArray('$pb->setProgressAttributes(',
-                                           $structure['progress']);
+        $strPHP .= $this->_attributesArray(
+            '$pb->setProgressAttributes(',
+            $structure['progress']
+        );
+
         $strPHP .= PHP_EOL;
 
         /* Page 2: Cell attributes ********************************************/
         $strPHP .= '$pb->setCellCount(' . $structure['cellcount'] . ');'
                 . PHP_EOL;
-        $strPHP .= $this->_attributesArray('$pb->setCellAttributes(',
-                                           $structure['cell']);
+        $strPHP .= $this->_attributesArray(
+            '$pb->setCellAttributes(',
+            $structure['cell']
+        );
         $strPHP .= PHP_EOL;
 
         /* Page 3: Border attributes ******************************************/
-        $strPHP .= $this->_attributesArray('$pb->setBorderAttributes(',
-                                           $structure['border']);
+        $strPHP .= $this->_attributesArray(
+            '$pb->setBorderAttributes(',
+            $structure['border']
+        );
         $strPHP .= PHP_EOL;
 
         /* Page 4: Label attributes *******************************************/
@@ -200,8 +207,10 @@ class ActionProcess extends HTML_QuickForm_Action
                 $strPHP .= PHP_EOL;
             }
             unset($data['type']);
-            $strPHP .= $this->_attributesArray('$pb->setLabelAttributes(\''
-                    . $name . '\', ', $data);
+            $strPHP .= $this->_attributesArray(
+                '$pb->setLabelAttributes(\''
+                . $name . '\', ', $data
+            );
             $strPHP .= PHP_EOL;
         }
 
