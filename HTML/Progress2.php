@@ -3362,29 +3362,34 @@ class HTML_Progress2 extends HTML_Common
                       'paramnum' => 1));
 
         } elseif (!HTML_Progress2::fileExists($serverUrl)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
                 'error',
                 array('var' => '$serverUrl',
                       'resource' => $serverUrl,
                       'expected' => 'AJAX server defined',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (!is_array($stub)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$stub',
                       'was' => gettype($stub),
                       'expected' => 'array',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
 
         } elseif (!is_array($client)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'exception',
                 array('var' => '$client',
                       'was' => gettype($client),
                       'expected' => 'array',
-                      'paramnum' => 3));
-
+                      'paramnum' => 3)
+            );
         } elseif (count($client) == 0) {
             return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_INPUT,
                 'error',
@@ -3728,16 +3733,20 @@ class HTML_Progress2 extends HTML_Common
             switch($data['type']) {
             case HTML_PROGRESS2_LABEL_STEP:
                 if (!$this->indeterminate) {
-                    $this->_changeLabelText($name,
-                                intval(ceil($value / $this->increment))
-                                . '/'
-                                . intval(ceil($this->maximum / $this->increment)));
+                    $this->_changeLabelText(
+                        $name,
+                        intval(ceil($value / $this->increment))
+                        . '/'
+                        . intval(ceil($this->maximum / $this->increment))
+                    );
                 }
                 break;
             case HTML_PROGRESS2_LABEL_PERCENT:
                 if (!$this->indeterminate) {
-                    $this->_changeLabelText($name,
-                                            $this->getPercentComplete(false) . '%');
+                    $this->_changeLabelText(
+                        $name,
+                        $this->getPercentComplete(false) . '%'
+                    );
                 }
                 break;
             case HTML_PROGRESS2_LABEL_CROSSBAR:
@@ -4264,7 +4273,8 @@ class HTML_Progress2 extends HTML_Common
     {
         // error message mapping callback
         if (isset($prefs['message_callback'])
-            && is_callable($prefs['message_callback'])) {
+            && is_callable($prefs['message_callback'])
+        ) {
             $this->_callback_message = $prefs['message_callback'];
         } else {
             $this->_callback_message = array('HTML_Progress2_Error', '_msgCallback');
@@ -4272,7 +4282,8 @@ class HTML_Progress2 extends HTML_Common
 
         // error context mapping callback
         if (isset($prefs['context_callback'])
-            && is_callable($prefs['context_callback'])) {
+            && is_callable($prefs['context_callback'])
+        ) {
             $this->_callback_context = $prefs['context_callback'];
         } else {
             $this->_callback_context = array('HTML_Progress2_Error', 'getBacktrace');
@@ -4280,7 +4291,8 @@ class HTML_Progress2 extends HTML_Common
 
         // determine whether to allow an error to be pushed or logged
         if (isset($prefs['push_callback'])
-            && is_callable($prefs['push_callback'])) {
+            && is_callable($prefs['push_callback'])
+        ) {
             $this->_callback_push = $prefs['push_callback'];
         } else {
             $this->_callback_push = array('HTML_Progress2_Error', '_handleError');
@@ -4288,7 +4300,8 @@ class HTML_Progress2 extends HTML_Common
 
         // default error handler will use PEAR_Error
         if (isset($prefs['error_handler'])
-            && is_callable($prefs['error_handler'])) {
+            && is_callable($prefs['error_handler'])
+        ) {
             $this->_callback_errorhandler = $prefs['error_handler'];
         } else {
             $this->_callback_errorhandler = array(&$this, '_errorHandler');
@@ -4335,8 +4348,10 @@ class HTML_Progress2 extends HTML_Common
             $userinfo['log'] = array();
         }
 
-        return PEAR::raiseError($message, $code,
-                                $mode, null, $userinfo, 'HTML_Progress2_Error');
+        return PEAR::raiseError(
+            $message, $code,
+            $mode, null, $userinfo, 'HTML_Progress2_Error'
+        );
     }
 
     /**
