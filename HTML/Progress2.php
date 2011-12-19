@@ -616,11 +616,12 @@ class HTML_Progress2 extends HTML_Common
      * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
-    function HTML_Progress2($errorPrefs = array(),
-                            $orient = HTML_PROGRESS2_BAR_HORIZONTAL,
-                            $min = 0, $max = 100,
-                            $percentLabel = 'pct1')
-    {
+    function HTML_Progress2(
+        $errorPrefs = array(),
+        $orient = HTML_PROGRESS2_BAR_HORIZONTAL,
+        $min = 0, $max = 100,
+        $percentLabel = 'pct1'
+    ) {
         $this->__construct($errorPrefs, $orient, $min, $max, $percentLabel);
     }
 
@@ -644,11 +645,12 @@ class HTML_Progress2 extends HTML_Common
      * @see        setIndeterminate(), setIdent(), setAnimSpeed(),
      *             setOrientation(), setMinimum(), setMaximum(), addLabel()
      */
-    function __construct($errorPrefs = array(),
-                         $orient = HTML_PROGRESS2_BAR_HORIZONTAL,
-                         $min = 0, $max = 100,
-                         $percentLabel = 'pct1')
-    {
+    function __construct(
+        $errorPrefs = array(),
+        $orient = HTML_PROGRESS2_BAR_HORIZONTAL,
+        $min = 0, $max = 100,
+        $percentLabel = 'pct1'
+    ) {
         $this->_initErrorHandler($errorPrefs);
 
         $this->_observerCount = 0;
@@ -818,7 +820,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$continuous',
                       'was' => gettype($continuous),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $this->indeterminate = $continuous;
     }
@@ -863,7 +866,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$paint',
                       'was' => gettype($paint),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $this->_paintBorder = $paint;
@@ -910,7 +914,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$min',
                       'was' => gettype($min),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($min < 0) {
             return $this->raiseError(
@@ -919,7 +924,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$min',
                       'was' => $min,
                       'expected' => 'positive',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($min > $this->maximum) {
             return $this->raiseError(
@@ -928,7 +934,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$min',
                       'was' => $min,
                       'expected' => 'less than $max = '.$this->maximum,
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $oldVal        = $this->minimum;
         $this->minimum = $min;
@@ -988,7 +995,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$max',
                       'was' => gettype($max),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($max < 0) {
             return $this->raiseError(
@@ -997,7 +1005,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$max',
                       'was' => $max,
                       'expected' => 'positive',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($max < $this->minimum) {
             return $this->raiseError(
@@ -1006,7 +1015,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$max',
                       'was' => $max,
                       'expected' => 'greater than $min = '.$this->minimum,
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $oldVal        = $this->maximum;
         $this->maximum = $max;
@@ -1062,7 +1072,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$inc',
                       'was' => gettype($inc),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($inc == 0) {
             return $this->raiseError(
@@ -1071,7 +1082,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$inc',
                       'was' => $inc,
                       'expected' => 'not equal zero',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $this->increment = $inc;
     }
@@ -1117,7 +1129,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$val',
                       'was' => gettype($val),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($val < $this->minimum) {
             return $this->raiseError(
@@ -1126,7 +1139,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$val',
                       'was' => $val,
                       'expected' => 'greater than $min = '.$this->minimum,
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($val > $this->maximum) {
             return $this->raiseError(
@@ -1135,7 +1149,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$val',
                       'was' => $val,
                       'expected' => 'less than $max = '.$this->maximum,
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $oldVal      = $this->value;
         $this->value = $val;
@@ -1196,7 +1211,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$step',
                       'was' => gettype($step),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($step < 0) {
             return $this->raiseError(
@@ -1205,7 +1221,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$step',
                       'was' => $step,
                       'expected' => 'greater than zero',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($step > intval(ceil($this->maximum / $this->increment))) {
             return $this->raiseError(
@@ -1215,7 +1232,8 @@ class HTML_Progress2 extends HTML_Common
                       'was' => $step,
                       'expected' => 'less than '.
                                     intval(ceil($this->maximum / $this->increment)),
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $oldVal      = $this->value;
         $this->value = $step * $this->increment;
@@ -1278,7 +1296,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$float',
                       'was' => gettype($float),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $min = $this->minimum;
@@ -1341,7 +1360,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$orient',
                       'was' => gettype($orient),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (($orient != HTML_PROGRESS2_BAR_HORIZONTAL) &&
                   ($orient != HTML_PROGRESS2_BAR_VERTICAL) &&
@@ -1356,7 +1376,8 @@ class HTML_Progress2 extends HTML_Common
                                     HTML_PROGRESS2_BAR_VERTICAL.' | '.
                                     HTML_PROGRESS2_POLYGONAL.' | '.
                                     HTML_PROGRESS2_CIRCLE,
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $previous          = $this->orientation;   // gets previous orientation
@@ -1417,7 +1438,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$way',
                       'was' => gettype($way),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (($way != 'natural') && ($way != 'reverse')) {
             return $this->raiseError(
@@ -1426,7 +1448,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$way',
                       'was' => $way,
                       'expected' => 'natural | reverse',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         }
         $this->fillWay = $way;
@@ -1471,7 +1494,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$cells',
                       'was' => gettype($cells),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($cells < 0) {
             return $this->raiseError(
@@ -1480,7 +1504,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$cells',
                       'was' => $cells,
                       'expected' => 'greater or equal zero',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $this->cellCount = $cells;
 
@@ -1510,7 +1535,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $attr = $this->cell;
@@ -1657,7 +1683,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$xgrid',
                       'was' => gettype($xgrid),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($xgrid < 3) {
             return $this->raiseError(
@@ -1666,7 +1693,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$xgrid',
                       'was' => $xgrid,
                       'expected' => 'greater than 2',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (!is_int($ygrid)) {
             return $this->raiseError(
@@ -1763,7 +1791,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $attr = $this->border;
@@ -1827,7 +1856,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $attr = $this->frame;
@@ -1874,7 +1904,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $default = array(
@@ -1897,7 +1928,8 @@ class HTML_Progress2 extends HTML_Common
             if (in_array($prop, $allowed_options)) {
                 $this->frame[$prop] = $val;
             } else {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_OPTION,
+                return $this->raiseError(
+                    HTML_PROGRESS2_ERROR_INVALID_OPTION,
                     'warning',
                     array('element' => 'frame', 'prop' => $prop));
             }
@@ -1930,7 +1962,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$name',
                       'was' => 'undefined',
                       'expected' => "label '$name' exists",
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (!is_bool($asString)) {
             return $this->raiseError(
@@ -1990,7 +2023,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$name',
                       'was' => "label '$name' undefined",
                       'expected' => 'label already exists',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $this->_updateAttrArray($this->label[$name],
@@ -2043,7 +2077,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$type',
                       'was' => $type,
                       'expected' => 'HTML_PROGRESS2_LABEL_* constant value',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (!is_string($name)) {
             return $this->raiseError(
@@ -2192,7 +2227,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$name',
                       'was' => gettype($name),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (!isset($this->label[$name])) {
             return $this->raiseError(
@@ -2201,7 +2237,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$name',
                       'was' => 'label does not exists',
                       'expected' => "label '$name' defined",
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         }
 
@@ -2231,7 +2268,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $attr = $this->_progress;
@@ -2305,7 +2343,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$raw',
                       'was' => gettype($raw),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (isset($path)) {
             if (!is_string($path)) {
@@ -2318,7 +2357,8 @@ class HTML_Progress2 extends HTML_Common
                           'paramnum' => 2));
 
             } elseif (!is_dir($path)) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
+                return $this->raiseError(
+                    HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
                     'error',
                     array('var' => '$path',
                           'resource' => $path,
@@ -2326,7 +2366,8 @@ class HTML_Progress2 extends HTML_Common
                           'paramnum' => 2));
 
             } elseif (!file_exists($js = $path . $ds . 'HTML_Progress2.js')) {
-                return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
+                return $this->raiseError(
+                    HTML_PROGRESS2_ERROR_INVALID_RESOURCE,
                     'error',
                     array('var' => '$path',
                           'resource' => $js,
@@ -2437,7 +2478,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$dir',
                       'was' => $dir,
                       'expected' => 'directory exists',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $ds = DIRECTORY_SEPARATOR;
@@ -2540,7 +2582,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$delay',
                       'was' => gettype($delay),
                       'expected' => 'integer',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($delay < 0) {
             return $this->raiseError(
@@ -2549,7 +2592,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$delay',
                       'was' => $delay,
                       'expected' => 'greater than zero',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif ($delay > 1000) {
             return $this->raiseError(
@@ -2558,7 +2602,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$delay',
                       'was' => $delay,
                       'expected' => 'less or equal 1000',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $this->animSpeed = $delay;
     }
@@ -2584,7 +2629,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$raw',
                       'was' => gettype($raw),
                       'expected' => 'boolean',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $progressAttr = $this->getProgressAttributes();
@@ -2710,7 +2756,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$styles',
                       'was' => gettype($styles),
                       'expected' => 'array | string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         $css = new HTML_CSS();
@@ -2723,7 +2770,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$styles',
                       'was' => 'unknown data source',
                       'expected' => 'valid CSS',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         if (strpos($this->border['class'], '%s') === false) {
@@ -3197,12 +3245,14 @@ class HTML_Progress2 extends HTML_Common
     function setProgressHandler($handler)
     {
         if (!is_callable($handler)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
                 'warning',
                 array('var' => '$handler',
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
         $this->_callback = $handler;
     }
@@ -3329,12 +3379,14 @@ class HTML_Progress2 extends HTML_Common
     function addListener($callback, $nName = EVENT_DISPATCHER_GLOBAL)
     {
         if (!is_callable($callback)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
                 'exception',
                 array('var' => '$callback',
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (!is_string($nName)) {
             return $this->raiseError(
@@ -3372,12 +3424,14 @@ class HTML_Progress2 extends HTML_Common
     function removeListener($callback, $nName = EVENT_DISPATCHER_GLOBAL)
     {
         if (!is_callable($callback)) {
-            return $this->raiseError(HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
+            return $this->raiseError(
+                HTML_PROGRESS2_ERROR_INVALID_CALLBACK,
                 'exception',
                 array('var' => '$callback',
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+            );
 
         } elseif (!is_string($nName)) {
             return $this->raiseError(
@@ -3386,7 +3440,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$nName',
                       'was' => gettype($nName),
                       'expected' => 'string',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
         }
 
         $result = $this->dispatcher->removeObserver($callback, $nName);
@@ -3427,7 +3482,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$serverUrl',
                       'was' => gettype($serverUrl),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
 
         } elseif (!HTML_Progress2::fileExists($serverUrl)) {
             return $this->raiseError(
@@ -3493,7 +3549,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$serializer',
                       'was' => gettype($serializer),
                       'expected' => 'string',
-                      'paramnum' => 1));
+                      'paramnum' => 1)
+                  );
         }
 
         include_once 'HTML/AJAX/Helper.php';
