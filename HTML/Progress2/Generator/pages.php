@@ -195,8 +195,10 @@ class Property1 extends TabbedPage
     {
         $this->buildTabs();
         // tab caption
-        $this->addElement('header', null,
-                          'Progress2 Generator - Control Panel: main properties');
+        $this->addElement(
+            'header', null,
+            'Progress2 Generator - Control Panel: main properties'
+        );
 
         $shape[] =& $this->createElement('radio', null, null, 'Horizontal', '1');
         $shape[] =& $this->createElement('radio', null, null, 'Vertical', '2');
@@ -210,33 +212,59 @@ class Property1 extends TabbedPage
         $autosize[] =& $this->createElement('radio', null, null, 'No', false);
         $this->addGroup($autosize, 'autosize', 'Best size:');
 
-        $psize['width']    =& $this->createElement('text',
-                                                   'width', 'width',
-                                                   array('size' => 4));
-        $psize['height']   =& $this->createElement('text',
-                                                   'height', 'height',
-                                                   array('size' => 4));
-        $psize['left']     =& $this->createElement('text',
-                                                   'left', 'left',
-                                                   array('size' => 4));
-        $psize['top']      =& $this->createElement('text',
-                                                   'top', 'top',
-                                                   array('size' => 4));
-        $psize['position'] =& $this->createElement('text',
-                                                   'position', 'position',
-                                                   array('disabled' => 'true'));
-        $psize['bgcolor']  =& $this->createElement('text',
-                                                   'bgcolor', 'bgcolor',
-                                                   array('size' => 7));
-        $this->addGroup($psize, 'progresssize',
-                                'Size, position and color:', ' ');
+        $psize['width'] =& $this->createElement(
+            'text',
+            'width',
+            'width',
+            array('size' => 4)
+        );
 
-        $this->addElement('text', 'rAnimSpeed',
-                          array('Animation speed :',
-                                '(0-1000 ; 0:fast, 1000:slow)'));
-        $this->addRule('rAnimSpeed',
-                       'Should be between 0 and 1000',
-                       'rangelength', array(0,1000), 'client');
+        $psize['height'] =& $this->createElement(
+            'text',
+            'height', 'height',
+            array('size' => 4)
+        );
+
+        $psize['left'] =& $this->createElement(
+            'text',
+            'left', 'left',
+            array('size' => 4)
+        );
+
+        $psize['top'] =& $this->createElement(
+            'text',
+            'top', 'top',
+            array('size' => 4)
+        );
+
+        $psize['position'] =& $this->createElement(
+            'text',
+            'position', 'position',
+            array('disabled' => 'true')
+        );
+
+        $psize['bgcolor']  =& $this->createElement(
+            'text',
+            'bgcolor', 'bgcolor',
+            array('size' => 7)
+        );
+
+        $this->addGroup(
+            $psize, 'progresssize',
+            'Size, position and color:', ' '
+        );
+
+        $this->addElement(
+            'text', 'rAnimSpeed',
+            array('Animation speed :',
+                    '(0-1000 ; 0:fast, 1000:slow)')
+        );
+
+        $this->addRule(
+            'rAnimSpeed',
+           'Should be between 0 and 1000',
+           'rangelength', array(0,1000), 'client'
+        );
 
         // Buttons of the wizard to do the job
         $this->buildButtons(array('back','apply','process'));
@@ -271,51 +299,88 @@ class Property2 extends TabbedPage
         $this->addElement('text', 'cellid', 'Id mask:', array('size' => 32));
         $this->addElement('text', 'cellclass', 'CSS class:', array('size' => 32));
 
-        $cellvalue['min'] =& $this->createElement('text',
-                                                  'min', 'minimum',
-                                                  array('size' => 4));
-        $cellvalue['max'] =& $this->createElement('text',
-                                                  'max', 'maximum',
-                                                  array('size' => 4));
-        $cellvalue['inc'] =& $this->createElement('text',
-                                                  'inc', 'increment',
-                                                  array('size' => 4));
+        $cellvalue['min'] =& $this->createElement(
+            'text',
+            'min', 'minimum',
+            array('size' => 4)
+        );
+        $cellvalue['max'] =& $this->createElement(
+            'text',
+            'max', 'maximum',
+            array('size' => 4)
+        );
+        $cellvalue['inc'] =& $this->createElement(
+            'text',
+            'inc', 'increment',
+            array('size' => 4)
+        );
+
         $this->addGroup($cellvalue, 'cellvalue', 'Value:', ' ');
 
-        $cellsize['width']   =& $this->createElement('text',
-                                                     'width', 'width',
-                                                     array('size' => 4));
-        $cellsize['height']  =& $this->createElement('text',
-                                                     'height', 'height',
-                                                     array('size' => 4));
-        $cellsize['spacing'] =& $this->createElement('text',
-                                                     'spacing', 'spacing',
-                                                     array('size' => 2));
-        $cellsize['count']   =& $this->createElement('text',
-                                                     'count', 'count',
-                                                     array('size' => 2));
+        $cellsize['width']   =& $this->createElement(
+            'text',
+            'width', 'width',
+            array('size' => 4)
+        );
+
+        $cellsize['height']  =& $this->createElement(
+            'text',
+            'height', 'height',
+            array('size' => 4)
+        );
+
+        $cellsize['spacing'] =& $this->createElement(
+            'text',
+            'spacing', 'spacing',
+            array('size' => 2)
+        );
+
+        $cellsize['count']   =& $this->createElement(
+            'text',
+            'count', 'count',
+            array('size' => 2)
+        );
+
         $this->addGroup($cellsize, 'cellsize', 'Size:', ' ');
 
-        $cellcolor['active']   =& $this->createElement('text',
-                                                       'active', 'active',
-                                                       array('size' => 7));
-        $cellcolor['inactive'] =& $this->createElement('text',
-                                                       'inactive', 'inactive',
-                                                       array('size' => 7));
-        $cellcolor['bgcolor']  =& $this->createElement('text',
-                                                       'bgcolor', 'background',
-                                                       array('size' => 7));
+        $cellcolor['active']   =& $this->createElement(
+            'text',
+            'active', 'active',
+            array('size' => 7)
+        );
+
+        $cellcolor['inactive'] =& $this->createElement(
+            'text',
+            'inactive', 'inactive',
+            array('size' => 7)
+        );
+
+        $cellcolor['bgcolor']  =& $this->createElement(
+            'text',
+            'bgcolor', 'background',
+            array('size' => 7)
+        );
+
         $this->addGroup($cellcolor, 'cellcolor', 'Color:', ' ');
 
-        $cellfont['family'] =& $this->createElement('text',
-                                                    'family', 'family',
-                                                    array('size' => 32));
-        $cellfont['size']   =& $this->createElement('text',
-                                                    'size', 'size',
-                                                    array('size' => 2));
-        $cellfont['color']  =& $this->createElement('text',
-                                                    'color', 'color',
-                                                    array('size' => 7));
+        $cellfont['family'] =& $this->createElement(
+            'text',
+            'family', 'family',
+            array('size' => 32)
+        );
+
+        $cellfont['size']   =& $this->createElement(
+            'text',
+            'size', 'size',
+            array('size' => 2)
+        );
+
+        $cellfont['color']  =& $this->createElement(
+            'text',
+            'color', 'color',
+            array('size' => 7)
+        );
+
         $this->addGroup($cellfont, 'cellfont', 'Font:', ' ');
 
         // Buttons of the wizard to do the job

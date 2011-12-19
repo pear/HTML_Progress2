@@ -99,9 +99,9 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
         $tpl->loadTemplateFile('itdynamic.html');
 
         $renderer =& new HTML_QuickForm_Renderer_ITDynamic($tpl);
-        $renderer->setElementBlock(array(
-            'buttons'     => 'qf_buttons'
-        ));
+        $renderer->setElementBlock(
+            array('buttons' => 'qf_buttons')
+        );
 
         $styles = $this->getStyleSheet();
         $js     = '';
