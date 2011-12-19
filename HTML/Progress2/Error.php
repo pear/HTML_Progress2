@@ -74,11 +74,12 @@ class HTML_Progress2_Error extends PEAR_Error
      * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
-    function HTML_Progress2_Error($message = null,
-                                  $code = null,
-                                  $mode = null, $options = null,
-                                  $userinfo = null)
-    {
+    function HTML_Progress2_Error(
+        $message = null,
+        $code = null,
+        $mode = null, $options = null,
+        $userinfo = null
+    ) {
         $this->__construct($message, $code, $mode, $options, $userinfo);
     }
 
@@ -97,11 +98,12 @@ class HTML_Progress2_Error extends PEAR_Error
      * @since      version 2.0.0 (2005-10-01)
      * @access     public
      */
-    function __construct($message = null,
-                         $code = null,
-                         $mode = null, $options = null,
-                         $userinfo = null)
-    {
+    function __construct(
+        $message = null,
+        $code = null,
+        $mode = null, $options = null,
+        $userinfo = null
+    ) {
         if ($mode === null) {
             $mode = PEAR_ERROR_RETURN;
         }
@@ -246,9 +248,11 @@ class HTML_Progress2_Error extends PEAR_Error
 
         $contextExec = $this->sprintContextExec($display['contextFormat']);
 
-        return sprintf($display['lineFormat'] . $display['eol'],
-                       ucfirst($userinfo['level']),
-                       $this->getMessage(), $contextExec);
+        return sprintf(
+            $display['lineFormat'] . $display['eol'],
+            ucfirst($userinfo['level']),
+            $this->getMessage(), $contextExec
+        );
     }
 
     /**
@@ -302,15 +306,19 @@ class HTML_Progress2_Error extends PEAR_Error
 
             $contextExec = $this->sprintContextExec($log['contextFormat']);
 
-            $message = sprintf($log['lineFormat'] . $log['eol'],
-                           strftime($log['timeFormat'], $timestamp),
-                           $log['ident'],
-                           $userinfo['level'],
-                           $this->getMessage(),
-                           $contextExec);
+            $message = sprintf(
+                $log['lineFormat'] . $log['eol'],
+                strftime($log['timeFormat'], $timestamp),
+                $log['ident'],
+                $userinfo['level'],
+                $this->getMessage(),
+                $contextExec
+            );
 
-            error_log(strip_tags($message), $message_type, $destination,
-                      $extra_headers);
+            error_log(
+                strip_tags($message), $message_type, $destination,
+                $extra_headers
+            );
         }
     }
 
