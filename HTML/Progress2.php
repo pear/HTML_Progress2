@@ -2428,21 +2428,23 @@ class HTML_Progress2 extends HTML_Common
         if (!is_null($url)) {
             if (!is_string($url)) {
                 return $this->raiseError(
-                HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                    HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'exception',
                     array('var' => '$url',
                           'was' => gettype($url),
                           'expected' => 'string',
-                          'paramnum' => 1));
+                          'paramnum' => 1)
+                );
 
             } elseif (!is_file($url) || $url == '.' || $url == '..') {
                 return $this->raiseError(
-                HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                    HTML_PROGRESS2_ERROR_INVALID_INPUT,
                     'error',
                     array('var' => '$url',
                           'was' => $url.' file does not exists',
                           'expected' => 'javascript file exists',
-                          'paramnum' => 1));
+                          'paramnum' => 1)
+                );
             }
         }
 
@@ -2479,7 +2481,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => $dir,
                       'expected' => 'directory exists',
                       'paramnum' => 1)
-                  );
+            );
         }
 
         $ds = DIRECTORY_SEPARATOR;
@@ -2526,13 +2528,22 @@ class HTML_Progress2 extends HTML_Common
                 $eI = 360-(($i+1)*$c);
             }
             if ($s > 0) {
-                imagefilledarc($image, $cx, $cy, $w, $h,
-                               0, $sA, $colorI, IMG_ARC_EDGED);
+                imagefilledarc(
+                    $image, $cx, $cy, $w, $h,
+                    0, $sA, $colorI, IMG_ARC_EDGED
+                );
             }
-            imagefilledarc($image, $cx, $cy, $w, $h,
-                           $sA, $eA, $colorA, IMG_ARC_EDGED);
-            imagefilledarc($image, $cx, $cy, $w, $h,
-                           $sI, $eI, $colorI, IMG_ARC_EDGED);
+
+            imagefilledarc(
+                $image, $cx, $cy, $w, $h,
+                $sA, $eA, $colorA, IMG_ARC_EDGED
+            );
+
+            imagefilledarc(
+                $image, $cx, $cy, $w, $h,
+                $sI, $eI, $colorI, IMG_ARC_EDGED
+            );
+
             $filename = $dir . $ds . sprintf($fileMask, $i+1);
             imagepng($image, $filename);
 
@@ -2583,7 +2594,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => gettype($delay),
                       'expected' => 'integer',
                       'paramnum' => 1)
-                  );
+            );
 
         } elseif ($delay < 0) {
             return $this->raiseError(
@@ -2593,7 +2604,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => $delay,
                       'expected' => 'greater than zero',
                       'paramnum' => 1)
-                  );
+            );
 
         } elseif ($delay > 1000) {
             return $this->raiseError(
@@ -2603,7 +2614,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => $delay,
                       'expected' => 'less or equal 1000',
                       'paramnum' => 1)
-                  );
+            );
         }
         $this->animSpeed = $delay;
     }
@@ -2630,7 +2641,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => gettype($raw),
                       'expected' => 'boolean',
                       'paramnum' => 1)
-                  );
+            );
         }
 
         $progressAttr = $this->getProgressAttributes();
@@ -2648,19 +2659,31 @@ class HTML_Progress2 extends HTML_Common
             $css->setStyle($borderCls, 'border-color', $borderAttr['color']);
         }
         if ($progressAttr['background-image'] !== 'none') {
-            $css->setStyle($borderCls, 'background-image',
-                           'url("'. $progressAttr['background-image'] .'")');
-            $css->setStyle($borderCls, 'background-repeat',
-                           $progressAttr['background-repeat']);
-            $css->setStyle($borderCls, 'background-position',
-                           $progressAttr['background-position']);
+            $css->setStyle(
+                $borderCls, 'background-image',
+                'url("'. $progressAttr['background-image'] .'")'
+            );
+
+            $css->setStyle(
+                $borderCls, 'background-repeat',
+                $progressAttr['background-repeat']
+            );
+
+            $css->setStyle(
+                $borderCls, 'background-position',
+                $progressAttr['background-position']
+            );
         }
         if ($this->cellCount > 0) {
-            $css->setStyle($borderCls, 'background-color',
-                           $progressAttr['background-color']);
+            $css->setStyle(
+                $borderCls, 'background-color',
+                $progressAttr['background-color']
+            );
         } else {
-            $css->setStyle($borderCls, 'background-color',
-                           $cellAttr['inactive-color']);
+            $css->setStyle(
+                $borderCls, 'background-color',
+                $cellAttr['inactive-color']
+            );
         }
 
         foreach ($this->label as $name => $data) {
@@ -2696,27 +2719,41 @@ class HTML_Progress2 extends HTML_Common
         $css->setSameStyle($cellClsA, $cellClsI);
 
         if ($this->orientation !== HTML_PROGRESS2_CIRCLE) {
-            $css->setStyle($cellClsI, 'background-color',
-                           $cellAttr['inactive-color']);
+            $css->setStyle(
+                $cellClsI, 'background-color',
+                $cellAttr['inactive-color']
+            );
         }
 
         $css->setStyle($cellClsA, 'background-color', $cellAttr['active-color']);
+
         if ($cellAttr['background-image'] !== 'none') {
-            $css->setStyle($cellClsA, 'background-image',
-                           'url("'. $cellAttr['background-image'] .'")');
+            $css->setStyle(
+                $cellClsA, 'background-image',
+                'url("'. $cellAttr['background-image'] .'")'
+            );
+
             if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
                 $css->setStyle($cellClsA, 'background-repeat', 'no-repeat');
             } else {
-                $css->setStyle($cellClsA, 'background-repeat',
-                               $cellAttr['background-repeat']);
-                $css->setStyle($cellClsA, 'background-position',
-                               $cellAttr['background-position']);
+                $css->setStyle(
+                    $cellClsA, 'background-repeat',
+                    $cellAttr['background-repeat']
+                );
+
+                $css->setStyle(
+                    $cellClsA, 'background-position',
+                    $cellAttr['background-position']
+                );
             }
         }
 
         if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
-            $css->setStyle($cellClsI, 'background-image',
-                           'url("'.$cellAttr[0]['background-image'].'")');
+            $css->setStyle(
+                $cellClsI, 'background-image',
+                'url("'.$cellAttr[0]['background-image'].'")'
+            );
+
             $css->setStyle($cellClsI, 'background-repeat', 'no-repeat');
         }
         $styles = $css->toString();
@@ -2757,7 +2794,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => gettype($styles),
                       'expected' => 'array | string',
                       'paramnum' => 1)
-                  );
+            );
         }
 
         $css = new HTML_CSS();
@@ -2771,7 +2808,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => 'unknown data source',
                       'expected' => 'valid CSS',
                       'paramnum' => 1)
-                  );
+            );
         }
 
         if (strpos($this->border['class'], '%s') === false) {
@@ -3007,7 +3044,8 @@ class HTML_Progress2 extends HTML_Common
         if ($this->orientation == HTML_PROGRESS2_CIRCLE) {
             $cellAttr = $this->getCellAttributes();
             if (!isset($cellAttr[0]['background-image'])
-                || !file_exists($cellAttr[0]['background-image'])) {
+                || !file_exists($cellAttr[0]['background-image'])
+            ) {
                 // creates default circle segments pictures :
                 // 'c0.png'->0% 'c1.png'->10%, 'c2.png'->20%, ... 'c10.png'->100%
                 $this->drawCircleSegments();
@@ -3252,7 +3290,7 @@ class HTML_Progress2 extends HTML_Common
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
                       'paramnum' => 1)
-                  );
+            );
         }
         $this->_callback = $handler;
     }
@@ -3272,8 +3310,11 @@ class HTML_Progress2 extends HTML_Common
     function process()
     {
         if ($this->_callback) {
-            return call_user_func_array($this->_callback,
-                                        array($this->value, &$this));
+            return call_user_func_array(
+                $this->_callback,
+                array($this->value, &$this)
+            );
+
         } else {
             // when there is no valid user callback then default is to sleep a bit
             $this->sleep();
@@ -3297,9 +3338,13 @@ class HTML_Progress2 extends HTML_Common
     function run()
     {
         $this->_status = 'run';
-        $this->_postNotification('onSubmit',
-                                 array('handler' => __FUNCTION__,
-                                       'value' => $this->getValue()));
+
+        $this->_postNotification(
+            'onSubmit',
+            array('handler' => __FUNCTION__,
+                  'value' => $this->getValue())
+        );
+
         do {
             $ret = $this->process();
             if ($this->getPercentComplete() == 1) {
@@ -3315,9 +3360,12 @@ class HTML_Progress2 extends HTML_Common
                 $this->moveStep($ret);
             }
         } while (1);
-        $this->_postNotification('onLoad',
-                                 array('handler' => __FUNCTION__,
-                                       'value' => $this->getValue()));
+
+        $this->_postNotification(
+            'onLoad',
+            array('handler' => __FUNCTION__,
+                  'value' => $this->getValue())
+        );
     }
 
     /**
@@ -3386,7 +3434,7 @@ class HTML_Progress2 extends HTML_Common
                       'element' => 'valid Class-Method/Function',
                       'was' => 'callback',
                       'paramnum' => 1)
-                  );
+            );
 
         } elseif (!is_string($nName)) {
             return $this->raiseError(
@@ -3395,7 +3443,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$nName',
                       'was' => gettype($nName),
                       'expected' => 'string',
-                      'paramnum' => 2));
+                      'paramnum' => 2)
+            );
         }
 
         $this->dispatcher = Event_Dispatcher::getInstance('ProgressMeter');
@@ -3483,7 +3532,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => gettype($serverUrl),
                       'expected' => 'string',
                       'paramnum' => 1)
-                  );
+            );
 
         } elseif (!HTML_Progress2::fileExists($serverUrl)) {
             return $this->raiseError(
@@ -3521,7 +3570,8 @@ class HTML_Progress2 extends HTML_Common
                 array('var' => '$client',
                       'was' => 'empty array',
                       'expected' => 'at least one client defined',
-                      'paramnum' => 3));
+                      'paramnum' => 3)
+            );
         }
 
         $this->ajax = array('serverUrl' => $serverUrl,
@@ -3550,7 +3600,7 @@ class HTML_Progress2 extends HTML_Common
                       'was' => gettype($serializer),
                       'expected' => 'string',
                       'paramnum' => 1)
-                  );
+            );
         }
 
         include_once 'HTML/AJAX/Helper.php';
@@ -3590,8 +3640,12 @@ class HTML_Progress2 extends HTML_Common
                      . $ajaxHelper->escape($serializer) . ';';
         }
         $setting .= PHP_EOL;
-        $ret     .= $ajaxHelper->encloseInScript(PHP_EOL
-                 . '//<![CDATA[' . $setting . '//]]>' . PHP_EOL);
+        $ret     .= $ajaxHelper->encloseInScript(
+            PHP_EOL
+            . '//<![CDATA[' . $setting . '//]]>' 
+            . PHP_EOL
+        );
+
         return $ret;
     }
 
@@ -4559,4 +4613,3 @@ class HTML_Progress2 extends HTML_Common
         return @array_shift($this->_errorstack);
     }
 }
-?>
