@@ -1731,30 +1731,33 @@ class HTML_Progress2 extends HTML_Common
             foreach ($coord as $id => $pos) {
                 if (!is_array($pos)) {
                     return $this->raiseError(
-                HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                        HTML_PROGRESS2_ERROR_INVALID_INPUT,
                         'exception',
                         array('var' => '$coord[,$pos]',
                               'was' => gettype($pos),
                               'expected' => 'array',
-                              'paramnum' => 3));
+                              'paramnum' => 3)
+                    );
                 }
                 if ($pos[0] >= $ygrid) {
                     return $this->raiseError(
-                HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                        HTML_PROGRESS2_ERROR_INVALID_INPUT,
                         'error',
                         array('var' => '$pos[0]',
                               'was' => $pos[0],
                               'expected' => 'coordinate less than grid height',
-                              'paramnum' => 2));
+                              'paramnum' => 2)
+                    );
                 }
                 if ($pos[1] >= $xgrid) {
                     return $this->raiseError(
-                HTML_PROGRESS2_ERROR_INVALID_INPUT,
+                        HTML_PROGRESS2_ERROR_INVALID_INPUT,
                         'error',
                         array('var' => '$pos[1]',
                               'was' => $pos[1],
                               'expected' => 'coordinate less than grid width',
-                              'paramnum' => 1));
+                              'paramnum' => 1)
+                    );
                 }
             }
         }
