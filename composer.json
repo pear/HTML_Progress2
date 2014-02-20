@@ -1,0 +1,35 @@
+{
+    "authors": [
+        {
+            "email": "pear@laurent-laville.org",
+            "name": "Laurent Laville",
+            "role": "Lead"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "HTML": "./"
+        }
+    },
+    "description": "More info available on: http://pear.php.net/package/HTML_Progress2",
+    "include-path": [
+        "./"
+    ],
+    "license": "BSD",
+    "name": "pear/html_progress2",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=HTML_Progress2",
+        "source": "https://github.com/pear/HTML_Progress2"
+    },
+    "type": "library",
+    "require": {
+        "pear/pear_exception": "*",
+        "pear/html_common": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "suggest": {
+        "pear/php_compat": "Install optionally via your project's composer.json"
+    }
+}
